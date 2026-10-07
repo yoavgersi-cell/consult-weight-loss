@@ -1,0 +1,555 @@
+{
+ "sources": {
+  "trustpilot_reviews": 701,
+  "trustpilot_providers": 6,
+  "trustpilot_negative": 151,
+  "reddit_items": 163,
+  "reddit_threads": 19,
+  "price_reports": 88,
+  "stage_revealing_tp": 81,
+  "stage_revealing_rd": 137
+ },
+ "providers": [
+  {
+   "provider": "embody",
+   "n": 200,
+   "avg": 3.73,
+   "invited_share": 48,
+   "labelled": true,
+   "invited_avg": 4.9,
+   "organic_avg": 2.66,
+   "pos": 134,
+   "neg": 61,
+   "mixed": 5,
+   "top_neg_theme": "SHIP",
+   "top_neg_share": 72
+  },
+  {
+   "provider": "mochi",
+   "n": 84,
+   "avg": null,
+   "invited_share": 95,
+   "labelled": true,
+   "invited_avg": null,
+   "organic_avg": null,
+   "pos": 69,
+   "neg": 10,
+   "mixed": 5,
+   "top_neg_theme": "APPT",
+   "top_neg_share": 40
+  },
+  {
+   "provider": "ro",
+   "n": 138,
+   "avg": 3.87,
+   "invited_share": 0,
+   "labelled": false,
+   "invited_avg": null,
+   "organic_avg": null,
+   "pos": 94,
+   "neg": 35,
+   "mixed": 9,
+   "top_neg_theme": "MEMB",
+   "top_neg_share": 66
+  },
+  {
+   "provider": "skinnyrx",
+   "n": 80,
+   "avg": 4.59,
+   "invited_share": 50,
+   "labelled": true,
+   "invited_avg": 4.97,
+   "organic_avg": 4.2,
+   "pos": 72,
+   "neg": 7,
+   "mixed": 1,
+   "top_neg_theme": "EFF",
+   "top_neg_share": 71
+  },
+  {
+   "provider": "trimrx",
+   "n": 119,
+   "avg": 4.47,
+   "invited_share": 87,
+   "labelled": true,
+   "invited_avg": 4.83,
+   "organic_avg": 2.12,
+   "pos": 102,
+   "neg": 16,
+   "mixed": 1,
+   "top_neg_theme": "CS",
+   "top_neg_share": 62
+  },
+  {
+   "provider": "wellmedr",
+   "n": 80,
+   "avg": 3.8,
+   "invited_share": 0,
+   "labelled": false,
+   "invited_avg": null,
+   "organic_avg": null,
+   "pos": 57,
+   "neg": 22,
+   "mixed": 1,
+   "top_neg_theme": "SHIP",
+   "top_neg_share": 73
+  }
+ ],
+ "stage": {
+  "trustpilot": {
+   "new": 43.2,
+   "switch": 32.1,
+   "long": 24.7,
+   "restart": 0.0
+  },
+  "reddit": {
+   "new": 24.1,
+   "switch": 14.6,
+   "long": 59.1,
+   "restart": 2.2
+  }
+ },
+ "needs": {
+  "labels": {
+   "HUMAN": "A human who answers",
+   "EASY_START": "Easy, fast start",
+   "HEARD": "Being heard, not judged",
+   "ON_TIME": "Medication on time",
+   "MONEY_CONTROL": "Control over money",
+   "PRICE_CLARITY": "A price they understand",
+   "WORKS": "That it works / is safe",
+   "DOSE": "Dose continuity, med type"
+  },
+  "order": [
+   "HUMAN",
+   "EASY_START",
+   "HEARD",
+   "ON_TIME",
+   "MONEY_CONTROL",
+   "PRICE_CLARITY",
+   "WORKS",
+   "DOSE"
+  ],
+  "trustpilot_share": {
+   "HUMAN": 40.1,
+   "EASY_START": 23.1,
+   "HEARD": 20.0,
+   "ON_TIME": 19.4,
+   "MONEY_CONTROL": 11.4,
+   "PRICE_CLARITY": 11.6,
+   "WORKS": 9.4,
+   "DOSE": 6.0
+  },
+  "reddit_share": {
+   "HUMAN": 14.1,
+   "EASY_START": 3.7,
+   "HEARD": 0.6,
+   "ON_TIME": 9.8,
+   "MONEY_CONTROL": 7.4,
+   "PRICE_CLARITY": 57.7,
+   "WORKS": 39.3,
+   "DOSE": 6.1
+  },
+  "trustpilot_pos": {
+   "HEARD": 121,
+   "HUMAN": 201,
+   "EASY_START": 161,
+   "DOSE": 21,
+   "WORKS": 34,
+   "ON_TIME": 51,
+   "PRICE_CLARITY": 44,
+   "MONEY_CONTROL": 12
+  },
+  "trustpilot_neg": {
+   "MONEY_CONTROL": 65,
+   "HEARD": 16,
+   "ON_TIME": 81,
+   "HUMAN": 70,
+   "WORKS": 31,
+   "DOSE": 20,
+   "PRICE_CLARITY": 30
+  }
+ },
+ "fears": {
+  "labels": {
+   "OVERCHARGED": "Being overcharged",
+   "TRAPPED": "Being trapped (prepay, cancel, refunds)",
+   "RUN_OUT": "Running out of medication",
+   "NO_HUMAN": "Nobody to call",
+   "SCAM": "Scam / doesn't work",
+   "SIDE_EFFECTS": "Side effects",
+   "JUDGED": "Being judged",
+   "REGAIN": "Regaining weight"
+  },
+  "order": [
+   "OVERCHARGED",
+   "TRAPPED",
+   "RUN_OUT",
+   "NO_HUMAN",
+   "SCAM",
+   "SIDE_EFFECTS",
+   "JUDGED",
+   "REGAIN"
+  ],
+  "trustpilot_share_of_negative": {
+   "OVERCHARGED": 21.9,
+   "TRAPPED": 47.7,
+   "RUN_OUT": 46.4,
+   "NO_HUMAN": 52.3,
+   "SCAM": 14.6,
+   "SIDE_EFFECTS": 6.6,
+   "JUDGED": 0.7,
+   "REGAIN": 0.0
+  },
+  "reddit_share": {
+   "OVERCHARGED": 22.7,
+   "TRAPPED": 3.1,
+   "RUN_OUT": 4.9,
+   "NO_HUMAN": 5.5,
+   "SCAM": 23.9,
+   "SIDE_EFFECTS": 7.4,
+   "JUDGED": 3.1,
+   "REGAIN": 3.7
+  }
+ },
+ "reddit": {
+  "medication": {
+   "brand-oral": 9,
+   "comp-inj": 96,
+   "unknown": 20,
+   "brand-inj": 26,
+   "graymarket": 12
+  },
+  "payment": {
+   "cash": 141,
+   "insurance": 6,
+   "medicare": 2
+  },
+  "switch_reason": {
+   "membership": 4,
+   "price": 12,
+   "results": 5,
+   "insurance": 13,
+   "fulfilment": 1,
+   "dose": 1
+  },
+  "threads": {
+   "glp1discussion-cheaper-option": 11,
+   "residency-cheapest": 27,
+   "scamfinder-peptide": 5,
+   "tirzcompound-wellmedr": 22,
+   "what-are-you-paying": 10,
+   "semaglutide-affordable": 8,
+   "scam-journalism": 2,
+   "glp1discussion-giving-up": 5,
+   "glp1discussion-vial-accountability": 2,
+   "glp1discussion-safety-checks": 2,
+   "glp1discussion-embody": 8,
+   "glp1discussion-affordable-safe": 9,
+   "glp1discussion-beginner": 3,
+   "askanything-where-cheapest": 4,
+   "researchtalk-pick-one": 6,
+   "antidiet-pill-vs-zep": 8,
+   "microdosing-15lbs": 8,
+   "researchtalk-overwhelmed": 12,
+   "tirzcompound-where-to-buy": 11
+  },
+  "drug_preference": {
+   "tirzepatide": 27,
+   "retatrutide": 6,
+   "tirzepatide+cagrilintide": 2,
+   "semaglutide": 4
+  }
+ },
+ "prices": {
+  "compounded": {
+   "values": [
+    50.0,
+    66.0,
+    75.0,
+    76.0,
+    79.0,
+    80.0,
+    86.0,
+    86.0,
+    89.0,
+    99.0,
+    99.0,
+    100.0,
+    100.0,
+    100.0,
+    108.0,
+    111.0,
+    111.0,
+    111.0,
+    112.0,
+    115.0,
+    116.0,
+    125.0,
+    129.0,
+    129.0,
+    129.0,
+    129.0,
+    129.0,
+    133.0,
+    133.0,
+    133.0,
+    144.0,
+    149.0,
+    150.0,
+    150.0,
+    150.0,
+    150.0,
+    155.0,
+    159.0,
+    163.0,
+    163.0,
+    165.0,
+    165.0,
+    166.0,
+    166.0,
+    167.0,
+    170.0,
+    175.0,
+    179.0,
+    180.0,
+    180.0,
+    200.0,
+    200.0,
+    200.0,
+    201.0,
+    206.0,
+    249.0,
+    275.0,
+    399.0,
+    400.0,
+    400.0
+   ],
+   "n": 60,
+   "median": 138,
+   "q1": 109,
+   "q3": 169
+  },
+  "brand": {
+   "values": [
+    149.0,
+    149.0,
+    224.5,
+    299.0,
+    299.0,
+    299.0,
+    300.0,
+    320.0,
+    350.0,
+    350.0,
+    400.0,
+    449.0,
+    450.0,
+    479.0,
+    495.0,
+    500.0
+   ],
+   "n": 16,
+   "median": 335,
+   "q1": 299,
+   "q3": 450
+  },
+  "unknown": {
+   "values": [
+    159.0,
+    199.0,
+    200.0,
+    250.0
+   ],
+   "n": 4,
+   "median": 200,
+   "q1": 169,
+   "q3": 238
+  },
+  "graymarket": {
+   "values": [
+    8.0,
+    8.0,
+    10.0,
+    15.0,
+    20.0,
+    20.0,
+    35.0,
+    100.0
+   ],
+   "n": 8,
+   "median": 18,
+   "q1": 8,
+   "q3": 31
+  }
+ },
+ "demographics": {
+  "n_age": 32,
+  "ages": [
+   32,
+   36,
+   36,
+   38,
+   39,
+   39,
+   41,
+   42,
+   43,
+   43,
+   45,
+   46,
+   47,
+   48,
+   48,
+   48,
+   51,
+   55,
+   59,
+   61,
+   62,
+   62,
+   65,
+   66,
+   66,
+   67,
+   69,
+   72,
+   73,
+   75
+  ],
+  "bands": {
+   "<40": 7,
+   "40-49": 11,
+   "50-64": 6,
+   "65+": 8
+  },
+  "sex": {
+   "M": 5,
+   "F": 18
+  },
+  "loss_pct": [
+   33.3,
+   8.4,
+   46.6,
+   51.9,
+   32.0,
+   6.7,
+   10.1,
+   33.6,
+   18.2,
+   16.0,
+   33.3,
+   30.3,
+   42.6,
+   23.1,
+   22.4,
+   11.9,
+   15.6,
+   33.9,
+   31.7,
+   47.3,
+   23.4,
+   25.3,
+   19.1,
+   17.5
+  ],
+  "median_age": 48.0
+ },
+ "community_list": {
+  "plans": 28,
+  "providers": 4,
+  "monthly": [
+   100,
+   100,
+   100,
+   116,
+   133,
+   133,
+   133,
+   133,
+   156,
+   156,
+   156,
+   156,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   166,
+   175,
+   176,
+   200
+  ],
+  "median_monthly": 166.0,
+  "min_monthly": 100,
+  "max_monthly": 200,
+  "share_503b": 50,
+  "share_28day": 95,
+  "share_auto_refill": 71,
+  "share_all_states": 25,
+  "share_additive_free": 50,
+  "pharmacies": {
+   "Drug Crafters": 4,
+   "Hyalo": 8,
+   "Hallandale": 6,
+   "Nova": 6,
+   "Southend": 2,
+   "OptioRx": 2
+  },
+  "tiers": [
+   {
+    "provider": "JoinRift",
+    "tier": "Top tier",
+    "threshold": ">=10% usage & >=90% recommend"
+   },
+   {
+    "provider": "TryTrillium",
+    "tier": "Top tier",
+    "threshold": ">=10% usage & >=90% recommend"
+   },
+   {
+    "provider": "JoinBigEasy",
+    "tier": "Top tier",
+    "threshold": ">=10% usage & >=90% recommend"
+   },
+   {
+    "provider": "PreventiveMD",
+    "tier": "Tier 2",
+    "threshold": ">=5% usage & >=80% recommend"
+   },
+   {
+    "provider": "JoinOlaHealth",
+    "tier": "Tier 2",
+    "threshold": ">=5% usage & >=80% recommend"
+   },
+   {
+    "provider": "Collective",
+    "tier": "Tier 2",
+    "threshold": ">=5% usage & >=80% recommend"
+   },
+   {
+    "provider": "JoinPomegranate",
+    "tier": "Tier 2",
+    "threshold": ">=5% usage & >=80% recommend"
+   },
+   {
+    "provider": "GoodLifeMeds",
+    "tier": "Tier 2",
+    "threshold": ">=5% usage & >=80% recommend"
+   },
+   {
+    "provider": "Fifty410",
+    "tier": "Tier 3",
+    "threshold": ">=5% usage & >=70% recommend"
+   }
+  ]
+ }
+}

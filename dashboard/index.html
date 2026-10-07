@@ -212,6 +212,23 @@ select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid
 .sr-axis { position: relative; height: 16px; margin-left: calc(9.5rem + 10px); font: 600 0.7rem var(--font-mono); color: var(--ink-3); }
 .sr-axis span { position: absolute; transform: translateX(-50%); }
 @media (max-width: 520px) { .sr { grid-template-columns: 1fr; } .sr-axis { margin-left: 0; } }
+
+/* data insights */
+:root { --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; } }
+:root[data-theme="dark"] { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; }
+.di-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.di-stack { display: grid; gap: 10px; }
+.di-row { display: grid; grid-template-columns: 9.5rem 1fr; gap: 10px; align-items: center; }
+.di-bar { display: flex; height: 28px; gap: 2px; border-radius: 4px; overflow: hidden; }
+.di-bar span { display: flex; align-items: center; padding-inline: 6px; font: 600 0.74rem var(--font-mono); color: #fff; white-space: nowrap; overflow: hidden; min-width: 0; }
+.gb { display: grid; gap: 10px; }
+.gb-item { display: grid; grid-template-columns: minmax(130px, 38%) 1fr; gap: 10px; align-items: center; font-size: 0.88rem; }
+.gb-bars { display: grid; gap: 3px; }
+.gb-bar { display: flex; align-items: center; gap: 6px; }
+.gb-bar i { display: block; height: 10px; border-radius: 0 3px 3px 0; min-width: 2px; }
+.gb-bar b { font: 600 0.72rem var(--font-mono); color: var(--ink-2); }
+@media (max-width: 520px) { .gb-item, .di-row { grid-template-columns: 1fr; gap: 4px; } }
 /* buyer profile */
 .profile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px; background: var(--ink); color: var(--bg); border-radius: var(--r); padding: 22px; }
 .profile .eyebrow { color: color-mix(in srgb, var(--bg) 70%, transparent); }
@@ -288,6 +305,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
     <button class="tab" role="tab" data-tab="overview">Overview</button>
+    <button class="tab" role="tab" data-tab="data-insights">Data insights</button>
     <button class="tab" role="tab" data-tab="user">Buyer profile</button>
     <button class="tab" role="tab" data-tab="site">Site messaging</button>
     <button class="tab" role="tab" data-tab="search">Search intent</button>
@@ -346,6 +364,78 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   </div>
 </section>
 
+<!-- DATA INSIGHTS (rendered from window.AGG, built by scripts/aggregate.py) -->
+<section id="data-insights" data-panel="data-insights" hidden>
+  <div class="sec-head">
+    <span class="eyebrow" id="diEyebrow">Data insights · all coded sources combined</span>
+    <h2>What the data says about the weight-loss buyer</h2>
+    <p class="muted">Every number on this tab comes from the coded Trustpilot reviews, Reddit comments and price reports in the repo. Re-running <span class="mono">scripts/aggregate.py</span> after new data comes in updates the whole tab.</p>
+  </div>
+  <div class="grid g4" id="diKpis"></div>
+  <div class="card">
+    <h3>Key findings from the data</h3>
+    <ol class="ticks" id="diFindings"></ol>
+  </div>
+  <div class="card">
+    <div class="di-head"><h3>Where buyers are in their journey</h3><div class="legend small" id="stageLegend"></div></div>
+    <div id="diStage" class="di-stack"></div>
+    <p class="small muted" id="diStageNote"></p>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <div class="di-head"><h3>What they talk about</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
+      <p class="small muted">Share of items that mention each need</p>
+      <div id="diNeeds" class="gb"></div>
+    </div>
+    <div class="card">
+      <div class="di-head"><h3>What they fear</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot 1–2★</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
+      <p class="small muted">Trustpilot: share of negative reviews · Reddit: share of all items</p>
+      <div id="diFears" class="gb"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="di-head"><h3>What people pay each month</h3><span class="small muted" id="diPriceN"></span></div>
+    <div class="strip" id="diPrice"></div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><h3>Medication discussed on Reddit</h3><div id="diMed" class="hbars"></div></div>
+    <div class="card"><h3>Why they switch</h3><div id="diSwitch" class="hbars"></div></div>
+    <div class="card"><h3>How they pay (Reddit)</h3><div id="diPay" class="hbars"></div></div>
+  </div>
+  <div class="card">
+    <div class="di-head"><h3>Who they are (stated outright only)</h3><span class="small muted" id="diDemoN"></span></div>
+    <div class="grid g3">
+      <div><p class="small muted" style="margin-bottom:6px">Age band</p><div id="diAge" class="hbars"></div></div>
+      <div><p class="small muted" style="margin-bottom:6px">Sex, where stated</p><div id="diSex" class="hbars"></div></div>
+      <div><p class="small muted" style="margin-bottom:6px">Weight lost so far, where start and current weight are stated</p><div id="diLoss" class="hbars"></div></div>
+    </div>
+    <p class="small muted">We code age and sex only when the writer states them. Nothing is inferred from names. The sample is small, so treat this as a sketch.</p>
+  </div>
+  <div class="card">
+    <div class="di-head"><h3>"If you could only pick one GLP-1"</h3><span class="small muted" id="diDrugN"></span></div>
+    <div id="diDrug" class="hbars"></div>
+  </div>
+  <div class="card" id="clCard">
+    <div class="di-head"><h3>The comparison table buyers already trust</h3><span class="small muted">r/tirzepatidecompound pinned "Where to Buy", updated Oct 5, 2026</span></div>
+    <p class="small muted" id="clLead"></p>
+    <div class="grid g4" id="clKpis"></div>
+    <div class="grid g2">
+      <div><p class="small muted" style="margin-bottom:6px">Providers and how they are ranked (survey of users)</p><div class="tscroll" style="border:0"><table><thead><tr><th>Provider</th><th>Tier</th><th>Rule</th></tr></thead><tbody id="clTiers"></tbody></table></div></div>
+      <div><p class="small muted" style="margin-bottom:6px">Plans by pharmacy</p><div id="clPharm" class="hbars"></div>
+        <p class="small muted" style="margin-top:10px">Fields shown for every plan: price for 3 months · pharmacy and 503A/503B · 28-day rule · additive and preservative · beyond-use date · states it doesn't ship to · auto or manual refill · clinician before prescription.</p></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Providers in the Trustpilot sample</h3>
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th>Provider</th><th class="num">Reviews</th><th class="num">Avg ★</th><th class="num">Invited</th><th class="num">Invited ★</th><th class="num">Unprompted ★</th><th class="num">Gap</th><th>Top complaint (share of negatives)</th></tr></thead>
+        <tbody id="diProv"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
 <!-- USER -->
 <section id="user" data-panel="user" hidden>
   <div class="sec-head">
@@ -391,7 +481,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <table class="t-mid">
         <thead><tr><th></th><th>Signing up now <span class="muted">· Trustpilot</span></th><th>Experienced <span class="muted">· Reddit</span></th></tr></thead>
         <tbody>
-          <tr><td><strong>Stage</strong></td><td class="small">43% new · 32% switching · 25% established</td><td class="small"><strong>62% established</strong> · 26% new · 9% switching</td></tr>
+          <tr><td><strong>Stage</strong></td><td class="small">43% new · 32% switching · 25% established</td><td class="small" id="bpRdStage"></td></tr>
           <tr><td><strong>Compares on</strong></td><td class="small">One all-in monthly price · a human who answers</td><td class="small"><strong>Price per month at max dose on a 3-month plan</strong> · the named pharmacy (503A/503B)</td></tr>
           <tr><td><strong>Trusts</strong></td><td class="small">Reviews · a real person on the phone</td><td class="small">Community lists and surveys · <strong>not Trustpilot</strong> ("trustpilot? girl, c'mon")</td></tr>
           <tr><td><strong>Fears most</strong></td><td class="small">Being overcharged · trapped · running out</td><td class="small"><strong>Scams</strong> · being overcharged</td></tr>
@@ -1026,6 +1116,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
 <div class="tip" id="tip" hidden></div>
 
+<script id="agg-data">window.AGG={"sources":{"trustpilot_reviews":701,"trustpilot_providers":6,"trustpilot_negative":151,"reddit_items":163,"reddit_threads":19,"price_reports":88,"stage_revealing_tp":81,"stage_revealing_rd":137},"providers":[{"provider":"embody","n":200,"avg":3.73,"invited_share":48,"labelled":true,"invited_avg":4.9,"organic_avg":2.66,"pos":134,"neg":61,"mixed":5,"top_neg_theme":"SHIP","top_neg_share":72},{"provider":"mochi","n":84,"avg":null,"invited_share":95,"labelled":true,"invited_avg":null,"organic_avg":null,"pos":69,"neg":10,"mixed":5,"top_neg_theme":"APPT","top_neg_share":40},{"provider":"ro","n":138,"avg":3.87,"invited_share":0,"labelled":false,"invited_avg":null,"organic_avg":null,"pos":94,"neg":35,"mixed":9,"top_neg_theme":"MEMB","top_neg_share":66},{"provider":"skinnyrx","n":80,"avg":4.59,"invited_share":50,"labelled":true,"invited_avg":4.97,"organic_avg":4.2,"pos":72,"neg":7,"mixed":1,"top_neg_theme":"EFF","top_neg_share":71},{"provider":"trimrx","n":119,"avg":4.47,"invited_share":87,"labelled":true,"invited_avg":4.83,"organic_avg":2.12,"pos":102,"neg":16,"mixed":1,"top_neg_theme":"CS","top_neg_share":62},{"provider":"wellmedr","n":80,"avg":3.8,"invited_share":0,"labelled":false,"invited_avg":null,"organic_avg":null,"pos":57,"neg":22,"mixed":1,"top_neg_theme":"SHIP","top_neg_share":73}],"stage":{"trustpilot":{"new":43.2,"switch":32.1,"long":24.7,"restart":0.0},"reddit":{"new":24.1,"switch":14.6,"long":59.1,"restart":2.2}},"needs":{"labels":{"HUMAN":"A human who answers","EASY_START":"Easy, fast start","HEARD":"Being heard, not judged","ON_TIME":"Medication on time","MONEY_CONTROL":"Control over money","PRICE_CLARITY":"A price they understand","WORKS":"That it works / is safe","DOSE":"Dose continuity, med type"},"order":["HUMAN","EASY_START","HEARD","ON_TIME","MONEY_CONTROL","PRICE_CLARITY","WORKS","DOSE"],"trustpilot_share":{"HUMAN":40.1,"EASY_START":23.1,"HEARD":20.0,"ON_TIME":19.4,"MONEY_CONTROL":11.4,"PRICE_CLARITY":11.6,"WORKS":9.4,"DOSE":6.0},"reddit_share":{"HUMAN":14.1,"EASY_START":3.7,"HEARD":0.6,"ON_TIME":9.8,"MONEY_CONTROL":7.4,"PRICE_CLARITY":57.7,"WORKS":39.3,"DOSE":6.1},"trustpilot_pos":{"HEARD":121,"HUMAN":201,"EASY_START":161,"DOSE":21,"WORKS":34,"ON_TIME":51,"PRICE_CLARITY":44,"MONEY_CONTROL":12},"trustpilot_neg":{"MONEY_CONTROL":65,"HEARD":16,"ON_TIME":81,"HUMAN":70,"WORKS":31,"DOSE":20,"PRICE_CLARITY":30}},"fears":{"labels":{"OVERCHARGED":"Being overcharged","TRAPPED":"Being trapped (prepay, cancel, refunds)","RUN_OUT":"Running out of medication","NO_HUMAN":"Nobody to call","SCAM":"Scam / doesn't work","SIDE_EFFECTS":"Side effects","JUDGED":"Being judged","REGAIN":"Regaining weight"},"order":["OVERCHARGED","TRAPPED","RUN_OUT","NO_HUMAN","SCAM","SIDE_EFFECTS","JUDGED","REGAIN"],"trustpilot_share_of_negative":{"OVERCHARGED":21.9,"TRAPPED":47.7,"RUN_OUT":46.4,"NO_HUMAN":52.3,"SCAM":14.6,"SIDE_EFFECTS":6.6,"JUDGED":0.7,"REGAIN":0.0},"reddit_share":{"OVERCHARGED":22.7,"TRAPPED":3.1,"RUN_OUT":4.9,"NO_HUMAN":5.5,"SCAM":23.9,"SIDE_EFFECTS":7.4,"JUDGED":3.1,"REGAIN":3.7}},"reddit":{"medication":{"brand-oral":9,"comp-inj":96,"unknown":20,"brand-inj":26,"graymarket":12},"payment":{"cash":141,"insurance":6,"medicare":2},"switch_reason":{"membership":4,"price":12,"results":5,"insurance":13,"fulfilment":1,"dose":1},"threads":{"glp1discussion-cheaper-option":11,"residency-cheapest":27,"scamfinder-peptide":5,"tirzcompound-wellmedr":22,"what-are-you-paying":10,"semaglutide-affordable":8,"scam-journalism":2,"glp1discussion-giving-up":5,"glp1discussion-vial-accountability":2,"glp1discussion-safety-checks":2,"glp1discussion-embody":8,"glp1discussion-affordable-safe":9,"glp1discussion-beginner":3,"askanything-where-cheapest":4,"researchtalk-pick-one":6,"antidiet-pill-vs-zep":8,"microdosing-15lbs":8,"researchtalk-overwhelmed":12,"tirzcompound-where-to-buy":11},"drug_preference":{"tirzepatide":27,"retatrutide":6,"tirzepatide+cagrilintide":2,"semaglutide":4}},"prices":{"compounded":{"values":[50.0,66.0,75.0,76.0,79.0,80.0,86.0,86.0,89.0,99.0,99.0,100.0,100.0,100.0,108.0,111.0,111.0,111.0,112.0,115.0,116.0,125.0,129.0,129.0,129.0,129.0,129.0,133.0,133.0,133.0,144.0,149.0,150.0,150.0,150.0,150.0,155.0,159.0,163.0,163.0,165.0,165.0,166.0,166.0,167.0,170.0,175.0,179.0,180.0,180.0,200.0,200.0,200.0,201.0,206.0,249.0,275.0,399.0,400.0,400.0],"n":60,"median":138,"q1":109,"q3":169},"brand":{"values":[149.0,149.0,224.5,299.0,299.0,299.0,300.0,320.0,350.0,350.0,400.0,449.0,450.0,479.0,495.0,500.0],"n":16,"median":335,"q1":299,"q3":450},"unknown":{"values":[159.0,199.0,200.0,250.0],"n":4,"median":200,"q1":169,"q3":238},"graymarket":{"values":[8.0,8.0,10.0,15.0,20.0,20.0,35.0,100.0],"n":8,"median":18,"q1":8,"q3":31}},"demographics":{"n_age":32,"ages":[32,36,36,38,39,39,41,42,43,43,45,46,47,48,48,48,51,55,59,61,62,62,65,66,66,67,69,72,73,75],"bands":{"<40":7,"40-49":11,"50-64":6,"65+":8},"sex":{"M":5,"F":18},"loss_pct":[33.3,8.4,46.6,51.9,32.0,6.7,10.1,33.6,18.2,16.0,33.3,30.3,42.6,23.1,22.4,11.9,15.6,33.9,31.7,47.3,23.4,25.3,19.1,17.5],"median_age":48.0},"community_list":{"plans":28,"providers":4,"monthly":[100,100,100,116,133,133,133,133,156,156,156,156,166,166,166,166,166,166,166,166,166,166,166,166,166,175,176,200],"median_monthly":166.0,"min_monthly":100,"max_monthly":200,"share_503b":50,"share_28day":95,"share_auto_refill":71,"share_all_states":25,"share_additive_free":50,"pharmacies":{"Drug Crafters":4,"Hyalo":8,"Hallandale":6,"Nova":6,"Southend":2,"OptioRx":2},"tiers":[{"provider":"JoinRift","tier":"Top tier","threshold":">=10% usage & >=90% recommend"},{"provider":"TryTrillium","tier":"Top tier","threshold":">=10% usage & >=90% recommend"},{"provider":"JoinBigEasy","tier":"Top tier","threshold":">=10% usage & >=90% recommend"},{"provider":"PreventiveMD","tier":"Tier 2","threshold":">=5% usage & >=80% recommend"},{"provider":"JoinOlaHealth","tier":"Tier 2","threshold":">=5% usage & >=80% recommend"},{"provider":"Collective","tier":"Tier 2","threshold":">=5% usage & >=80% recommend"},{"provider":"JoinPomegranate","tier":"Tier 2","threshold":">=5% usage & >=80% recommend"},{"provider":"GoodLifeMeds","tier":"Tier 2","threshold":">=5% usage & >=80% recommend"},{"provider":"Fifty410","tier":"Tier 3","threshold":">=5% usage & >=70% recommend"}]}};</script>
 <script>
 (function () {
   // ---------- tabs ----------
@@ -1133,13 +1224,76 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
 
 
+
+  // ---------- data insights (from window.AGG) ----------
+  const A = window.AGG;
+  if (A) {
+    const S = A.sources, pct = v => `${Math.round(v)}%`;
+    document.getElementById('diEyebrow').textContent = `Data insights · ${S.trustpilot_reviews} Trustpilot reviews (${S.trustpilot_providers} providers) · ${S.reddit_items} Reddit items (${S.reddit_threads} threads) · ${S.price_reports} price reports`;
+    const kpi = [['Trustpilot reviews coded', S.trustpilot_reviews, `${S.trustpilot_providers} providers · ${S.trustpilot_negative} negative`], ['Reddit items coded', S.reddit_items, `${S.reddit_threads} threads`], ['Price reports', S.price_reports, 'monthly spend, Reddit'], ['Journey stage known', S.stage_revealing_tp + S.stage_revealing_rd, `${S.stage_revealing_tp} Trustpilot · ${S.stage_revealing_rd} Reddit`]];
+    document.getElementById('diKpis').innerHTML = kpi.map(k => `<div class="card stat"><span class="eyebrow">${k[0]}</span><span class="num">${k[1]}</span><p class="small muted">${k[2]}</p></div>`).join('');
+    // stage
+    const stK = [['new','Starting','var(--s1)'],['switch','Switching','var(--s2)'],['long','3+ months','var(--s3)'],['restart','Restarting','var(--s4)']];
+    document.getElementById('stageLegend').innerHTML = stK.map(k => `<span><i class="sw" style="background:${k[2]}"></i>${k[1]}</span>`).join('');
+    document.getElementById('diStage').innerHTML = [['Trustpilot', A.stage.trustpilot, S.stage_revealing_tp], ['Reddit', A.stage.reddit, S.stage_revealing_rd]].map(r => `<div class="di-row"><span class="small"><b>${r[0]}</b><br><span class="muted">n=${r[2]}</span></span><div class="di-bar">${stK.map(k => r[1][k[0]] > 0 ? `<span style="width:${r[1][k[0]]}%;background:${k[2]}" title="${k[1]}: ${r[1][k[0]]}%">${r[1][k[0]] >= 7 ? pct(r[1][k[0]]) : ''}</span>` : '').join('')}</div></div>`).join('');
+    document.getElementById('diStageNote').textContent = `Trustpilot is mostly people starting out (${pct(A.stage.trustpilot.new)}) or switching (${pct(A.stage.trustpilot.switch)}). Reddit is mostly people already on treatment (${pct(A.stage.reddit.long)}). Two different buyers at two different points in the journey.`;
+    // grouped bars
+    const grouped = (el, order, labels, a, b) => {
+      const max = Math.max(...order.map(k => Math.max(a[k] || 0, b[k] || 0)), 1);
+      const rows = [...order].sort((x, y) => ((b[y] || 0) + (a[y] || 0)) - ((b[x] || 0) + (a[x] || 0)));
+      document.getElementById(el).innerHTML = rows.map(k => `<div class="gb-item"><span>${labels[k]}</span><span class="gb-bars"><span class="gb-bar"><i style="width:${(a[k] || 0) / max * 85}%;background:var(--s1)"></i><b>${pct(a[k] || 0)}</b></span><span class="gb-bar"><i style="width:${(b[k] || 0) / max * 85}%;background:var(--s2)"></i><b>${pct(b[k] || 0)}</b></span></span></div>`).join('');
+    };
+    grouped('diNeeds', A.needs.order, A.needs.labels, A.needs.trustpilot_share, A.needs.reddit_share);
+    grouped('diFears', A.fears.order, A.fears.labels, A.fears.trustpilot_share_of_negative, A.fears.reddit_share);
+    // price strip
+    const chLabel = { compounded: 'Compounded via telehealth', brand: 'Brand-name, cash', graymarket: 'Gray market' };
+    const P = A.prices, Xp = v => (Math.min(v, 500) / 500 * 100).toFixed(2) + '%';
+    document.getElementById('diPriceN').textContent = `${S.price_reports} reports · each dot is one person · shaded = stated $100–$200 budget`;
+    document.getElementById('diPrice').innerHTML = ['compounded', 'brand', 'graymarket'].filter(c => P[c]).map(c => `<div class="sr"><span class="sr-l"><b>${chLabel[c]}</b><span class="muted small">n=${P[c].n} · median $${P[c].median} · middle half $${P[c].q1}–$${P[c].q3}</span></span><div class="sr-t"><span class="band" style="left:${Xp(100)};width:20%"></span>${P[c].values.map(v => `<span class="dot" style="left:${Xp(v)}" title="$${v}/mo"></span>`).join('')}<span class="med" style="left:${Xp(P[c].median)}"></span><span class="medl" style="left:${Xp(P[c].median)}">$${P[c].median}</span></div></div>`).join('') + `<div class="sr-axis">${[0,100,200,300,400,500].map(v => `<span style="left:${v/5}%">$${v}</span>`).join('')}</div>`;
+    // reddit breakdowns
+    const lab = { 'comp-inj': 'Compounded injectable', 'brand-inj': 'Brand injectable', 'brand-oral': 'Brand pill', 'comp-oral': 'Compounded oral', graymarket: 'Gray market', unknown: 'Not stated', cash: 'Cash', insurance: 'Insurance', medicare: 'Medicare', price: 'Price', insurance_r: 'Lost or denied insurance', membership: 'Membership fees', results: 'Results', fulfilment: 'Fulfilment' };
+    const bars = (el, obj, map, keep) => { const tot = Object.values(obj).reduce((x, y) => x + y, 0); const rows = keep ? Object.entries(obj) : Object.entries(obj).sort((x, y) => y[1] - x[1]); const mx = Math.max(...rows.map(r => r[1])); document.getElementById(el).innerHTML = rows.map(r => `<div class="hb"><span>${(map && map[r[0]]) || lab[r[0]] || r[0]}</span><span class="track"><span class="fill" style="width:${r[1] / mx * 80}%"></span><span class="v">${r[1]} · ${Math.round(r[1] / tot * 100)}%</span></span></div>`).join(''); };
+    bars('diMed', A.reddit.medication);
+    bars('diSwitch', A.reddit.switch_reason, { insurance: 'Lost or denied insurance', dose: 'Dose not honoured' });
+    bars('diPay', A.reddit.payment);
+    if (A.demographics) { const D = A.demographics; document.getElementById('diDemoN').textContent = `${D.n_age} people stated their age · median ${D.median_age}`; bars('diAge', D.bands, {}, true); bars('diSex', D.sex, { F: 'Female', M: 'Male' }); const lb = { 'Under 10%': 0, '10–19%': 0, '20–29%': 0, '30–39%': 0, '40%+': 0 }; D.loss_pct.forEach(v => { lb[v < 10 ? 'Under 10%' : v < 20 ? '10–19%' : v < 30 ? '20–29%' : v < 40 ? '30–39%' : '40%+']++; }); bars('diLoss', lb, {}, true); const lm = D.loss_pct.slice().sort((a, b) => a - b)[Math.floor(D.loss_pct.length / 2)]; document.getElementById('diLoss').insertAdjacentHTML('beforeend', `<p class="small muted">${D.loss_pct.length} people · median ${lm}% of starting weight</p>`); }
+    if (A.reddit.drug_preference) { const dpt = Object.values(A.reddit.drug_preference).reduce((x, y) => x + y, 0); document.getElementById('diDrugN').textContent = `${dpt} stated preferences on Reddit`; bars('diDrug', A.reddit.drug_preference, { tirzepatide: 'Tirzepatide (Zepbound / compounded)', retatrutide: 'Retatrutide (not approved, gray market)', semaglutide: 'Semaglutide (Wegovy / compounded)', 'tirzepatide+cagrilintide': 'Tirzepatide + cagrilintide (stack)' }); }
+    // providers
+    // community list
+    if (A.community_list) { const C = A.community_list;
+      document.getElementById('clLead').textContent = `${C.tiers.length} providers listed; ${C.plans} three-month plans detailed for ${C.providers} of them. To be listed, a provider must be used by at least 5% of survey respondents and recommended by at least 70% of its users. Gimme was removed at 66%.`;
+      document.getElementById('clKpis').innerHTML = [['Monthly price range', `$${C.min_monthly}–$${C.max_monthly}`, `median $${C.median_monthly} on 3-month plans`], ['Follow the 28-day rule', `${C.share_28day}%`, 'of plans where stated'], ['Pharmacy is 503B', `${C.share_503b}%`, 'the rest 503A; every plan names its pharmacy'], ['Ship to all states', `${C.share_all_states}%`, `${C.share_auto_refill}% auto-refill · ${C.share_additive_free}% additive-free`]].map(k => `<div class="card stat"><span class="eyebrow">${k[0]}</span><span class="num" style="font-size:1.6rem">${k[1]}</span><p class="small muted">${k[2]}</p></div>`).join('');
+      document.getElementById('clTiers').innerHTML = C.tiers.map(t => `<tr><td><strong>${t.provider}</strong></td><td class="small">${t.tier}</td><td class="small muted">${t.threshold}</td></tr>`).join('');
+      bars('clPharm', C.pharmacies);
+    }
+    const PN = { embody: 'Embody', ro: 'Ro', trimrx: 'TrimRx', mochi: 'Mochi', skinnyrx: 'SkinnyRx', wellmedr: 'WellMedr' };
+    const TH = { SHIP: 'Refill or order not shipped', MEMB: 'Membership fee surprise', CS: 'Support unresponsive', APPT: 'Appointment no-show', EFF: "Doesn't work", BILL: 'Billing / refund', PREPAY: 'Prepaid plan not delivered' };
+    document.getElementById('diProv').innerHTML = [...A.providers].sort((a, b) => b.n - a.n).map(p => `<tr><td><strong>${PN[p.provider] || p.provider}</strong></td><td class="num">${p.n}</td><td class="num">${p.avg ?? '–'}</td><td class="num">${p.labelled ? p.invited_share + '%' : '–'}</td><td class="num">${p.invited_avg ?? '–'}</td><td class="num">${p.organic_avg ?? '–'}</td><td class="num">${p.invited_avg && p.organic_avg ? '<strong>+' + (p.invited_avg - p.organic_avg).toFixed(2) + '</strong>' : '–'}</td><td class="small">${p.top_neg_theme ? (TH[p.top_neg_theme] || p.top_neg_theme) + ' · ' + p.top_neg_share + '%' : '–'}</td></tr>`).join('');
+    // findings (computed)
+    const top = o => Object.entries(o).sort((a, b) => b[1] - a[1])[0];
+    const tn = top(A.needs.trustpilot_share), rn = top(A.needs.reddit_share), tf = top(A.fears.trustpilot_share_of_negative), rf = top(A.fears.reddit_share);
+    const gaps = A.providers.filter(p => p.invited_avg && p.organic_avg).map(p => p.invited_avg - p.organic_avg);
+    const sw = Object.entries(A.reddit.switch_reason).sort((a, b) => b[1] - a[1]);
+    const medTot = Object.values(A.reddit.medication).reduce((x, y) => x + y, 0);
+    const f = [
+      A.demographics ? `<strong>Who they are.</strong> Of ${A.demographics.n_age} people who stated their age, the median is ${A.demographics.median_age}; ${A.demographics.bands['65+']} are 65 or older. Of those who stated their sex, ${A.demographics.sex.F || 0} are women and ${A.demographics.sex.M || 0} men.` : '',
+      `<strong>Two buyers.</strong> ${pct(A.stage.reddit.long)} of Reddit buyers who say their stage are 3+ months in, vs ${pct(A.stage.trustpilot.long)} on Trustpilot. On Trustpilot, ${pct(A.stage.trustpilot.new + A.stage.trustpilot.switch)} are starting or switching.`,
+      `<strong>Different priorities.</strong> Trustpilot's most-mentioned need is "${A.needs.labels[tn[0]]}" (${pct(tn[1])} of reviews). Reddit's is "${A.needs.labels[rn[0]]}" (${pct(rn[1])} of items, vs ${pct(A.needs.trustpilot_share[rn[0]])} on Trustpilot).`,
+      `<strong>Different fears.</strong> Negative Trustpilot reviews are mostly about "${A.fears.labels[tf[0]].toLowerCase()}" (${pct(tf[1])}). Reddit's top fear is "${A.fears.labels[rf[0]].toLowerCase()}" (${pct(rf[1])}).`,
+      `<strong>The going rate.</strong> Compounded medication costs a median $${P.compounded.median}/month (middle half $${P.compounded.q1}–$${P.compounded.q3}). Brand-name cash costs $${P.brand.median} ($${P.brand.q1}–$${P.brand.q3}). Brand costs about ${(P.brand.median / P.compounded.median).toFixed(1)}× more.`,
+      `<strong>Compounded dominates Reddit.</strong> ${Math.round((A.reddit.medication['comp-inj'] || 0) / medTot * 100)}% of items are about compounded injectables. ${Math.round((A.reddit.medication.graymarket || 0) / medTot * 100)}% are about the gray market, at a median $${P.graymarket ? P.graymarket.median : '–'}/month.`,
+      gaps.length ? `<strong>Invited reviews inflate ratings.</strong> Where Trustpilot labels exist, invited reviews score ${Math.min(...gaps).toFixed(1)}–${Math.max(...gaps).toFixed(1)}★ higher than unprompted ones.` : '',
+      A.reddit.drug_preference ? (() => { const d = A.reddit.drug_preference, t = Object.values(d).reduce((x, y) => x + y, 0); return `<strong>Tirzepatide is the favourite.</strong> ${Math.round(((d.tirzepatide || 0) + (d['tirzepatide+cagrilintide'] || 0)) / t * 100)}% of ${t} stated preferences pick tirzepatide (alone or stacked), ${Math.round((d.retatrutide || 0) / t * 100)}% retatrutide and ${Math.round((d.semaglutide || 0) / t * 100)}% semaglutide.`; })() : '',
+      A.community_list ? `<strong>The benchmark already exists.</strong> Reddit's community list compares ${A.community_list.plans} plans on price per 3 months, the named pharmacy, 503A/503B, the 28-day rule, additives, beyond-use date, shipping states and refill type. It only lists providers recommended by at least 70% of users. Median $${A.community_list.median_monthly}/month.` : '',
+      sw.length ? `<strong>Why they switch.</strong> The top reasons on Reddit are ${sw.slice(0, 3).map(x => `${((x[0] === 'insurance') ? 'lost or denied insurance' : x[0])} (${x[1]})`).join(', ')}.` : ''
+    ].filter(Boolean);
+    const bp = document.getElementById('bpRdStage'); if (bp) bp.innerHTML = `<strong>${pct(A.stage.reddit.long)} established</strong> · ${pct(A.stage.reddit.new)} new · ${pct(A.stage.reddit.switch)} switching`;
+    document.getElementById('diFindings').innerHTML = f.map(x => `<li>${x}</li>`).join('');
+  }
+
   // ---------- price strip ----------
-  const census = {
-    'Compounded via telehealth': [111,112,108,166,111,200,129,100,180,125,170,129,175,86,150,116,166,99,100,129,150,165,115,80,50,100,86,111,129,89,129,179,150,155,180,159,249,163,133,167,76,79,399],
-    'Brand-name, cash': [479,149,224.5,320,400,350,450,299,300,500,350,449],
-    'Gray market': [20,8,20,10,15,35,8,100]
-  };
-  const meds = {'Compounded via telehealth':129,'Brand-name, cash':350,'Gray market':18};
+  const census = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.values, 'Brand-name, cash': AGG.prices.brand.values, 'Gray market': AGG.prices.graymarket.values } : {};
+  const meds = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.median, 'Brand-name, cash': AGG.prices.brand.median, 'Gray market': AGG.prices.graymarket.median } : {};
   const X = v => (Math.min(v, 500) / 500 * 100).toFixed(2) + '%';
   const strip = document.getElementById('priceStrip');
   strip.innerHTML = Object.keys(census).map(k => `<div class="sr"><span class="sr-l"><b>${k}</b><span class="muted small">n=${census[k].length} · median $${meds[k]}</span></span><div class="sr-t"><span class="band" style="left:${X(100)};width:${(100/500*100).toFixed(2)}%" title="Stated budget $100–$200"></span>${census[k].map(v => `<span class="dot" style="left:${X(v)}" title="$${v}/mo"></span>`).join('')}<span class="med" style="left:${X(meds[k])}"></span><span class="medl" style="left:${X(meds[k])}">$${meds[k]}</span></div></div>`).join('') + `<div class="sr-axis">${[0,100,200,300,400,500].map(v => `<span style="left:${v/5}%">$${v}</span>`).join('')}</div>` + `<p class="small muted" style="margin:0"><span style="display:inline-block;width:12px;height:10px;background:var(--good-soft);vertical-align:-1px;margin-right:6px"></span>Shaded band: the $100–$200 budget people state</p>`;
