@@ -120,7 +120,7 @@ Lead with what buyers fear, not with the drug.
 
 ---
 
-## 6. Update after Reddit (12 threads, 111 comments, 66 price reports) — see `11-reddit-voice.md`
+## 6. Update after Reddit (13 threads, 114 comments, 66 price reports) — see `11-reddit-voice.md`
 
 **Reddit shows a second buyer.** The profile above is mostly the *Trustpilot buyer*: signing up now, anxious, judging the sign-up and support. Reddit shows the *experienced buyer*: 62% already on treatment, mostly on compounded medication, price-literate to the dollar, and picking by pharmacy. Most experienced buyers started out as Trustpilot buyers and moved after the bill or a refill went wrong.
 
@@ -145,3 +145,4 @@ Lead with what buyers fear, not with the drug.
 8. Publish a **"How we verify"** page with update dates and a buyer survey. The trust standard to beat is the community list "vetted by thousands… ongoing surveys".
 9. Make the content **easy for AI assistants to read and cite**: structured tables, schema markup, an llms.txt. Buyers already run provider choices through ChatGPT and Gemini.
 10. Add a **"Support style"** label and filter (Hands-on vs Prescription and pharmacy), plus an **itemised fee list** (consult, membership, shipping, dose-change price).
+11. Publish a **no-judgment beginner guide** (doses and duration, stopping and regain, "Ozempic face", who it's for). Reddit mocks beginners ("Google it ffs"), so this audience is open.

@@ -1,4 +1,4 @@
-# 11 — Reddit voice: what experienced buyers say (12 threads, 111 coded comments, Sept–Oct 2026)
+# 11 — Reddit voice: what experienced buyers say (13 threads, 114 coded comments, Sept–Oct 2026)
 
 **Sources** (pasted by the user; raw summaries without usernames are in `data/reviews/raw/`):
 
@@ -16,9 +16,10 @@
 | r/GLP1Discussion | "Where to buy safely? What do you check first?" (doctor licence, which pharmacy) |
 | r/GLP1Discussion | "Embody": a new buyer who chose on price and ratings, then asked Reddit afterwards |
 | r/GLP1Discussion | "How to keep it affordable without ignoring safety and follow-up?" |
+| r/GLP1Discussion | "GLP-1": an older beginner asks about doses, duration and "Ozempic face" |
 
 **Coded data:**
-- `data/reviews/reddit/reddit_coded_2026-10-07.csv` — 111 items, coded with the same codebook as Trustpilot
+- `data/reviews/reddit/reddit_coded_2026-10-07.csv` — 114 items, coded with the same codebook as Trustpilot
 - `data/reviews/reddit/price_census_2026-10-07.csv` — 66 reported monthly prices
 
 ## Headline numbers
@@ -82,6 +83,21 @@ From the "affordable without ignoring safety" thread:
 
 **Implication: label each provider's support style honestly.** "Hands-on" (check-ins, coaching, clinician messaging with a response-time promise) vs "Prescription and pharmacy" (bring your own doctor). New buyers should be steered to hands-on providers, and experienced buyers to the lowest all-in price with a strong pharmacy. Show both, with an itemised fee list (consult, forms, shipping, dose changes).
 
+## Reddit is hostile to beginners, which leaves the beginner open to us
+An older woman asks basic questions: doses, how long, "Ozempic face", and not wanting to lose "too much… I like my curves". Most replies mock her ("Google it ffs", "people want everything dumbed down"). Only one reply answers properly:
+- "Ozempic face" comes from fast loss and is mostly temporary.
+- GLP-1s are a "life-long medication. Not a quick fix" and stopping usually means regaining weight.
+
+**What beginners worry about that price-focused threads miss:** how they'll look ("Ozempic face", losing curves), whether they need it at all for "a few pounds", and how long they'll be on it. The communities experienced buyers rely on are not welcoming to new ones.
+
+**Implication:** a calm, no-judgment beginner guide is an open space. It should cover:
+- how doses work and how long people stay on it
+- what happens if you stop (regain)
+- "Ozempic face" and losing weight slowly
+- who it is and isn't for (BMI and health criteria, with a clinician deciding)
+- appearance concerns
+Pair it with the "Starting out" quiz route. Tone matters, because this buyer has just been told to "Google it".
+
 ## Note from the Embody thread
 - **The buyer checks Reddit after paying:** "ordered… because it was the cheapest… and rated well… I probably should've asked that before using them".
 - **Mixed reviews are expected:** "There's always negative and positive reviews… for every one of them". Buyers stop trusting star ratings and decide on price plus a few real experiences.
@@ -109,6 +125,7 @@ Asked "what do you check first?", the community doesn't list checks. It points t
 | Gray-market drift | Page: **"Cheapest legal GLP-1 options (and why research peptides are risky)"** |
 | "I don't really expect to get care from the telehealth provider" | A **"Support style" label and filter**: Hands-on (check-ins, clinician messaging, response time) vs Prescription and pharmacy (bring your own doctor) |
 | "none are up front about how much forms, prescriptions, visits… cost" | An **itemised fee list** on each card: consult · membership · shipping · dose-change price |
+| Beginners get mocked for basic questions ("Google it ffs") | A **no-judgment beginner guide**: doses and duration, stopping and regain, "Ozempic face" and slow loss, who it's for, appearance concerns |
 | Older and side-effect-sensitive buyers | "Low starting dose / microdose available" and "anti-nausea support" badges |
 | AI-assisted research | Structured price tables, schema markup, an llms.txt, dated "verified" prices |
 | "What do you check first?" | A **5-point safety checklist** on every card: licensed in your state · named pharmacy (503A/503B) · real clinician names · cancel online · refund terms |
