@@ -466,6 +466,24 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .cw-why ul { margin-top: 8px; color: var(--ink-2); }
 .vf { background: var(--warn-soft); color: var(--warn); border-radius: 4px; padding: 0 4px; font-weight: 600; }
 @media (max-width: 760px) { .cw-cols { grid-template-columns: 1fr; } }
+
+.ha-card { position: relative; display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 12px; align-items: center; background: #fff; color: #1f2933; border: 1px solid #d9dee2; border-radius: 12px; padding: 18px 16px 16px; margin-top: 8px; font-family: var(--font-body); }
+.ha-card:not(.is-today) { border: 2px solid #0e6a78; }
+.ha-card.is-today { opacity: .92; }
+.ha-badge { position: absolute; top: -11px; left: 34px; background: #f7c843; color: #1f2933; font: 800 0.66rem var(--font-body); letter-spacing: .02em; padding: 3px 10px; border-radius: 999px; }
+.ha-rank { align-self: start; width: 22px; height: 22px; border-radius: 50%; background: #1f2933; color: #fff; display: grid; place-items: center; font: 700 0.72rem var(--font-body); }
+.ha-name { font: 700 1.1rem var(--font-body); }
+.ha-h { font: 700 0.92rem/1.35 var(--font-body); margin: 2px 0 8px; }
+.ha-b { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 0.86rem; }
+.ha-b li { position: relative; padding-left: 1.5em; }
+.ha-b li::before { content: "✓"; position: absolute; left: 0; color: #e0702a; font-weight: 700; }
+.ha-b li.ha-hl { font-weight: 700; }
+.ha-b li.ha-hl::before { content: "✦"; color: #e0702a; }
+.ha-side { display: grid; gap: 8px; justify-items: center; align-self: center; }
+.ha-score { font: 800 1.6rem var(--font-body); }
+.ha-cta { background: #0e6a78; color: #fff; font: 700 0.8rem var(--font-body); padding: 7px 14px; border-radius: 6px; white-space: nowrap; }
+.ha-card .vf { background: #fdecc8; color: #8a5300; }
+@media (max-width: 560px) { .ha-card { grid-template-columns: 1.6rem minmax(0, 1fr); } .ha-side { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; } }
 </style>
 
 <header class="top wrap">
@@ -1388,15 +1406,14 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
       <p class="small muted">Measure partner-confirmed sign-ups, not only clicks. A lower intro price can win the click and lose the sale.</p></div>
   </div>
 </div>
-<div class="blk" id="h-cards"><div class="blk-head"><span class="eyebrow">Card rewrites · provider by provider</span><h2>New bullets for each of the 10 providers, written from the buyer data</h2>
-<p class="blk-lede">Every card follows the same formula, so buyers can compare like for like.</p></div>
+<div class="blk" id="h-cards"><div class="blk-head"><span class="eyebrow">Card rewrites · provider by provider</span><h2>New copy for each of the 10 providers, in the same card layout the page uses today</h2>
+<p class="blk-lede">Same structure as the live page: one bold offer line, 3–4 ✓ bullets, one highlighted bullet. What changes is what goes in each slot, so every card answers the same questions in the same order.</p></div>
 <ol class="cw-rule">
-<li><b>Price at the dose people stay on</b><span>Paying monthly. The promo moves to a second line.</span></li>
-<li><b>What it is</b><span>FDA-approved or compounded, labelled every time.</span></li>
-<li><b>What's included</b><span>Membership, visits, shipping. In or out.</span></li>
-<li><b>Cancel and refund</b><span>How, and what happens to prepaid money.</span></li>
-<li><b>Best for</b><span>One stage or need, so buyers self-select.</span></li>
-<li><b>Good to know</b><span>One honest tip where the data shows a known problem.</span></li>
+<li><b>Offer line</b><span>Regular monthly price first, then the promo.</span></li>
+<li><b>✓ What it is</b><span>The drugs, and FDA-approved or compounded.</span></li>
+<li><b>✓ What's included</b><span>Membership, visits, shipping, insurance.</span></li>
+<li><b>✓ Billing and cancel</b><span>Plan length, billing cycle, how to cancel.</span></li>
+<li><b>★ Highlighted bullet</b><span>The one thing that truly sets this provider apart.</span></li>
 </ol>
 <p class="small muted">Highlighted text needs confirming with the partner before it goes live. Prices are from public sources Mar–Sep 2026.</p>
 <div class="cw-list" id="hCards"></div>
@@ -2124,104 +2141,82 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   const A = window.AGG; if (!A) return;
   const pv = n => A.providers.find(x => x.provider === n) || {};
   const em = pv('embody'), ro = pv('ro'), tr = pv('trimrx'), wm = pv('wellmedr');
-  // v = needs checking with the partner before it goes live
   const V = t => `<span class="vf" title="Confirm with the partner before publishing">${t}</span>`;
+  // h = bold offer line · b = ✓ bullets · hl = the highlighted (badge) bullet, shown last like on the site today
   const C = [
-    { n: 'Embody', rank: 1, score: '9.8',
-      today: { h: 'Fall Sale Discount: $69 Semaglutide / $119 Tirzepatide', b: ['GLP-1 pills, Zepbound®, Wegovy®, and semaglutide options', 'No Hidden Fees. No Monthly Membership. Cancel Anytime', 'Free shipping. Arrives in 1-2 days', 'Prescription & telemed visits included. No insurance required', 'Same price, every dose, every month'] },
-      price: '$129/mo tirzepatide · $79/mo semaglutide', sub: `Same price at every dose · fall promo $119 / $69 first month ${V('verify end date')}`,
-      tags: ['Compounded · not FDA-approved', 'No membership'],
-      b: [`Compounded semaglutide or tirzepatide, as an injection or oral · brand-name Wegovy and Zepbound ${V('price?')}`, 'Prescription, clinician visits and shipping included in the price', `Month-to-month · cancel online ${V('confirm online')} · 6-month "make it right" refund ${V('confirm terms')}`, `Pharmacy: ${V('name · 503A or 503B')}`],
-      tip: 'Good to know: order each refill 7–10 days early.',
-      best: 'One flat price on a budget',
-      why: [`Kept "Same price, every dose": it's the buyers' own phrase and answers the overcharged fear.`, `Moved the regular price to the headline. The sale price becomes the second line.`, `Added the refill tip: ${em.top_neg_share}% of its 1–2★ reviews are about refills not shipping, mostly at month 2.`, `Unprompted reviews average ${em.organic_avg}★ vs ${em.invited_avg}★ invited. "9.8 Exceptional" is hard to defend; see the ranking note.`] },
+    { n: 'Embody', rank: 1, score: '9.8', badge: '125K+ HAPPY CUSTOMERS',
+      today: { h: 'Fall Sale Discount: $69 Semaglutide / $119 Tirzepatide', b: ['GLP-1 pills, Zepbound®, Wegovy®, and semaglutide options', 'No Hidden Fees. No Monthly Membership. Cancel Anytime', 'Free shipping. Arrives in 1-2 days', 'Prescription & telemed visits included. No insurance required'], hl: 'Same price, every dose, every month' },
+      h: 'Tirzepatide $129/mo · Semaglutide $79/mo · Fall Sale: $119 / $69 first month',
+      b: [`Compounded semaglutide & tirzepatide, injection or oral. Wegovy® & Zepbound® also available ${V('brand price?')}`, 'No membership. Prescription, visits & shipping included', 'Month-to-month. Cancel online anytime', `6-month "make it right" refund policy ${V('confirm terms')}`],
+      hl: 'Same price, every dose, every month',
+      why: ['Headline leads with the regular price; the sale price stays on the same line.', 'Kept the highlighted bullet. "Same price, every dose" is the buyers\' own phrase and answers the fear of price jumps.', 'Says "compounded" so the buyer knows what they get. Brand and compounded are no longer mixed in one bullet.', `Not on the card but worth knowing: ${em.top_neg_share}% of its 1–2★ reviews are about refills not shipping. Unprompted reviews average ${em.organic_avg}★, which makes "9.8 Exceptional" hard to defend.`] },
     { n: 'Noom', rank: 2, score: '9.7',
       today: { h: 'Special offer: $150 off GLP-1Rx + 3 months plan, starting at $79', b: ['Access tirzepatide, semaglutide, and microdose GLP-1 plans', '100% online with fast & free shipping', 'Cash-pay & insurance options; FSA/HSA eligible', 'Personalized nutrition coaching and tools'] },
-      price: `Semaglutide $249/mo · tirzepatide $299/mo ${V('verify')}`, sub: 'Medication included · billed every 3 months · from $79 first month with promo',
-      tags: ['Compounded · not FDA-approved', 'Brand via insurance'],
-      b: ['Compounded semaglutide or tirzepatide, medication included', 'Microdose plan from $179/mo for a lower, gentler dose', 'Coaching app for food and habits comes with every plan', 'FSA/HSA eligible · insurance accepted for Wegovy and Zepbound'],
-      tip: 'Good to know: plans renew every 3 months, so set a reminder before renewal.',
-      best: 'Coaching plus medication · microdosing',
-      why: ['"$150 off… starting at $79" hides the price after month 1. Buyers say intro offers are "deceiving".', 'Quarterly auto-renew is Noom\'s known pain point (a $56M class settlement over auto-renew). Saying it up front protects the click.', 'Dropped "100% online, fast & free shipping". Every provider says it, so it doesn\'t help anyone choose.'] },
+      h: `GLP-1 plans $249/mo, medication included ${V('verify')} · Special offer: $79 first month`,
+      b: ['Compounded semaglutide, tirzepatide ($299/mo) & microdose ($179/mo) plans', 'Wegovy® & Zepbound® through insurance. FSA/HSA eligible', `Billed every 3 months. Cancel anytime before renewal ${V('verify')}`],
+      hl: 'Nutrition & habit coaching included in every plan',
+      why: ['"$150 off… starting at $79" hides the price after month 1. Buyers call intro offers "deceiving".', 'Quarterly auto-renew is Noom\'s known pain point (a $56M class settlement). Stating it protects the click.', 'Dropped "100% online, fast & free shipping". Every provider says it, so it doesn\'t help anyone choose.', 'Highlighted bullet = its real difference from the others: coaching.'] },
     { n: 'Found', rank: 3, score: '9.5',
-      today: { h: 'Top-Rated for clinical support. GLP-1 plans starting at $99/mo', b: ['(table on the same page says $39/mo)'] },
-      price: `$99–$149/mo membership + medication ${V('verify')}`, sub: 'With insurance, copays often $25–$50',
-      tags: ['FDA-approved + compounded', 'Insurance accepted'],
-      b: ['Wegovy, Zepbound and Wegovy pill through insurance; the team handles prior authorisation', 'Compounded semaglutide plan for cash buyers', 'Obesity-medicine clinicians and a 1:1 coach', 'U.S. News 2026 "Best Clinical Support"'],
-      tip: `Good to know: 6-month commitment, with a $99 fee to cancel early ${V('verify')}.`,
-      best: 'People with insurance · wanting a medical team',
-      why: ['Fix the price mismatch: $99 on the card vs $39 in the table.', 'Its top complaint across sources is the 6-month lock-in and $99 cancel fee. Being trapped is in 48% of all complaints in our data.', 'Insurance help is its real edge, and insured buyers are an under-served segment.'] },
+      today: { h: 'Top-Rated for clinical support. GLP-1 plans starting at $99/mo', b: ['(bullets not visible in screenshots; table says $39/mo)'] },
+      h: `Best for insurance: membership from $99/mo + medication ${V('verify')}`,
+      b: ['Wegovy®, Wegovy® pill & Zepbound®. Prior authorization handled for you', `Copays from $25–$50 when covered ${V('verify')}. Compounded plan for cash pay`, 'Obesity-medicine doctors and a 1:1 coach', `6-month plan. $99 fee to cancel early ${V('verify')}`],
+      hl: 'U.S. News 2026 "Best Clinical Support"',
+      why: ['Fixes the price mismatch: $99 on the card vs $39 in the table.', 'Its top complaint across sources is the 6-month lock-in and $99 cancel fee. Feeling trapped is in 48% of all complaints in our data.', 'Insurance help is its real edge, and insured buyers are under-served.'] },
     { n: 'Ro', rank: 4, score: '9.3',
       today: { h: 'Get started for $39. Save up to 50% with an annual plan', b: ['Wegovy®, Zepbound®, and Ozempic® available', 'GLP-1 treatment options, with or without insurance', 'Personalized plan matched to your goals and budget'] },
-      price: '$298–$598/mo all-in', sub: '$149/mo membership + medication · $39 first month of membership',
-      tags: ['FDA-approved only', 'Insurance concierge'],
-      b: ['Brand-name only: Wegovy pen and pill, Zepbound, Foundayo', 'Insurance team checks coverage and handles prior authorisation · $25 copay with savings card if covered', 'Membership billed separately from medication · $74/mo if paid yearly', 'U.S. News 2026 "Best for Customer Satisfaction"'],
-      tip: 'Good to know: the $149 membership applies even when insurance covers the drug.',
-      best: 'Brand-name only · people with insurance',
-      why: [`${ro.top_neg_share}% of Ro's 1–2★ reviews are about the membership. People read "$39" as the price.`, 'Showing the all-in range turns its weakness into a qualified click: the people who click know the price.', '"Personalized plan matched to your goals" says nothing a buyer can compare.'] },
+      h: '$149/mo membership + medication · $39 first month',
+      b: ['FDA-approved only: Wegovy® pen & pill, Zepbound®, Foundayo®', 'Typical total with medication: $298–$598/mo', 'Insurance team checks coverage & handles prior authorization. $25 copay if covered'],
+      hl: 'Save 50% on membership with an annual plan ($74/mo)',
+      why: [`${ro.top_neg_share}% of Ro's 1–2★ reviews are about the membership. People read "$39" as the price.`, 'The all-in range turns that into a qualified click: whoever clicks knows the price.', '"Personalized plan matched to your goals" gives the buyer nothing to compare.'] },
     { n: 'WellMedr', rank: 5, score: '9.0',
       today: { h: 'Fall Sale: GLP-1 plans as low as $49/month', b: ['$200 off, locked in for life', 'Get access to compounded and brand-name GLP-1', 'Unlimited messaging with your care team'] },
-      price: `From $89–$129/mo on longer plans ${V('add pay-monthly price')}`, sub: 'Fall promo: from $49 first month',
-      tags: ['Compounded · not FDA-approved', 'Brand options'],
-      b: ['Compounded semaglutide or tirzepatide; brand-name also available', 'Sale price locked in for as long as you stay', 'Unlimited messaging with the care team', `Billing cycle: ${V('every 4 weeks or every 21 days?')}`],
-      tip: 'Good to know: check your first ship date at checkout. Promo weeks can be busy.',
-      best: 'Lowest locked-in price',
-      why: [`${wm.top_neg_share}% of its 1–2★ reviews are about orders or refills not shipping. Remove "on-time refills" from the write-up.`, 'Some reviewers report being billed every 21 days, which adds about 45% a year. Buyers need the cycle stated.', '"As low as $49" is a first-month promo, so it moves to the second line.'] },
+      h: `Compounded GLP-1 from $89/mo on longer plans ${V('+ pay-monthly price')} · Fall Sale: $49 first month`,
+      b: ['Compounded semaglutide & tirzepatide. Brand-name GLP-1 also available', 'Unlimited messaging with your care team', `Billed every ${V('4 weeks or 21 days?')}. Cancel ${V('online?')}`],
+      hl: 'Sale price locked in for as long as you stay',
+      why: [`${wm.top_neg_share}% of its 1–2★ reviews are about orders or refills not shipping. Remove "on-time refills" from the write-up further down the page.`, 'Some reviewers report being billed every 21 days, which adds about 45% a year. The billing cycle needs stating.', '"As low as $49" is a first-month promo, so it goes after the regular price.'] },
     { n: 'MEDVi', rank: 6, score: '8.9',
       today: { h: 'Weight loss plans starting $179/month + Free Shipping', b: ['No membership or hidden fees. No insurance required', 'Unlimited appointments and 24/7 access to provider support', 'No waitlists and unlimited Telehealth visits'] },
-      price: '$299/mo after a $179 first month', sub: 'Medication, visits and shipping included',
-      tags: ['Compounded · not FDA-approved', 'No membership'],
-      b: ['Compounded semaglutide or tirzepatide, as an injection or a dissolvable tablet', 'No membership; visits and shipping included', 'Unlimited clinician messaging', `Pharmacy: ${V('name · 503A or 503B')}`],
-      tip: null,
-      best: 'Switching between injection and tablet',
-      why: ['"Starting $179" is the first month only. The ongoing price is $299.', 'MEDVi received an FDA warning letter in Feb 2026 (public record). Decide internally whether to keep it in the top 6.', 'Three bullets about appointments say the same thing. One is enough.'] },
+      h: '$299/mo, medication included · $179 first month + Free Shipping',
+      b: ['Compounded semaglutide & tirzepatide, injection or dissolvable tablet', 'No membership or hidden fees. No insurance required', `Pharmacy: ${V('name · 503A or 503B')}`],
+      hl: 'Unlimited 24/7 access to your provider',
+      why: ['"Starting $179" is the first month only. The ongoing price is $299.', 'Two bullets about appointments said the same thing, so they are merged into the highlighted bullet.', 'MEDVi received an FDA warning letter in Feb 2026 (public record). Decide internally whether it stays in the top 6.'] },
     { n: 'TrimRx', rank: 7, score: '8.8',
       today: { h: 'Exclusive offer: $140 off on all weight loss plans', b: ['GLP-1 options, Zepbound®, Wegovy® & Ozempic® available', 'Injections and oral options are available', '100% online process with 48-hour delivery to your home'] },
-      price: `${V('$X/mo paying monthly')}`, sub: '6-month plan ≈$253/mo, paid upfront ($1,519)',
-      tags: ['Compounded · not FDA-approved', 'No membership'],
-      b: ['Compounded semaglutide or tirzepatide, injection or oral', 'Flat price, no membership fee', `Money-back guarantee: ${V('what it covers and for how long')}`, 'Ships in about 2 days'],
-      tip: 'Good to know: try monthly billing before committing to a 6-month prepay.',
-      best: 'People who want a guarantee',
-      why: [`Unprompted reviews average ${tr.organic_avg}★ vs ${tr.invited_avg}★ invited.`, 'Its complaints centre on prepaid plans not delivered and refunds not paid. If the page sells a "money-back guarantee", it has to say what the guarantee is.', 'Show the monthly price first: buyers cap their budget at $100–$200/mo, and a $1,519 upfront plan is the riskiest way in.'] },
+      h: `Compounded GLP-1 ${V('$X/mo paying monthly')} · Exclusive offer: $140 off`,
+      b: ['Compounded semaglutide & tirzepatide, injection or oral', 'No membership. Pay monthly, or $1,519 upfront for 6 months', 'Delivered to your door in about 48 hours'],
+      hl: `Money-back guarantee: ${V('what it covers, for how long')}`,
+      why: [`Unprompted reviews average ${tr.organic_avg}★ vs ${tr.invited_avg}★ invited.`, 'Its complaints centre on prepaid plans not delivered and refunds not paid. If the page sells a guarantee, the card must say what it covers.', '"$140 off" off what? The monthly price comes first.'] },
     { n: 'Refills', rank: 8, score: '8.4',
       today: { h: 'Weight loss plans starting at $99/month - Fall Sale, 40% off', b: ['Same price regardless of dosage changes', 'Get pre-approved online in 3 steps', 'Zero monthly membership cost'] },
-      price: `${V('≈$165/mo regular')} · $99/mo on fall sale`, sub: 'Same price at every dose',
-      tags: [`${V('Compounded or brand?')}`, 'No membership'],
-      b: ['Same price at every dose: no increase as you move up', 'No membership fee', `Medication: ${V('drug and type')} · Pharmacy: ${V('name · 503A or 503B')}`, `Cancel: ${V('online or by phone')} · refund if not approved: ${V('yes / no')}`],
-      tip: null,
-      best: 'A flat price at higher doses',
-      why: ['"Same price regardless of dosage" is its best line. Keep it first.', '40% off $99 implies a regular price near $165. Show it.', 'Not in our review sample yet. Pull its Trustpilot and Reddit mentions next.'] },
+      h: `Weight loss plans $99/month on Fall Sale (regular ${V('≈$165/mo')})`,
+      b: [`${V('Compounded / brand')} semaglutide & tirzepatide from ${V('pharmacy name')}`, 'Zero monthly membership cost', `Get pre-approved online in 3 steps. Cancel ${V('online?')}`],
+      hl: 'Same price regardless of dosage changes',
+      why: ['"Same price regardless of dosage" is its best line, so it becomes the highlighted bullet.', '40% off $99 implies a regular price near $165. Say it.', 'Not in our review sample yet. Pull its Trustpilot and Reddit mentions next.'] },
     { n: 'Trimi', rank: 9, score: '8.4',
       today: { h: 'Use code 50OFF and save $50 on your first month', b: ['Compounded tirzepatide and semaglutide, from $99/mo.', 'No insurance needed. Flexible payments via Klarna and Afterpay.', 'Results backed by peer-reviewed clinical trials'] },
-      price: `From $99/mo ${V('at which dose? price at maintenance?')}`, sub: '$50 off first month with code 50OFF',
-      tags: ['Compounded · not FDA-approved', 'Pay over time'],
-      b: ['Compounded semaglutide or tirzepatide, prepared by a licensed compounding pharmacy', 'Pay over time with Klarna or Afterpay', 'No insurance needed', `Pharmacy: ${V('name · 503A or 503B')}`],
-      tip: null,
-      best: 'Spreading the cost',
-      why: ['Remove "Results backed by peer-reviewed clinical trials". The trials tested brand-name Wegovy and Zepbound, not compounded versions. This is a compliance risk.', 'Trimi publishes its own "best providers" page ranking itself #1. That matters for how we score it.', '"From $99" needs a dose. Buyers compare price at the dose they stay on.'] },
+      h: `Compounded GLP-1 from $99/mo ${V('at which dose?')} · Code 50OFF: $50 off first month`,
+      b: [`Compounded tirzepatide & semaglutide from a licensed pharmacy ${V('name')}`, 'No insurance needed', 'A licensed clinician decides if it\'s right for you'],
+      hl: 'Pay over time with Klarna & Afterpay',
+      why: ['Removed "Results backed by peer-reviewed clinical trials". The trials tested brand-name Wegovy and Zepbound, not compounded versions. This is a compliance risk.', '"From $99" needs a dose. Buyers compare the price at the dose they stay on.', 'Trimi publishes its own "best providers" page ranking itself #1. Worth knowing when scoring it.'] },
     { n: 'Hers', rank: 10, score: '8.2',
       today: { h: 'Plan starts at $39 for the first month', b: ['Access to Ozempic®, Mounjaro® and Zepbound® options', 'Zero membership fees, consistent pricing', '24/7 messaging access with licensed providers'] },
-      price: `Wegovy pill $249 · Wegovy pen $299 · Zepbound $399 /mo ${V('verify')}`, sub: '$39 first month',
-      tags: ['FDA-approved only', 'Cash pay'],
-      b: ['Brand-name only: Wegovy pen and pill, Zepbound', `One price for medication and care ${V('our sources conflict on a $149 membership')}`, '24/7 messaging with licensed providers', `Built for women: ${V('menopause / hormone support?')}`],
-      tip: null,
-      best: 'Women who want a brand-name drug',
-      why: ['Ozempic and Mounjaro are diabetes drugs. For weight loss, the approved names are Wegovy and Zepbound.', '"$39 first month" says nothing about the price from month 2.', 'Brand-name buyers pay a median of $335/mo. Showing the real price filters for buyers who can afford it.'] }
+      h: `Wegovy® from $249/mo ${V('verify')} · Plan starts at $39 for the first month`,
+      b: ['FDA-approved Wegovy® pen & pill and Zepbound®', `Zero membership fees, consistent pricing ${V('sources conflict')}`, '24/7 messaging with licensed providers'],
+      hl: `Made for women: ${V('hormone / menopause support?')}`,
+      why: ['Ozempic and Mounjaro are diabetes drugs. For weight loss, the approved names are Wegovy and Zepbound.', '"$39 first month" says nothing about the price from month 2.', 'Brand-name buyers pay a median of $335/mo. A real price filters for buyers who can afford it.'] }
   ];
+  const card = (c, h, b, hl, isToday) => `<div class="ha-card${isToday ? ' is-today' : ''}">
+      ${c.badge && c.rank === 1 ? `<span class="ha-badge">${c.badge}</span>` : ''}
+      <span class="ha-rank">${c.rank}</span>
+      <div class="ha-main"><div class="ha-name">${c.n}</div><div class="ha-h">${h}</div>
+        <ul class="ha-b">${b.map(x => `<li>${x}</li>`).join('')}${hl ? `<li class="ha-hl">${hl}</li>` : ''}</ul></div>
+      <div class="ha-side"><span class="ha-score">${c.score}</span><span class="ha-cta">Visit Site</span></div>
+    </div>`;
   const el = document.getElementById('hCards'); if (!el) return;
   el.innerHTML = C.map(c => `<article class="cw">
-    <header class="cw-h"><span class="cw-rank">#${c.rank}</span><h3>${c.n}</h3><span class="small muted">site score ${c.score}</span></header>
     <div class="cw-cols">
-      <div class="cw-today"><span class="eyebrow">On the page today</span><p class="cw-th">${c.today.h}</p><ul>${c.today.b.map(x => `<li>${x}</li>`).join('')}</ul></div>
-      <div class="cw-new"><span class="eyebrow">Proposed</span>
-        <div class="cw-card">
-          <div class="cw-best">Best for: ${c.best}</div>
-          <p class="cw-price">${c.price}</p><p class="small muted">${c.sub}</p>
-          <div class="pills">${c.tags.map(t => `<span class="pill p-neutral">${t}</span>`).join('')}</div>
-          <ul class="cw-b">${c.b.map(x => `<li>${x}</li>`).join('')}</ul>
-          ${c.tip ? `<p class="cw-tip">${c.tip}</p>` : ''}
-        </div>
-      </div>
+      <div><span class="eyebrow">Today</span>${card(c, c.today.h, c.today.b, c.today.hl, true)}</div>
+      <div><span class="eyebrow">Proposed · same layout</span>${card(c, c.h, c.b, c.hl, false)}</div>
     </div>
     <details class="cw-why"><summary>Why these changes</summary><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></details>
   </article>`).join('');
