@@ -188,6 +188,16 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-fam
 select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
 
 
+
+.tl { display: grid; gap: 8px; overflow-x: auto; }
+.tl-row { display: grid; grid-template-columns: 5.5em minmax(440px, 1fr); gap: 10px; align-items: center; }
+.tl-axis { position: relative; height: 16px; font: 600 0.7rem var(--font-mono); color: var(--ink-3); }
+.tl-axis span { position: absolute; top: 0; padding-left: 4px; border-left: 1px solid var(--line); }
+.tl-axis span:first-child { grid-column: 2; }
+.tl-name { font-weight: 700; font-size: 0.9rem; }
+.tl-track { position: relative; height: 30px; background: var(--surface-2); border-radius: 6px; }
+.tl-lbl { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; font: 600 0.75rem var(--font-body); color: var(--ink); white-space: nowrap; }
+.tl-mark { position: absolute; top: 3px; bottom: 3px; background: var(--bad); color: var(--accent-ink); border-radius: 4px; font: 600 0.72rem var(--font-body); display: flex; align-items: center; padding-inline: 8px; white-space: nowrap; overflow: visible; }
 /* review split + hbars */
 .split { display: grid; gap: 10px; }
 .split-row { display: grid; grid-template-columns: 9em 1fr; gap: 12px; align-items: center; }
@@ -449,7 +459,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <div class="grid g3">
       <div><strong>12-month cost with dose increases</strong><p class="small muted">Everyone quotes "from $X". The biggest gap, and the top complaint.</p></div>
       <div><strong>Insurance-first routing</strong><p class="small muted">Commercial, Medicare and cash, with who handles the PA and the realistic copay.</p></div>
-      <div><strong>Contract and cancellation terms</strong><p class="small muted">Found's $99 early-cancel fee, WW's 12-month plan, Ivim's prepay. Almost never in the table.</p></div>
+      <div><strong>Contract, prepay and cancellation terms</strong><p class="small muted">Found's $99 early-cancel fee, WW's 12-month plan, Ivim, TrimRx and Embody prepay bundles. Almost never in the table, and the top reason buyers lose money.</p></div>
       <div><strong>What's available today</strong><p class="small muted">Pill, HD dose, vial vs pen, microdose, compounded status. Changes monthly; most pages are stale.</p></div>
       <div><strong>Time to prescription and delivery</strong><p class="small muted">No major site measures it, although late refills are a top complaint.</p></div>
       <div><strong>Manufacturer-direct in the same table</strong><p class="small muted">"Do I even need a $149 membership?" LillyDirect, NovoCare and TrumpRx are rarely compared alongside.</p></div>
@@ -460,23 +470,35 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <!-- REVIEWS (Ro + Embody) -->
 <section id="reviews" data-panel="reviews" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Review signals · Trustpilot, coded by hand · Ro 138 + Embody 200 reviews, Oct 2026</span>
-    <h2>Each provider fails at a different moment. Ro at checkout, Embody at the refill.</h2>
-    <p class="muted">Every review was coded for its star rating, how it was collected, and its themes. Star ratings mostly measure the first step, a quick sign-up or a pleasant consult. The bad reviews show where each provider actually breaks, and both breaking points are things a comparison page can warn about before the click.</p>
+    <span class="eyebrow">Review signals · Trustpilot, coded by hand · Ro 138 + Embody 200 + TrimRx 119 reviews, Oct 2026</span>
+    <h2>Each provider fails at a different moment: Ro at checkout, Embody at the first refill, TrimRx halfway through a prepaid plan</h2>
+    <p class="muted">Every review was coded for its star rating, how it was collected, and its themes. Star ratings mostly measure the first step, a quick sign-up or a pleasant consult. The bad reviews show where each provider actually breaks, and every one of those breaking points is something a comparison page can warn about before the click.</p>
+  </div>
+
+  <div class="card">
+    <h3>When things go wrong, by month of treatment</h3>
+    <div class="tl" role="img" aria-label="Timeline: Ro fails at month 0, Embody at month 2, TrimRx at months 3 to 7">
+      <div class="tl-row tl-axisrow"><span></span><div class="tl-axis"><span style="left:0.0%">Checkout</span><span style="left:12.5%">M1</span><span style="left:25.0%">M2</span><span style="left:37.5%">M3</span><span style="left:50.0%">M4</span><span style="left:62.5%">M5</span><span style="left:75.0%">M6</span><span style="left:87.5%">M7</span></div></div>
+      <div class="tl-row"><span class="tl-name">Ro</span><div class="tl-track"><span class="tl-mark" style="left:0;width:12.5%"></span><span class="tl-lbl" style="left:calc(12.5% + 8px)">Membership surprise · 66% of 1–2★</span></div></div>
+      <div class="tl-row"><span class="tl-name">Embody</span><div class="tl-track"><span class="tl-mark" style="left:25%;width:12.5%"></span><span class="tl-lbl" style="left:calc(37.5% + 8px)">Refill not shipped · 72% of 1–2★</span></div></div>
+      <div class="tl-row"><span class="tl-name">TrimRx</span><div class="tl-track"><span class="tl-mark" style="left:37.5%;width:62.5%">Prepaid second half not shipped</span></div></div>
+    </div>
+    <p class="small muted">Each bar is where that provider's top theme in 1–2★ reviews happens. The comparison page can warn about all three before the click: show the all-in price, refill reliability, and prepay terms.</p>
   </div>
 
   <div class="tscroll">
-    <table class="t-mid">
-      <thead><tr><th></th><th>Ro <span class="muted">· brand meds, membership model</span></th><th>Embody <span class="muted">· compounded, low price</span></th></tr></thead>
+    <table class="t-wide">
+      <thead><tr><th></th><th>Ro <span class="muted">· brand, membership</span></th><th>Embody <span class="muted">· compounded, low price</span></th><th>TrimRx <span class="muted">· compounded, flat, prepay bundles</span></th></tr></thead>
       <tbody>
-        <tr><td><strong>Where it breaks</strong></td><td><span class="pill p-warn">At checkout · month 0</span><br><span class="small">The membership fee comes as a surprise</span></td><td><span class="pill p-bad">At the refill · month 2</span><br><span class="small">The refill doesn't ship, doses are missed</span></td></tr>
-        <tr><td><strong>Top 1–2★ theme</strong></td><td class="mono">66% · "$39" turned into $188–$448</td><td class="mono">72% · refill not shipped</td></tr>
-        <tr><td><strong>What 4–5★ reviews praise</strong></td><td class="small">Quick, easy sign-up (81%), mostly written before treatment</td><td class="small">Felt heard (45%), a named rep (32%), mostly invited</td></tr>
-        <tr><td><strong>Score shown vs real</strong></td><td class="small">3.87★ in this sample; only 4% of positive reviews mention results</td><td class="small">3.7★ overall; 4.93★ invited vs <strong>2.66★ unprompted</strong></td></tr>
-        <tr><td><strong>What our page should show</strong></td><td class="small"><strong>All-in monthly cost</strong>, membership included, at each dose</td><td class="small"><strong>Refill reliability</strong> and a real customer score</td></tr>
+        <tr><td><strong>Where it breaks</strong></td><td><span class="pill p-warn">At checkout · month 0</span><br><span class="small">The membership fee comes as a surprise</span></td><td><span class="pill p-bad">At the refill · month 2</span><br><span class="small">The refill doesn't ship, doses are missed</span></td><td><span class="pill p-bad">Mid-plan · months 3–7</span><br><span class="small">The second half of a prepaid plan never ships</span></td></tr>
+        <tr><td><strong>Top 1–2★ theme</strong></td><td class="mono">66% · "$39" turned into $188–$448</td><td class="mono">72% · refill not shipped</td><td class="mono">62% · support silent<br>42%* · prepaid plan not delivered</td></tr>
+        <tr><td><strong>What 4–5★ reviews praise</strong></td><td class="small">Quick sign-up (81%), mostly written before treatment</td><td class="small">Felt heard (45%), a named rep (32%)</td><td class="small">Quick sign-up (39%), support (29%); 9 reviews repeat the "no membership" message almost word for word</td></tr>
+        <tr><td><strong>Invited vs unprompted</strong></td><td class="small">No labels in this paste</td><td class="small">4.93★ vs <strong>2.66★</strong></td><td class="small">4.83★ vs <strong>2.12★</strong> · 87% of reviews invited</td></tr>
+        <tr><td><strong>What our page should show</strong></td><td class="small"><strong>All-in monthly cost</strong> at each dose</td><td class="small"><strong>Refill reliability</strong></td><td class="small"><strong>Prepay terms and refund policy</strong></td></tr>
       </tbody>
     </table>
   </div>
+  <p class="small muted">* Share of unprompted 1–2★ reviews (5 of 12).</p>
 
   <h3 style="margin-top:8px">Ro · 138 weight-loss reviews</h3>
   <div class="grid g4">
@@ -554,6 +576,32 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       </div>
     </div>
   </div>
+  <h3 style="margin-top:8px">TrimRx · 119 reviews</h3>
+  <div class="grid g4">
+    <div class="card stat"><span class="eyebrow">Invited ("Verified")</span><span class="num">4.83★</span><p class="small">103 reviews, 87% of everything shown.</p></div>
+    <div class="card stat"><span class="eyebrow">Unprompted</span><span class="num">2.12★</span><p class="small">16 reviews; 75% are 1–2★. Small sample.</p></div>
+    <div class="card stat"><span class="eyebrow">Prepaid plan not delivered</span><span class="num">5 of 12</span><p class="small">unprompted 1–2★ reviews. "They took my $1519 and did not send the product."</p></div>
+    <div class="card stat"><span class="eyebrow">Positives repeating the sales line</span><span class="num">9</span><p class="small">"one amount", "no second subscription", "no extra fees added later"</p></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>TrimRx · what drives 1–2★ <span class="muted small">share of 16</span></h3>
+      <div class="hbars" id="trimNegBars"></div>
+    </div>
+    <div class="card">
+      <h3>TrimRx · in their words</h3>
+      <div class="grid" style="gap:10px">
+        <blockquote><p>"I prepaid for a year… received two of four shipments… the third shipment was due around September 15 and they still have not shipped it."</p><cite>1★ · prepay</cite></blockquote>
+        <blockquote><p>"I switched after an order I placed with Mochi… sat there with no medication showing up."</p><cite>5★ · competitor intel</cite></blockquote>
+        <blockquote><p>"My last provider charged about twice as much and added a separate doctor fee every month."</p><cite>5★ · why people switch</cite></blockquote>
+      </div>
+    </div>
+  </div>
+  <div class="callout warn">
+    <strong>Prepay is the hidden risk in the cheapest prices</strong>
+    <p class="small">TrimRx ($1,519 for 6 months) and Embody ($1,428 for 12 months) both show their lowest monthly price on long prepaid bundles. When the provider fails mid-plan, the buyer loses that money and blames whoever sent them. The comparison should show "Pay monthly" vs "Prepay N months" and never use a prepay price as the headline price. Ask partners for chargeback rates by plan length, since these chargebacks land after the payout window.</p>
+  </div>
+
   <p class="small muted">Each sample covers one provider over about a week, coded by one analyst. More providers will be added the same way as you send them.</p>
 </section>
 
@@ -774,6 +822,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['WeightWatchers Med+', T.brand, 'Wegovy pen and pill, Zepbound', '$373–$423 (Forbes)', 'Works with insurers', '3.9', '4.0', '12-month plan; clinician response time'],
     ['Hims & Hers', T.brand, 'Wegovy pen, HD and pill, Zepbound (compounded wound down)', '≈$298–$448 (sources conflict)', 'Mostly cash', 'Not rated', '3.9', 'Offering changed repeatedly in 2026'],
     ['LifeMD', T.brand, 'Brand GLP-1s, Wegovy pill', '$149 membership + meds from $149', 'Accepts Medicare and some insurance', '4.0', '4.0', 'BBB B rating'],
+    ['TrimRx', T.comp, 'Compounded sema, tirz', 'Flat price, no membership; 6-month prepay ≈$1,519', 'None', '–', '4.5', 'Prepaid second half not shipped; 87% of reviews invited (our coding)'],
     ['Remedy Meds', T.comp, 'Compounded sema, tirz, microdose', 'Sema $299, tirz $399 (no membership)', 'None', '3.9', '4.5', 'Charged with nothing shipped (some reviews)'],
     ['Henry Meds', T.comp, 'Compounded sema (incl. oral), tirz', 'Sema $199–$349; tirz $299–$449 by dose', 'Self-pay only', 'Not rated', '4.5', 'BBB F; Trustpilot suspected-fake-reviews notice'],
     ['Ivim Health', T.comp, 'Compounded sema, tirz', '≈$169–$252 on 6-month prepay', 'Unlikely', '4.0', '4.9', 'FDA warning letter Feb 2026; prepay lock-in'],
@@ -791,6 +840,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   const posT = [['Felt heard by the clinician',45],['Named rep praised',32],['Quick, easy appointment',16],['Weight-loss results',3],['Price',1]];
   const hb = (el, rows) => { document.getElementById(el).innerHTML = rows.map(r => `<div class="hb"><span>${r[0]}</span><span class="track"><span class="fill" style="width:${r[1] * 0.85}%"></span><span class="v">${r[1]}%</span></span></div>`).join(''); };
   hb('negBars', negT); hb('posBars', posT);
+  hb('trimNegBars', [['Support silent or only a chatbot',62],['Refund promised but not paid',31],['Prepaid plan not delivered',31],['Shipping delay',25],['Side effects',19],['Doesn\'t work / underfilled vial',19],['Wrong form or dose',12]]);
   hb('roNegBars', [['Membership on top of the medication was a surprise',66],['Charged after cancelling, refund refused',26],['Can\'t reach a human',26],['Shipping or wrong product',11],['No results',11],['Price goes up with the dose',6]]);
 
   // ---------- true cost model ----------
