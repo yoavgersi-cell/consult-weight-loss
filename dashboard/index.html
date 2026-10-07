@@ -323,12 +323,130 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 .pc-big small { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); }
 .pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 0.88rem; }
 @media (max-width: 860px) { .wf-wrap, .pc-wrap { grid-template-columns: 1fr; } .avg-sr { grid-template-columns: 1fr; gap: 4px; } }
+
+:root { --hero-bg: #12222b; --hero-fg: #f3f5f6; --hl: #7fd8cd; --on-ink-2: #a9bcc3; --on-ink-track: #2c4049; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --hero-bg: #1c3038; --hero-fg: #e8f0f2; --hl: #7fd8cd; --on-ink-2: #a9bcc3; --on-ink-track: #34505a; } }
+:root[data-theme="dark"] { --hero-bg: #1c3038; --hero-fg: #e8f0f2; --hl: #7fd8cd; --on-ink-2: #a9bcc3; --on-ink-track: #34505a; }
+/* ---- v3: user-first layout ---- */
+.tab-sep { flex: 0 0 1px; align-self: stretch; background: var(--line); margin: 4px 6px; }
+.tab-client { border-color: var(--line); }
+.subnav { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 52px); z-index: 9; display: flex; gap: 6px; overflow-x: auto; padding-block: 8px; background: var(--bg); scrollbar-width: thin; }
+.subnav button { flex: 0 0 auto; border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; font: 600 0.85rem var(--font-body); cursor: pointer; }
+.subnav button:hover { color: var(--ink); border-color: var(--accent); }
+.blk { display: grid; gap: 16px; scroll-margin-top: 110px; padding-top: 12px; border-top: 1px solid var(--line); }
+.blk > * { min-width: 0; }
+.blk-head { display: grid; gap: 6px; max-width: 72ch; }
+.blk-head h2 { font-size: 1.35rem; }
+.blk-lede { color: var(--ink-2); }
+[id^="bp-"] { scroll-margin-top: 110px; }
+details.more { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+details.more > summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 14px 18px; font: 700 1.02rem var(--font-display); }
+details.more > summary::-webkit-details-marker { display: none; }
+details.more > summary::after { content: "+"; font: 600 1.2rem var(--font-mono); color: var(--accent); }
+details.more[open] > summary::after { content: "–"; }
+details.more > summary .more-hint { margin-left: auto; font: 600 0.7rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+details.more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r); }
+.more-body { display: grid; gap: 16px; padding: 0 18px 18px; }
+.more-body > * { min-width: 0; }
+
+/* bottom line */
+#home { gap: 20px; }
+.bl-hero { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 16px; }
+.bl-who { background: var(--hero-bg); color: var(--hero-fg); border-radius: var(--r); padding: 26px; display: grid; gap: 18px; align-content: start; }
+.bl-who .eyebrow { color: var(--accent-soft); }
+.bl-line { font: 600 clamp(1.3rem, 2.3vw, 1.75rem)/1.3 var(--font-display); text-wrap: balance; max-width: 34ch; }
+.bl-line b { color: var(--hl); font-weight: 700; }
+.bl-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.bl-stats > div { display: grid; gap: 4px; align-content: start; }
+.bl-stats b { font: 700 1.7rem/1 var(--font-display); font-variant-numeric: tabular-nums; }
+.bl-stats .muted { color: var(--on-ink-2); }
+.st-l { font: 600 0.7rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--on-ink-2); }
+.meter { display: block; height: 6px; border-radius: 3px; background: var(--on-ink-track); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--hl); border-radius: 3px; }
+.mini-hist { display: flex; gap: 3px; height: 34px; align-items: flex-end; margin-top: 2px; }
+.mini-hist span { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; position: relative; }
+.mini-hist i { display: block; background: var(--hl); border-radius: 2px 2px 0 0; }
+.mini-hist em { font: 500 0.58rem var(--font-mono); font-style: normal; color: var(--on-ink-2); text-align: center; margin-top: 2px; white-space: nowrap; }
+.bl-side { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: grid; gap: 12px; align-content: start; }
+.bl-big { font: 600 1.2rem/1.35 var(--font-display); text-wrap: balance; }
+.bl-big b { color: var(--accent); }
+.sb { display: grid; gap: 4px; margin-bottom: 8px; }
+.sb-bar { display: flex; gap: 2px; height: 26px; border-radius: 4px; overflow: hidden; }
+.sb-bar span { display: grid; place-items: center; color: #fff; font: 600 0.75rem var(--font-mono); min-width: 0; }
+.bl-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.bl-row > * { min-width: 0; }
+.bl-ph { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 14px; flex-wrap: wrap; }
+.pair { display: grid; gap: 10px; }
+.pr { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 12px; align-items: center; }
+.pr-l { font-size: 0.92rem; font-weight: 600; line-height: 1.25; }
+.pr-b { display: grid; gap: 3px; }
+.pr-t { display: flex; align-items: center; gap: 6px; height: 11px; }
+.pr-t i { display: block; height: 100%; border-radius: 0 3px 3px 0; min-width: 2px; }
+.pr-t em { font: 500 0.72rem var(--font-mono); font-style: normal; color: var(--ink-2); }
+.pscale { --psl: 10.5rem; display: grid; gap: 10px; position: relative; padding-top: 26px; }
+.ps-r { display: grid; grid-template-columns: var(--psl) minmax(0, 1fr); align-items: center; position: relative; z-index: 1; }
+.ps-l { display: grid; line-height: 1.2; }
+.ps-t { position: relative; height: 22px; margin-right: 18px; border-bottom: 1px solid var(--line); }
+.ps-iqr { position: absolute; top: 4px; height: 14px; border-radius: 3px; opacity: .85; }
+.ps-med { position: absolute; top: 0; width: 2px; height: 22px; background: var(--ink); }
+.ps-med em { position: absolute; left: 6px; top: 2px; font: 600 0.75rem var(--font-mono); font-style: normal; white-space: nowrap; }
+.ps-axis .ps-t { border: 0; height: 16px; }
+.ps-axis .ps-t span { position: absolute; transform: translateX(-50%); font: 500 0.72rem var(--font-mono); color: var(--ink-3); }
+.ps-budget { position: absolute; top: 0; bottom: 44px; background: var(--good-soft); border-radius: 4px; z-index: 0; }
+.ps-budget span { position: absolute; top: 4px; left: 4px; max-width: none; font: 600 0.7rem var(--font-mono); color: var(--good); white-space: nowrap; }
+.bl-must { background: var(--accent-soft); border-radius: var(--r); padding: 22px; display: grid; gap: 14px; }
+.bl-mh { display: grid; gap: 4px; }
+.must { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; counter-reset: m; }
+.must li { background: var(--surface); border-radius: var(--r); padding: 14px; display: grid; gap: 10px; align-content: start; counter-increment: m; }
+.must li strong { font-family: var(--font-display); font-size: 1.02rem; line-height: 1.25; display: block; }
+.must li strong::before { content: counter(m) ". "; color: var(--accent); }
+.mu-n { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.mu-n b { font: 700 1.8rem/1 var(--font-display); color: var(--accent); }
+.mu-n .small { color: var(--ink-2); line-height: 1.3; }
+.go { justify-self: start; border: 0; background: var(--accent); color: var(--accent-ink); font: 600 0.95rem var(--font-body); padding: 9px 16px; border-radius: 999px; cursor: pointer; }
+.go:hover { filter: brightness(1.08); }
+
+/* provider stars chart */
+.pv { display: grid; gap: 4px; }
+.pv-r { display: grid; grid-template-columns: 9rem minmax(0, 1fr) 13rem; gap: 14px; align-items: center; padding-block: 8px; border-top: 1px solid var(--line); }
+.pv-axis { border-top: 0; padding-block: 0; }
+.pv-n { display: grid; line-height: 1.2; }
+.pv-t { position: relative; height: 30px; margin-inline: 10px; background: linear-gradient(to right, var(--line) 1px, transparent 1px) 0 0 / 25% 100%; }
+.pv-axis .pv-t { height: 18px; background: none; }
+.pv-axis .pv-t span { position: absolute; transform: translateX(-50%); font: 500 0.72rem var(--font-mono); color: var(--ink-3); }
+.pv-gap { position: absolute; top: 13px; height: 4px; background: var(--line); border-radius: 2px; }
+.pv-d { position: absolute; top: 9px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; box-shadow: 0 0 0 2px var(--surface); }
+.pv-lab { position: absolute; top: -6px; transform: translateX(-50%); font: 600 0.7rem var(--font-mono); font-style: normal; color: var(--ink-2); }
+.pv-na { position: absolute; top: 6px; left: 0; font-size: 0.8rem; color: var(--ink-3); }
+.pv-c { display: grid; gap: 2px; justify-items: start; }
+.chip-bad { background: var(--bad-soft); color: var(--bad); font: 600 0.75rem var(--font-body); padding: 2px 8px; border-radius: 999px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 860px) {
+  .bl-hero { grid-template-columns: 1fr; }
+  .bl-stats { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+  .pv-r { grid-template-columns: 1fr; gap: 6px; }
+  .pv-axis { display: none; }
+  .pscale { --psl: 7.5rem; }
+  .pr { grid-template-columns: 1fr; gap: 4px; }
+}
+
+.art-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.art-filter button { border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; font: 600 0.85rem var(--font-body); cursor: pointer; }
+.art-filter button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+.art { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.art h3 { font-size: 1.08rem; }
+.art-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.art-ev { display: flex; gap: 10px; align-items: baseline; padding: 8px 10px; background: var(--accent-soft); border-radius: 6px; }
+.art-ev b { font: 700 1.3rem/1 var(--font-display); color: var(--accent); white-space: nowrap; }
+.art-kw { display: flex; flex-wrap: wrap; gap: 4px; }
+.art-kw span { font: 500 0.72rem var(--font-mono); background: var(--surface-2); color: var(--ink-2); padding: 2px 6px; border-radius: 4px; }
 </style>
 
 <header class="top wrap">
   <span class="eyebrow">CRO engagement · Working draft v0.1 · 7 Oct 2026</span>
-  <h1>The Weight-Loss Buyer<br><span class="muted" style="font-weight:500">who they are, and what a comparison page should show them</span></h1>
-  <p class="lede">Three parts. <strong>1 · Insights</strong>: the average weight-loss user and what the data says. <strong>2 · Blueprint</strong>: what any GLP-1 comparison site should look like, built from that data. <strong>3 · HealthAccess</strong>: an audit of healthaccess.com/weight-loss/compare and the improvement plan. Built from <span id="hdrN">701 Trustpilot reviews, 163 Reddit comments and 88 price reports</span>.</p>
+  <h1>The Weight-Loss Buyer</h1>
+  <p class="lede">Who the online weight-loss buyer is, what they want and fear, and what a comparison page should show them. Built from <span id="hdrN"></span>.</p>
   <div class="meta">
     <span>Traffic today: Google Ads, desktop</span>
     <span>Next: mobile launch</span>
@@ -338,108 +456,67 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
-    <span class="tab-grp">1 · Insights</span>
-    <button class="tab" role="tab" data-tab="user">The average user</button>
-    <button class="tab" role="tab" data-tab="data-insights">Data insights</button>
-    <button class="tab" role="tab" data-tab="overview">Market</button>
-    <button class="tab" role="tab" data-tab="reviews">Review signals</button>
-    <button class="tab" role="tab" data-tab="competitors">Competitors</button>
-    <button class="tab" role="tab" data-tab="search">Search intent</button>
-    <span class="tab-grp">2 · Blueprint</span>
+    <button class="tab" role="tab" data-tab="home">Bottom line</button>
+    <button class="tab" role="tab" data-tab="buyer">The buyer</button>
+    <button class="tab" role="tab" data-tab="money">What they pay</button>
     <button class="tab" role="tab" data-tab="blueprint">Comparison-site blueprint</button>
-    <button class="tab" role="tab" data-tab="cost">True cost widget</button>
-    <span class="tab-grp">3 · HealthAccess</span>
-    <button class="tab" role="tab" data-tab="audit">Site audit &amp; plan</button>
-    <button class="tab" role="tab" data-tab="roadmap">Test roadmap</button>
-    <button class="tab" role="tab" data-tab="data">Data &amp; next steps</button>
+    <button class="tab" role="tab" data-tab="articles">Article ideas</button>
+    <button class="tab" role="tab" data-tab="providers">Providers</button>
+    <button class="tab" role="tab" data-tab="market">Market &amp; search</button>
+    <span class="tab-sep" aria-hidden="true"></span>
+    <button class="tab tab-client" role="tab" data-tab="ha">HealthAccess audit &amp; plan</button>
   </div>
 </nav>
 
 <main class="wrap">
 
-<!-- OVERVIEW -->
-<section id="overview" data-panel="overview">
-  <div class="sec-head">
-    <span class="eyebrow">The thesis</span>
-    <h2>The market flipped in 2026. Most comparison pages haven't caught up.</h2>
-    <p class="muted">Between December 2025 and April 2026, the cheap option moved from compounded drugs to FDA-approved brands sold for cash. Pills arrived. Compounded sellers came under FDA pressure. Buyers now ask different questions, and the page that answers them most honestly will get the click.</p>
+<!-- BOTTOM LINE (rendered from window.AGG) -->
+<section id="home" data-panel="home">
+  <div class="bl-hero">
+    <div class="bl-who">
+      <span class="eyebrow">The average weight-loss buyer</span>
+      <p class="bl-line" id="blLine"></p>
+      <div class="bl-stats" id="blStats"></div>
+    </div>
+    <div class="bl-side">
+      <span class="eyebrow">How many are first-timers?</span>
+      <p class="bl-big" id="blFirst"></p>
+      <div id="blStage"></div>
+      <p class="small muted" id="blStageNote"></p>
+    </div>
   </div>
 
-  <div class="grid g4">
-    <div class="card stat"><span class="eyebrow">Lowest brand cash price</span><span class="num">$149<span class="small muted">/mo</span></span><p class="small">Wegovy pill and Foundayo starting doses. They now compete directly with $99–$199 compounded offers.</p><span class="src">NovoCare, LillyDirect, Apr 2026</span></div>
-    <div class="card stat"><span class="eyebrow">Find it hard to afford</span><span class="num">56%</span><p class="small">of GLP-1 users, including 55% of those <em>with</em> insurance. Cost is the main problem.</p><span class="src">KFF poll, Nov 2025</span></div>
-    <div class="card stat"><span class="eyebrow">Weight-loss GLP-1 claims rejected</span><span class="num">~62%</span><p class="small">Insured searchers are often denied. That opens a "denied, now what?" segment.</p><span class="src">RX Index, 2021–24 claims</span></div>
-    <div class="card stat"><span class="eyebrow">Mobile vs desktop</span><span class="num">7×</span><p class="small">more mobile traffic in health and wellness, but desktop converts about 22% better. Mobile needs its own design.</p><span class="src">Unbounce benchmark, 2024</span></div>
+  <div class="bl-row">
+    <div class="card bl-panel">
+      <div class="bl-ph"><h3>What they want</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Signing up (Trustpilot)</span><span><i class="sw" style="background:var(--s2)"></i>Experienced (Reddit)</span></div></div>
+      <p class="small muted">Share of reviews or comments that mention it</p>
+      <div id="blWants" class="pair"></div>
+    </div>
+    <div class="card bl-panel">
+      <div class="bl-ph"><h3>What they fear</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot complaints</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
+      <p class="small muted">Trustpilot: share of 1–2★ reviews · Reddit: share of comments</p>
+      <div id="blFears" class="pair"></div>
+    </div>
   </div>
 
-  <div class="grid g2">
-    <div class="card">
-      <span class="eyebrow">Five shifts that changed search intent</span>
-      <div>
-        <div class="shift"><span class="when">Dec 2025 →</span><div><h3>Brand drugs got cheap for cash buyers</h3><p class="small muted">Zepbound vials $299 / $399 / $449, Wegovy pen $349, Wegovy HD $399. "Cheapest" no longer automatically means compounded.</p></div></div>
-        <div class="shift"><span class="when">Jan–Apr 2026</span><div><h3>Weight-loss pills launched</h3><p class="small muted">Wegovy pill (Jan 5) and Foundayo (Apr 1), both from $149. New searches like "wegovy pill price" and "foundayo vs wegovy pill".</p></div></div>
-        <div class="shift"><span class="when">Feb–Jun 2026</span><div><h3>FDA cracked down on compounded drugs</h3><p class="small muted">Warning letters to 30, then 25 more telehealth firms. A May 2026 proposal would keep sema/tirz off the 503B bulk list. Hims moved to brand drugs.</p></div></div>
-        <div class="shift"><span class="when">Jul 2026 →</span><div><h3>Medicare started covering GLP-1s</h3><p class="small muted">The GLP-1 Bridge charges a flat $50 copay through 2027. At the same time some employers are dropping coverage, so insurance searches go both ways.</p></div></div>
-        <div class="shift"><span class="when">Aug 2026</span><div><h3>U.S. News published GLP-1 ratings</h3><p class="small muted">It rates brand-name providers only, on six published weighted pillars. That raises the bar for methodology and trust on every comparison page.</p></div></div>
-      </div>
-    </div>
-    <div class="grid" style="align-content:start">
-      <div class="card">
-        <span class="eyebrow">Where we can win</span>
-        <ul class="clean">
-          <li><strong>Show the real cost.</strong> <span class="muted">Every page quotes a "from $X" price. Nobody shows the all-in monthly cost at the dose people stay on, which is the top complaint in reviews.</span></li>
-          <li><strong>Route insured and cash buyers separately.</strong> <span class="muted">Insured, Medicare and cash buyers want different providers. Nobody asks which one you are.</span></li>
-          <li><strong>Give honest trust signals.</strong> <span class="muted">Label every option FDA-approved or compounded, date-stamp prices, and flag regulatory issues. Raw Trustpilot stars favour the riskiest sellers.</span></li>
-          <li><strong>Design for mobile from the start.</strong> <span class="muted">Stacked cards, filter chips and a sticky button, not a shrunken desktop table.</span></li>
-        </ul>
-      </div>
-      <div class="callout warn">
-        <strong>Rule that shapes every paid comparison page</strong>
-        <p class="small">Since Oct 29, 2025, Google lets ads <em>mention</em> drug names, but <em>bidding</em> on drug-name keywords (semaglutide, Wegovy, Zepbound, Foundayo) needs Google healthcare certification. LegitScript certifies price-comparison sites. Whether a comparison site qualifies decides which half of the keyword universe it can buy.</p>
-      </div>
-    </div>
+  <div class="card">
+    <div class="bl-ph"><h3>What they pay each month</h3><span class="small muted" id="blPriceN"></span></div>
+    <div id="blPrice" class="pscale"></div>
+  </div>
+
+  <div class="bl-must">
+    <div class="bl-mh"><span class="eyebrow">The bottom line</span><h2>So a comparison page has to do five things</h2></div>
+    <ol class="must" id="blMust"></ol>
+    <div class="pills" style="gap:10px"><button type="button" class="go" data-tab-go="blueprint">See how it looks in the blueprint →</button><button type="button" class="go" data-tab-go="articles">Articles to write →</button></div>
   </div>
 </section>
-
-<!-- DATA INSIGHTS (rendered from window.AGG, built by scripts/aggregate.py) -->
-<section id="data-insights" data-panel="data-insights" hidden>
+<section id="buyer" data-panel="buyer" hidden>
   <div class="sec-head">
-    <span class="eyebrow" id="diEyebrow">Data insights · all coded sources combined</span>
-    <h2>What the data says about the weight-loss buyer</h2>
-    <p class="muted">Every number on this tab comes from the coded Trustpilot reviews, Reddit comments and price reports in the repo. Re-running <span class="mono">scripts/aggregate.py</span> after new data comes in updates the whole tab.</p>
+    <span class="eyebrow" id="avgEyebrow">The buyer</span>
+    <h2 id="avgLine"></h2>
   </div>
-  <div class="grid g4" id="diKpis"></div>
-  <div class="card">
-    <h3>Key findings from the data</h3>
-    <ol class="ticks" id="diFindings"></ol>
-  </div>
-  <div class="card">
-    <div class="di-head"><h3>Where buyers are in their journey</h3><div class="legend small" id="stageLegend"></div></div>
-    <div id="diStage" class="di-stack"></div>
-    <p class="small muted" id="diStageNote"></p>
-  </div>
-  <div class="grid g2">
-    <div class="card">
-      <div class="di-head"><h3>What they talk about</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
-      <p class="small muted">Share of items that mention each need</p>
-      <div id="diNeeds" class="gb"></div>
-    </div>
-    <div class="card">
-      <div class="di-head"><h3>What they fear</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot 1–2★</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
-      <p class="small muted">Trustpilot: share of negative reviews · Reddit: share of all items</p>
-      <div id="diFears" class="gb"></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="di-head"><h3>What people pay each month</h3><span class="small muted" id="diPriceN"></span></div>
-    <div class="strip" id="diPrice"></div>
-  </div>
-  <div class="grid g3">
-    <div class="card"><h3>Medication discussed on Reddit</h3><div id="diMed" class="hbars"></div></div>
-    <div class="card"><h3>Why they switch</h3><div id="diSwitch" class="hbars"></div></div>
-    <div class="card"><h3>How they pay (Reddit)</h3><div id="diPay" class="hbars"></div></div>
-  </div>
-  <div class="card">
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="b-who">Who they are</button><button type="button" data-go="b-journey">Where they are</button><button type="button" data-go="b-wants">What they want and fear</button><button type="button" data-go="b-voice">In their words</button><button type="button" data-go="b-personas">Personas</button><button type="button" data-go="b-data">The data</button></nav>
+<div class="blk" id="b-who"><div class="blk-head"><span class="eyebrow">Who they are</span><h2>Mostly women in their 40s to 60s, paying cash</h2><p class="blk-lede">Only what people stated outright. Nothing is inferred from names or photos.</p></div><div class="avg-grid" id="avgFacts"></div><div class="card">
     <div class="di-head"><h3>Who they are (stated outright only)</h3><span class="small muted" id="diDemoN"></span></div>
     <div class="grid g3">
       <div><p class="small muted" style="margin-bottom:6px">Age band</p><div id="diAge" class="hbars"></div></div>
@@ -447,51 +524,12 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <div><p class="small muted" style="margin-bottom:6px">Weight lost so far, where start and current weight are stated</p><div id="diLoss" class="hbars"></div></div>
     </div>
     <p class="small muted">We code age and sex only when the writer states them. Nothing is inferred from names. The sample is small, so treat this as a sketch.</p>
-  </div>
-  <div class="card">
-    <div class="di-head"><h3>"If you could only pick one GLP-1"</h3><span class="small muted" id="diDrugN"></span></div>
-    <div id="diDrug" class="hbars"></div>
-  </div>
-  <div class="card" id="clCard">
-    <div class="di-head"><h3>The comparison table buyers already trust</h3><span class="small muted">r/tirzepatidecompound pinned "Where to Buy", updated Oct 5, 2026</span></div>
-    <p class="small muted" id="clLead"></p>
-    <div class="grid g4" id="clKpis"></div>
-    <div class="grid g2">
-      <div><p class="small muted" style="margin-bottom:6px">Providers and how they are ranked (survey of users)</p><div class="tscroll" style="border:0"><table><thead><tr><th>Provider</th><th>Tier</th><th>Rule</th></tr></thead><tbody id="clTiers"></tbody></table></div></div>
-      <div><p class="small muted" style="margin-bottom:6px">Plans by pharmacy</p><div id="clPharm" class="hbars"></div>
-        <p class="small muted" style="margin-top:10px">Fields shown for every plan: price for 3 months · pharmacy and 503A/503B · 28-day rule · additive and preservative · beyond-use date · states it doesn't ship to · auto or manual refill · clinician before prescription.</p></div>
-    </div>
-  </div>
-  <div class="card">
-    <h3>Providers in the Trustpilot sample</h3>
-    <div class="tscroll" style="border:0">
-      <table class="t-mid">
-        <thead><tr><th>Provider</th><th class="num">Reviews</th><th class="num">Avg ★</th><th class="num">Invited</th><th class="num">Invited ★</th><th class="num">Unprompted ★</th><th class="num">Gap</th><th>Top complaint (share of negatives)</th></tr></thead>
-        <tbody id="diProv"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- USER -->
-<section id="user" data-panel="user" hidden>
-  <div class="sec-head">
-    <span class="eyebrow" id="avgEyebrow">The average weight-loss user · from the coded data</span>
-    <h2 id="avgLine"></h2>
-    <p class="muted">Every number here is computed from the coded Trustpilot reviews, Reddit comments, price reports and stated demographics, and it updates when new data is added. Trustpilot leans toward people signing up now and Reddit toward people already on treatment, so both are shown.</p>
-  </div>
-  <div class="avg-grid" id="avgFacts"></div>
-  <div class="card">
+  </div></div>
+<div class="blk" id="b-journey"><div class="blk-head"><span class="eyebrow">Where they are</span><h2>Signing up now, they are mostly first-timers and switchers. In the community, most are months in.</h2></div><div class="card">
     <div class="di-head"><h3>How many are first-timers?</h3><span class="small muted" id="avgStageN"></span></div>
     <div class="avg-stage" id="avgStage"></div>
     <p class="small" id="avgStageRead"></p>
-  </div>
-  <div class="grid g2">
-    <div class="card"><h3>What to emphasise (ranked by the data)</h3><ol class="ticks" id="avgEmph"></ol></div>
-    <div class="card"><h3>What to never do</h3><ul class="ticks small" id="avgNever"></ul></div>
-  </div>
-
-  <div class="card">
+  </div><div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
       <h3>Two buyers, not one</h3><span class="small muted">Most experienced buyers started as new sign-ups and moved after the bill or a refill went wrong</span>
     </div>
@@ -508,26 +546,30 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>What people say they pay each month</h3><span class="small muted"><span data-k="n.price"></span> price reports from Reddit · each dot is one person</span>
+  </div></div>
+<div class="blk" id="b-wants"><div class="blk-head"><span class="eyebrow">What they want and fear</span><h2>They pick on price, rate on people, and leave over billing and late refills</h2></div><div class="grid g2">
+    <div class="card">
+      <div class="di-head"><h3>What they talk about</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
+      <p class="small muted">Share of items that mention each need</p>
+      <div id="diNeeds" class="gb"></div>
     </div>
-    <div class="strip" id="priceStrip" role="img" aria-label="Monthly prices people report, by channel"></div>
-    <p class="small muted">The going rate: about <strong data-k="price.comp.median"></strong> for compounded (middle half <span data-k="price.comp.iqr"></span>) and about <strong data-k="price.brand.median"></strong> for brand-name cash (middle half <span data-k="price.brand.iqr"></span>). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
-  </div>
-
-  <div class="card">
+    <div class="card">
+      <div class="di-head"><h3>What they fear</h3><div class="legend small"><span><i class="sw" style="background:var(--s1)"></i>Trustpilot 1–2★</span><span><i class="sw" style="background:var(--s2)"></i>Reddit</span></div></div>
+      <p class="small muted">Trustpilot: share of negative reviews · Reddit: share of all items</p>
+      <div id="diFears" class="gb"></div>
+    </div>
+  </div><div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
       <h3>What they look for, ranked</h3>
       <div class="legend small"><span><i class="sw s-bad"></i>complaints (1–2★)</span><span><i class="sw s-good"></i>praise (4–5★)</span></div>
     </div>
     <div class="div-bars" id="needBars"></div>
     <p class="small muted">Counts are mentions across 701 reviews. Praise comes from delighters (people, easy start, being heard). Complaints come from basics (on-time medication, control of money). Every provider claims the delighters, but a comparison page can show the basics before the click. That is where a comparison site can stand out.</p>
-  </div>
-
-  <div class="grid g2">
+  </div><div class="grid g2">
+    <div class="card"><h3>What to emphasise (ranked by the data)</h3><ol class="ticks" id="avgEmph"></ol></div>
+    <div class="card"><h3>What to never do</h3><ul class="ticks small" id="avgNever"></ul></div>
+  </div></div>
+<div class="blk" id="b-voice"><div class="blk-head"><span class="eyebrow">In their words</span><h2>The fears, the words they use, and what the data adds up to</h2></div><div class="grid g2">
     <div class="card">
       <h3>What they fear before they click</h3>
       <div id="anxList"></div>
@@ -549,26 +591,69 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="card">
+  </div><div class="card">
+    <h3>Key findings from the data</h3>
+    <ol class="ticks" id="diFindings"></ol>
+  </div></div>
+<div class="blk" id="b-personas"><div class="blk-head"><span class="eyebrow">Personas</span><h2>Eleven buyer types, from first-timer to gray-market hunter</h2></div><div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
       <h3>Personas</h3><span class="small muted">From desk research, now backed by review evidence. Pick one.</span>
     </div>
     <div class="persona-picker" id="personaPicker"></div>
     <div id="personaDetail" class="persona-detail"></div>
-  </div>
+  </div></div>
+<div class="blk" id="b-data"><div class="blk-head"><span class="eyebrow">The data</span><h2>What this is built from</h2></div><div class="grid g4" id="diKpis"></div></div>
 </section>
-
-<!-- BLUEPRINT (generic: how a GLP-1 comparison site should look, from the data) -->
+<section id="money" data-panel="money" hidden>
+  <div class="sec-head"><span class="eyebrow">What they pay</span><h2>Compounded runs about <span data-k="price.comp.median"></span> a month and brand about <span data-k="price.brand.median"></span>. Budgets stop at $200.</h2></div>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="m-price">Monthly price</button><button type="button" data-go="m-what">What they buy</button><button type="button" data-go="m-list">The list they trust</button><button type="button" data-go="m-cost">True yearly cost</button></nav>
+<div class="blk" id="m-price"><div class="blk-head"><span class="eyebrow">Monthly price</span><h2>What people say they pay each month</h2><p class="blk-lede">Each dot is one person. The shaded band is the $100–$200 budget people state.</p></div><div class="card">
+    <div class="di-head"><h3>What people pay each month</h3><span class="small muted" id="diPriceN"></span></div>
+    <div class="strip" id="diPrice"></div>
+  </div></div>
+<div class="blk" id="m-what"><div class="blk-head"><span class="eyebrow">What they buy</span><h2>Compounded tirzepatide, paid in cash</h2></div><div class="grid g3">
+    <div class="card"><h3>Medication discussed on Reddit</h3><div id="diMed" class="hbars"></div></div>
+    <div class="card"><h3>Why they switch</h3><div id="diSwitch" class="hbars"></div></div>
+    <div class="card"><h3>How they pay (Reddit)</h3><div id="diPay" class="hbars"></div></div>
+  </div><div class="card">
+    <div class="di-head"><h3>"If you could only pick one GLP-1"</h3><span class="small muted" id="diDrugN"></span></div>
+    <div id="diDrug" class="hbars"></div>
+  </div></div>
+<div class="blk" id="m-list"><div class="blk-head"><span class="eyebrow">The list they trust</span><h2>The community "Where to Buy" table is the benchmark</h2></div><div class="card" id="clCard">
+    <div class="di-head"><h3>The comparison table buyers already trust</h3><span class="small muted">r/tirzepatidecompound pinned "Where to Buy", updated Oct 5, 2026</span></div>
+    <p class="small muted" id="clLead"></p>
+    <div class="grid g4" id="clKpis"></div>
+    <div class="grid g2">
+      <div><p class="small muted" style="margin-bottom:6px">Providers and how they are ranked (survey of users)</p><div class="tscroll" style="border:0"><table><thead><tr><th>Provider</th><th>Tier</th><th>Rule</th></tr></thead><tbody id="clTiers"></tbody></table></div></div>
+      <div><p class="small muted" style="margin-bottom:6px">Plans by pharmacy</p><div id="clPharm" class="hbars"></div>
+        <p class="small muted" style="margin-top:10px">Fields shown for every plan: price for 3 months · pharmacy and 503A/503B · 28-day rule · additive and preservative · beyond-use date · states it doesn't ship to · auto or manual refill · clinician before prescription.</p></div>
+    </div>
+  </div></div>
+<div class="blk" id="m-cost"><div class="blk-head"><span class="eyebrow">True yearly cost</span><h2>The first-year cost is often double the headline price</h2><p class="blk-lede">Pick an option to see month-by-month cost as the dose goes up. Illustrative model from public prices.</p></div>
+  
+  <div class="cost-tool">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+        <h3>Year-one total, all-in</h3>
+        <span class="small muted">Click a row</span>
+      </div>
+      <div class="bars" id="bars" role="group" aria-label="Year-one cost by option"></div>
+    </div>
+    <div class="card" id="costDetail"></div>
+  </div>
+  <p class="small muted">Assumptions: monthly dose steps per label titration until the top price tier, then held; membership fees as published (first-month discounts applied); prescriber visit fees for manufacturer-direct channels not included; intro offers that ended are excluded. Billing frequency is assumed monthly; a provider that bills every 21 days (WellMedr, per reviews) would cost about 45% more per year. Compounded options are not FDA-approved. Prices from NovoCare, LillyDirect and provider pages, Mar–Sep 2026.</p>
+</div>
+</section>
 <section id="blueprint" data-panel="blueprint" hidden>
-  <div class="sec-head">
+<div class="sec-head">
     <span class="eyebrow">Comparison-site blueprint · any GLP-1 comparison site · built from the coded data</span>
     <h2>What a weight-loss comparison page should look like, according to the people who buy</h2>
     <p class="muted">Not tied to any one website. Every element below answers something buyers asked for or complained about in the data, and the evidence line updates with the data.</p>
   </div>
+<nav class="subnav" aria-label="Jump to"><button type="button" data-go="bp-rules">Rules</button><button type="button" data-go="bp-anatomy">Page anatomy</button><button type="button" data-go="bp-card">Provider card</button><button type="button" data-go="bp-stage">By stage</button><button type="button" data-go="bp-widgets">Widgets</button><button type="button" data-go="bp-quotes">Quotes → changes</button><button type="button" data-go="bp-content">Content and tests</button></nav>
+  
 
-  <div class="card">
+  <div id="bp-rules" class="card">
     <h3>Six rules the data sets</h3>
     <div class="grid g3 bp-rules">
       <div class="bp-rule"><span class="bp-n">1</span><strong>Sell the real price, not the starting price</strong><p class="small muted">A price they understand comes up in <b data-k="rd.need.PRICE_CLARITY"></b> of Reddit items. Being overcharged is a top fear on both sources (<b data-k="rd.fear.OVERCHARGED"></b> Reddit, <b data-k="tp.fear.OVERCHARGED"></b> of Trustpilot complaints).</p></div>
@@ -580,7 +665,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="card">
+  <div id="bp-anatomy" class="card">
     <div class="di-head"><h3>Page anatomy, top to bottom</h3><span class="small muted">Desktop shown · on mobile the same order, stacked, with a sticky "Find my match" button</span></div>
     <div class="wf-wrap">
       <div class="wf" aria-label="Wireframe of a comparison page">
@@ -608,7 +693,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="card">
+  <div id="bp-card" class="card">
     <div class="di-head"><h3>The provider card, field by field</h3><span class="small muted">Order = priority · evidence from the data</span></div>
     <div class="pc-wrap">
       <div class="pc" aria-label="Provider card mock">
@@ -643,7 +728,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="card">
+  <div id="bp-stage" class="card">
     <h3>A first screen for each stage</h3>
     <div class="tscroll" style="border:0">
       <table class="t-wide">
@@ -658,7 +743,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="sec-head" style="margin-top:8px"><h2>Widgets and features</h2><p class="muted">Each one answers a buyer fear. Ordered from quick wins to bigger builds.</p></div>
+  <div id="bp-widgets" class="sec-head" style="margin-top:8px"><h2>Widgets and features</h2><p class="muted">Each one answers a buyer fear. Ordered from quick wins to bigger builds.</p></div>
   <div class="grid" style="grid-template-columns:minmax(0,1fr) auto;gap:24px" id="featWrap">
     <div class="grid g2" id="featGrid"></div>
     <div class="grid" style="align-content:start;gap:8px">
@@ -684,7 +769,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <span class="small muted" style="text-align:center">Placeholder names and prices</span>
     </div>
   </div>
-  <div class="card">
+  <div id="bp-quotes" class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
       <h3>What buyers said → what the page should do</h3><span class="small muted">Reddit quotes, coded</span>
     </div>
@@ -711,7 +796,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   </div>
 
   <div class="grid g2">
-    <div class="card">
+    <div id="bp-content" class="card">
       <h3>Content to publish</h3>
       <ol class="ticks small">
         <li><strong>"What will I really pay?"</strong> Month-by-month cost by dose (the true-cost calculator)</li>
@@ -736,111 +821,26 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 </section>
-
-<!-- SEARCH -->
-<section id="search" data-panel="search" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Search intent</span>
-    <h2>Eight intent clusters, each needing a different first screen</h2>
-    <p class="muted">A searcher who typed "zepbound vial price" and lands on a generic top-10 list bounces. Message match per cluster is the cheapest conversion win available. The search terms report will tell us how spend splits across these clusters today.</p>
-  </div>
-  <div class="tscroll">
-    <table class="t-wide">
-      <thead><tr><th>Cluster</th><th>Example queries</th><th>What they want answered</th><th>Stage</th><th>Above the fold must show</th><th>Bidding</th></tr></thead>
-      <tbody id="clusterBody"></tbody>
-    </table>
-  </div>
-  <p class="small muted"><span class="pill p-good">Open</span> can be bought today. <span class="pill p-warn">Cert. needed</span> drug-name keywords need Google healthcare certification. <span class="pill p-neutral">Mixed</span> depends on the exact term.</p>
-
-  <div class="grid g2">
-    <div class="card">
-      <h3>Desktop vs mobile: working model</h3>
-      <div class="tscroll" style="border:0">
-        <table>
-          <thead><tr><th></th><th>Desktop (today)</th><th>Mobile (launch)</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Queries</strong></td><td>Longer, research-y: "ro vs hims cost with insurance"</td><td>Short, brand or price: "wegovy pill price"</td></tr>
-            <tr><td><strong>Who</strong></td><td>Older; Medicare and insurance research</td><td>Younger, cash-pay, curious about pills</td></tr>
-            <tr><td><strong>Trust</strong></td><td>Reads methodology and fine print</td><td>Needs compressed trust: badges, FDA label, review count</td></tr>
-            <tr><td><strong>Layout</strong></td><td>3–5 column table, sticky header</td><td>Stacked cards, filter chips, sticky CTA, no sideways scroll</td></tr>
-            <tr><td><strong>Measure</strong></td><td>Click-out rate is an OK proxy</td><td>Click-out rate overstates; use partner-confirmed conversions</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="small muted">A hypothesis to test against their device data, not a fact.</p>
-    </div>
-    <div class="card">
-      <h3>Copy rules for this vertical</h3>
-      <div class="tscroll" style="border:0">
-        <table>
-          <thead><tr><th>Do</th><th>Don't</th></tr></thead>
-          <tbody>
-            <tr><td>Label "FDA-approved brand" or "Compounded, not FDA-approved"</td><td>"Same as Wegovy", "generic Ozempic"</td></tr>
-            <tr><td>Show all-in price at maintenance dose</td><td>Headline only a starter price (FTC v. NextMed)</td></tr>
-            <tr><td>"A licensed clinician decides if treatment is right"</td><td>"Guaranteed approval", "no doctor needed"</td></tr>
-            <tr><td>Compare like-for-like doses, cite trials</td><td>Cross-dose comparisons (Novo v. Lilly, Jul 2026)</td></tr>
-            <tr><td>Visible disclosure, methodology, "verified [date]"</td><td>Before/after photos, unsourced testimonials</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<section id="articles" data-panel="articles" hidden>
+  <div class="sec-head"><span class="eyebrow">Article ideas · from the buyer data</span><h2>17 articles the data says to write, each answering a fear or a question buyers keep asking</h2>
+  <p class="muted">Each card shows the number behind it and suggested target searches. The searches are not measured volumes yet; check them against the search terms report once it arrives. Filter by who it's for. "Write first" means a top fear and high search intent.</p></div>
+  <div class="art-filter" id="artFilter" role="group" aria-label="Filter by reader"></div>
+  <div class="art-grid" id="artGrid"></div>
 </section>
-
-<!-- COMPETITORS -->
-<section id="competitors" data-panel="competitors" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Competitive landscape</span>
-    <h2>Two lanes: editorial sites favour brand-name providers, affiliate landers push compounded</h2>
-    <p class="muted">The page has to pick a lane or split them openly, because the people in each lane want different things.</p>
-  </div>
-
-  <div class="tscroll">
-    <table class="t-mid">
-      <thead><tr><th>Who ranks</th><th>Examples</th><th>How they play</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Editorial with methodology</strong></td><td>U.S. News, Forbes Health, Healthline / MNT, Fortune Recommends, Innerbody</td><td>Weighted scores, "Best for X" labels, medical reviewer bylines. Moving to brand-only.</td></tr>
-        <tr><td><strong>Affiliate pages on news domains</strong></td><td>Village Voice, LA Weekly, sponsored subdomains</td><td>Hard-sell Top 5 or Top 7 lists, mostly compounded offers.</td></tr>
-        <tr><td><strong>Programmatic rankings</strong></td><td>glp1scorecard, weightlossrankings, citedrx, therxindex</td><td>Hundreds of providers graded, published rubrics, "last verified" dates, quizzes with no email gate.</td></tr>
-        <tr><td><strong>Providers posing as reviewers</strong></td><td>formblends hub, trimrx, trytrimi</td><td>Hundreds of "[brand] cost 2026" pages that rank themselves #1.</td></tr>
-        <tr><td><strong>Paid "Top 5" landers</strong></td><td>top10.com, verifiedreviewpro, vitalityguides</td><td>"Editor's Choice" #1, a score out of 10, a coupon hook, PR-wire "awards" used as trust badges.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="card flat" style="padding:0">
-    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>The providers: real monthly cost vs the headline price</h3>
-      <span class="pill p-warn" style="white-space:normal">Price snapshots Mar–Sep 2026 · re-verify</span>
+<section id="providers" data-panel="providers" hidden>
+  <div class="sec-head"><span class="eyebrow">Providers · 701 Trustpilot reviews across 6 providers, plus the wider market</span><h2>Star ratings are collected at sign-up. Problems start in month 1 to 3.</h2></div>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="p-stars">Stars vs reality</button><button type="button" data-go="p-when">When it breaks</button><button type="button" data-go="p-deep">Provider deep dives</button><button type="button" data-go="p-market">Competitor landscape</button></nav>
+<div class="blk" id="p-stars"><div class="blk-head"><span class="eyebrow">Stars vs reality</span><h2>Invited reviews score far higher than unprompted ones</h2><p class="blk-lede">Each row is one provider on a 1–5★ scale. The gap is how much review invitations lift the average.</p></div><div class="card"><div class="legend small" id="provLegend"></div><div id="provChart" class="pv"></div></div><details class="more"><summary><span>Full provider table</span><span class="more-hint">Table</span></summary><div class="more-body"><div class="card">
+    <h3>Providers in the Trustpilot sample</h3>
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th>Provider</th><th class="num">Reviews</th><th class="num">Avg ★</th><th class="num">Invited</th><th class="num">Invited ★</th><th class="num">Unprompted ★</th><th class="num">Gap</th><th>Top complaint (share of negatives)</th></tr></thead>
+        <tbody id="diProv"></tbody>
+      </table>
     </div>
-  </div>
-  <div class="tscroll">
-    <table class="t-wide">
-      <thead><tr><th>Provider</th><th>Type</th><th>Medications</th><th>Typical all-in, self-pay</th><th>Insurance</th><th class="num">U.S. News</th><th class="num">Trustpilot</th><th>Watch-outs</th></tr></thead>
-      <tbody id="provBody"></tbody>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>Gaps nobody fills well</h3>
-    <div class="grid g3">
-      <div><strong>12-month cost with dose increases</strong><p class="small muted">Everyone quotes "from $X". The biggest gap, and the top complaint.</p></div>
-      <div><strong>Insurance-first routing</strong><p class="small muted">Commercial, Medicare and cash, with who handles the PA and the realistic copay.</p></div>
-      <div><strong>Contract, prepay and cancellation terms</strong><p class="small muted">Found's $99 early-cancel fee, WW's 12-month plan, Ivim, TrimRx and Embody prepay bundles. Almost never in the table, and the top reason buyers lose money.</p></div>
-      <div><strong>What's available today</strong><p class="small muted">Pill, HD dose, vial vs pen, microdose, compounded status. Changes monthly; most pages are stale.</p></div>
-      <div><strong>Time to prescription and delivery</strong><p class="small muted">No major site measures it, although late refills are a top complaint.</p></div>
-      <div><strong>Manufacturer-direct in the same table</strong><p class="small muted">"Do I even need a $149 membership?" LillyDirect, NovoCare and TrumpRx are rarely compared alongside.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS (Ro + Embody) -->
-<section id="reviews" data-panel="reviews" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Review signals · Trustpilot, coded by hand · 701 reviews across 6 providers, Oct 2026</span>
-    <h2>Each provider fails at a different moment, and their star ratings are collected before that moment arrives</h2>
-    <p class="muted">Every review was coded for its star rating, how it was collected, and its themes. Star ratings mostly measure the first step, a quick sign-up or a pleasant consult. The bad reviews show where each provider actually breaks, and every one of those breaking points is something a comparison page can warn about before the click.</p>
-  </div>
+  </div></div></details></div>
+<div class="blk" id="p-when"><div class="blk-head"><span class="eyebrow">When it breaks</span><h2>Each provider fails at a different month</h2></div>
+  
 
   <div class="card">
     <h3>When things go wrong, by month of treatment</h3>
@@ -856,7 +856,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small muted">Each bar is where that provider's top theme in 1–2★ reviews happens. The comparison page can warn about each of these before the click: show the all-in price, billing cycle, how to cancel, refill reliability, and prepay terms.</p>
   </div>
 
-  <div class="tscroll">
+  <details class="more"><summary><span>Provider by provider: where it breaks and what the table should show</span><span class="more-hint">Table</span></summary><div class="more-body"><div class="tscroll">
     <table class="t-wide">
       <thead><tr><th>Provider</th><th class="num">Reviews</th><th class="num">Avg ★</th><th class="num">Invited</th><th>Invited ★ vs rest</th><th>Where it breaks</th><th>What 4–5★ reviews mostly rate</th><th>Field our page needs</th></tr></thead>
       <tbody>
@@ -868,7 +868,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         <tr><td><strong>SkinnyRx</strong></td><td class="num">80</td><td class="num">4.59</td><td class="num">50%</td><td class="mono">4.97 vs 4.20</td><td><span class="pill p-bad">Over months</span> <span class="small">"no effect" (oral compounded) · prepaid bundles, no refund</span></td><td class="small">A named phone rep (97%)</td><td class="small"><strong>Compounded-oral label</strong></td></tr>
       </tbody>
     </table>
-  </div>
+  </div></div></details>
 
   <div class="grid g2">
     <div class="card">
@@ -903,7 +903,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   </div>
 
 
-  <h3 style="margin-top:8px">Ro · 138 weight-loss reviews</h3>
+  </div>
+<div class="blk" id="p-deep"><div class="blk-head"><span class="eyebrow">Provider deep dives</span><h2>Open one provider at a time</h2></div><details class="more prov-more"><summary><span>Ro · 138 weight-loss reviews</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Bad reviews about the membership fee</span><span class="num">66%</span><p class="small">People read "$39" as the price. It's $39, then $149/mo, with the medication billed on top.</p></div>
     <div class="card stat"><span class="eyebrow">What people actually pay</span><span class="num">$298–$448</span><p class="small">a month: $149 membership plus $149–$299 medication, as reviewers report it.</p></div>
@@ -929,7 +931,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small">A buyer who clicks expecting $39 cancels, asks for a refund and writes a 1★ review. A buyer who clicks knowing month one is $188 and after that $298–$448 is already qualified. Showing the full price before the click should raise partner approval and retention, which is a strong point when negotiating payouts.</p>
   </div>
 
-  <h3 style="margin-top:8px">SkinnyRx · 80 reviews</h3>
+</div></details>
+  <details class="more prov-more"><summary><span>SkinnyRx · 80 reviews</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Positive reviews about a rep</span><span class="num">97%</span><p class="small">Aimee B is named 17 times. Only 1 of 72 positive reviews mentions weight lost.</p></div>
     <div class="card stat"><span class="eyebrow">Invited reviews</span><span class="num">4.97★</span><p class="small">40 reviews, none 1–2★. Unlabelled: 4.20★.</p></div>
@@ -955,7 +959,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small">No oral tirzepatide is FDA-approved. The FDA-approved pills (Wegovy pill, Foundayo) are different products. If the page puts "pill" options together, needle-averse first-timers end up on the option with the weakest evidence. Show "Compounded oral, not FDA-approved" as its own label. Confirm the wording with compliance.</p>
   </div>
 
-  <h3 style="margin-top:8px">WellMedr · 80 reviews</h3>
+</div></details>
+  <details class="more prov-more"><summary><span>WellMedr · 80 reviews</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Bad reviews: not shipped</span><span class="num">73%</span><p class="small">First orders stuck 1–3 weeks after a fall promotion overwhelmed fulfilment.</p></div>
     <div class="card stat"><span class="eyebrow">"Monthly" billed every</span><span class="num">21 days</span><p class="small">A $99 "monthly" plan comes to about $1,720 a year, not $1,188.</p></div>
@@ -981,7 +987,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small">One reviewer alleges an employee offered to expedite medication if the reviewer took down a bad review. That is unverified, but if true it falls under the FTC's 2024 rule banning review suppression. Also confirm the reported rebrand to "Welldoc" and the 21-day billing cycle. More broadly, during a partner's big promotion, more traffic from us can push them past what they can ship. Ask partners to warn us before promotions.</p>
   </div>
 
-  <h3 style="margin-top:8px">Mochi · 84 reviews + profile data</h3>
+</div></details>
+  <details class="more prov-more"><summary><span>Mochi · 84 reviews + profile data</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Invited ("Verified")</span><span class="num">95%</span><p class="small">of reviews. The profile says "Asks customers to review".</p></div>
     <div class="card stat"><span class="eyebrow">About the consult</span><span class="num">76%</span><p class="small">describe a provider visit. Only 10% mention delivery, refills or results.</p></div>
@@ -1008,7 +1016,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small">Ro and Mochi both bill a membership plus a separate medication subscription, and both get the "I thought it was included" complaint. Every membership provider needs the all-in price and a "how to cancel" field. Mochi's honest label is "Best for clinician support", together with a clear note on how billing works.</p>
   </div>
 
-  <h3 style="margin-top:8px">Embody · 200 reviews</h3>
+</div></details>
+  <details class="more prov-more"><summary><span>Embody · 200 reviews</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
 <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Invited reviews</span><span class="num">4.93★</span><p class="small">87 reviews, none of them 1–2★.</p></div>
     <div class="card stat"><span class="eyebrow">Unprompted reviews</span><span class="num">2.66★</span><p class="small">104 reviews; 58% are 1–2★.</p></div>
@@ -1058,7 +1068,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       </div>
     </div>
   </div>
-  <h3 style="margin-top:8px">TrimRx · 119 reviews</h3>
+</div></details>
+  <details class="more prov-more"><summary><span>TrimRx · 119 reviews</span><span class="more-hint">Deep dive</span></summary>
+<div class="more-body">
   <div class="grid g4">
     <div class="card stat"><span class="eyebrow">Invited ("Verified")</span><span class="num">4.83★</span><p class="small">103 reviews, 87% of everything shown.</p></div>
     <div class="card stat"><span class="eyebrow">Unprompted</span><span class="num">2.12★</span><p class="small">16 reviews; 75% are 1–2★. Small sample.</p></div>
@@ -1084,38 +1096,148 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <p class="small">TrimRx ($1,519 for 6 months) and Embody ($1,428 for 12 months) both show their lowest monthly price on long prepaid bundles. When the provider fails mid-plan, the buyer loses that money and blames whoever sent them. The comparison should show "Pay monthly" vs "Prepay N months" and never use a prepay price as the headline price. Ask partners for chargeback rates by plan length, since these chargebacks land after the payout window.</p>
   </div>
 
+</div></details>
   <p class="small muted">Each sample covers one provider over about a week, coded by one analyst. More providers will be added the same way as you send them.</p>
-</section>
+</div>
+<div class="blk" id="p-market"><div class="blk-head"><span class="eyebrow">Competitor landscape</span><h2>Editorial sites favour brand-name, affiliate landers push compounded</h2></div>
+  
 
-<!-- COST -->
-<section id="cost" data-panel="cost" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Feature prototype · True 12-month cost</span>
-    <h2>The first-year cost is often double what the headline price suggests</h2>
-    <p class="muted">This is the feature nobody in the market has built. Pick an option to see month-by-month cost as the dose goes up. The numbers are an illustrative model from public prices, not a quote.</p>
+  <div class="tscroll">
+    <table class="t-mid">
+      <thead><tr><th>Who ranks</th><th>Examples</th><th>How they play</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Editorial with methodology</strong></td><td>U.S. News, Forbes Health, Healthline / MNT, Fortune Recommends, Innerbody</td><td>Weighted scores, "Best for X" labels, medical reviewer bylines. Moving to brand-only.</td></tr>
+        <tr><td><strong>Affiliate pages on news domains</strong></td><td>Village Voice, LA Weekly, sponsored subdomains</td><td>Hard-sell Top 5 or Top 7 lists, mostly compounded offers.</td></tr>
+        <tr><td><strong>Programmatic rankings</strong></td><td>glp1scorecard, weightlossrankings, citedrx, therxindex</td><td>Hundreds of providers graded, published rubrics, "last verified" dates, quizzes with no email gate.</td></tr>
+        <tr><td><strong>Providers posing as reviewers</strong></td><td>formblends hub, trimrx, trytrimi</td><td>Hundreds of "[brand] cost 2026" pages that rank themselves #1.</td></tr>
+        <tr><td><strong>Paid "Top 5" landers</strong></td><td>top10.com, verifiedreviewpro, vitalityguides</td><td>"Editor's Choice" #1, a score out of 10, a coupon hook, PR-wire "awards" used as trust badges.</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="cost-tool">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-        <h3>Year-one total, all-in</h3>
-        <span class="small muted">Click a row</span>
-      </div>
-      <div class="bars" id="bars" role="group" aria-label="Year-one cost by option"></div>
+
+  <div class="card flat" style="padding:0">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+      <h3>The providers: real monthly cost vs the headline price</h3>
+      <span class="pill p-warn" style="white-space:normal">Price snapshots Mar–Sep 2026 · re-verify</span>
     </div>
-    <div class="card" id="costDetail"></div>
   </div>
-  <p class="small muted">Assumptions: monthly dose steps per label titration until the top price tier, then held; membership fees as published (first-month discounts applied); prescriber visit fees for manufacturer-direct channels not included; intro offers that ended are excluded. Billing frequency is assumed monthly; a provider that bills every 21 days (WellMedr, per reviews) would cost about 45% more per year. Compounded options are not FDA-approved. Prices from NovoCare, LillyDirect and provider pages, Mar–Sep 2026.</p>
-</section>
+  <details class="more"><summary><span>All providers: real monthly cost, insurance, ratings, watch-outs</span><span class="more-hint">Table</span></summary><div class="more-body"><div class="tscroll">
+    <table class="t-wide">
+      <thead><tr><th>Provider</th><th>Type</th><th>Medications</th><th>Typical all-in, self-pay</th><th>Insurance</th><th class="num">U.S. News</th><th class="num">Trustpilot</th><th>Watch-outs</th></tr></thead>
+      <tbody id="provBody"></tbody>
+    </table>
+  </div></div></details>
 
-<!-- HEALTHACCESS AUDIT -->
-<section id="audit" data-panel="audit" hidden>
-  <div class="sec-head">
+  <div class="card">
+    <h3>Gaps nobody fills well</h3>
+    <div class="grid g3">
+      <div><strong>12-month cost with dose increases</strong><p class="small muted">Everyone quotes "from $X". The biggest gap, and the top complaint.</p></div>
+      <div><strong>Insurance-first routing</strong><p class="small muted">Commercial, Medicare and cash, with who handles the PA and the realistic copay.</p></div>
+      <div><strong>Contract, prepay and cancellation terms</strong><p class="small muted">Found's $99 early-cancel fee, WW's 12-month plan, Ivim, TrimRx and Embody prepay bundles. Almost never in the table, and the top reason buyers lose money.</p></div>
+      <div><strong>What's available today</strong><p class="small muted">Pill, HD dose, vial vs pen, microdose, compounded status. Changes monthly; most pages are stale.</p></div>
+      <div><strong>Time to prescription and delivery</strong><p class="small muted">No major site measures it, although late refills are a top complaint.</p></div>
+      <div><strong>Manufacturer-direct in the same table</strong><p class="small muted">"Do I even need a $149 membership?" LillyDirect, NovoCare and TrumpRx are rarely compared alongside.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="market" data-panel="market" hidden>
+  <div class="sec-head"><span class="eyebrow">Market and search</span><h2>The market flipped in 2026, and search intent changed with it</h2></div>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="k-shift">What changed</button><button type="button" data-go="k-search">Search intent</button></nav>
+<div class="blk" id="k-shift"><div class="blk-head"><span class="eyebrow">What changed</span><h2>Brand drugs got cheap, pills launched, compounded came under pressure</h2></div>
+  
+
+  <div class="grid g4">
+    <div class="card stat"><span class="eyebrow">Lowest brand cash price</span><span class="num">$149<span class="small muted">/mo</span></span><p class="small">Wegovy pill and Foundayo starting doses. They now compete directly with $99–$199 compounded offers.</p><span class="src">NovoCare, LillyDirect, Apr 2026</span></div>
+    <div class="card stat"><span class="eyebrow">Find it hard to afford</span><span class="num">56%</span><p class="small">of GLP-1 users, including 55% of those <em>with</em> insurance. Cost is the main problem.</p><span class="src">KFF poll, Nov 2025</span></div>
+    <div class="card stat"><span class="eyebrow">Weight-loss GLP-1 claims rejected</span><span class="num">~62%</span><p class="small">Insured searchers are often denied. That opens a "denied, now what?" segment.</p><span class="src">RX Index, 2021–24 claims</span></div>
+    <div class="card stat"><span class="eyebrow">Mobile vs desktop</span><span class="num">7×</span><p class="small">more mobile traffic in health and wellness, but desktop converts about 22% better. Mobile needs its own design.</p><span class="src">Unbounce benchmark, 2024</span></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <span class="eyebrow">Five shifts that changed search intent</span>
+      <div>
+        <div class="shift"><span class="when">Dec 2025 →</span><div><h3>Brand drugs got cheap for cash buyers</h3><p class="small muted">Zepbound vials $299 / $399 / $449, Wegovy pen $349, Wegovy HD $399. "Cheapest" no longer automatically means compounded.</p></div></div>
+        <div class="shift"><span class="when">Jan–Apr 2026</span><div><h3>Weight-loss pills launched</h3><p class="small muted">Wegovy pill (Jan 5) and Foundayo (Apr 1), both from $149. New searches like "wegovy pill price" and "foundayo vs wegovy pill".</p></div></div>
+        <div class="shift"><span class="when">Feb–Jun 2026</span><div><h3>FDA cracked down on compounded drugs</h3><p class="small muted">Warning letters to 30, then 25 more telehealth firms. A May 2026 proposal would keep sema/tirz off the 503B bulk list. Hims moved to brand drugs.</p></div></div>
+        <div class="shift"><span class="when">Jul 2026 →</span><div><h3>Medicare started covering GLP-1s</h3><p class="small muted">The GLP-1 Bridge charges a flat $50 copay through 2027. At the same time some employers are dropping coverage, so insurance searches go both ways.</p></div></div>
+        <div class="shift"><span class="when">Aug 2026</span><div><h3>U.S. News published GLP-1 ratings</h3><p class="small muted">It rates brand-name providers only, on six published weighted pillars. That raises the bar for methodology and trust on every comparison page.</p></div></div>
+      </div>
+    </div>
+    <div class="grid" style="align-content:start">
+      <div class="card">
+        <span class="eyebrow">Where we can win</span>
+        <ul class="clean">
+          <li><strong>Show the real cost.</strong> <span class="muted">Every page quotes a "from $X" price. Nobody shows the all-in monthly cost at the dose people stay on, which is the top complaint in reviews.</span></li>
+          <li><strong>Route insured and cash buyers separately.</strong> <span class="muted">Insured, Medicare and cash buyers want different providers. Nobody asks which one you are.</span></li>
+          <li><strong>Give honest trust signals.</strong> <span class="muted">Label every option FDA-approved or compounded, date-stamp prices, and flag regulatory issues. Raw Trustpilot stars favour the riskiest sellers.</span></li>
+          <li><strong>Design for mobile from the start.</strong> <span class="muted">Stacked cards, filter chips and a sticky button, not a shrunken desktop table.</span></li>
+        </ul>
+      </div>
+      <div class="callout warn">
+        <strong>Rule that shapes every paid comparison page</strong>
+        <p class="small">Since Oct 29, 2025, Google lets ads <em>mention</em> drug names, but <em>bidding</em> on drug-name keywords (semaglutide, Wegovy, Zepbound, Foundayo) needs Google healthcare certification. LegitScript certifies price-comparison sites. Whether a comparison site qualifies decides which half of the keyword universe it can buy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="blk" id="k-search"><div class="blk-head"><span class="eyebrow">Search intent</span><h2>Eight intent clusters, each needing a different first screen</h2></div>
+  
+  <div class="tscroll">
+    <table class="t-wide">
+      <thead><tr><th>Cluster</th><th>Example queries</th><th>What they want answered</th><th>Stage</th><th>Above the fold must show</th><th>Bidding</th></tr></thead>
+      <tbody id="clusterBody"></tbody>
+    </table>
+  </div>
+  <p class="small muted"><span class="pill p-good">Open</span> can be bought today. <span class="pill p-warn">Cert. needed</span> drug-name keywords need Google healthcare certification. <span class="pill p-neutral">Mixed</span> depends on the exact term.</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Desktop vs mobile: working model</h3>
+      <div class="tscroll" style="border:0">
+        <table>
+          <thead><tr><th></th><th>Desktop (today)</th><th>Mobile (launch)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Queries</strong></td><td>Longer, research-y: "ro vs hims cost with insurance"</td><td>Short, brand or price: "wegovy pill price"</td></tr>
+            <tr><td><strong>Who</strong></td><td>Older; Medicare and insurance research</td><td>Younger, cash-pay, curious about pills</td></tr>
+            <tr><td><strong>Trust</strong></td><td>Reads methodology and fine print</td><td>Needs compressed trust: badges, FDA label, review count</td></tr>
+            <tr><td><strong>Layout</strong></td><td>3–5 column table, sticky header</td><td>Stacked cards, filter chips, sticky CTA, no sideways scroll</td></tr>
+            <tr><td><strong>Measure</strong></td><td>Click-out rate is an OK proxy</td><td>Click-out rate overstates; use partner-confirmed conversions</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">A hypothesis to test against their device data, not a fact.</p>
+    </div>
+    <div class="card">
+      <h3>Copy rules for this vertical</h3>
+      <div class="tscroll" style="border:0">
+        <table>
+          <thead><tr><th>Do</th><th>Don't</th></tr></thead>
+          <tbody>
+            <tr><td>Label "FDA-approved brand" or "Compounded, not FDA-approved"</td><td>"Same as Wegovy", "generic Ozempic"</td></tr>
+            <tr><td>Show all-in price at maintenance dose</td><td>Headline only a starter price (FTC v. NextMed)</td></tr>
+            <tr><td>"A licensed clinician decides if treatment is right"</td><td>"Guaranteed approval", "no doctor needed"</td></tr>
+            <tr><td>Compare like-for-like doses, cite trials</td><td>Cross-dose comparisons (Novo v. Lilly, Jul 2026)</td></tr>
+            <tr><td>Visible disclosure, methodology, "verified [date]"</td><td>Before/after photos, unsourced testimonials</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<section id="ha" data-panel="ha" hidden>
+<div class="sec-head">
     <span class="eyebrow">HealthAccess · site audit · draft from 9 desktop screenshots (Oct 7) · more may come</span>
     <h2>The page ranks providers on scores the buyer data contradicts, and leads with intro prices buyers have learned to distrust</h2>
     <p class="muted">The live /weight-loss/compare page measured against the blueprint. This is a first pass on what's visible so far. Covers the full desktop page: hero, list, FAQ, explainer, table, write-ups and footer. Still useful to see: mobile, any quiz, and the click-out flow.</p>
   </div>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="h-today">Today vs data</button><button type="button" data-go="h-score">Scorecard</button><button type="button" data-go="h-plan">Improvement plan</button><button type="button" data-go="h-tests">Test roadmap</button><button type="button" data-go="h-next">Next steps and data</button></nav>
 
-  <div class="card">
+  
+
+  <div class="blk" id="h-today"><div class="card">
     <h3>What the page is today</h3>
     <div class="wf-wrap" style="grid-template-columns:minmax(0,.75fr) minmax(0,1.6fr)">
       <div class="wf" aria-label="Current page structure">
@@ -1142,7 +1264,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="card">
+</div>
+  <div class="blk" id="h-score"><div class="card">
     <div class="di-head"><h3>Scorecard against the blueprint</h3><div class="legend small"><span><span class="pill p-good">Has it</span></span><span><span class="pill p-warn">Partly</span></span><span><span class="pill p-bad">Missing</span></span></div></div>
     <div class="tscroll" style="border:0">
       <table class="t-mid">
@@ -1181,7 +1304,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     </div>
   </div>
 
-  <div class="sec-head" style="margin-top:8px"><h2>Improvement plan: what to change, section by section</h2><p class="muted">Today on the left, the change and the buyer evidence for it on the right. Ordered top of page down. Effort: <span class="pill p-good">Copy</span> text only · <span class="pill p-accent">Module</span> new component · <span class="pill p-neutral">Data</span> needs partner facts collected.</p></div>
+</div>
+  <div class="blk" id="h-plan"><div class="sec-head" style="margin-top:8px"><h2>Improvement plan: what to change, section by section</h2><p class="muted">Today on the left, the change and the buyer evidence for it on the right. Ordered top of page down. Effort: <span class="pill p-good">Copy</span> text only · <span class="pill p-accent">Module</span> new component · <span class="pill p-neutral">Data</span> needs partner facts collected.</p></div>
   <div class="tscroll">
     <table class="t-wide">
       <thead><tr><th>Area</th><th>Today</th><th>Change to</th><th>Why (data)</th><th>Effort</th></tr></thead>
@@ -1238,15 +1362,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <li>Stage question vs straight list</li></ol>
       <p class="small muted">Measure partner-confirmed sign-ups, not only clicks. A lower intro price can win the click and lose the sale.</p></div>
   </div>
-</section>
-
-<!-- ROADMAP -->
-<section id="roadmap" data-panel="roadmap" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Test roadmap</span>
-    <h2>Fix measurement first, then test on desktop, then launch mobile with its own design</h2>
-    <p class="muted">ICE scores (impact, confidence, ease, each 1–10) are first estimates. They will be re-scored once we see traffic, click-outs per position and partner earnings per click.</p>
-  </div>
+</div>
+<div class="blk" id="h-tests"><div class="blk-head"><span class="eyebrow">Test roadmap</span><h2>Fix measurement first, test on desktop, then launch mobile with its own design</h2></div>
+  
   <div class="lanes" id="lanes"></div>
   <div class="card">
     <div class="sortbar">
@@ -1261,15 +1379,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       </table>
     </div>
   </div>
-</section>
-
-<!-- DATA -->
-<section id="data" data-panel="data" hidden>
-  <div class="sec-head">
-    <span class="eyebrow">Data &amp; next steps</span>
-    <h2>Next 2 weeks: work that doesn't wait for campaign data, set up so the data slots in on day one</h2>
-    <p class="muted">Each step produces something the client can see. Steps 1, 3 and 4 need site access (allowlist healthaccess.com, or full-page screenshots on desktop and mobile).</p>
-  </div>
+</div>
+<div class="blk" id="h-next"><div class="blk-head"><span class="eyebrow">Next steps and data</span><h2>Work that doesn't wait for campaign data</h2></div>
+  
   <div class="card" style="margin-bottom:16px">
     <div class="tscroll" style="border:0">
       <table class="t-mid">
@@ -1332,7 +1444,42 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       </div>
     </div>
   </div>
+</div>
 </section>
+<div hidden id="legacy"><span id="diEyebrow"></span><div class="card">
+    <div class="di-head"><h3>Where buyers are in their journey</h3><div class="legend small" id="stageLegend"></div></div>
+    <div id="diStage" class="di-stack"></div>
+    <p class="small muted" id="diStageNote"></p>
+  </div><div class="card">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+      <h3>What people say they pay each month</h3><span class="small muted"><span data-k="n.price"></span> price reports from Reddit · each dot is one person</span>
+    </div>
+    <div class="strip" id="priceStrip" role="img" aria-label="Monthly prices people report, by channel"></div>
+    <p class="small muted">The going rate: about <strong data-k="price.comp.median"></strong> for compounded (middle half <span data-k="price.comp.iqr"></span>) and about <strong data-k="price.brand.median"></strong> for brand-name cash (middle half <span data-k="price.brand.iqr"></span>). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
+  </div></div>
+
+
+<!-- OVERVIEW -->
+
+<!-- DATA INSIGHTS (rendered from window.AGG, built by scripts/aggregate.py) -->
+
+<!-- USER -->
+
+<!-- BLUEPRINT (generic: how a GLP-1 comparison site should look, from the data) -->
+
+<!-- SEARCH -->
+
+<!-- COMPETITORS -->
+
+<!-- REVIEWS (Ro + Embody) -->
+
+<!-- COST -->
+
+<!-- HEALTHACCESS AUDIT -->
+
+<!-- ROADMAP -->
+
+<!-- DATA -->
 </main>
 
 <footer class="wrap">
@@ -1348,7 +1495,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   const tabs = [...document.querySelectorAll('.tab')];
   const panels = [...document.querySelectorAll('[data-panel]')];
   function show(id, push) {
-    if (!panels.some(p => p.dataset.panel === id)) id = 'user';
+    if (!panels.some(p => p.dataset.panel === id)) id = 'home';
     tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
     panels.forEach(p => { p.hidden = p.dataset.panel !== id; });
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
@@ -1806,3 +1953,132 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   $('auPlan').innerHTML = plan.map(r => `<tr><td><strong>${r[0]}</strong></td><td class="small muted">${r[1]}</td><td class="small">${r[2]}</td><td class="small muted">${r[3]}</td><td>${ef[r[4]]}</td></tr>`).join('');
 })();
 </script>
+<script>
+(function () {
+  const A = window.AGG; if (!A) return;
+  const $ = id => document.getElementById(id);
+  const pct = v => Math.round(v) + '%';
+  const S = A.sources, P = A.prices, D = A.demographics || {};
+  const share = (o, ks) => { const t = Object.values(o).reduce((a, b) => a + b, 0); return t ? 100 * ks.reduce((a, k) => a + (o[k] || 0), 0) / t : 0; };
+  const known = Object.fromEntries(Object.entries(A.reddit.medication).filter(([k]) => k !== 'unknown'));
+  const dp = A.reddit.drug_preference || {};
+  const fem = D.sex ? 100 * D.sex.F / (D.sex.F + D.sex.M) : 0;
+
+  // ---- who ----
+  $('blLine').innerHTML = `Most often a <b>woman around ${Math.round(D.median_age)}</b>, paying <b>cash</b>, on <b>compounded tirzepatide</b> at about <b>$${P.compounded.median} a month</b>. Wants one honest price and a human who answers.`;
+  const stats = [
+    ['Women', fem, `of ${D.sex.F + D.sex.M} who said`],
+    ['Pay cash', share(A.reddit.payment, ['cash']), 'insurance is rare'],
+    ['On compounded', share(known, ['comp-inj']), `brand-name ${pct(share(known, ['brand-inj', 'brand-oral']))}`],
+    ['Prefer tirzepatide', share(dp, ['tirzepatide', 'tirzepatide+cagrilintide']), 'when asked to pick one']
+  ];
+  const bands = D.bands || {}; const bMax = Math.max(...Object.values(bands));
+  $('blStats').innerHTML = `<div class="st-age"><span class="st-l">Age</span><b>${Math.round(D.median_age)}</b><span class="small muted">median of ${D.n_age}</span><div class="mini-hist" role="img" aria-label="Age bands">${Object.entries(bands).map(([k, v]) => `<span title="${k}: ${v}"><i style="height:${Math.round(Math.max(3, v / bMax * 22))}px"></i><em>${k}</em></span>`).join('')}</div></div>` +
+    stats.map(s => `<div class="st-m"><span class="st-l">${s[0]}</span><b>${pct(s[1])}</b><span class="meter" role="img" aria-label="${pct(s[1])}"><i style="width:${s[1]}%"></i></span><span class="small muted">${s[2]}</span></div>`).join('');
+
+  // ---- journey ----
+  const T = A.stage.trustpilot, R = A.stage.reddit;
+  $('blFirst').innerHTML = `<b>${Math.round(T.new / 10)} in 10</b> people signing up are first-timers. <b>${Math.round(T.switch / 10)} in 10</b> are switching.`;
+  const seg = [['new', 'First time', 'var(--s1)'], ['switch', 'Switching', 'var(--s3)'], ['long', '3+ months', 'var(--s4)'], ['restart', 'Restarting', 'var(--ink-3)']];
+  const sbar = (lab, o, n) => `<div class="sb"><span class="small"><b>${lab}</b> <span class="muted">n=${n}</span></span><div class="sb-bar">${seg.filter(k => o[k[0]] >= 1).map(k => `<span style="width:${o[k[0]]}%;background:${k[2]}" title="${k[1]} ${pct(o[k[0]])}">${o[k[0]] >= 12 ? pct(o[k[0]]) : ''}</span>`).join('')}</div></div>`;
+  $('blStage').innerHTML = sbar('Signing up now', T, S.stage_revealing_tp) + sbar('Reddit community', R, S.stage_revealing_rd) + `<div class="legend small">${seg.slice(0, 3).map(k => `<span><i class="sw" style="background:${k[2]}"></i>${k[1]}</span>`).join('')}</div>`;
+  $('blStageNote').textContent = 'Paid search traffic likely looks more like the sign-up mix. One quiz question will confirm it.';
+
+  // ---- wants / fears ----
+  const pair = (el, labels, a, b, keys) => {
+    const mx = Math.max(...keys.map(k => Math.max(a[k] || 0, b[k] || 0)));
+    $(el).innerHTML = keys.map(k => `<div class="pr"><span class="pr-l">${labels[k]}</span><span class="pr-b"><span class="pr-t"><i style="width:${(a[k] || 0) / mx * 100}%;background:var(--s1)"></i><em>${pct(a[k] || 0)}</em></span><span class="pr-t"><i style="width:${(b[k] || 0) / mx * 100}%;background:var(--s2)"></i><em>${pct(b[k] || 0)}</em></span></span></div>`).join('');
+  };
+  const top = (a, b, n) => Object.keys(a).sort((x, y) => (Math.max(a[y], b[y] || 0)) - (Math.max(a[x], b[x] || 0))).slice(0, n);
+  const N = A.needs, F = A.fears;
+  pair('blWants', { ...N.labels, WORKS: 'That it works and is safe' }, N.trustpilot_share, N.reddit_share, top(N.trustpilot_share, N.reddit_share, 6));
+  pair('blFears', { ...F.labels, TRAPPED: 'Being trapped (prepay, cancel)' }, F.trustpilot_share_of_negative, F.reddit_share, top(F.trustpilot_share_of_negative, F.reddit_share, 6));
+
+  // ---- price scale ----
+  const MAX = 500, X = v => (Math.min(v, MAX) / MAX * 100);
+  $('blPriceN').textContent = `${S.price_reports} people said what they pay`;
+  const row = (lab, c, col) => `<div class="ps-r"><span class="ps-l"><b>${lab}</b><span class="small muted">median $${c.median}</span></span><div class="ps-t"><span class="ps-iqr" style="left:${X(c.q1)}%;width:${X(c.q3) - X(c.q1)}%;background:${col}"></span><span class="ps-med" style="left:${X(c.median)}%"><em>$${c.median}</em></span></div></div>`;
+  $('blPrice').innerHTML = `<div class="ps-budget" style="left:calc(var(--psl) + (100% - var(--psl)) * ${X(100) / 100});width:calc((100% - var(--psl)) * ${(X(200) - X(100)) / 100})"><span>Stated budget $100–$200</span></div>` +
+    row('Compounded', P.compounded, 'var(--s1)') + row('Brand-name, cash', P.brand, 'var(--s2)') + row('Gray market', P.graymarket, 'var(--ink-3)') +
+    `<div class="ps-r ps-axis"><span></span><div class="ps-t">${[0, 100, 200, 300, 400, 500].map(v => `<span style="left:${X(v)}%${v === 500 ? ';transform:translateX(-100%)' : ''}">$${v}${v === 500 ? '+' : ''}</span>`).join('')}</div></div><p class="small muted">Bars show the middle half of what people pay. The tick is the median.</p>`;
+
+  // ---- five musts ----
+  const must = [
+    ['Show the price at the dose they stay on', 'Not the intro price. One all-in monthly number, membership included.', `${pct(N.reddit_share.PRICE_CLARITY)}`, 'of experienced buyers talk about price clarity'],
+    ['Say what it is and who makes it', 'FDA-approved or compounded, and the named pharmacy.', `${pct(F.reddit_share.SCAM)}`, 'of Reddit comments fear a scam'],
+    ['Show what happens after month 1', 'Cancel and refund terms, prepay risk, refill reliability.', `${pct(F.trustpilot_share_of_negative.TRAPPED)}`, 'of complaints are about feeling trapped'],
+    ['Prove a human answers', 'Support style, channel and reply time on every card.', `${pct(N.trustpilot_share.HUMAN)}`, 'of new sign-ups praise or miss a real person'],
+    ['Route first-timers and switchers', 'One question, then a different first screen for each.', `${pct(T.new + T.switch)}`, 'of sign-ups are first-timers or switching']
+  ];
+  $('blMust').innerHTML = must.map(m => `<li><div class="mu-n"><b>${m[2]}</b><span class="small">${m[3]}</span></div><div><strong>${m[0]}</strong><p class="small muted">${m[1]}</p></div></li>`).join('');
+
+  // ---- provider stars chart ----
+  const PN = { embody: 'Embody', mochi: 'Mochi', ro: 'Ro', skinnyrx: 'SkinnyRx', trimrx: 'TrimRx', wellmedr: 'WellMedr' };
+  const TH = { SHIP: 'Refills not shipped', MEMB: 'Membership charges', CS: 'Support silent', APPT: 'Appointment no-shows', EFF: '"Doesn\'t work"' };
+  const BRK = { ro: 'Breaks at checkout', mochi: 'Month 0–1', wellmedr: 'Month 0–1', embody: 'Month 2', skinnyrx: 'Checkout upsell', trimrx: 'Months 3–7' };
+  const SX = v => ((v - 1) / 4 * 100);
+  $('provLegend').innerHTML = '<span><i class="dot" style="background:var(--s1)"></i>Invited reviews</span><span><i class="dot" style="background:var(--s2)"></i>Unprompted reviews</span><span><i class="dot" style="background:var(--ink)"></i>Average (invites not labelled)</span>';
+  const rows = [...A.providers].sort((a, b) => ((b.invited_avg || 0) - (b.organic_avg || 0)) - ((a.invited_avg || 0) - (a.organic_avg || 0)));
+  $('provChart').innerHTML = `<div class="pv-r pv-axis"><span></span><div class="pv-t">${[1, 2, 3, 4, 5].map(v => `<span style="left:${SX(v)}%">${v}★</span>`).join('')}</div><span></span></div>` + rows.map(p => {
+    let marks = '';
+    if (p.invited_avg != null && p.organic_avg != null) marks = `<span class="pv-gap" style="left:${SX(p.organic_avg)}%;width:${SX(p.invited_avg) - SX(p.organic_avg)}%"></span><span class="pv-d" style="left:${SX(p.organic_avg)}%;background:var(--s2)" title="Unprompted ${p.organic_avg}★"></span><span class="pv-d" style="left:${SX(p.invited_avg)}%;background:var(--s1)" title="Invited ${p.invited_avg}★"></span><em class="pv-lab" style="left:${SX(p.organic_avg)}%">${p.organic_avg.toFixed(1)}</em><em class="pv-lab" style="left:${SX(p.invited_avg)}%">${p.invited_avg.toFixed(1)}</em>`;
+    else if (p.avg != null) marks = `<span class="pv-d" style="left:${SX(p.avg)}%;background:var(--ink)" title="Average ${p.avg}★"></span><em class="pv-lab" style="left:${SX(p.avg)}%">${p.avg.toFixed(1)}</em>`;
+    else marks = '<em class="pv-na">Stars not captured in sample</em>';
+    return `<div class="pv-r"><span class="pv-n"><b>${PN[p.provider] || p.provider}</b><span class="small muted">${p.n} reviews</span></span><div class="pv-t">${marks}</div><span class="pv-c"><span class="chip-bad">${TH[p.top_neg_theme] || p.top_neg_theme} · ${p.top_neg_share}%</span><span class="small muted">${BRK[p.provider] || ''}</span></span></div>`;
+  }).join('') + '<p class="small muted">Right column: the top complaint (share of that provider\'s negative reviews) and when in treatment it shows up.</p>';
+
+  // ---- sub-nav + cross-tab buttons ----
+  document.querySelectorAll('.subnav button').forEach(b => b.addEventListener('click', () => { const t = document.getElementById(b.dataset.go); if (t) t.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); }));
+  document.querySelectorAll('[data-tab-go]').forEach(b => b.addEventListener('click', () => { const t = document.querySelector(`.tab[data-tab="${b.dataset.tabGo}"]`); if (t) t.click(); }));
+})();
+</script>
+<script>
+(function () {
+  const A = window.AGG; if (!A) return;
+  const pct = v => Math.round(v) + '%';
+  const N = A.needs, F = A.fears, P = A.prices, St = A.stage.trustpilot, D = A.demographics || {}, CL = A.community_list || {};
+  const share = (o, ks) => { const t = Object.values(o).reduce((a, b) => a + b, 0); return t ? 100 * ks.reduce((a, k) => a + (o[k] || 0), 0) / t : 0; };
+  const dp = A.reddit.drug_preference || {};
+  const inBudget = 100 * P.compounded.values.filter(v => v >= 100 && v <= 200).length / P.compounded.values.length;
+  const gap = Math.max(...A.providers.filter(p => p.invited_avg != null && p.organic_avg != null).map(p => p.invited_avg - p.organic_avg));
+  const old = D.bands ? D.bands['65+'] : 0;
+  // [title, stage, answers, evidence-number, evidence-text, searches, format, priority]
+  const arts = [
+    ['What will I really pay for GLP-1s? Month 1 vs month 4 vs year one', 'Everyone', 'A price they understand', pct(N.reddit_share.PRICE_CLARITY), 'of experienced buyers talk about price clarity', ['wegovy cost per month', 'zepbound price at higher dose', 'tirzepatide cost per year'], 'Guide + calculator', 1],
+    ['Compounded vs brand-name vs pills: what\'s FDA-approved, in plain English', 'First-timer', 'Is it safe and real?', pct(N.reddit_share.WORKS), 'of Reddit comments ask if it works or is safe', ['is compounded semaglutide safe', 'compounded vs brand tirzepatide', 'wegovy pill vs injection'], 'Explainer', 1],
+    ['Is this GLP-1 provider legit? A 5-point checklist before you pay', 'Everyone', 'Fear of scams', pct(F.reddit_share.SCAM), 'of Reddit comments fear a scam', ['is [provider] legit', '[provider] scam', 'how to check online pharmacy'], 'Checklist', 1],
+    ['Before you prepay: 5 questions to ask about refunds and cancelling', 'Everyone', 'Fear of being trapped', pct(F.trustpilot_share_of_negative.TRAPPED), 'of Trustpilot complaints are about prepay, cancel or refunds', ['glp-1 refund policy', '[provider] prepay refund', '3 month vs monthly plan'], 'Checklist', 1],
+    ['New to GLP-1s? What the first 4 weeks really look like', 'First-timer', 'Easy start, no judgment', pct(St.new), 'of people signing up are first-timers', ['glp-1 for beginners', 'first week on semaglutide', 'does the shot hurt'], 'Beginner guide', 1],
+    ['Switching providers without restarting your dose', 'Switching', 'Dose continuity', pct(St.switch), 'of people signing up are switching providers', ['switch glp-1 provider keep dose', '[provider] alternative', 'transfer tirzepatide prescription'], 'How-to', 2],
+    ['Cheapest legal GLP-1 options in 2026, and why research peptides are risky', 'Experienced', 'Price, without the gray market', `$${P.graymarket.median}`, 'median monthly price of gray-market "research peptides" people report', ['cheapest tirzepatide', 'cheapest semaglutide online', 'retatrutide buy'], 'Comparison', 2],
+    ['What $100–$200 a month gets you in GLP-1s right now', 'Experienced', 'Budget fit', pct(inBudget), 'of compounded prices people report fall in the $100–$200 budget', ['glp-1 under $200', 'tirzepatide $150 a month', 'affordable weight loss injection'], 'Comparison', 2],
+    ['Why GLP-1 refills arrive late, and how to pick a provider that ships on time', 'Experienced', 'Fear of running out', pct(F.trustpilot_share_of_negative.RUN_OUT), 'of Trustpilot complaints are about late or missing refills', ['[provider] refill late', 'glp-1 shipping delay', 'missed dose tirzepatide'], 'Guide', 2],
+    ['How to cancel Ro, Embody, WellMedr, TrimRx and others: step by step', 'Experienced', 'Control over money', pct(F.trustpilot_share_of_negative.TRAPPED), 'of complaints involve cancelling, prepay or refunds', ['how to cancel [provider]', '[provider] cancel subscription'], 'One page per provider', 2],
+    ['Lost coverage for Zepbound or Wegovy? Your next options', 'Switching', 'Insurance fallback', `#1`, 'reason Reddit users give for switching: losing insurance coverage', ['zepbound not covered anymore', 'wegovy denied what now', 'glp-1 without insurance'], 'Guide', 2],
+    ['Tirzepatide vs semaglutide: which do people pick, and why', 'First-timer', 'Which drug', pct(share(dp, ['tirzepatide', 'tirzepatide+cagrilintide'])), 'of buyers pick tirzepatide when asked to choose one', ['tirzepatide vs semaglutide', 'zepbound vs wegovy weight loss'], 'Comparison', 2],
+    ['GLP-1s after 65: Medicare\'s $50 option, lower starting doses, side effects', '65+', 'Side effects, cost on Medicare', `${old} of ${D.n_age}`, 'people who stated their age are 65 or older', ['medicare wegovy $50', 'glp-1 for seniors', 'lower starting dose zepbound'], 'Guide', 3],
+    ['503A vs 503B pharmacies and the 28-day rule, explained', 'Experienced', 'Which pharmacy to trust', pct(CL.share_28day || 0), 'of plans on the community list follow the 28-day rule. Buyers check it.', ['503a vs 503b', 'compounded tirzepatide pharmacy', 'beyond use date semaglutide'], 'Explainer', 3],
+    ['How we rate providers, and why star ratings mislead', 'Everyone', 'Trust in the ratings', `${gap.toFixed(1)}★`, 'largest gap between invited and unprompted Trustpilot reviews', ['[provider] reviews', 'best glp-1 provider reddit', 'is trustpilot reliable'], 'Methodology page', 3],
+    ['Microdosing GLP-1s: what it is, what it costs, who it suits', 'Experienced', 'Low dose, maintenance', '', 'Recurring Reddit topic (r/GLP1microdosing thread in the sample)', ['microdosing tirzepatide', 'glp-1 maintenance dose'], 'Explainer', 3],
+    ['Stopping GLP-1s: will the weight come back?', 'First-timer', 'Fear of regain', pct(F.reddit_share.REGAIN), 'of Reddit comments raise regain. A common first-timer question.', ['what happens when you stop wegovy', 'weight regain after glp-1'], 'Explainer', 3]
+  ];
+  const PR = { 1: ['Write first', 'p-good'], 2: ['Next', 'p-accent'], 3: ['Later', 'p-neutral'] };
+  const stages = ['All', 'First-timer', 'Switching', 'Experienced', '65+', 'Everyone'];
+  const fl = document.getElementById('artFilter'), gr = document.getElementById('artGrid');
+  let cur = 'All';
+  const render = () => {
+    gr.innerHTML = arts.filter(a => cur === 'All' || a[1] === cur).map(a => `<article class="art">
+      <div class="art-top"><span class="pill ${PR[a[7]][1]}">${PR[a[7]][0]}</span><span class="pill p-neutral">${a[1]}</span><span class="small muted">${a[6]}</span></div>
+      <h3>${a[0]}</h3>
+      <div class="art-ev">${a[3] ? `<b>${a[3]}</b>` : ''}<span class="small">${a[4]}</span></div>
+      <p class="small"><span class="muted">Answers:</span> ${a[2]}</p>
+      <div class="art-kw">${a[5].map(k => `<span>${k}</span>`).join('')}</div>
+    </article>`).join('');
+  };
+  fl.innerHTML = stages.map(s => `<button type="button" aria-pressed="${s === cur}" data-s="${s}">${s === 'All' ? `All (${arts.length})` : s}</button>`).join('');
+  fl.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; cur = b.dataset.s; fl.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); render(); });
+  render();
+})();
+</script>
+
+
