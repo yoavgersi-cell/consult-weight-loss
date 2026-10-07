@@ -1,0 +1,66 @@
+thread,channel,usd_per_month,note
+what-are-you-paying,compounded,111,$334/3mo tirz
+what-are-you-paying,compounded,112,switched from $479 Lilly + Rx
+what-are-you-paying,brand,479,before switching (Lilly + prescription)
+what-are-you-paying,compounded,108,$324/3mo
+what-are-you-paying,compounded,166,$499/quarter additive-free
+what-are-you-paying,compounded,111,$334/3mo
+what-are-you-paying,compounded,200,compound 2.0 dose
+what-are-you-paying,compounded,129,tirz
+what-are-you-paying,brand,149,Wegovy pill cash
+what-are-you-paying,compounded,100,tirz
+what-are-you-paying,compounded,180,paid yearly
+what-are-you-paying,compounded,125,paid yearly
+what-are-you-paying,unknown,159,
+what-are-you-paying,brand,224.5,$449 per refill lasting 2 months
+what-are-you-paying,compounded,170,offered $150
+what-are-you-paying,unknown,200,new; thinking of switching to compound
+what-are-you-paying,brand,320,$80/week before insurance
+what-are-you-paying,compounded,129,or $69 + $199/yr
+what-are-you-paying,compounded,175,12.5 mg
+what-are-you-paying,compounded,86,Collective $69 + $200/yr
+what-are-you-paying,unknown,199,
+what-are-you-paying,brand,400,brand via PCP
+what-are-you-paying,compounded,150,local pharmacy prefilled sema
+what-are-you-paying,graymarket,20,reta
+what-are-you-paying,graymarket,8,$150 for 18 months
+what-are-you-paying,graymarket,20,reta 8 mg China
+what-are-you-paying,graymarket,10,best price quoted
+what-are-you-paying,graymarket,15,$10-15 per 60 mg vial
+what-are-you-paying,graymarket,35,under $70 for a couple of months
+what-are-you-paying,graymarket,8,less than $100/year
+residency-cheapest,compounded,116,Pomegranate
+residency-cheapest,compounded,166,Brello $499/3mo
+residency-cheapest,compounded,99,Arbor flat
+residency-cheapest,compounded,100,Noom microdose
+residency-cheapest,compounded,129,Embody tirz
+residency-cheapest,compounded,150,online medspa
+residency-cheapest,compounded,165,Mochi $99 + $199/quarter
+residency-cheapest,brand,350,Wegovy pen self-pay (cited as doable)
+residency-cheapest,brand,450,Zepbound max dose vials
+residency-cheapest,brand,299,Wegovy pill / Foundayo maintenance
+residency-cheapest,graymarket,100,reta (clinician)
+glp1discussion-cheaper,brand,300,Ro: $150 pill + $150 membership
+glp1discussion-cheaper,compounded,115,tirz no fees
+glp1discussion-cheaper,compounded,80,"generic sema"
+glp1discussion-cheaper,compounded,50,
+tirzcompound-wellmedr,compounded,100,Rift/Pom $299/3mo
+tirzcompound-wellmedr,compounded,86,Collective with fee
+tirzcompound-wellmedr,compounded,111,PreventiveMD $334/3mo
+tirzcompound-wellmedr,compounded,129,WellMedr month-to-month
+tirzcompound-wellmedr,compounded,89,WellMedr 12-month prepay
+semaglutide-affordable,brand,500,OP quote Zepbound at pharmacy after denial
+semaglutide-affordable,compounded,129,Embody tirz
+semaglutide-affordable,compounded,179,Amble sema
+semaglutide-affordable,compounded,150,"most telehealth ~$150"
+semaglutide-affordable,brand,350,Wegovy
+semaglutide-affordable,compounded,155,Mochi $99 + $170/3mo
+semaglutide-affordable,compounded,180,local clinic $900/5 months
+semaglutide-affordable,compounded,159,Trillium sema
+semaglutide-affordable,compounded,249,Trillium tirz
+semaglutide-affordable,compounded,163,Gimme $489/3mo
+semaglutide-affordable,compounded,133,Brello sema $400/3mo
+semaglutide-affordable,compounded,167,Brello tirz $500/3mo
+semaglutide-affordable,brand,449,LillyDirect Zepbound max
+glp1discussion-embody,compounded,76,Embody sema
+glp1discussion-embody,compounded,79,Embody sema

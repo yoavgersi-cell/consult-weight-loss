@@ -199,6 +199,19 @@ select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid
 .tl-lbl { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; font: 600 0.75rem var(--font-body); color: var(--ink); white-space: nowrap; }
 .tl-mark { position: absolute; top: 3px; bottom: 3px; background: var(--bad); color: var(--accent-ink); border-radius: 4px; font: 600 0.72rem var(--font-body); display: flex; align-items: center; padding-inline: 8px; white-space: nowrap; overflow: visible; }
 
+
+.strip { display: grid; gap: 10px; padding-right: 18px; }
+.sr { display: grid; grid-template-columns: 9.5rem 1fr; gap: 10px; align-items: center; }
+.sr-l { font-size: 0.88rem; }
+.sr-l b { display: block; }
+.sr-t { position: relative; height: 30px; border-bottom: 1px solid var(--line); }
+.sr-t .dot { position: absolute; top: 9px; width: 10px; height: 10px; border-radius: 50%; background: var(--bar); opacity: 0.55; transform: translateX(-50%); }
+.sr-t .med { position: absolute; top: 2px; bottom: -1px; width: 2px; background: var(--ink); transform: translateX(-50%); }
+.sr-t .medl { position: absolute; top: -2px; font: 600 0.72rem var(--font-mono); color: var(--ink); white-space: nowrap; transform: translateX(6px); }
+.sr-t .band { position: absolute; top: 0; bottom: 0; background: var(--good-soft); }
+.sr-axis { position: relative; height: 16px; margin-left: calc(9.5rem + 10px); font: 600 0.7rem var(--font-mono); color: var(--ink-3); }
+.sr-axis span { position: absolute; transform: translateX(-50%); }
+@media (max-width: 520px) { .sr { grid-template-columns: 1fr; } .sr-axis { margin-left: 0; } }
 /* buyer profile */
 .profile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 20px; background: var(--ink); color: var(--bg); border-radius: var(--r); padding: 22px; }
 .profile .eyebrow { color: color-mix(in srgb, var(--bg) 70%, transparent); }
@@ -336,9 +349,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <!-- USER -->
 <section id="user" data-panel="user" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Buyer profile · v1 · 701 coded Trustpilot reviews + desk research · Reddit next</span>
+    <span class="eyebrow">Buyer profile · v2 · 701 Trustpilot reviews + 11 Reddit threads (102 comments, 63 price reports) + desk research</span>
     <h2>They shop on price, stay for the people, and leave when the medication or the bill goes wrong</h2>
-    <p class="muted">This profile comes from what buyers wrote about six providers, coded for who they are, where they are in the journey, and what they need. It is the basis for the site messaging in the next tab.</p>
+    <p class="muted">This profile comes from what buyers wrote on Trustpilot about six providers and in eleven Reddit threads, coded the same way for who they are, where they are in the journey, and what they need. It is the basis for the site messaging in the next tab.</p>
   </div>
 
   <div class="profile">
@@ -368,6 +381,32 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <div><strong>Established (3+ months)</strong><p class="small muted">"Six months in, I am down 24 pounds" · "with them for two years"</p><p class="small"><strong>Needs:</strong> price at higher doses, reliable refills, pause and cancel</p></div>
     </div>
     <p class="small muted">Trustpilot over-represents new sign-ups and Reddit will over-represent experienced users. Get the true split for HealthAccess traffic by adding "Have you taken a GLP-1 before?" to the quiz.</p>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+      <h3>Two buyers, not one</h3><span class="small muted">Most experienced buyers started as new sign-ups and moved after the bill or a refill went wrong</span>
+    </div>
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th></th><th>Signing up now <span class="muted">· Trustpilot</span></th><th>Experienced <span class="muted">· Reddit</span></th></tr></thead>
+        <tbody>
+          <tr><td><strong>Stage</strong></td><td class="small">43% new · 32% switching · 25% established</td><td class="small"><strong>62% established</strong> · 26% new · 9% switching</td></tr>
+          <tr><td><strong>Compares on</strong></td><td class="small">One all-in monthly price · a human who answers</td><td class="small"><strong>Price per month at max dose on a 3-month plan</strong> · the named pharmacy (503A/503B)</td></tr>
+          <tr><td><strong>Trusts</strong></td><td class="small">Reviews · a real person on the phone</td><td class="small">Community lists and surveys · <strong>not Trustpilot</strong> ("trustpilot? girl, c'mon")</td></tr>
+          <tr><td><strong>Fears most</strong></td><td class="small">Being overcharged · trapped · running out</td><td class="small"><strong>Scams</strong> · being overcharged</td></tr>
+          <tr><td><strong>Budget</strong></td><td class="small">Rarely stated; often surprised by the real bill</td><td class="small"><strong>$100–$200 a month</strong>, stated outright</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+      <h3>What people say they pay each month</h3><span class="small muted">63 price reports from Reddit · each dot is one person</span>
+    </div>
+    <div class="strip" id="priceStrip" role="img" aria-label="Compounded median $129, brand median $350, gray market median $18"></div>
+    <p class="small muted">The going rate: about <strong>$129</strong> for compounded (middle half $100–$165) and about <strong>$350</strong> for brand-name cash (middle half $299–$450). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
   </div>
 
   <div class="card">
@@ -460,6 +499,29 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   </div>
   <p class="small muted">* Share of 81 stage-revealing reviews. Replace with the real split from the quiz question.</p>
 
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+      <h3>What the experienced (Reddit) buyer adds</h3><span class="small muted">From 11 threads · 102 comments · 63 price reports</span>
+    </div>
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th>What they said</th><th>Site change</th></tr></thead>
+        <tbody>
+          <tr><td class="small">"The intro offers are deceiving… compare 450 vs 350"</td><td class="small"><strong>Default sort: monthly price at the maintenance dose</strong>; intro price secondary</td></tr>
+          <tr><td class="small">"$100/month for a 3 month supply" is the benchmark</td><td class="small">Columns for <strong>pay-monthly</strong> and <strong>3-month</strong> price; label 6–12-month prepay "long commitment"</td></tr>
+          <tr><td class="small">"basing my decision more on the underlying pharmacy"</td><td class="small"><strong>Pharmacy name + 503A / 503B / manufacturer</strong> on every card</td></tr>
+          <tr><td class="small">"$400 is a great price… not use something not regulated by the FDA"</td><td class="small">First filter: <strong>FDA-approved only · compounded OK · show both</strong></td></tr>
+          <tr><td class="small">"can't really afford over 200 a month"</td><td class="small"><strong>Budget chips</strong> $100 · $150 · $200 · $300+ and a <strong>No membership</strong> filter</td></tr>
+          <tr><td class="small">"How do you know the doctor is licensed in your state?"</td><td class="small"><strong>5-point safety checklist</strong> per card: licensed in your state · named pharmacy · real clinician names · cancel online · refund terms</td></tr>
+          <tr><td class="small">"vetted by thousands of people and ongoing surveys"</td><td class="small"><strong>"How we verify"</strong> page with update dates, plus a buyer survey that can drop providers</td></tr>
+          <tr><td class="small">"at my age I hate missing out on life" (severe nausea)</td><td class="small"><strong>Low starting dose</strong> and <strong>anti-nausea support</strong> badges; Medicare Bridge $50 info</td></tr>
+          <tr><td class="small">Gray market at $10–$30 a month, plus scams</td><td class="small">Page: <strong>"Cheapest legal GLP-1 options (and why research peptides are risky)"</strong></td></tr>
+          <tr><td class="small">"Even chatgpt couldn't lay out the best priced safe options"</td><td class="small">Structured price tables, schema markup, llms.txt, so AI answers cite HealthAccess</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="grid g2">
     <div class="card">
       <h3>Content to publish</h3>
@@ -470,6 +532,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         <li><strong>"Brand-name vs compounded vs compounded pills"</strong>: what's FDA-approved</li>
         <li><strong>"How to cancel [provider]"</strong>, one page per partner (high-intent searches)</li>
         <li><strong>"How we rate providers"</strong>: the real customer score methodology</li>
+        <li><strong>"Cheapest legal GLP-1 options"</strong>: compounded, brand cash and prescriber-only routes vs the gray market</li>
+        <li><strong>"Lost your insurance coverage? What to do next"</strong>: sleep apnea / T2D coverage, Medicare $50, then cash options</li>
       </ol>
     </div>
     <div class="card">
@@ -982,6 +1046,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     { name: 'Midlife / menopause woman', tag: 'P5', who: '45–60, peri- or post-menopausal, gaining weight "doing everything the same". The highest-use age band.', goals: 'Lose the menopause belly, sleep and energy back, protect bone and muscle.', fears: 'Being dismissed by doctors, muscle loss, "Ozempic face", side effects on top of menopause symptoms.', needs: 'Menopause-trained clinicians, HRT plus GLP-1 in one plan, protein and strength guidance, low-dose options.', terms: ['glp-1 for menopause weight gain', 'hrt and semaglutide', 'perimenopause weight loss medication'] },
     { name: 'Maintenance / microdoser', tag: 'P6', who: 'At or near goal, or wants a low "metabolic" dose. 36% of users report microdosing.', goals: 'Avoid regain cheaply, with flexible dosing.', fears: 'Regain (two-thirds returns after stopping), full price for a low dose, forced to titrate up.', needs: 'Maintenance plans, low-dose pricing, vials or pill, yearly cost.', terms: ['glp-1 maintenance dose', 'microdosing tirzepatide', 'stop glp-1 without regaining'] },
     { name: 'Restarter', tag: 'P7', who: 'Stopped because of cost or side effects and regained. Comes back with guilt and price sensitivity.', goals: 'Restart at a tolerable dose at a price they can keep paying.', fears: 'Judgement, the same side effects again, paying and quitting again.', needs: '"No judgement" tone, restart at a tolerable dose, a price they can sustain.', terms: ['restart semaglutide after stopping', 'cheapest glp-1 to restart'] },
+    { name: 'Experienced optimizer', tag: 'P9 · Reddit', who: 'On treatment 6+ months, mostly compounded. Reads the pinned "where to buy" post and community surveys. Knows prices to the dollar.', goals: 'Lowest price per month at max dose, from a pharmacy they trust, with freedom to switch.', fears: 'Year-long prepay with a provider that folds; unknown pharmacy; fake reviews.', needs: 'Named pharmacy (503A/503B), 3-month price, no membership, no long lock-in, how the provider was verified.', terms: ['tirzepatide compound where to buy', 'cheapest compounded tirzepatide', '[provider] pharmacy', '[provider] reddit'] },
+    { name: 'FDA-only loyalist', tag: 'P10 · Reddit', who: 'Pays cash for brand-name ($299–$450) and will not use compounded drugs.', goals: 'Brand-name at the lowest legitimate cash price.', fears: 'Unregulated product; being upsold into compounded.', needs: 'An "FDA-approved only" filter, manufacturer prices (LillyDirect, NovoCare), a cheap prescriber option with no membership.', terms: ['zepbound self pay price', 'wegovy pill cash price', 'cheapest way to get zepbound'] },
+    { name: 'Older, side-effect sensitive', tag: 'P11 · Reddit', who: '65+, often on Medicare. Severe nausea at the starter dose; ready to quit.', goals: 'Stay on treatment without losing days of life to side effects.', fears: 'Vomiting, dehydration, a doctor who won\'t help.', needs: 'Low starting dose or microdose, slow titration, anti-nausea support, Medicare Bridge ($50) info.', terms: ['glp-1 side effects too severe', 'lower starting dose zepbound', 'medicare wegovy $50'] },
     { name: 'Gray-market hunter', tag: 'P8 · do not target', who: 'Buys "research peptides" or raw API from overseas. Not a compliant target.', goals: 'Lowest possible price.', fears: 'Price.', needs: 'Do not bid. Add as negatives. On-page, redirect with education: "cheapest legal options start at $149".', terms: ['retatrutide buy', 'research peptide semaglutide'] }
   ];
   const picker = document.getElementById('personaPicker');
@@ -1012,7 +1079,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['Being overcharged', 'Hidden membership fees, a starter price that doesn\'t last, billing every 21 days.', 'It said $39 then charged me over $200'],
     ['Being trapped', 'Prepaid bundles with no refund, cancellations ignored, two subscriptions to cancel.', 'no refunds on bundles'],
     ['Running out of medication', 'Late refills and missed doses, worst at the month-2 refill or during a promotion.', 'First month is good, after that good luck'],
-    ['Being scammed', 'Products that "don\'t work", especially compounded pills, and fake-looking reviews.', 'pretty sure they were never GLP-1'],
+    ['Being scammed', 'The top fear on Reddit (22 mentions): products that "don\'t work", fake reviews, Telegram and Discord sellers.', 'Is it legit and safe? I\'m scared of getting scammed'],
     ['Nobody to call', 'Bots, a different agent every time, a supervisor callback that never comes.', 'Five separate calls… zero follow-through'],
     ['Being judged', 'About weight or slow progress, including in sales calls.', 'He then read my weight from the intake form']
   ];
@@ -1060,6 +1127,18 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   document.getElementById('provBody').innerHTML = prov.map(p => `
     <tr><td><strong>${p[0]}</strong></td><td>${p[1]}</td><td class="small">${p[2]}</td><td class="small">${p[3]}</td><td class="small">${p[4]}</td><td class="num">${p[5]}</td><td class="num">${p[6]}</td><td class="small">${p[7]}</td></tr>`).join('');
 
+
+
+  // ---------- price strip ----------
+  const census = {
+    'Compounded via telehealth': [111,112,108,166,111,200,129,100,180,125,170,129,175,86,150,116,166,99,100,129,150,165,115,80,50,100,86,111,129,89,129,179,150,155,180,159,249,163,133,167,76,79],
+    'Brand-name, cash': [479,149,224.5,320,400,350,450,299,300,500,350,449],
+    'Gray market': [20,8,20,10,15,35,8,100]
+  };
+  const meds = {'Compounded via telehealth':129,'Brand-name, cash':350,'Gray market':18};
+  const X = v => (Math.min(v, 500) / 500 * 100).toFixed(2) + '%';
+  const strip = document.getElementById('priceStrip');
+  strip.innerHTML = Object.keys(census).map(k => `<div class="sr"><span class="sr-l"><b>${k}</b><span class="muted small">n=${census[k].length} · median $${meds[k]}</span></span><div class="sr-t"><span class="band" style="left:${X(100)};width:${(100/500*100).toFixed(2)}%" title="Stated budget $100–$200"></span>${census[k].map(v => `<span class="dot" style="left:${X(v)}" title="$${v}/mo"></span>`).join('')}<span class="med" style="left:${X(meds[k])}"></span><span class="medl" style="left:${X(meds[k])}">$${meds[k]}</span></div></div>`).join('') + `<div class="sr-axis">${[0,100,200,300,400,500].map(v => `<span style="left:${v/5}%">$${v}</span>`).join('')}</div>` + `<p class="small muted" style="margin:0"><span style="display:inline-block;width:12px;height:10px;background:var(--good-soft);vertical-align:-1px;margin-right:6px"></span>Shaded band: the $100–$200 budget people state</p>`;
 
   // ---------- need bars (diverging) ----------
   const needs = [['A real human who answers',70,201],['An easy, fast start',0,161],['Being heard, not judged',16,121],['Medication on time',81,51],['Control over their money',65,12],['A price they understand',30,44],['That it works',31,34],['Dose continuity, med type',20,21]];

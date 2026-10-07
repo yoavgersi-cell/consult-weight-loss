@@ -116,3 +116,30 @@ Lead with what buyers fear, not with the drug.
 - Add the stage question to the quiz and report click-out and partner conversion **by stage**.
 - A/B test the hero: drug-led ("Get Wegovy online") vs fear-led ("One all-in price. Cancel anytime. Real people.").
 - Track bounce on brand and price ad groups before and after the all-in price column.
+
+
+---
+
+## 6. Update after Reddit (11 threads, 102 comments, 63 price reports) — see `11-reddit-voice.md`
+
+**Reddit shows a second buyer.** The profile above is mostly the *Trustpilot buyer*: signing up now, anxious, judging the sign-up and support. Reddit shows the *experienced buyer*: 62% already on treatment, mostly on compounded medication, price-literate to the dollar, and picking by pharmacy. Most experienced buyers started out as Trustpilot buyers and moved after the bill or a refill went wrong.
+
+| | Signing up now (Trustpilot) | Experienced (Reddit) |
+|---|---|---|
+| Stage | 43% new · 32% switching · 25% established | 62% established · 26% new · 9% switching |
+| Compares on | One all-in monthly price, a human who answers | **Price per month at max dose on a 3-month plan**, the **named pharmacy** (503A/503B) |
+| Trusts | Reviews, a real person on the phone | Community lists and surveys; **not** Trustpilot ("trustpilot? girl, c'mon") |
+| Fears most | Being overcharged, trapped, running out | **Scams** and being overcharged |
+| Price they expect | "$39?" (often surprised) | **Compounded about $129** (middle half $100–$165); **brand about $350** ($299–$450) |
+| Budget ceiling | Rarely stated | **$100–$200 a month** stated outright |
+
+**Additions to the site recommendations:**
+1. Sort by **monthly price at the maintenance dose**. Show both pay-monthly and 3-month price columns, and label 6–12-month prepay as a long commitment.
+2. Name the **dispensing pharmacy and its type** (503A / 503B / manufacturer) on every card.
+3. Make the first filter **"FDA-approved only / compounded OK / show both"**. People hold firm views on each side.
+4. Add **budget chips** ($100 / $150 / $200 / $300+) and a **"No membership"** filter.
+5. Add a **5-point safety checklist** to each card: prescriber licensed in your state · named pharmacy · real clinician names · cancel online · refund terms.
+6. Add **low starting dose / microdose** and **anti-nausea support** badges for older and side-effect-sensitive buyers. Several commenters are 65–67, and Medicare Bridge is $50.
+7. Publish **"Cheapest legal GLP-1 options (and why research peptides are risky)"**. It keeps price-desperate buyers out of the gray market.
+8. Publish a **"How we verify"** page with update dates and a buyer survey. The trust standard to beat is the community list "vetted by thousands… ongoing surveys".
+9. Make the content **easy for AI assistants to read and cite**: structured tables, schema markup, an llms.txt. Buyers already run provider choices through ChatGPT and Gemini.
