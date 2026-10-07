@@ -294,7 +294,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <header class="top wrap">
   <span class="eyebrow">CRO engagement · Working draft v0.1 · 7 Oct 2026</span>
   <h1>Weight Loss CRO Playbook<br><span class="muted" style="font-weight:500">for healthaccess.com/weight-loss/compare</span></h1>
-  <p class="lede">Who the online weight-loss buyer is in late 2026, what they look for and fear, and what the compare page should say to them. Built from 701 coded Trustpilot reviews and public research. Reddit and HealthAccess's own Google Ads and analytics data come next.</p>
+  <p class="lede">Who the online weight-loss buyer is in late 2026, what they look for and fear, and what the compare page should say to them. Built from 701 coded Trustpilot reviews, 163 Reddit comments from 19 threads, 88 price reports and public research. HealthAccess's own Google Ads and analytics data come next.</p>
   <div class="meta">
     <span>Traffic today: Google Ads, desktop</span>
     <span>Next: mobile launch</span>
@@ -1074,8 +1074,40 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <section id="data" data-panel="data" hidden>
   <div class="sec-head">
     <span class="eyebrow">Data &amp; next steps</span>
-    <h2>What we need from HealthAccess to turn this into a plan with numbers</h2>
+    <h2>Next 2 weeks: work that doesn't wait for campaign data, set up so the data slots in on day one</h2>
+    <p class="muted">Each step produces something the client can see. Steps 1, 3 and 4 need site access (allowlist healthaccess.com, or full-page screenshots on desktop and mobile).</p>
   </div>
+  <div class="card" style="margin-bottom:16px">
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th>#</th><th>Step</th><th>Why now</th><th>Needs</th><th>Output</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Audit the live compare page</strong> against the buyer profile: hero, the 7 card fields, fears answered, stage routes, trust signals, compliance wording</td><td>We have the user. We haven't checked the page against them yet. This is the fastest list of fixes.</td><td>Site access or screenshots</td><td>Gap scorecard tab: each element scored pass / partial / missing, with the data behind it</td><td>Week 1</td></tr>
+          <tr><td>2</td><td><strong>Keyword → intent → stage map</strong>: about 150 likely queries (brand, price, "near me", "compounded", "cheapest", "how to cancel", "vs") tagged by stage, fear and the module that answers them</td><td>When the search terms report arrives, it gets tagged in an hour, not a week. Also shows which ad groups need their own landing page.</td><td>Nothing</td><td>Intent map + a script that tags the report automatically</td><td>Week 1</td></tr>
+          <tr><td>3</td><td><strong>Partner fact sheet</strong> for every provider HealthAccess lists: all-in monthly price at start and maintenance dose, membership, pharmacy and type, cancel online, refund terms, ships to all states, med type</td><td>The card fields buyers ask for don't exist anywhere in one place. That's the moat.</td><td>Partner list (from the site)</td><td>Partner table in the dashboard. Becomes the data source for the new cards.</td><td>Week 1–2</td></tr>
+          <tr><td>4</td><td><strong>Wireframe v1 of the compare page</strong>, desktop and mobile: fear-led hero, filters (FDA / compounded, budget, no membership), stage routes, the new card</td><td>Mobile launch is coming. Design it from the data now, not as a shrunk desktop.</td><td>Steps 1 + 3</td><td>Clickable HTML prototype</td><td>Week 2</td></tr>
+          <tr><td>5</td><td><strong>Measurement plan + first test spec</strong>: the stage question, click-out events by position and card field, partner postbacks by device, the hero A/B (drug-led vs fear-led)</td><td>Without this, no test result is readable. The client's dev team can start before the data arrives.</td><td>Nothing</td><td>Tracking spec + test brief, ready to hand to dev</td><td>Week 2</td></tr>
+          <tr><td>6</td><td><strong>Fill the data gaps</strong> with targeted pastes: brand-name and insured buyers, Hims / Ro / LillyDirect users, 65+ and Medicare, people searching on mobile</td><td>Today's sample leans compounded, cash, experienced Reddit users. Google Ads traffic is probably broader.</td><td>Your pastes</td><td>Profile re-weighted. Gaps marked in Data insights.</td><td>Ongoing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-bottom:16px">
+    <div class="card">
+      <h3>When campaign data arrives: day 1–3</h3>
+      <ol class="ticks small">
+        <li>Run the search terms report through the intent map. Spend and conversion by stage and fear.</li>
+        <li>Match ad groups to landing pages and flag mismatches (price query → page without a price).</li>
+        <li>Earnings per click-out per partner and position. Re-rank the backlog on real impact.</li>
+        <li>Desktop baseline per funnel step, to size the mobile launch.</li>
+      </ol>
+    </div>
+    <div class="callout" style="align-self:start">
+      <strong>What would unblock the most, fastest</strong>
+      <p class="small">1) Site access or screenshots. 2) The partner list with payouts. 3) Search terms export, even 30 days. Any one of these turns a week of guesswork into facts.</p>
+    </div>
+  </div>
+  <div class="sec-head"><h2>What we need from HealthAccess to turn this into a plan with numbers</h2></div>
   <div class="grid g2">
     <div class="card">
       <h3>Data request, by value</h3>
@@ -1086,7 +1118,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         <li><strong>On-site funnel by device:</strong> landing, scroll, click-out, by list position and CTA type.</li>
         <li><strong>Heatmaps and recordings</strong> (Hotjar or Clarity), plus past A/B test results.</li>
         <li><strong>Full-page screenshots</strong> of every landing page variant, desktop and mobile.</li>
-        <li><strong>Reddit and Trustpilot exports</strong> to rebuild the buyer profile from real text.</li>
+        <li><strong>Their own customer data</strong> (quiz answers, support tickets, post-click surveys) to check the buyer profile against real HealthAccess users.</li>
       </ol>
     </div>
     <div class="grid" style="align-content:start">
