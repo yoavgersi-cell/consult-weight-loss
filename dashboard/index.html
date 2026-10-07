@@ -187,6 +187,24 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-fam
 .sortbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 select { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
 
+
+/* review split + hbars */
+.split { display: grid; gap: 10px; }
+.split-row { display: grid; grid-template-columns: 9em 1fr; gap: 12px; align-items: center; }
+.split-bar { display: flex; height: 26px; gap: 2px; border-radius: 4px; overflow: hidden; }
+.seg { display: flex; align-items: center; justify-content: center; font: 600 0.75rem var(--font-mono); color: var(--accent-ink); min-width: 0; }
+.seg:empty { padding: 0; }
+.s-bad { background: var(--bad); }
+.s-mid { background: var(--ink-3); }
+.s-good { background: var(--good); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; color: var(--ink-2); }
+.legend .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.hbars { display: grid; gap: 6px; }
+.hb { display: grid; grid-template-columns: minmax(120px, 40%) 1fr; gap: 10px; align-items: center; font-size: 0.88rem; }
+.hb .track { display: flex; align-items: center; gap: 8px; }
+.hb .fill { height: 12px; background: var(--bar); border-radius: 0 4px 4px 0; }
+.hb .v { font: 600 0.78rem var(--font-mono); font-variant-numeric: tabular-nums; }
+@media (max-width: 520px) { .split-row { grid-template-columns: 1fr; gap: 4px; } }
 footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 0.85rem; }
 
 @media (max-width: 520px) {
@@ -217,6 +235,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     <button class="tab" role="tab" data-tab="user">The buyer</button>
     <button class="tab" role="tab" data-tab="search">Search intent</button>
     <button class="tab" role="tab" data-tab="competitors">Competitors</button>
+    <button class="tab" role="tab" data-tab="reviews">Review signals</button>
     <button class="tab" role="tab" data-tab="cost">True cost</button>
     <button class="tab" role="tab" data-tab="features">New features</button>
     <button class="tab" role="tab" data-tab="roadmap">Test roadmap</button>
@@ -436,6 +455,66 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <div><strong>Manufacturer-direct in the same table</strong><p class="small muted">"Do I even need a $149 membership?" LillyDirect, NovoCare and TrumpRx are rarely compared alongside.</p></div>
     </div>
   </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" data-panel="reviews" hidden>
+  <div class="sec-head">
+    <span class="eyebrow">Review signals · Embody, Trustpilot, 200 reviews (Oct 4–7, 2026)</span>
+    <h2>Invited reviews make a 2.7-star service look like 3.7</h2>
+    <p class="muted">Every review was coded by hand for its star rating, whether Embody invited it, and its themes. Reviews Embody invited right after a consult rate that conversation. Reviews people wrote unprompted rate the service. The two tell very different stories.</p>
+  </div>
+
+  <div class="grid g4">
+    <div class="card stat"><span class="eyebrow">Invited reviews</span><span class="num">4.93★</span><p class="small">87 reviews, none of them 1–2★.</p></div>
+    <div class="card stat"><span class="eyebrow">Unprompted reviews</span><span class="num">2.66★</span><p class="small">104 reviews; 58% are 1–2★.</p></div>
+    <div class="card stat"><span class="eyebrow">Bad reviews about the refill</span><span class="num">72%</span><p class="small">The refill didn't ship and doses were missed. "First month is good, after that good luck."</p></div>
+    <div class="card stat"><span class="eyebrow">Bad reviews about money</span><span class="num">54%</span><p class="small">Charged with no product, refund refused, or charged after cancelling.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>Rating mix: invited vs unprompted</h3>
+    <div class="split">
+      <div class="split-row"><span class="split-lbl">Invited <span class="muted small">n=87</span></span><div class="split-bar"><span class="seg s-bad" style="width:0%"></span><span class="seg s-mid" style="width:6%"></span><span class="seg s-good" style="width:94%">94%</span></div></div>
+      <div class="split-row"><span class="split-lbl">Unprompted <span class="muted small">n=104</span></span><div class="split-bar"><span class="seg s-bad" style="width:58%">58%</span><span class="seg s-mid" style="width:5%"></span><span class="seg s-good" style="width:37%">38%</span></div></div>
+    </div>
+    <div class="legend small"><span><i class="sw s-bad"></i>1–2★</span><span><i class="sw s-mid"></i>3–4★</span><span><i class="sw s-good"></i>5★</span></div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>What drives 1–2★ <span class="muted small">share of 61 negative reviews</span></h3>
+      <div class="hbars" id="negBars"></div>
+    </div>
+    <div class="card">
+      <h3>What drives 4–5★ <span class="muted small">share of 134 positive reviews</span></h3>
+      <div class="hbars" id="posBars"></div>
+      <p class="small muted">Positive reviews are about how a conversation felt. Almost none mention medication arriving on time or weight lost.</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>What this means for HealthAccess</h3>
+      <ul class="clean small">
+        <li><strong>Don't show raw Trustpilot stars.</strong> <span class="muted">They send people to providers that fail in month 2, and the refunds, chargebacks and brand damage come back to us. Show a real customer score that separates invited from unprompted reviews.</span></li>
+        <li><strong>Measure refill reliability.</strong> <span class="muted">Every provider gets the first shipment out fast; month 2 is where they fail. No competitor tracks this. It can be a column in the comparison table.</span></li>
+        <li><strong>Protect people switching providers.</strong> <span class="muted">Cheap compounded offers pull people away from LillyDirect and other providers, then don't honour their dose. Several went back and paid more.</span></li>
+        <li><strong>Judge partners on month-2 revenue.</strong> <span class="muted">If Embody is a partner, ask for refund and chargeback data. Earnings per click should use retained customers, not first sign-ups.</span></li>
+        <li><strong>Use "felt heard, not judged" in trust copy</strong> <span class="muted">only for providers that actually deliver it.</span></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>In their words</h3>
+      <div class="grid" style="gap:10px">
+        <blockquote><p>"They are very good at getting you your first dose. After that they're good at billing you for refills while it sits at the pharmacy."</p><cite>1★ · refill</cite></blockquote>
+        <blockquote><p>"I was so excited to pay less than what I have been paying with the other brand… I guess you get what you pay for."</p><cite>1★ · switcher went back</cite></blockquote>
+        <blockquote><p>"DON'T switch from another company to them… will NOT honor… if you are already at a certain dose."</p><cite>1★ · dose transfer</cite></blockquote>
+        <blockquote><p>"That is what I'm rating the 5 stars on, not my overall Embody experience."</p><cite>5★ invited · rating the consult only</cite></blockquote>
+      </div>
+    </div>
+  </div>
+  <p class="small muted">One provider over four days, coded by one analyst. Each provider's reviews will go through the same coding as you send them, so they can be compared side by side.</p>
 </section>
 
 <!-- COST -->
@@ -659,11 +738,19 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['Henry Meds', T.comp, 'Compounded sema (incl. oral), tirz', 'Sema $199–$349; tirz $299–$449 by dose', 'Self-pay only', 'Not rated', '4.5', 'BBB F; Trustpilot suspected-fake-reviews notice'],
     ['Ivim Health', T.comp, 'Compounded sema, tirz', '≈$169–$252 on 6-month prepay', 'Unlikely', '4.0', '4.9', 'FDA warning letter Feb 2026; prepay lock-in'],
     ['MEDVi', T.comp, 'Compounded sema, tirz (incl. oral)', '$179 first month → $299', 'None', 'Not rated', '4.4', 'FDA warning letter; partner data breach'],
+    ['Embody', T.comp, 'Compounded sema, tirz (incl. oral)', 'Sema $79, tirz $129 month-to-month; add-ons extra', 'None', '–', '3.7', 'Unprompted reviews 2.7★; 72% of bad reviews cite late refills (our coding)'],
     ['LillyDirect', T.mfr, 'Zepbound vial and KwikPen, Foundayo', 'Zepbound $299 / $399 / $449; Foundayo $149–$349', '$25 savings card if covered', '–', '–', 'Needs a prescriber; refill within 45 days'],
     ['NovoCare', T.mfr, 'Wegovy pen and HD, Wegovy pill', 'Pen $349; HD $399; pill $149–$299', 'Savings card if covered', '–', '–', 'Needs a prescriber; intro offers expire']
   ];
   document.getElementById('provBody').innerHTML = prov.map(p => `
     <tr><td><strong>${p[0]}</strong></td><td>${p[1]}</td><td class="small">${p[2]}</td><td class="small">${p[3]}</td><td class="small">${p[4]}</td><td class="num">${p[5]}</td><td class="num">${p[6]}</td><td class="small">${p[7]}</td></tr>`).join('');
+
+
+  // ---------- review bars ----------
+  const negT = [['Refill not shipped, missed doses',72],['Charged, no refund, cancel ignored',54],['Support promises, no follow-through',49],['Provider no-show, appointment problems',16],['Dose problems or transfer not honoured',13],['"Doesn\'t work" / watered down',10],['Side effects or unsafe dosing',8],['Prepaid plan lock-in',7],['Checkout add-on traps',7],['Cold chain broken',7]];
+  const posT = [['Felt heard by the clinician',45],['Named rep praised',32],['Quick, easy appointment',16],['Weight-loss results',3],['Price',1]];
+  const hb = (el, rows) => { document.getElementById(el).innerHTML = rows.map(r => `<div class="hb"><span>${r[0]}</span><span class="track"><span class="fill" style="width:${r[1] * 0.85}%"></span><span class="v">${r[1]}%</span></span></div>`).join(''); };
+  hb('negBars', negT); hb('posBars', posT);
 
   // ---------- true cost model ----------
   const rep = (v, n) => Array(n).fill(v);
@@ -751,7 +838,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['"Keep your dose" switching lane', 'Switchers fear restarting at 2.5 mg after the compounded crackdown.', 'Filter and landing page for providers that accept a transfer of the current dose.', 'Captures the post-crackdown switcher wave, an under-served high-intent segment.', 'Medium'],
     ['Brand vs compounded explainer', 'Editorial sites hide compounded; affiliates hide the risks.', 'A neutral, sourced drawer: what\'s legal in 2026, safety, price trade-off.', 'Removes the last objection for skeptics; builds compliance credibility.', 'Medium'],
     ['True 12-month cost calculator', 'Nobody in the market shows cost as the dose goes up.', 'Pick a drug and a provider, see month-by-month cost. Prototype in the True cost tab.', 'A signature feature: linkable, sharable, and great ad copy ("See your real year-one cost").', 'Bigger build'],
-    ['Composite trust score', 'Ivim shows 4.9 stars despite an FDA warning letter.', 'Score that weighs reviews, BBB, regulatory actions, contract terms, support speed.', 'Defensible methodology like U.S. News; protects the brand.', 'Bigger build']
+    ['Composite trust score', 'Ivim shows 4.9 stars despite an FDA warning letter. Embody\'s invited reviews average 4.9 but its unprompted ones 2.7.', 'Score that weighs reviews, BBB, regulatory actions, contract terms, support speed.', 'Defensible methodology like U.S. News; protects the brand.', 'Bigger build']
   ];
   const effortPill = { 'Quick win': 'p-good', 'Medium': 'p-accent', 'Bigger build': 'p-neutral' };
   document.getElementById('featGrid').innerHTML = feats.map(f => `
@@ -782,6 +869,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['Persona landing pages', 'Pill, switcher, denied and menopause pages beat the generic list on their traffic.', 'next', 8, 6, 5],
     ['Brand vs compounded explainer', 'A neutral explainer reduces skeptic drop-off.', 'next', 5, 6, 8],
     ['True 12-month cost calculator', 'A signature tool lifts engagement, return visits and ad CTR.', 'later', 8, 6, 3],
+    ['Real customer score + refill reliability', 'Separating invited from unprompted reviews and scoring month-2 refills steers buyers to providers that keep them, cutting refunds and chargebacks.', 'next', 7, 7, 5],
     ['Composite trust score', 'A defensible score protects the brand and lifts trust on review-heavy queries.', 'later', 6, 5, 4],
     ['Manufacturer-direct reference column', 'Showing LillyDirect and NovoCare prices builds trust; revenue impact unclear.', 'later', 5, 5, 7],
     ['Consented "email me this comparison"', 'A save-for-later replaces the remarketing Google bans here. Needs legal review.', 'later', 5, 4, 5]
