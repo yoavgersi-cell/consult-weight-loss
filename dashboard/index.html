@@ -1,4 +1,4 @@
-<title>HealthAccess Weight Loss CRO Playbook</title>
+<title>Weight-Loss Buyer Playbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -289,30 +289,67 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 @media (prefers-reduced-motion: no-preference) {
   .bar-fill { transition: width 0.4s ease; }
 }
+
+/* nav groups, average user, blueprint, audit */
+.tab-grp { flex: 0 0 auto; align-self: center; font: 600 0.7rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); padding: 0 4px 0 12px; }
+.tab-grp:first-child { padding-left: 0; }
+.avg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.avg-f { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 4px; align-content: start; }
+.avg-f b { font: 700 1.35rem/1.15 var(--font-display); color: var(--ink); }
+.avg-sr { display: grid; grid-template-columns: 13rem minmax(0,1fr); gap: 12px; align-items: center; margin-bottom: 10px; }
+.st4 { background: var(--warn); color: var(--bg); }
+.bp-rule { display: grid; gap: 6px; align-content: start; }
+.bp-n { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 0.85rem var(--font-mono); }
+.wf-wrap > *, .pc-wrap > * { min-width: 0; }
+.wf-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.wf { display: grid; gap: 6px; padding: 10px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); }
+.wf-b { position: relative; background: var(--surface); border: 1px dashed var(--line); border-radius: 6px; padding: 10px 10px 10px 36px; font-size: 0.85rem; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.wf-thin { padding-block: 6px; font-size: 0.78rem; color: var(--ink-3); }
+.wf-hero { flex-direction: column; align-items: flex-start; padding-block: 16px; }
+.wf-tall { flex-direction: column; align-items: stretch; }
+.wf-n { position: absolute; left: 8px; top: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font: 700 0.7rem var(--font-mono); }
+.wf-l { color: var(--ink-2); font-size: 0.8rem; }
+.wf-btn { display: inline-block; background: var(--accent); color: var(--accent-ink); border-radius: 6px; padding: 4px 10px; font-weight: 600; font-size: 0.8rem; }
+.wf-chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; font-size: 0.75rem; background: var(--surface); }
+.wf-chip.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.wf-rows { display: grid; gap: 5px; }
+.wf-rows i { display: block; height: 22px; border-radius: 4px; background: var(--surface-2); }
+.wf-notes { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; font-size: 0.9rem; }
+.pc-wrap { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.pc { border: 2px solid var(--accent); border-radius: var(--r); padding: 14px; display: grid; gap: 10px; background: var(--surface); }
+.pc-top, .pc-foot { display: flex; justify-content: space-between; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pc-price { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.pc-big { font: 700 1.8rem var(--font-display); }
+.pc-big small { font-size: 0.9rem; font-weight: 500; color: var(--ink-3); }
+.pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 0.88rem; }
+@media (max-width: 860px) { .wf-wrap, .pc-wrap { grid-template-columns: 1fr; } .avg-sr { grid-template-columns: 1fr; gap: 4px; } }
 </style>
 
 <header class="top wrap">
   <span class="eyebrow">CRO engagement · Working draft v0.1 · 7 Oct 2026</span>
-  <h1>Weight Loss CRO Playbook<br><span class="muted" style="font-weight:500">for healthaccess.com/weight-loss/compare</span></h1>
-  <p class="lede">Who the online weight-loss buyer is in late 2026, what they look for and fear, and what the compare page should say to them. Built from 701 coded Trustpilot reviews, 163 Reddit comments from 19 threads, 88 price reports and public research. HealthAccess's own Google Ads and analytics data come next.</p>
+  <h1>The Weight-Loss Buyer<br><span class="muted" style="font-weight:500">who they are, and what a comparison page should show them</span></h1>
+  <p class="lede">Three parts. <strong>1 · Insights</strong>: the average weight-loss user and what the data says. <strong>2 · Blueprint</strong>: what any GLP-1 comparison site should look like, built from that data. <strong>3 · HealthAccess</strong>: an audit of healthaccess.com/weight-loss/compare and the improvement plan. Built from <span id="hdrN">701 Trustpilot reviews, 163 Reddit comments and 88 price reports</span>.</p>
   <div class="meta">
     <span>Traffic today: Google Ads, desktop</span>
     <span>Next: mobile launch</span>
-    <span>Status: <span class="pill p-warn">Pre-data</span></span>
+    <span>Status: <span class="pill p-warn">Campaign data pending</span></span>
   </div>
 </header>
 
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
-    <button class="tab" role="tab" data-tab="overview">Overview</button>
+    <span class="tab-grp">1 · Insights</span>
+    <button class="tab" role="tab" data-tab="user">The average user</button>
     <button class="tab" role="tab" data-tab="data-insights">Data insights</button>
-    <button class="tab" role="tab" data-tab="user">Buyer profile</button>
-    <button class="tab" role="tab" data-tab="site">Site messaging</button>
-    <button class="tab" role="tab" data-tab="search">Search intent</button>
-    <button class="tab" role="tab" data-tab="competitors">Competitors</button>
+    <button class="tab" role="tab" data-tab="overview">Market</button>
     <button class="tab" role="tab" data-tab="reviews">Review signals</button>
-    <button class="tab" role="tab" data-tab="cost">True cost</button>
-    <button class="tab" role="tab" data-tab="features">New features</button>
+    <button class="tab" role="tab" data-tab="competitors">Competitors</button>
+    <button class="tab" role="tab" data-tab="search">Search intent</button>
+    <span class="tab-grp">2 · Blueprint</span>
+    <button class="tab" role="tab" data-tab="blueprint">Comparison-site blueprint</button>
+    <button class="tab" role="tab" data-tab="cost">True cost widget</button>
+    <span class="tab-grp">3 · HealthAccess</span>
+    <button class="tab" role="tab" data-tab="audit">Site audit &amp; plan</button>
     <button class="tab" role="tab" data-tab="roadmap">Test roadmap</button>
     <button class="tab" role="tab" data-tab="data">Data &amp; next steps</button>
   </div>
@@ -357,8 +394,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
         </ul>
       </div>
       <div class="callout warn">
-        <strong>Decision to make first</strong>
-        <p class="small">Since Oct 29, 2025, Google lets ads <em>mention</em> drug names, but <em>bidding</em> on drug-name keywords (semaglutide, Wegovy, Zepbound, Foundayo) needs Google healthcare certification. LegitScript certifies price-comparison sites. We need to confirm whether HealthAccess qualifies, because it decides which half of the keyword universe we can buy.</p>
+        <strong>Rule that shapes every paid comparison page</strong>
+        <p class="small">Since Oct 29, 2025, Google lets ads <em>mention</em> drug names, but <em>bidding</em> on drug-name keywords (semaglutide, Wegovy, Zepbound, Foundayo) needs Google healthcare certification. LegitScript certifies price-comparison sites. Whether a comparison site qualifies decides which half of the keyword universe it can buy.</p>
       </div>
     </div>
   </div>
@@ -439,38 +476,19 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <!-- USER -->
 <section id="user" data-panel="user" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Buyer profile · v2 · 701 Trustpilot reviews + 13 Reddit threads (114 comments, 66 price reports) + desk research</span>
-    <h2>They shop on price, stay for the people, and leave when the medication or the bill goes wrong</h2>
-    <p class="muted">This profile comes from what buyers wrote on Trustpilot about six providers and in thirteen Reddit threads, coded the same way for who they are, where they are in the journey, and what they need. It is the basis for the site messaging in the next tab.</p>
+    <span class="eyebrow" id="avgEyebrow">The average weight-loss user · from the coded data</span>
+    <h2 id="avgLine"></h2>
+    <p class="muted">Every number here is computed from the coded Trustpilot reviews, Reddit comments, price reports and stated demographics, and it updates when new data is added. Trustpilot leans toward people signing up now and Reddit toward people already on treatment, so both are shown.</p>
   </div>
-
-  <div class="profile">
-    <div class="profile-id">
-      <span class="eyebrow">The typical buyer</span>
-      <p class="profile-line">An adult, most often aged 40–64, <strong>paying cash</strong>, who has <strong>tried diets for years</strong>, and arrives <strong>hopeful but wary</strong> of being overcharged.</p>
-      <div class="pills"><span class="pill p-neutral">Mostly 40–64</span><span class="pill p-neutral">Cash pay</span><span class="pill p-neutral">Diets tried first</span><span class="pill p-neutral">Often switching providers</span><span class="pill p-neutral">Older buyers are common</span></div>
-    </div>
-    <dl class="profile-grid">
-      <div><dt>Chooses on</dt><dd>One monthly price, no surprises</dd></div>
-      <div><dt>Rates on</dt><dd>A human who answers · a clinician who listens · medication on time</dd></div>
-      <div><dt>Leaves because of</dt><dd>Late refills · surprise charges · no reply · cancellations ignored</dd></div>
-      <div><dt>Sounds like</dt><dd>"I went in skeptical because the price looked low." · "I felt seen. Not judged."</dd></div>
-    </dl>
-  </div>
-
+  <div class="avg-grid" id="avgFacts"></div>
   <div class="card">
-    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>Where they are in the journey</h3><span class="small muted">81 reviews that say where the writer is</span>
-    </div>
-    <div class="stagebar" role="img" aria-label="Starting 43%, switching 32%, established 25%">
-      <span class="st st1" style="width:43%">Starting · 43%</span><span class="st st2" style="width:32%">Switching · 32%</span><span class="st st3" style="width:25%">3+ months · 25%</span>
-    </div>
-    <div class="grid g3">
-      <div><strong>Starting out</strong><p class="small muted">"my first time using a weight loss drug" · "nervous about… giving myself the injection"</p><p class="small"><strong>Needs:</strong> reassurance, how it works, cost in month 1 vs month 4, no judgment</p></div>
-      <div><strong>Switching providers</strong><p class="small muted">"My last provider charged about twice as much" · "The old provider stopped answering"</p><p class="small"><strong>Needs:</strong> keep my dose, lower all-in price, someone who answers</p></div>
-      <div><strong>Established (3+ months)</strong><p class="small muted">"Six months in, I am down 24 pounds" · "with them for two years"</p><p class="small"><strong>Needs:</strong> price at higher doses, reliable refills, pause and cancel</p></div>
-    </div>
-    <p class="small muted">Trustpilot over-represents new sign-ups and Reddit will over-represent experienced users. Get the true split for HealthAccess traffic by adding "Have you taken a GLP-1 before?" to the quiz.</p>
+    <div class="di-head"><h3>How many are first-timers?</h3><span class="small muted" id="avgStageN"></span></div>
+    <div class="avg-stage" id="avgStage"></div>
+    <p class="small" id="avgStageRead"></p>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>What to emphasise (ranked by the data)</h3><ol class="ticks" id="avgEmph"></ol></div>
+    <div class="card"><h3>What to never do</h3><ul class="ticks small" id="avgNever"></ul></div>
   </div>
 
   <div class="card">
@@ -494,10 +512,10 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   <div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>What people say they pay each month</h3><span class="small muted">66 price reports from Reddit · each dot is one person</span>
+      <h3>What people say they pay each month</h3><span class="small muted"><span data-k="n.price"></span> price reports from Reddit · each dot is one person</span>
     </div>
-    <div class="strip" id="priceStrip" role="img" aria-label="Compounded median $129, brand median $350, gray market median $18"></div>
-    <p class="small muted">The going rate: about <strong>$129</strong> for compounded (middle half $100–$166) and about <strong>$350</strong> for brand-name cash (middle half $299–$450). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
+    <div class="strip" id="priceStrip" role="img" aria-label="Monthly prices people report, by channel"></div>
+    <p class="small muted">The going rate: about <strong data-k="price.comp.median"></strong> for compounded (middle half <span data-k="price.comp.iqr"></span>) and about <strong data-k="price.brand.median"></strong> for brand-name cash (middle half <span data-k="price.brand.iqr"></span>). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
   </div>
 
   <div class="card">
@@ -506,7 +524,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       <div class="legend small"><span><i class="sw s-bad"></i>complaints (1–2★)</span><span><i class="sw s-good"></i>praise (4–5★)</span></div>
     </div>
     <div class="div-bars" id="needBars"></div>
-    <p class="small muted">Counts are mentions across 701 reviews. Praise comes from delighters (people, easy start, being heard). Complaints come from basics (on-time medication, control of money). Every provider claims the delighters, but a comparison page can show the basics before the click, and that is where HealthAccess can stand out.</p>
+    <p class="small muted">Counts are mentions across 701 reviews. Praise comes from delighters (people, easy start, being heard). Complaints come from basics (on-time medication, control of money). Every provider claims the delighters, but a comparison page can show the basics before the click. That is where a comparison site can stand out.</p>
   </div>
 
   <div class="grid g2">
@@ -542,57 +560,133 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   </div>
 </section>
 
-<!-- SITE -->
-<section id="site" data-panel="site" hidden>
+<!-- BLUEPRINT (generic: how a GLP-1 comparison site should look, from the data) -->
+<section id="blueprint" data-panel="blueprint" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Site messaging · from the buyer profile</span>
-    <h2>Lead with what buyers fear, not with the drug</h2>
-    <p class="muted">Recommendations for the compare page, in order of where they appear. To be tested against HealthAccess's own traffic once we have the data.</p>
+    <span class="eyebrow">Comparison-site blueprint · any GLP-1 comparison site · built from the coded data</span>
+    <h2>What a weight-loss comparison page should look like, according to the people who buy</h2>
+    <p class="muted">Not tied to any one website. Every element below answers something buyers asked for or complained about in the data, and the evidence line updates with the data.</p>
   </div>
 
-  <div class="grid" style="grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px" id="siteTop">
-    <div class="card">
-      <span class="eyebrow">Above the fold</span>
-      <div class="hero-mock">
-        <p class="hm-h">Compare weight-loss programs by what you'll really pay, and how reliably they deliver</p>
-        <ul class="hm-b">
-          <li><b>One all-in monthly price</b> at your dose, membership included</li>
-          <li><b>Cancel and refund terms</b> shown up front</li>
-          <li><b>Ratings from real customers</b>, not just invited reviews</li>
-        </ul>
-        <div class="hm-row"><span class="hm-cta">Find my match · 3 questions</span><span class="small muted">Q1: Have you taken a GLP-1 before?</span></div>
-      </div>
-      <p class="small muted">Example copy for testing against the current hero. Each bullet answers one of the top fears: being overcharged, being trapped, being scammed.</p>
+  <div class="card">
+    <h3>Six rules the data sets</h3>
+    <div class="grid g3 bp-rules">
+      <div class="bp-rule"><span class="bp-n">1</span><strong>Sell the real price, not the starting price</strong><p class="small muted">A price they understand comes up in <b data-k="rd.need.PRICE_CLARITY"></b> of Reddit items. Being overcharged is a top fear on both sources (<b data-k="rd.fear.OVERCHARGED"></b> Reddit, <b data-k="tp.fear.OVERCHARGED"></b> of Trustpilot complaints).</p></div>
+      <div class="bp-rule"><span class="bp-n">2</span><strong>Show what happens after month 1</strong><p class="small muted">Running out of medication is in <b data-k="tp.fear.RUN_OUT"></b> of Trustpilot complaints and feeling trapped (prepay, cancel, refunds) in <b data-k="tp.fear.TRAPPED"></b>. Star ratings are collected before these problems happen.</p></div>
+      <div class="bp-rule"><span class="bp-n">3</span><strong>Prove there's a human</strong><p class="small muted">"A human who answers" is the most-mentioned need on Trustpilot (<b data-k="tp.need.HUMAN"></b>), and "nobody to call" is in <b data-k="tp.fear.NO_HUMAN"></b> of complaints.</p></div>
+      <div class="bp-rule"><span class="bp-n">4</span><strong>Answer "is this safe and legit?"</strong><p class="small muted">Scam / doesn't work is the top fear on Reddit (<b data-k="rd.fear.SCAM"></b>). "Does it work, is it safe" appears in <b data-k="rd.need.WORKS"></b>. Experienced buyers judge by the pharmacy.</p></div>
+      <div class="bp-rule"><span class="bp-n">5</span><strong>Route by stage, not one list for everyone</strong><p class="small muted">New sign-ups are <b data-k="stage.tp.new"></b> first-timers and <b data-k="stage.tp.switch"></b> switchers. On Reddit, <b data-k="stage.rd.long"></b> are already on treatment. Each needs a different first answer.</p></div>
+      <div class="bp-rule"><span class="bp-n">6</span><strong>Be more open than the community list</strong><p class="small muted">The table buyers already trust shows pharmacy, 503A/503B, the 28-day rule, refills and states for every plan, and ranks by user surveys. Raw Trustpilot stars don't work as proof: invited reviews score much higher than unprompted ones.</p></div>
     </div>
-    <div class="card">
-      <span class="eyebrow">Each provider card, in this order</span>
-      <ol class="ticks small">
-        <li><strong>All-in monthly price, paying monthly</strong>, with "starts at $X" underneath</li>
-        <li><strong>Medication type:</strong> FDA-approved · compounded injectable · compounded oral</li>
-        <li><strong>Reach a human:</strong> phone, chat or text hours</li>
-        <li><strong>Cancel online?</strong> Yes · phone only · two subscriptions</li>
-        <li><strong>Refill reliability</strong></li>
-        <li><strong>"Best for…"</strong> first-timers · switching · insurance · low dose</li>
-        <li>Button: <strong>"See full price breakdown"</strong></li>
+  </div>
+
+  <div class="card">
+    <div class="di-head"><h3>Page anatomy, top to bottom</h3><span class="small muted">Desktop shown · on mobile the same order, stacked, with a sticky "Find my match" button</span></div>
+    <div class="wf-wrap">
+      <div class="wf" aria-label="Wireframe of a comparison page">
+        <div class="wf-b wf-thin"><span class="wf-n">1</span>Prices verified Oct 6 · How we rank · Advertiser disclosure</div>
+        <div class="wf-b wf-hero"><span class="wf-n">2</span><b>Compare weight-loss programs by what you'll really pay</b><span class="wf-l">✓ One all-in monthly price at your dose  ✓ Cancel and refund terms up front  ✓ Named pharmacy on every plan</span><span class="wf-btn">Find my match · 3 questions</span></div>
+        <div class="wf-b"><span class="wf-n">3</span>Have you taken a GLP-1 before? <span class="wf-chip">No, first time</span><span class="wf-chip">Yes, switching</span><span class="wf-chip">Yes, 3+ months</span><span class="wf-chip">I stopped</span></div>
+        <div class="wf-b"><span class="wf-n">4</span><span class="wf-chip on">FDA-approved</span><span class="wf-chip">Compounded</span><span class="wf-chip">Both</span> · <span class="wf-chip">$100</span><span class="wf-chip">$150</span><span class="wf-chip">$200</span><span class="wf-chip">$300+</span> · <span class="wf-chip">No membership</span><span class="wf-chip">Insurance / Medicare</span></div>
+        <div class="wf-b wf-tall"><span class="wf-n">5</span><b>Provider cards</b>, sorted by all-in price at the maintenance dose<span class="wf-rows"><i></i><i></i><i></i></span></div>
+        <div class="wf-b"><span class="wf-n">6</span><b>True cost</b>: month 1 · month 4 · year one, as the dose goes up</div>
+        <div class="wf-b"><span class="wf-n">7</span><b>Before you buy</b>: 5-point safety checklist · prepay and refund warning</div>
+        <div class="wf-b"><span class="wf-n">8</span><b>Guides by stage</b>: new to GLP-1s · switch and keep your dose · staying on it</div>
+        <div class="wf-b wf-thin"><span class="wf-n">9</span>How we verify · buyer survey · update log · FAQ · cancel guides</div>
+      </div>
+      <ol class="wf-notes">
+        <li><b>Trust bar.</b> Date-stamped prices and a link to the method. Buyers know prices change monthly.</li>
+        <li><b>Hero that kills the top fears.</b> Lead with price honesty, not the drug. The three bullets answer overcharged, trapped and scam.</li>
+        <li><b>Stage question.</b> One tap re-orders the page. Route data: <span data-k="stage.tp.new"></span> first-timers and <span data-k="stage.tp.switch"></span> switchers among new sign-ups.</li>
+        <li><b>Filters people actually use.</b> FDA vs compounded is a firm belief on both sides. Budgets cluster at $100–$200. Membership fees are a top reason to switch.</li>
+        <li><b>Cards</b> with the fields below. Sort by the price at the dose people stay on (compounded median <span data-k="price.comp.median"></span>, brand <span data-k="price.brand.median"></span>).</li>
+        <li><b>True-cost widget.</b> Nobody in the market shows cost as the dose goes up. See the True cost tab.</li>
+        <li><b>Safety checklist.</b> Licensed in your state · named pharmacy · real clinician names · cancel online · refund terms.</li>
+        <li><b>Stage guides.</b> Beginners get mocked on Reddit, so a no-judgment guide is wide open.</li>
+        <li><b>Proof of method.</b> The trust bar to beat is "vetted by thousands of people and ongoing surveys".</li>
       </ol>
     </div>
   </div>
 
-  <div class="tscroll">
-    <table class="t-wide">
-      <thead><tr><th>Stage</th><th class="num">Share*</th><th>Module on the page</th><th>Bullets to emphasise</th><th>Quiz route</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Starting out</strong></td><td class="num">43%</td><td class="small">"New to GLP-1s? How it works in 3 steps": a licensed clinician decides · pens vs vials · nausea support · cost in month 1 vs month 4</td><td class="small">No judgment · a real clinician · easy start · FDA-approved options · one price</td><td class="small">"No, first time" → beginner-friendly picks, pens and FDA-approved pills first</td></tr>
-        <tr><td><strong>Switching</strong></td><td class="num">32%</td><td class="small">"Switching? Keep your dose": providers that accept your current prescription, time to first shipment, price at your dose vs LillyDirect / NovoCare</td><td class="small">Keep your dose · lower all-in price · someone who answers · ships fast</td><td class="small">"Yes, with another provider" → transfer-friendly providers, sorted by price at their dose</td></tr>
-        <tr><td><strong>Established</strong></td><td class="num">25%</td><td class="small">"Staying on it": price at higher and maintenance doses, pause options, refill reliability, how to cancel</td><td class="small">Same price every dose · reliable refills · pause anytime · cancel online</td><td class="small">"Yes, 3+ months" → price at higher and maintenance doses; "Yes, but I stopped" → restart-friendly, low-dose options</td></tr>
-      </tbody>
-    </table>
+  <div class="card">
+    <div class="di-head"><h3>The provider card, field by field</h3><span class="small muted">Order = priority · evidence from the data</span></div>
+    <div class="pc-wrap">
+      <div class="pc" aria-label="Provider card mock">
+        <div class="pc-top"><strong>Provider name</strong><span class="pill p-accent">Best for switching</span></div>
+        <div class="pc-price"><span class="pc-big">$166<small>/mo</small></span><span class="small muted">at maintenance dose · 3-month plan<br>$199 paying monthly · starts at $129</span></div>
+        <div class="pills"><span class="pill p-neutral">Compounded tirzepatide</span><span class="pill p-neutral">Pharmacy: Name · 503B</span></div>
+        <ul class="pc-list">
+          <li>✓ Membership included · no consult fee</li>
+          <li>✓ Cancel online · refund if not prescribed</li>
+          <li>✓ Clinician by message, replies in 24h</li>
+          <li>✓ Keeps your current dose</li>
+          <li>⚠ Doesn't ship to 3 states</li>
+        </ul>
+        <div class="pc-foot"><span class="small muted">Buyer survey 88% recommend · verified Oct 6</span><span class="wf-btn">See full price breakdown</span></div>
+      </div>
+      <div class="tscroll" style="border:0">
+        <table class="t-mid">
+          <thead><tr><th>#</th><th>Field</th><th>Why it's there (data)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>All-in monthly price at the maintenance dose</strong>, pay-monthly and 3-month, "starts at" underneath</td><td class="small">A price they understand: <b data-k="rd.need.PRICE_CLARITY"></b> of Reddit items. Experienced buyers compare "price per month at max dose on a 3-month plan".</td></tr>
+            <tr><td>2</td><td><strong>Drug + type</strong>: FDA-approved brand / compounded injectable / compounded oral</td><td class="small">Tirzepatide is the pick for <b data-k="drug.tirz"></b> of those asked. Compounded oral drives "doesn't work" complaints.</td></tr>
+            <tr><td>3</td><td><strong>Named pharmacy and type</strong> (503A / 503B / manufacturer)</td><td class="small">Every plan in the community list names its pharmacy. <b data-k="cl.share_503b"></b> are 503B and <b data-k="cl.share_28day"></b> follow the 28-day rule.</td></tr>
+            <tr><td>4</td><td><strong>Itemised fees</strong>: membership, consult, shipping, dose-change price</td><td class="small">Overcharged: <b data-k="tp.fear.OVERCHARGED"></b> of Trustpilot complaints. Membership and price are top switch reasons.</td></tr>
+            <tr><td>5</td><td><strong>Cancel and refund terms</strong></td><td class="small">Trapped: <b data-k="tp.fear.TRAPPED"></b> of Trustpilot complaints.</td></tr>
+            <tr><td>6</td><td><strong>Support style</strong>: hands-on vs prescription-and-pharmacy, plus reply time</td><td class="small">Human who answers: <b data-k="tp.need.HUMAN"></b> of Trustpilot reviews. Experienced buyers just want the script and a good pharmacy.</td></tr>
+            <tr><td>7</td><td><strong>Dose transfer</strong> and refill type (auto / manual)</td><td class="small">Running out: <b data-k="tp.fear.RUN_OUT"></b> of complaints. <b data-k="cl.share_auto_refill"></b> of community-list plans auto-refill.</td></tr>
+            <tr><td>8</td><td><strong>States it doesn't ship to</strong></td><td class="small">Only <b data-k="cl.share_all_states"></b> of community-list plans ship to every state.</td></tr>
+            <tr><td>9</td><td><strong>"Best for…" label</strong> and a survey score, not raw stars</td><td class="small">Invited Trustpilot reviews score far higher than unprompted ones (see Data insights). Reddit doesn't trust Trustpilot.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  <p class="small muted">* Share of 81 stage-revealing reviews. Replace with the real split from the quiz question.</p>
 
   <div class="card">
+    <h3>A first screen for each stage</h3>
+    <div class="tscroll" style="border:0">
+      <table class="t-wide">
+        <thead><tr><th>Stage</th><th class="num">Share (Trustpilot · Reddit)</th><th>Module</th><th>Bullets to emphasise</th></tr></thead>
+        <tbody>
+          <tr><td><strong>First-timer</strong></td><td class="num"><span data-k="stage.tp.new"></span> · <span data-k="stage.rd.new"></span></td><td class="small">"New to GLP-1s? How it works in 3 steps": a licensed clinician decides · pens vs vials vs pills · nausea support · cost in month 1 vs month 4</td><td class="small">No judgment · a real clinician · easy start · FDA-approved options · one price</td></tr>
+          <tr><td><strong>Switching</strong></td><td class="num"><span data-k="stage.tp.switch"></span> · <span data-k="stage.rd.switch"></span></td><td class="small">"Switching? Keep your dose": who accepts your current prescription, time to first shipment, price at your dose vs LillyDirect / NovoCare</td><td class="small">Keep your dose · lower all-in price · someone who answers · ships fast</td></tr>
+          <tr><td><strong>On treatment 3+ months</strong></td><td class="num"><span data-k="stage.tp.long"></span> · <span data-k="stage.rd.long"></span></td><td class="small">"Staying on it": price at maintenance dose, 3-month plans, pharmacy, pause and cancel</td><td class="small">Same price every dose · named pharmacy · reliable refills · no long lock-in</td></tr>
+          <tr><td><strong>Restarting</strong></td><td class="num"><span data-k="stage.tp.restart"></span> · <span data-k="stage.rd.restart"></span></td><td class="small">"Starting again": low starting dose, slow titration, side-effect support</td><td class="small">No judgment · low dose · a price you can keep paying</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec-head" style="margin-top:8px"><h2>Widgets and features</h2><p class="muted">Each one answers a buyer fear. Ordered from quick wins to bigger builds.</p></div>
+  <div class="grid" style="grid-template-columns:minmax(0,1fr) auto;gap:24px" id="featWrap">
+    <div class="grid g2" id="featGrid"></div>
+    <div class="grid" style="align-content:start;gap:8px">
+      <span class="eyebrow" style="text-align:center">Mobile card concept</span>
+      <div class="phone" aria-label="Mobile comparison card mockup">
+        <div class="bar-top"></div>
+        <div style="font:700 0.95rem var(--font-display)">Best weight loss programs, Oct 2026</div>
+        <div class="mchips"><span class="on">Pill</span><span>Injection</span><span>Insurance</span><span>Under $300</span></div>
+        <div class="mcard">
+          <div class="hd"><strong>Provider A</strong><span class="pill p-accent">Best for pills</span></div>
+          <div class="pills"><span class="pill p-good">FDA-approved</span><span class="pill p-neutral">Cancel online</span></div>
+          <div class="hd"><span class="muted">At maintenance dose</span><span class="price">$448/mo</span></div>
+          <div class="small muted">Starts $188 · membership included · verified Oct 6</div>
+          <div class="cta">See plan</div>
+        </div>
+        <div class="mcard">
+          <div class="hd"><strong>Provider B</strong><span class="pill p-accent">Best with insurance</span></div>
+          <div class="pills"><span class="pill p-good">FDA-approved</span><span class="pill p-neutral">Handles PA</span></div>
+          <div class="hd"><span class="muted">If covered</span><span class="price">$25/mo</span></div>
+        </div>
+        <div class="sticky-cta"><span>Not sure? 3 questions</span><b>Find my match</b></div>
+      </div>
+      <span class="small muted" style="text-align:center">Placeholder names and prices</span>
+    </div>
+  </div>
+  <div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>What the experienced (Reddit) buyer adds</h3><span class="small muted">From 13 threads · 114 comments · 66 price reports</span>
+      <h3>What buyers said → what the page should do</h3><span class="small muted">Reddit quotes, coded</span>
     </div>
     <div class="tscroll" style="border:0">
       <table class="t-mid">
@@ -610,7 +704,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
           <tr><td class="small">Beginners get mocked on Reddit ("Google it ffs") for asking about doses, duration and "Ozempic face"</td><td class="small"><strong>No-judgment beginner guide</strong>: doses and duration, stopping and regain, "Ozempic face" and slow loss, who it's for</td></tr>
           <tr><td class="small">"at my age I hate missing out on life" (severe nausea)</td><td class="small"><strong>Low starting dose</strong> and <strong>anti-nausea support</strong> badges; Medicare Bridge $50 info</td></tr>
           <tr><td class="small">Gray market at $10–$30 a month, plus scams</td><td class="small">Page: <strong>"Cheapest legal GLP-1 options (and why research peptides are risky)"</strong></td></tr>
-          <tr><td class="small">"Even chatgpt couldn't lay out the best priced safe options"</td><td class="small">Structured price tables, schema markup, llms.txt, so AI answers cite HealthAccess</td></tr>
+          <tr><td class="small">"Even chatgpt couldn't lay out the best priced safe options"</td><td class="small">Structured price tables, schema markup, llms.txt, so AI assistants cite the page</td></tr>
         </tbody>
       </table>
     </div>
@@ -631,7 +725,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
       </ol>
     </div>
     <div class="card">
-      <h3>How to test it</h3>
+      <h3>How to test it on any comparison page</h3>
       <ul class="ticks small">
         <li><strong>Hero test:</strong> drug-led ("Get Wegovy online") vs fear-led ("One all-in price. Cancel anytime. Real people.")</li>
         <li><strong>Card test:</strong> "from $X" vs all-in monthly price as the headline number. Measure click-outs <em>and</em> partner approvals.</li>
@@ -945,9 +1039,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   <div class="grid g2">
     <div class="card">
-      <h3>What this means for HealthAccess</h3>
+      <h3>What this means for any comparison site</h3>
       <ul class="clean small">
-        <li><strong>Don't show raw Trustpilot stars.</strong> <span class="muted">They send people to providers that fail in month 2, and the refunds, chargebacks and brand damage come back to us. Show a real customer score that separates invited from unprompted reviews.</span></li>
+        <li><strong>Don't show raw Trustpilot stars.</strong> <span class="muted">They send people to providers that fail in month 2, and the refunds, chargebacks and brand damage come back to the site that sent them. Show a real customer score that separates invited from unprompted reviews.</span></li>
         <li><strong>Measure refill reliability.</strong> <span class="muted">Every provider gets the first shipment out fast; month 2 is where they fail. No competitor tracks this. It can be a column in the comparison table.</span></li>
         <li><strong>Protect people switching providers.</strong> <span class="muted">Cheap compounded offers pull people away from LillyDirect and other providers, then don't honour their dose. Several went back and paid more.</span></li>
         <li><strong>Judge partners on month-2 revenue.</strong> <span class="muted">If Embody is a partner, ask for refund and chargeback data. Earnings per click should use retained customers, not first sign-ups.</span></li>
@@ -1013,37 +1107,136 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   <p class="small muted">Assumptions: monthly dose steps per label titration until the top price tier, then held; membership fees as published (first-month discounts applied); prescriber visit fees for manufacturer-direct channels not included; intro offers that ended are excluded. Billing frequency is assumed monthly; a provider that bills every 21 days (WellMedr, per reviews) would cost about 45% more per year. Compounded options are not FDA-approved. Prices from NovoCare, LillyDirect and provider pages, Mar–Sep 2026.</p>
 </section>
 
-<!-- FEATURES -->
-<section id="features" data-panel="features" hidden>
+<!-- HEALTHACCESS AUDIT -->
+<section id="audit" data-panel="audit" hidden>
   <div class="sec-head">
-    <span class="eyebrow">New features</span>
-    <h2>Each feature answers a specific buyer fear</h2>
-    <p class="muted">Ordered from quick wins to bigger builds. Each card traces back to evidence from the research.</p>
+    <span class="eyebrow">HealthAccess · site audit · draft from 9 desktop screenshots (Oct 7) · more may come</span>
+    <h2>The page ranks providers on scores the buyer data contradicts, and leads with intro prices buyers have learned to distrust</h2>
+    <p class="muted">The live /weight-loss/compare page measured against the blueprint. This is a first pass on what's visible so far. Covers the full desktop page: hero, list, FAQ, explainer, table, write-ups and footer. Still useful to see: mobile, any quiz, and the click-out flow.</p>
   </div>
-  <div class="grid" style="grid-template-columns:minmax(0,1fr) auto;gap:24px" id="featWrap">
-    <div class="grid g2" id="featGrid"></div>
-    <div class="grid" style="align-content:start;gap:8px">
-      <span class="eyebrow" style="text-align:center">Mobile card concept</span>
-      <div class="phone" aria-label="Mobile comparison card mockup">
-        <div class="bar-top"></div>
-        <div style="font:700 0.95rem var(--font-display)">Best weight loss programs, Oct 2026</div>
-        <div class="mchips"><span class="on">Pill</span><span>Injection</span><span>Insurance</span><span>Under $300</span></div>
-        <div class="mcard">
-          <div class="hd"><strong>Provider A</strong><span class="pill p-accent">Best for pills</span></div>
-          <div class="pills"><span class="pill p-good">FDA-approved</span><span class="pill p-neutral">Cancel online</span></div>
-          <div class="hd"><span class="muted">At maintenance dose</span><span class="price">$448/mo</span></div>
-          <div class="small muted">Starts $188 · membership included · verified Oct 6</div>
-          <div class="cta">See plan</div>
-        </div>
-        <div class="mcard">
-          <div class="hd"><strong>Provider B</strong><span class="pill p-accent">Best with insurance</span></div>
-          <div class="pills"><span class="pill p-good">FDA-approved</span><span class="pill p-neutral">Handles PA</span></div>
-          <div class="hd"><span class="muted">If covered</span><span class="price">$25/mo</span></div>
-        </div>
-        <div class="sticky-cta"><span>Not sure? 3 questions</span><b>Find my match</b></div>
+
+  <div class="card">
+    <h3>What the page is today</h3>
+    <div class="wf-wrap" style="grid-template-columns:minmax(0,.75fr) minmax(0,1.6fr)">
+      <div class="wf" aria-label="Current page structure">
+        <div class="wf-b wf-thin">Commission disclosure bar · nav: Best plans, Reviews, Articles, About</div>
+        <div class="wf-b wf-hero"><b>Best Weight Loss Medications of 2026</b><span class="wf-l">"Start Your Weight Loss Journey Today" · Last updated October 2026 · pen image</span></div>
+        <div class="wf-b wf-tall"><b>Ranked list, 10 cards + Show more</b><span class="wf-l">Logo · promo headline · 3–5 ✓ bullets · score 8.2–9.8 + stars · Visit Site</span><span class="wf-rows"><i></i><i></i><i></i></span></div>
+        <div class="wf-b">"Our Top Choice": Embody again</div>
+        <div class="wf-b">FAQ accordion, 7 questions</div>
+        <div class="wf-b">Explainer text: what they are, who can take them, types (incl. phentermine), pros/cons table, "Know this before starting"</div>
+        <div class="wf-b">Side-by-side table: Starting price · Clinician access · Standout feature</div>
+        <div class="wf-b">"Best for…" write-ups with a Visit button for each provider</div>
+        <div class="wf-b wf-thin">Disclaimer · footer: ad disclosure ("commissions influence ratings and order") · How we rate</div>
       </div>
-      <span class="small muted" style="text-align:center">Placeholder names and prices</span>
+      <div>
+        <p class="small muted" style="margin-bottom:8px">Ranking shown on the page vs what reviewers say</p>
+        <div class="tscroll" style="border:0">
+          <table class="t-mid">
+            <thead><tr><th>#</th><th>Provider</th><th class="num">Site score</th><th>Headline offer</th><th>What the review data says</th></tr></thead>
+            <tbody id="auRank"></tbody>
+          </table>
+        </div>
+        <p class="small muted">Trustpilot numbers come from our coded sample (Data insights tab). Providers without a dash weren't in the sample. Their reviews are worth pulling next.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="card">
+    <div class="di-head"><h3>Scorecard against the blueprint</h3><div class="legend small"><span><span class="pill p-good">Has it</span></span><span><span class="pill p-warn">Partly</span></span><span><span class="pill p-bad">Missing</span></span></div></div>
+    <div class="tscroll" style="border:0">
+      <table class="t-mid">
+        <thead><tr><th>Blueprint element</th><th>Today</th><th>What we see</th><th>Buyer data behind it</th></tr></thead>
+        <tbody id="auScore"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>What already works (keep it)</h3>
+      <ul class="ticks small">
+        <li><strong>Commission disclosure at the top.</strong> Honest, and it builds trust.</li>
+        <li><strong>"Same price, every dose, every month"</strong> (Embody, Refills, Hers) is exactly how buyers say it. It's the strongest bullet on the page.</li>
+        <li><strong>"No membership", "No hidden fees"</strong> bullets answer the overcharged fear.</li>
+        <li><strong>FAQ "Are compounded injections FDA-approved?"</strong> asks the right question.</li>
+        <li><strong>"Last updated October 2026"</strong>: a freshness signal. Add the day.</li>
+        <li><strong>"Best for…" labels already exist</strong> (insurance, coaching, locked-in price). Move them onto the cards at the top, where the decision happens. Today they sit far below the list.</li>
+        <li><strong>A side-by-side table already exists.</strong> Swap its rows for the fields buyers use: all-in price at maintenance dose, med type, pharmacy, cancel and refund terms.</li>
+        <li><strong>"Know this before starting"</strong> talks about side effects calmly, which is the right tone for first-timers.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Risks to fix first</h3>
+      <ul class="ticks small">
+        <li><strong>Rank #1 (Embody, 9.8 "Exceptional") clashes with its reviews:</strong> unprompted reviews average <b data-k="prov.embody.organic_avg"></b>★ and refills not shipping drive <b data-k="prov.embody.top_neg_share"></b> of complaints. TrimRx (8.8) is similar. Buyers who get burned blame the page that sent them.</li>
+        <li><strong>Intro prices as headlines</strong> ("$39 first month", "as low as $49", "$69 / $119") are what buyers call deceiving, and what draws FTC attention.</li>
+        <li><strong>Medication type isn't labelled.</strong> Brand and compounded are mixed in one bullet ("GLP-1 pills, Zepbound, Wegovy and semaglutide").</li>
+        <li><strong>"Results backed by peer-reviewed clinical trials"</strong> on a compounded-only card (Trimi) is a compliance risk. Compounded products weren't the ones tested.</li>
+        <li><strong>The page contradicts itself on price.</strong> Found is "$99/mo" on its card but "$39/mo" in the side-by-side table. TrimRx shows "$140 off" on the card and "$149/mo" in the table.</li>
+        <li><strong>"Best for…" claims clash with reviews:</strong> WellMedr is "best for locked-in pricing… on-time refills", yet its top complaint is orders and refills not shipping (<b data-k="prov.wellmedr.top_neg_share"></b> of negatives). TrimRx is "best for money-back guarantee", yet refunds promised and not paid show up in about a third of its complaints.</li>
+        <li><strong>"Clinician access: 24/7"</strong> for 8 of 10 providers tells the buyer nothing, while "nobody to call" is in <b data-k="tp.fear.NO_HUMAN"></b> of complaints.</li>
+        <li><strong>Phentermine and combination drugs</strong> in the explainer don't match what these buyers are shopping for.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-head" style="margin-top:8px"><h2>Improvement plan: what to change, section by section</h2><p class="muted">Today on the left, the change and the buyer evidence for it on the right. Ordered top of page down. Effort: <span class="pill p-good">Copy</span> text only · <span class="pill p-accent">Module</span> new component · <span class="pill p-neutral">Data</span> needs partner facts collected.</p></div>
+  <div class="tscroll">
+    <table class="t-wide">
+      <thead><tr><th>Area</th><th>Today</th><th>Change to</th><th>Why (data)</th><th>Effort</th></tr></thead>
+      <tbody id="auPlan"></tbody>
+    </table>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><span class="eyebrow">Hero, rewritten</span>
+      <div class="hero-mock">
+        <p class="hm-h">Compare GLP-1 weight-loss programs by what you'll really pay</p>
+        <ul class="hm-b">
+          <li><b>Monthly price at your dose</b>, membership included</li>
+          <li><b>FDA-approved or compounded</b>, labelled on every plan</li>
+          <li><b>Cancel and refund terms</b> before you click</li>
+        </ul>
+        <div class="hm-row"><span class="hm-cta">Find my match · 3 questions</span></div>
+      </div>
+      <p class="small muted">Replaces "Best Weight Loss Medications of 2026 / Start Your Weight Loss Journey Today" and the pen image.</p>
+    </div>
+    <div class="card"><span class="eyebrow">Card bullets, rewritten (example: Refills)</span>
+      <ul class="ticks small">
+        <li><strong>$99/mo</strong> at every dose · no membership</li>
+        <li>Compounded semaglutide / tirzepatide · not FDA-approved</li>
+        <li>Pharmacy: <em>name, 503A/B</em> · ships in <em>X</em> days</li>
+        <li>Cancel online · refund if not prescribed</li>
+        <li>Best for: <strong>a flat price that doesn't rise with your dose</strong></li>
+      </ul>
+      <p class="small muted">Fields in <em>italics</em> need collecting from each partner (Data &amp; next steps, step 3).</p>
+    </div>
+    <div class="card"><span class="eyebrow">Stage question under the hero</span>
+      <p class="small"><strong>Have you taken a GLP-1 before?</strong></p>
+      <div class="chips"><span class="chip">No, this is my first time</span><span class="chip">Yes, I want to switch</span><span class="chip">Yes, 3+ months</span><span class="chip">I stopped and want to restart</span></div>
+      <p class="small muted">Re-orders the list and swaps in the matching guide. It also gives HealthAccess the first real split of its own traffic by stage.</p>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h3>Content to cut or shrink</h3><ul class="ticks small">
+      <li>Phentermine and combination drugs section (not what this traffic buys)</li>
+      <li>Generic "What are weight-loss medications" intro, which pushes the table down</li>
+      <li>The duplicate "Our Top Choice" block</li>
+      <li>"Clinician access: 24/7" row (the same for nearly every provider)</li></ul></div>
+    <div class="card"><h3>Content to add</h3><ul class="ticks small">
+      <li>"What will I really pay?" month 1 vs month 4 vs year one</li>
+      <li>Brand vs compounded vs pills: what's FDA-approved, in plain English</li>
+      <li>"Switching? Keep your dose": who accepts your current prescription</li>
+      <li>5-point safety checklist + "cheapest legal options vs research peptides"</li>
+      <li>FAQ: How do I cancel? · Is compounded safe? · Will my price go up?</li></ul></div>
+    <div class="card"><h3>Test first (desktop, Google Ads)</h3><ol class="ticks small">
+      <li>Hero: current vs price-honest hero above</li>
+      <li>Card headline: intro offer vs price at maintenance dose</li>
+      <li>"Best for…" label on each card vs none</li>
+      <li>Stage question vs straight list</li></ol>
+      <p class="small muted">Measure partner-confirmed sign-ups, not only clicks. A lower intro price can win the click and lose the sale.</p></div>
   </div>
 </section>
 
@@ -1143,7 +1336,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 </main>
 
 <footer class="wrap">
-  Prepared for HealthAccess · CRO engagement working draft · Sources, coded review data and confidence tags in <span class="mono">research/00–10</span> of the project repo.
+  CRO engagement working draft · HealthAccess · Sources, coded review data and confidence tags in <span class="mono">research/00–10</span> of the project repo.
 </footer>
 
 <div class="tip" id="tip" hidden></div>
@@ -1155,7 +1348,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   const tabs = [...document.querySelectorAll('.tab')];
   const panels = [...document.querySelectorAll('[data-panel]')];
   function show(id, push) {
-    if (!panels.some(p => p.dataset.panel === id)) id = 'overview';
+    if (!panels.some(p => p.dataset.panel === id)) id = 'user';
     tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
     panels.forEach(p => { p.hidden = p.dataset.panel !== id; });
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
@@ -1487,5 +1680,129 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   try { const s = localStorage.getItem('wl-sort'); if (s) sortSel.value = s; } catch (e) {}
   sortSel.addEventListener('change', renderBacklog);
   renderBacklog();
+})();
+</script>
+<script>
+(function () {
+  const A = window.AGG; if (!A) return;
+  const pct = v => Math.round(v) + '%';
+  const $ = id => document.getElementById(id);
+  const S = A.sources, P = A.prices, D = A.demographics || {}, CL = A.community_list || {};
+  const share = (obj, keys) => { const t = Object.values(obj).reduce((a, b) => a + b, 0); return t ? 100 * keys.reduce((a, k) => a + (obj[k] || 0), 0) / t : 0; };
+  const median = a => { const b = [...a].sort((x, y) => x - y); const m = b.length >> 1; return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2; };
+  const dp = A.reddit.drug_preference || {};
+  const known = Object.fromEntries(Object.entries(A.reddit.medication).filter(([k]) => k !== 'unknown'));
+
+  // ---------- data-k resolver ----------
+  const R = k => {
+    const p = k.split('.');
+    if (p[0] === 'rd' && p[1] === 'need') return pct(A.needs.reddit_share[p[2]]);
+    if (p[0] === 'tp' && p[1] === 'need') return pct(A.needs.trustpilot_share[p[2]]);
+    if (p[0] === 'rd' && p[1] === 'fear') return pct(A.fears.reddit_share[p[2]]);
+    if (p[0] === 'tp' && p[1] === 'fear') return pct(A.fears.trustpilot_share_of_negative[p[2]]);
+    if (p[0] === 'stage') return pct(A.stage[p[1] === 'tp' ? 'trustpilot' : 'reddit'][p[2]]);
+    if (p[0] === 'price') { const c = P[p[1] === 'comp' ? 'compounded' : 'brand']; return p[2] === 'iqr' ? `$${c.q1}–$${c.q3}` : `$${c.median}`; }
+    if (p[0] === 'cl') return pct(CL[p[1]]);
+    if (k === 'drug.tirz') return pct(share(dp, ['tirzepatide', 'tirzepatide+cagrilintide']));
+    if (k === 'n.price') return S.price_reports;
+    if (p[0] === 'prov') { const v = (A.providers.find(x => x.provider === p[1]) || {})[p[2]]; return v == null ? '—' : (p[2].endsWith('share') ? pct(v) : v.toFixed(1)); }
+    return '?';
+  };
+  document.querySelectorAll('[data-k]').forEach(el => { el.textContent = R(el.dataset.k); });
+  const hdr = $('hdrN'); if (hdr) hdr.textContent = `${S.trustpilot_reviews} Trustpilot reviews across ${S.trustpilot_providers} providers, ${S.reddit_items} Reddit comments from ${S.reddit_threads} threads, and ${S.price_reports} price reports`;
+
+  // ---------- the average user ----------
+  const cash = share(A.reddit.payment, ['cash']);
+  const comp = share(known, ['comp-inj']);
+  const brand = share(known, ['brand-inj', 'brand-oral']);
+  const tirz = share(dp, ['tirzepatide', 'tirzepatide+cagrilintide']);
+  const sexT = (D.sex && (D.sex.F + D.sex.M)) || 0, fem = sexT ? 100 * D.sex.F / sexT : 0;
+  const bandTop = D.bands ? Object.entries(D.bands).sort((a, b) => b[1] - a[1])[0] : null;
+  const loss = D.loss_pct && D.loss_pct.length ? median(D.loss_pct) : null;
+  const inBudget = 100 * P.compounded.values.filter(v => v >= 100 && v <= 200).length / P.compounded.values.length;
+  const sw = Object.entries(A.reddit.switch_reason).sort((a, b) => b[1] - a[1]);
+  const SWL = { price: 'price', membership: 'membership fees', fulfilment: 'late shipments', support: 'no support', results: 'poor results', dose: 'dose', insurance: 'losing insurance coverage' };
+
+  $('avgEyebrow').textContent = `The average weight-loss user · ${S.trustpilot_reviews} Trustpilot reviews · ${S.reddit_items} Reddit comments · ${S.price_reports} price reports · ${D.n_age || 0} stated ages`;
+  $('avgLine').textContent = `Most often a woman around ${Math.round(D.median_age || 0)}, paying cash, on compounded tirzepatide at about $${P.compounded.median} a month. Wants one honest price and a human who answers. Afraid of being overcharged, trapped or scammed.`;
+
+  const facts = [
+    ['Age', `${Math.round(D.median_age || 0)}`, `median of ${D.n_age} who stated it · biggest band ${bandTop ? bandTop[0] : '—'} · ${D.bands ? D.bands['65+'] : 0} are 65+`],
+    ['Women', pct(fem), `of ${sexT} who stated their sex`],
+    ['Pays cash', pct(cash), 'of Reddit comments that mention how they pay. Insurance is the hope, rarely the reality.'],
+    ['Compounded', pct(comp), `of comments naming a medication · brand-name ${pct(brand)}`],
+    ['Prefers tirzepatide', pct(tirz), `when asked to pick one GLP-1 (n=${Object.values(dp).reduce((a, b) => a + b, 0)})`],
+    ['Pays per month', `$${P.compounded.median}`, `compounded median (middle half $${P.compounded.q1}–$${P.compounded.q3}) · brand $${P.brand.median}`],
+    ['Budget', '$100–$200', `stated outright · ${pct(inBudget)} of compounded prices fall in it`],
+    ['Lost so far', loss != null ? pct(loss) : '—', `median body weight lost, where start and current weight are stated (n=${(D.loss_pct || []).length})`],
+    ['#1 need, signing up', A.needs.labels.HUMAN, `${pct(A.needs.trustpilot_share.HUMAN)} of Trustpilot reviews`],
+    ['#1 need, experienced', A.needs.labels.PRICE_CLARITY, `${pct(A.needs.reddit_share.PRICE_CLARITY)} of Reddit comments`],
+    ['#1 complaint', A.fears.labels.NO_HUMAN, `${pct(A.fears.trustpilot_share_of_negative.NO_HUMAN)} of 1–2★ reviews · trapped ${pct(A.fears.trustpilot_share_of_negative.TRAPPED)} · ran out ${pct(A.fears.trustpilot_share_of_negative.RUN_OUT)}`],
+    ['Why they switch', sw.length ? SWL[sw[0][0]] : '—', sw.slice(1, 3).map(x => SWL[x[0]]).join(' · ') + ' next']
+  ];
+  $('avgFacts').innerHTML = facts.map(f => `<div class="avg-f"><span class="eyebrow">${f[0]}</span><b>${f[1]}</b><span class="small muted">${f[2]}</span></div>`).join('');
+
+  const stK = [['new', 'First-timer', 'st1'], ['switch', 'Switching', 'st2'], ['long', '3+ months', 'st3'], ['restart', 'Restarting', 'st4']];
+  $('avgStageN').textContent = `${S.stage_revealing_tp} Trustpilot reviews and ${S.stage_revealing_rd} Reddit comments say where the writer is`;
+  $('avgStage').innerHTML = [['Signing up now · Trustpilot', A.stage.trustpilot], ['Community · Reddit', A.stage.reddit]].map(r => `<div class="avg-sr"><span class="small"><b>${r[0]}</b></span><div class="stagebar">${stK.filter(k => r[1][k[0]] >= 1).map(k => `<span class="st ${k[2]}" style="width:${r[1][k[0]]}%" title="${k[1]} ${pct(r[1][k[0]])}">${r[1][k[0]] >= 9 ? k[1] + ' · ' + pct(r[1][k[0]]) : ''}</span>`).join('')}</div></div>`).join('');
+  $('avgStageRead').innerHTML = `<strong>About ${Math.round(A.stage.trustpilot.new / 10)} in 10 people signing up are first-timers</strong>, and about ${Math.round(A.stage.trustpilot.switch / 10)} in 10 are switching providers. In the community, ${pct(A.stage.reddit.long)} are already 3+ months in. Paid search traffic probably sits closer to the sign-up mix. One question ("Have you taken a GLP-1 before?") will give the real split.`;
+
+  const EM = { HUMAN: 'A real person: who answers, how, and how fast', EASY_START: 'How fast you get started: consult to door in days', HEARD: 'No-judgment tone, a clinician who listens', ON_TIME: 'Refills that arrive on time: refill type, shipping speed', MONEY_CONTROL: 'Cancel anytime, refund terms, no long prepay', PRICE_CLARITY: 'One all-in monthly price at your dose', WORKS: 'Safe and real: FDA vs compounded, named pharmacy', DOSE: 'Keep your current dose when you switch' };
+  const rank = A.needs.order.map(k => [k, (A.needs.trustpilot_share[k] + A.needs.reddit_share[k]) / 2]).sort((a, b) => b[1] - a[1]);
+  $('avgEmph').innerHTML = rank.map(([k]) => `<li><strong>${EM[k]}</strong> <span class="small muted">· Trustpilot ${pct(A.needs.trustpilot_share[k])} · Reddit ${pct(A.needs.reddit_share[k])}</span></li>`).join('');
+  $('avgNever').innerHTML = [
+    `<strong>Headline an intro price</strong> ("$39 first month"). Overcharged is ${pct(A.fears.reddit_share.OVERCHARGED)} of Reddit comments and ${pct(A.fears.trustpilot_share_of_negative.OVERCHARGED)} of Trustpilot complaints.`,
+    `<strong>Show raw stars as proof.</strong> Invited reviews score much higher than unprompted ones, and experienced buyers don't trust Trustpilot.`,
+    `<strong>Mix brand and compounded without a label.</strong> Buyers hold firm views on each side.`,
+    `<strong>Push long prepay bundles.</strong> Trapped is ${pct(A.fears.trustpilot_share_of_negative.TRAPPED)} of complaints.`,
+    `<strong>Body-shame, show before/after photos, or use urgency tricks.</strong> "I felt seen. Not judged." is the praise to earn.`,
+    `<strong>Ignore the gray market.</strong> Research peptides at $${P.graymarket.median}/mo pull price-desperate buyers. Answer it with "cheapest legal options".`
+  ].map(x => `<li>${x}</li>`).join('');
+
+  // ---------- HealthAccess audit ----------
+  const TH = { SHIP: 'orders or refills not shipped', MEMB: 'membership charges', CS: 'support silent / chatbot only', APPT: 'appointment problems', EFF: '"doesn\'t work"' };
+  const pv = n => A.providers.find(x => x.provider === n);
+  const pd = n => { const p = pv(n); if (!p) return '<span class="muted">Not in our review sample yet</span>'; const r = []; if (p.organic_avg != null) r.push(`Unprompted reviews <b>${p.organic_avg.toFixed(1)}★</b> vs invited ${p.invited_avg.toFixed(1)}★`); else if (p.avg != null) r.push(`Average <b>${p.avg.toFixed(1)}★</b>`); r.push(`top complaint: ${TH[p.top_neg_theme] || p.top_neg_theme} (${p.top_neg_share}% of negatives)`); return r.join(' · '); };
+  const site = [['1', 'Embody', '9.8 Exceptional', '"$69 Semaglutide / $119 Tirzepatide" · 125K+ happy customers', 'embody'], ['2', 'Noom', '9.7 Exceptional', '"$150 off… starting at $79"', ''], ['3', 'Found', '9.5', '"starting at $99/mo" (table: $39)', ''], ['4', 'Ro', '9.3 Excellent', '"Get started for $39"', 'ro'], ['5', 'WellMedr', '9.0 Excellent', '"as low as $49/month"', 'wellmedr'], ['6', 'MEDVi', '8.9 Very good', '"starting $179/month"', ''], ['7', 'TrimRx', '8.8 Very good', '"$140 off" (table: $149)', 'trimrx'], ['8', 'Refills', '8.4 Very good', '"$99/month – 40% off"', ''], ['9', 'Trimi', '8.4 Very good', '"code 50OFF"', ''], ['10', 'Hers', '8.2 Very good', '"$39 for the first month"', '']];
+  $('auRank').innerHTML = site.map(r => `<tr><td>${r[0]}</td><td><strong>${r[1]}</strong></td><td class="num">${r[2]}</td><td class="small">${r[3]}</td><td class="small">${pd(r[4])}</td></tr>`).join('');
+
+  const pill = { y: '<span class="pill p-good">Has it</span>', p: '<span class="pill p-warn">Partly</span>', n: '<span class="pill p-bad">Missing</span>', u: '<span class="pill p-neutral">Not seen</span>' };
+  const sc = [
+    ['Affiliate disclosure', 'y', 'Bar at the top, full disclosure in the footer', 'Trust standard'],
+    ['Freshness stamp', 'p', '"Last updated October 2026", month only', 'Prices change monthly'],
+    ['Hero that answers the fears', 'n', 'Drug-led H1, generic "Start your journey" subhead, pen image', `Overcharged ${pct(A.fears.reddit_share.OVERCHARGED)} · scam ${pct(A.fears.reddit_share.SCAM)} (Reddit)`],
+    ['Stage question / quiz', 'n', 'One list for everyone', `${pct(A.stage.trustpilot.new)} first-timers, ${pct(A.stage.trustpilot.switch)} switching`],
+    ['Filters (FDA/compounded, budget, membership)', 'n', 'None', `Price clarity ${pct(A.needs.reddit_share.PRICE_CLARITY)} of Reddit`],
+    ['All-in price at maintenance dose', 'n', 'Intro offers as headlines; table row is "Starting price"', `Compounded median $${P.compounded.median}, brand $${P.brand.median}`],
+    ['Medication type labelled', 'p', 'Brand and compounded mixed in one bullet; FAQ covers it', `${pct(comp)} compounded, ${pct(brand)} brand`],
+    ['Named pharmacy', 'n', 'Not shown', `Every community-list plan names one`],
+    ['Cancel and refund terms', 'p', '"Cancel anytime" on one card; "money-back guarantee" in one write-up', `Trapped ${pct(A.fears.trustpilot_share_of_negative.TRAPPED)} of complaints`],
+    ['Support style / real human', 'p', '"24/7" for 8 of 10 providers', `Nobody to call ${pct(A.fears.trustpilot_share_of_negative.NO_HUMAN)} of complaints`],
+    ['Refill reliability', 'n', 'Not shown; WellMedr credited with "on-time refills"', `Ran out ${pct(A.fears.trustpilot_share_of_negative.RUN_OUT)} of complaints`],
+    ['Scores buyers can trust', 'n', '8.2–9.8, all "Very good" or better; commissions influence order (footer)', 'Invited vs unprompted gap up to 2.7★'],
+    ['"Best for…" labels', 'p', 'Exist, but in write-ups far below the list', 'Buyers choose by fit, not rank #1'],
+    ['Side-by-side table', 'p', 'Exists: starting price, clinician access, standout feature. Prices don\'t match the cards.', 'Community table fields: price, pharmacy, 28-day, refill, states'],
+    ['Stage content (beginner, switching)', 'p', 'Generic explainer incl. phentermine; calm side-effects note', 'Beginners mocked on Reddit, so open space'],
+    ['Safety / scam checklist', 'n', 'Not shown', `Scam ${pct(A.fears.reddit_share.SCAM)} of Reddit comments`],
+    ['Mobile layout', 'u', 'Screenshots are desktop only', 'Mobile launch next']
+  ];
+  $('auScore').innerHTML = sc.map(r => `<tr><td><strong>${r[0]}</strong></td><td>${pill[r[1]]}</td><td class="small">${r[2]}</td><td class="small muted">${r[3]}</td></tr>`).join('');
+
+  const ef = { c: '<span class="pill p-good">Copy</span>', m: '<span class="pill p-accent">Module</span>', d: '<span class="pill p-neutral">Data</span>' };
+  const plan = [
+    ['Hero', '"Best Weight Loss Medications of 2026" + pen image', 'Price-honest promise, 3 fear-answering bullets, "Find my match · 3 questions"', 'Top fears: overcharged, trapped, scam', 'c'],
+    ['Under the hero', 'Straight into the list', 'Stage question: first time · switching · 3+ months · restarting', `${pct(A.stage.trustpilot.new)} / ${pct(A.stage.trustpilot.switch)} / ${pct(A.stage.trustpilot.long)} of sign-ups`, 'm'],
+    ['Filters', 'None', 'FDA-approved / compounded / both · $100 $150 $200 $300+ · No membership · Insurance', 'Budget $100–$200 · membership a top switch reason', 'm'],
+    ['Card headline', 'Intro offer ($39, $49, $69, 50OFF)', 'Price at maintenance dose, paying monthly; promo as a small second line', `Price clarity ${pct(A.needs.reddit_share.PRICE_CLARITY)} of Reddit`, 'd'],
+    ['Card bullets', 'Free-form marketing bullets', 'Same 5 fields on every card: med type · pharmacy · fees · cancel/refund · support style', 'Lets buyers compare like for like', 'd'],
+    ['Score', '8.2–9.8, all "Excellent"-ish', 'Score with visible parts (price honesty, refill reliability, unprompted reviews, support), "How we rate" link next to it', 'Invited reviews inflate stars', 'm'],
+    ['Ranking', 'Embody #1, TrimRx #7', 'Re-check order against unprompted reviews; at minimum, stop calling providers with 2–3★ unprompted reviews "Exceptional"', `Embody unprompted ${R('prov.embody.organic_avg')}★, TrimRx ${R('prov.trimrx.organic_avg')}★`, 'd'],
+    ['"Best for…"', 'In write-ups below the table', 'On every card at the top: Best for first-timers · switching · insurance · flat price', 'Route by stage', 'c'],
+    ['Side-by-side table', 'Starting price · 24/7 · standout', 'Price at maintenance dose · med type · pharmacy · membership · cancel online · refund · refill type. Fix price mismatches.', 'Matches the table buyers already trust', 'd'],
+    ['FAQ', '7 general questions', 'Add: How do I cancel? · Will my price go up with my dose? · Can I keep my dose if I switch? · Is compounded safe?', 'Top fears in their words', 'c'],
+    ['Explainer content', 'Generic, incl. phentermine', 'Beginner guide in buyers\' words, true-cost widget, brand vs compounded vs pills, safety checklist', 'First-timers need reassurance; scam fear', 'm'],
+    ['Trust', 'Footer disclosure', 'Keep it; add "prices verified [day]" and a 2-line method summary next to the list', '"Vetted by thousands" is the bar', 'c']
+  ];
+  $('auPlan').innerHTML = plan.map(r => `<tr><td><strong>${r[0]}</strong></td><td class="small muted">${r[1]}</td><td class="small">${r[2]}</td><td class="small muted">${r[3]}</td><td>${ef[r[4]]}</td></tr>`).join('');
 })();
 </script>
