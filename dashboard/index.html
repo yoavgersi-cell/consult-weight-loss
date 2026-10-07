@@ -484,6 +484,33 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .ha-cta { background: #0e6a78; color: #fff; font: 700 0.8rem var(--font-body); padding: 7px 14px; border-radius: 6px; white-space: nowrap; }
 .ha-card .vf { background: #fdecc8; color: #8a5300; }
 @media (max-width: 560px) { .ha-card { grid-template-columns: 1.6rem minmax(0, 1fr); } .ha-side { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; } }
+
+#brief { gap: 16px; }
+.mb-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 28px; align-items: end; }
+.mb-head h2 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); margin-top: 6px; max-width: 40ch; }
+.mb-agenda { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.mb-agenda li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; white-space: nowrap; }
+.mb-agenda b { font-family: var(--font-mono); color: var(--accent); margin-right: 4px; }
+.mb-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.mb-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.mb-k { font: 600 0.72rem var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.mb-buyer { background: var(--hero-bg); color: var(--hero-fg); border-color: transparent; }
+.mb-buyer .mb-k { color: var(--hl); }
+.mb-buyer .muted { color: var(--on-ink-2); }
+.mb-line { font: 600 1.05rem/1.35 var(--font-display); }
+.mb-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mb-nums div { display: grid; gap: 2px; }
+.mb-nums b { font: 700 1.5rem/1 var(--font-display); color: var(--hl); }
+.mb-nums span { font-size: 0.8rem; color: var(--on-ink-2); line-height: 1.3; }
+.mb-list { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 0.9rem; }
+.mb-t { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.mb-t td { padding: 6px 4px; border-top: 1px solid var(--line); vertical-align: top; }
+.mb-t td:first-child { font: 700 0.85rem var(--font-mono); color: var(--accent); width: 1.6em; }
+.mb-ask { background: var(--accent-soft); border-color: transparent; }
+.mb-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.go-sm { font-size: 0.85rem; padding: 6px 12px; }
+@media (max-width: 980px) { .mb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .mb-grid, .mb-head { grid-template-columns: 1fr; } }
 </style>
 
 <header class="top wrap">
@@ -499,6 +526,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
+    <button class="tab" role="tab" data-tab="brief">Meeting brief</button>
     <button class="tab" role="tab" data-tab="home">Bottom line</button>
     <button class="tab" role="tab" data-tab="buyer">The buyer</button>
     <button class="tab" role="tab" data-tab="money">What they pay</button>
@@ -513,8 +541,95 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 
 <main class="wrap">
 
+<!-- MEETING BRIEF -->
+<section id="brief" data-panel="brief" hidden>
+  <div class="mb-head">
+    <div><span class="eyebrow">Meeting brief · HealthAccess · Thu 8 Oct 2026 · 30 min</span>
+    <h2>Make /weight-loss/compare the page that shows buyers the real price, so the clicks it sends are clicks that convert</h2></div>
+    <ol class="mb-agenda"><li><b>5′</b> Goals</li><li><b>8′</b> The buyer</li><li><b>10′</b> Your page + proposal</li><li><b>7′</b> Decisions and data</li></ol>
+  </div>
+
+  <div class="mb-grid">
+    <div class="mb-box mb-buyer">
+      <span class="mb-k">1 · The buyer, in one line</span>
+      <p class="mb-line">Most often a woman around 48, paying cash, on compounded tirzepatide at about <span data-k="price.comp.median"></span> a month. Wants one honest price and a human who answers.</p>
+      <div class="mb-nums">
+        <div><b data-k="stage.tp.new"></b><span>of sign-ups are first-timers · <span data-k="stage.tp.switch"></span> switching</span></div>
+        <div><b data-k="rd.need.PRICE_CLARITY"></b><span>of experienced buyers talk about price clarity</span></div>
+        <div><b data-k="tp.fear.TRAPPED"></b><span>of complaints: trapped by prepay, cancelling, refunds</span></div>
+        <div><b data-k="tp.fear.RUN_OUT"></b><span>of complaints: refills late or missing</span></div>
+      </div>
+      <p class="small muted">Built from 701 Trustpilot reviews, 163 Reddit comments, 88 price reports.</p>
+    </div>
+
+    <div class="mb-box">
+      <span class="mb-k">2 · What we see on the page today</span>
+      <ul class="mb-list">
+        <li><b>Intro prices lead every card</b> ("$39 first month", "as low as $49"). Buyers call these deceiving.</li>
+        <li><b>Scores don't match buyer reviews.</b> #1 Embody (9.8) averages <span data-k="prov.embody.organic_avg"></span>★ in unprompted reviews.</li>
+        <li><b>Missing what buyers compare on:</b> FDA-approved vs compounded, pharmacy, cancel and refund terms.</li>
+        <li><b>Price mismatches</b> between cards and the table (Found $99 vs $39).</li>
+        <li><b>One list for everyone.</b> No stage question, no filters.</li>
+      </ul>
+    </div>
+
+    <div class="mb-box">
+      <span class="mb-k">3 · What we propose, first 30 days</span>
+      <ol class="mb-list mb-num">
+        <li><b>Rewrite the 10 cards</b> in the current layout. Copy is ready; facts to confirm with partners.</li>
+        <li><b>New hero:</b> "Compare by what you'll really pay", plus 3 bullets that answer the top fears.</li>
+        <li><b>One question under the hero:</b> "Have you taken a GLP-1 before?" It routes the list and measures traffic by stage.</li>
+        <li><b>Fix the table:</b> price at maintenance dose, drug type, pharmacy, cancel, refund.</li>
+        <li><b>5 articles</b> that answer the top fears, starting with "What will I really pay?"</li>
+      </ol>
+    </div>
+
+    <div class="mb-box">
+      <span class="mb-k">4 · First tests (desktop, Google Ads)</span>
+      <table class="mb-t"><tbody>
+        <tr><td>A</td><td>Hero: current vs price-honest</td></tr>
+        <tr><td>B</td><td>Card headline: intro offer vs regular monthly price</td></tr>
+        <tr><td>C</td><td>"Best for…" line on each card vs none</td></tr>
+        <tr><td>D</td><td>Stage question vs straight list</td></tr>
+      </tbody></table>
+      <p class="small muted">Success = partner-confirmed sign-ups per visitor, not clicks. A cheaper headline can win the click and lose the sale.</p>
+    </div>
+
+    <div class="mb-box mb-ask">
+      <span class="mb-k">5 · Decisions we need from you</span>
+      <ul class="mb-list">
+        <li>Lane: brand-name, compounded, or both clearly split?</li>
+        <li>OK to show real monthly prices next to promos?</li>
+        <li>OK to change how the score is built and shown?</li>
+        <li>Who signs off on medical and compliance copy?</li>
+      </ul>
+    </div>
+
+    <div class="mb-box mb-ask">
+      <span class="mb-k">6 · Data we need, in this order</span>
+      <ol class="mb-list mb-num">
+        <li>Google Ads <b>search terms report</b>, last 90 days</li>
+        <li><b>Partner list</b>: payout model, confirmed sign-ups, postbacks by device</li>
+        <li><b>Funnel by device</b>: landing → scroll → click-out by card position</li>
+        <li><b>Mobile screenshots</b>, quiz, click-out flow</li>
+        <li>Each partner's <b>pharmacy, cancel and refund terms</b></li>
+        <li>Google healthcare / LegitScript certification status</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="mb-foot">
+    <span class="small muted">Details behind every point are in the other tabs.</span>
+    <div class="pills" style="gap:8px">
+      <button type="button" class="go go-sm" data-tab-go="home">Bottom line</button>
+      <button type="button" class="go go-sm" data-tab-go="ha">Card rewrites and audit</button>
+      <button type="button" class="go go-sm" data-tab-go="articles">Article ideas</button>
+    </div>
+  </div>
+</section>
+
 <!-- BOTTOM LINE (rendered from window.AGG) -->
-<section id="home" data-panel="home">
+<section id="home" data-panel="home" hidden>
   <div class="bl-hero">
     <div class="bl-who">
       <span class="eyebrow">The average weight-loss buyer</span>
@@ -1551,7 +1666,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   const tabs = [...document.querySelectorAll('.tab')];
   const panels = [...document.querySelectorAll('[data-panel]')];
   function show(id, push) {
-    if (!panels.some(p => p.dataset.panel === id)) id = 'home';
+    if (!panels.some(p => p.dataset.panel === id)) id = 'brief';
     tabs.forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
     panels.forEach(p => { p.hidden = p.dataset.panel !== id; });
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
