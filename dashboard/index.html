@@ -349,9 +349,9 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <!-- USER -->
 <section id="user" data-panel="user" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Buyer profile · v2 · 701 Trustpilot reviews + 11 Reddit threads (102 comments, 63 price reports) + desk research</span>
+    <span class="eyebrow">Buyer profile · v2 · 701 Trustpilot reviews + 12 Reddit threads (111 comments, 66 price reports) + desk research</span>
     <h2>They shop on price, stay for the people, and leave when the medication or the bill goes wrong</h2>
-    <p class="muted">This profile comes from what buyers wrote on Trustpilot about six providers and in eleven Reddit threads, coded the same way for who they are, where they are in the journey, and what they need. It is the basis for the site messaging in the next tab.</p>
+    <p class="muted">This profile comes from what buyers wrote on Trustpilot about six providers and in twelve Reddit threads, coded the same way for who they are, where they are in the journey, and what they need. It is the basis for the site messaging in the next tab.</p>
   </div>
 
   <div class="profile">
@@ -396,6 +396,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
           <tr><td><strong>Trusts</strong></td><td class="small">Reviews · a real person on the phone</td><td class="small">Community lists and surveys · <strong>not Trustpilot</strong> ("trustpilot? girl, c'mon")</td></tr>
           <tr><td><strong>Fears most</strong></td><td class="small">Being overcharged · trapped · running out</td><td class="small"><strong>Scams</strong> · being overcharged</td></tr>
           <tr><td><strong>Budget</strong></td><td class="small">Rarely stated; often surprised by the real bill</td><td class="small"><strong>$100–$200 a month</strong>, stated outright</td></tr>
+          <tr><td><strong>Wants from the telehealth</strong></td><td class="small">A clinician who listens, hand-holding, someone to call</td><td class="small">Just the prescription and a good pharmacy. "I don't really expect to get care from the telehealth provider… not for what I'm paying." Their own doctor does oversight.</td></tr>
         </tbody>
       </table>
     </div>
@@ -403,10 +404,10 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   <div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>What people say they pay each month</h3><span class="small muted">63 price reports from Reddit · each dot is one person</span>
+      <h3>What people say they pay each month</h3><span class="small muted">66 price reports from Reddit · each dot is one person</span>
     </div>
     <div class="strip" id="priceStrip" role="img" aria-label="Compounded median $129, brand median $350, gray market median $18"></div>
-    <p class="small muted">The going rate: about <strong>$129</strong> for compounded (middle half $100–$165) and about <strong>$350</strong> for brand-name cash (middle half $299–$450). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
+    <p class="small muted">The going rate: about <strong>$129</strong> for compounded (middle half $100–$166) and about <strong>$350</strong> for brand-name cash (middle half $299–$450). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
   </div>
 
   <div class="card">
@@ -501,7 +502,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   <div class="card">
     <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-      <h3>What the experienced (Reddit) buyer adds</h3><span class="small muted">From 11 threads · 102 comments · 63 price reports</span>
+      <h3>What the experienced (Reddit) buyer adds</h3><span class="small muted">From 12 threads · 111 comments · 66 price reports</span>
     </div>
     <div class="tscroll" style="border:0">
       <table class="t-mid">
@@ -514,6 +515,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
           <tr><td class="small">"can't really afford over 200 a month"</td><td class="small"><strong>Budget chips</strong> $100 · $150 · $200 · $300+ and a <strong>No membership</strong> filter</td></tr>
           <tr><td class="small">"How do you know the doctor is licensed in your state?"</td><td class="small"><strong>5-point safety checklist</strong> per card: licensed in your state · named pharmacy · real clinician names · cancel online · refund terms</td></tr>
           <tr><td class="small">"vetted by thousands of people and ongoing surveys"</td><td class="small"><strong>"How we verify"</strong> page with update dates, plus a buyer survey that can drop providers</td></tr>
+          <tr><td class="small">"I don't really expect to get care from the telehealth provider"</td><td class="small"><strong>"Support style" label and filter</strong>: Hands-on (check-ins, clinician messaging, response time) vs Prescription and pharmacy (bring your own doctor)</td></tr>
+          <tr><td class="small">"none are up front about how much forms, prescriptions, visits… cost"</td><td class="small"><strong>Itemised fee list</strong> per card: consult · membership · shipping · dose-change price</td></tr>
           <tr><td class="small">"at my age I hate missing out on life" (severe nausea)</td><td class="small"><strong>Low starting dose</strong> and <strong>anti-nausea support</strong> badges; Medicare Bridge $50 info</td></tr>
           <tr><td class="small">Gray market at $10–$30 a month, plus scams</td><td class="small">Page: <strong>"Cheapest legal GLP-1 options (and why research peptides are risky)"</strong></td></tr>
           <tr><td class="small">"Even chatgpt couldn't lay out the best priced safe options"</td><td class="small">Structured price tables, schema markup, llms.txt, so AI answers cite HealthAccess</td></tr>
@@ -1131,7 +1134,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   // ---------- price strip ----------
   const census = {
-    'Compounded via telehealth': [111,112,108,166,111,200,129,100,180,125,170,129,175,86,150,116,166,99,100,129,150,165,115,80,50,100,86,111,129,89,129,179,150,155,180,159,249,163,133,167,76,79],
+    'Compounded via telehealth': [111,112,108,166,111,200,129,100,180,125,170,129,175,86,150,116,166,99,100,129,150,165,115,80,50,100,86,111,129,89,129,179,150,155,180,159,249,163,133,167,76,79,399],
     'Brand-name, cash': [479,149,224.5,320,400,350,450,299,300,500,350,449],
     'Gray market': [20,8,20,10,15,35,8,100]
   };

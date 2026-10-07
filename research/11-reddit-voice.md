@@ -1,4 +1,4 @@
-# 11 — Reddit voice: what experienced buyers say (11 threads, 102 coded comments, Sept–Oct 2026)
+# 11 — Reddit voice: what experienced buyers say (12 threads, 111 coded comments, Sept–Oct 2026)
 
 **Sources** (pasted by the user; raw summaries without usernames are in `data/reviews/raw/`):
 
@@ -15,10 +15,11 @@
 | r/GLP1Discussion | Faulty compounded vial: "who is accountable, the platform or the pharmacy?" (possible bot post) |
 | r/GLP1Discussion | "Where to buy safely? What do you check first?" (doctor licence, which pharmacy) |
 | r/GLP1Discussion | "Embody": a new buyer who chose on price and ratings, then asked Reddit afterwards |
+| r/GLP1Discussion | "How to keep it affordable without ignoring safety and follow-up?" |
 
 **Coded data:**
-- `data/reviews/reddit/reddit_coded_2026-10-07.csv` — 102 items, coded with the same codebook as Trustpilot
-- `data/reviews/reddit/price_census_2026-10-07.csv` — 63 reported monthly prices
+- `data/reviews/reddit/reddit_coded_2026-10-07.csv` — 111 items, coded with the same codebook as Trustpilot
+- `data/reviews/reddit/price_census_2026-10-07.csv` — 66 reported monthly prices
 
 ## Headline numbers
 
@@ -29,11 +30,11 @@
 | Top need | **Price clarity (57 mentions)**, then "does it work / is it safe" (30) | A human who answers, easy start, being heard |
 | Top fears | **Scams (22)**, being overcharged (20), side effects (7) | Being overcharged, being trapped, running out |
 
-**What people report paying per month** (63 reports):
+**What people report paying per month** (66 reports):
 
 | Channel | Reports | Median | Middle 50% | Range |
 |---|---|---|---|---|
-| **Compounded via telehealth** | 42 | **$129** | $100–$165 | $50–$249 |
+| **Compounded via telehealth** | 43 | **$129** | $100–$166 | $50–$249 |
 | **Brand-name, cash pay** | 12 | **$350** | $299–$450 | $149–$500 |
 | Gray-market "research peptides" | 8 | $18 | $8–$31 | $8–$100 |
 
@@ -70,6 +71,17 @@
 - **AI assistants:** buyers run provider data through ChatGPT and Gemini to pick a pharmacy. *"Even chatgpt couldn't lay out the best priced safe options clearly."* HealthAccess content should be structured so AI answers can read it and cite it.
 - **Manipulation exists here too:** a promotional-looking r/Residency post (Klarity Health), referral codes everywhere, and an alleged campaign of AI bots by one telehealth (Gimme) against a rival (Rift). Communities check account age to police it.
 
+## Experienced buyers don't expect medical care from the telehealth
+From the "affordable without ignoring safety" thread:
+- **Telehealth is a prescription plus a pharmacy:** "I don't really expect to get care from the telehealth provider… not for what I'm paying." "You won't get much help from Telehealth doctors… all they can realistically tell you is 'make an appointment with your PCP'."
+- **Their own doctor does the oversight:** "You should be seeing your regular doctor for those other concerns." Several keep their PCP in the loop for labs and dosing questions.
+- **New buyers want hand-holding; experienced buyers want a good pharmacy.** One provider is praised as "more… hold your hand type service whereas the others are more expecting people to already know about GLP1s". Even it has a bad story: a reaction, "ignored… gaslit me about my symptoms".
+- **Hidden fees again:** "none are up front about how much forms, prescriptions, visits, etc cost. My pcp took over my prescription and I have saved hundreds a month."
+- **Good providers get overwhelmed:** "All 3 of those got hit with a lot of volume because they were good, and their service levels crashed." This matches WellMedr's promotion surge on Trustpilot. Some buyers stockpile a year's supply in case compounding gets shut down.
+- **Provider-run "comparison" sites get recommended in threads:** "formblends lays those details out pretty clearly".
+
+**Implication: label each provider's support style honestly.** "Hands-on" (check-ins, coaching, clinician messaging with a response-time promise) vs "Prescription and pharmacy" (bring your own doctor). New buyers should be steered to hands-on providers, and experienced buyers to the lowest all-in price with a strong pharmacy. Show both, with an itemised fee list (consult, forms, shipping, dose changes).
+
 ## Note from the Embody thread
 - **The buyer checks Reddit after paying:** "ordered… because it was the cheapest… and rated well… I probably should've asked that before using them".
 - **Mixed reviews are expected:** "There's always negative and positive reviews… for every one of them". Buyers stop trusting star ratings and decide on price plus a few real experiences.
@@ -95,6 +107,8 @@ Asked "what do you check first?", the community doesn't list checks. It points t
 | Membership vs no-membership | "Membership: none / $X per month / $X per year" field; "No membership" filter |
 | Insurance loss is the trigger | Insurance-first router: covered? → sleep apnea / T2D path → Medicare $50 → cash |
 | Gray-market drift | Page: **"Cheapest legal GLP-1 options (and why research peptides are risky)"** |
+| "I don't really expect to get care from the telehealth provider" | A **"Support style" label and filter**: Hands-on (check-ins, clinician messaging, response time) vs Prescription and pharmacy (bring your own doctor) |
+| "none are up front about how much forms, prescriptions, visits… cost" | An **itemised fee list** on each card: consult · membership · shipping · dose-change price |
 | Older and side-effect-sensitive buyers | "Low starting dose / microdose available" and "anti-nausea support" badges |
 | AI-assisted research | Structured price tables, schema markup, an llms.txt, dated "verified" prices |
 | "What do you check first?" | A **5-point safety checklist** on every card: licensed in your state · named pharmacy (503A/503B) · real clinician names · cancel online · refund terms |
