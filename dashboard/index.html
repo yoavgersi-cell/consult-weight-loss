@@ -470,19 +470,20 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 <!-- REVIEWS (Ro + Embody) -->
 <section id="reviews" data-panel="reviews" hidden>
   <div class="sec-head">
-    <span class="eyebrow">Review signals · Trustpilot, coded by hand · Ro 138 · Mochi 84 · Embody 200 · TrimRx 119 · WellMedr 80 reviews, Oct 2026</span>
+    <span class="eyebrow">Review signals · Trustpilot, coded by hand · 701 reviews across 6 providers, Oct 2026</span>
     <h2>Each provider fails at a different moment, and their star ratings are collected before that moment arrives</h2>
     <p class="muted">Every review was coded for its star rating, how it was collected, and its themes. Star ratings mostly measure the first step, a quick sign-up or a pleasant consult. The bad reviews show where each provider actually breaks, and every one of those breaking points is something a comparison page can warn about before the click.</p>
   </div>
 
   <div class="card">
     <h3>When things go wrong, by month of treatment</h3>
-    <div class="tl" role="img" aria-label="Timeline: Ro fails at month 0, Mochi and WellMedr at months 0 to 1, Embody at month 2, TrimRx at months 3 to 7">
+    <div class="tl" role="img" aria-label="Timeline: Ro fails at month 0, Mochi and WellMedr at months 0 to 1, SkinnyRx from checkout over several months, Embody at month 2, TrimRx at months 3 to 7">
       <div class="tl-row tl-axisrow"><span></span><div class="tl-axis"><span style="left:0.0%">Checkout</span><span style="left:12.5%">M1</span><span style="left:25.0%">M2</span><span style="left:37.5%">M3</span><span style="left:50.0%">M4</span><span style="left:62.5%">M5</span><span style="left:75.0%">M6</span><span style="left:87.5%">M7</span></div></div>
       <div class="tl-row"><span class="tl-name">Ro</span><div class="tl-track"><span class="tl-mark" style="left:0;width:12.5%"></span><span class="tl-lbl" style="left:calc(12.5% + 8px)">Membership surprise · 66% of 1–2★</span></div></div>
       <div class="tl-row"><span class="tl-name">Mochi</span><div class="tl-track"><span class="tl-mark" style="left:0;width:25%"></span><span class="tl-lbl" style="left:calc(25% + 8px)">Appointment no-shows · two subscriptions to cancel</span></div></div>
       <div class="tl-row"><span class="tl-name">WellMedr</span><div class="tl-track"><span class="tl-mark" style="left:0;width:25%"></span><span class="tl-lbl" style="left:calc(25% + 8px)">First order stuck after a promo surge · billed every 21 days</span></div></div>
       <div class="tl-row"><span class="tl-name">Embody</span><div class="tl-track"><span class="tl-mark" style="left:25%;width:12.5%"></span><span class="tl-lbl" style="left:calc(37.5% + 8px)">Refill not shipped · 72% of 1–2★</span></div></div>
+      <div class="tl-row"><span class="tl-name">SkinnyRx</span><div class="tl-track"><span class="tl-mark" style="left:0;width:12.5%"></span><span class="tl-mark" style="left:12.5%;width:50%;opacity:.55"></span><span class="tl-lbl" style="left:calc(62.5% + 8px)">Bundle upsell at checkout · "no effect" over months</span></div></div>
       <div class="tl-row"><span class="tl-name">TrimRx</span><div class="tl-track"><span class="tl-mark" style="left:37.5%;width:62.5%">Prepaid second half not shipped</span></div></div>
     </div>
     <p class="small muted">Each bar is where that provider's top theme in 1–2★ reviews happens. The comparison page can warn about each of these before the click: show the all-in price, billing cycle, how to cancel, refill reliability, and prepay terms.</p>
@@ -490,18 +491,50 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
 
   <div class="tscroll">
     <table class="t-wide">
-      <thead><tr><th></th><th>Ro <span class="muted">· brand, membership</span></th><th>Mochi <span class="muted">· membership + med subscription</span></th><th>Embody <span class="muted">· compounded, low price</span></th><th>TrimRx <span class="muted">· compounded, flat, prepay bundles</span></th><th>WellMedr <span class="muted">· compounded, promo-driven</span></th></tr></thead>
+      <thead><tr><th>Provider</th><th class="num">Reviews</th><th class="num">Avg ★</th><th class="num">Invited</th><th>Invited ★ vs rest</th><th>Where it breaks</th><th>What 4–5★ reviews mostly rate</th><th>Field our page needs</th></tr></thead>
       <tbody>
-        <tr><td><strong>Where it breaks</strong></td><td><span class="pill p-warn">At checkout · month 0</span><br><span class="small">The membership fee comes as a surprise</span></td><td><span class="pill p-warn">Checkout to month 1</span><br><span class="small">Appointment no-shows; membership and medication billed and cancelled separately</span></td><td><span class="pill p-bad">At the refill · month 2</span><br><span class="small">The refill doesn't ship, doses are missed</span></td><td><span class="pill p-bad">Mid-plan · months 3–7</span><br><span class="small">The second half of a prepaid plan never ships</span></td><td><span class="pill p-bad">First order · month 0–1</span><br><span class="small">A fall promotion overwhelmed fulfilment; "monthly" plans billed every 21 days</span></td></tr>
-        <tr><td><strong>Top 1–2★ theme</strong></td><td class="mono">66% · "$39" turned into $188–$448</td><td class="mono">5 of 15 · appointments<br>4 of 15 · billing split</td><td class="mono">72% · refill not shipped</td><td class="mono">62% · support silent<br>42%* · prepaid plan not delivered</td><td class="mono">73% · not shipped<br>55% · billing errors</td></tr>
-        <tr><td><strong>What 4–5★ reviews praise</strong></td><td class="small">Quick sign-up (81%), mostly written before treatment</td><td class="small">The consult (76%): a clinician who listens, "did not make me feel ashamed"</td><td class="small">Felt heard (45%), a named rep (32%)</td><td class="small">Quick sign-up (39%), support (29%); 9 reviews repeat the "no membership" message almost word for word</td><td class="small">A named rep (67%) who fixed a problem (42%); 8 reviews raised after the reviewer was contacted</td></tr>
-        <tr><td><strong>When the review is collected</strong></td><td class="small">At checkout</td><td class="small">Right after the consult</td><td class="small">After a rep or clinician call</td><td class="small">After the order</td><td class="small">After a problem is fixed</td></tr>
-        <tr><td><strong>Invited vs unprompted</strong></td><td class="small">No labels in this paste</td><td class="small">95% invited · star ratings not in the paste; profile 81% 5★ / 9% 1★</td><td class="small">4.93★ vs <strong>2.66★</strong></td><td class="small">4.83★ vs <strong>2.12★</strong> · 87% of reviews invited</td><td class="small">No labels in this paste · 3.80★ average</td></tr>
-        <tr><td><strong>What our page should show</strong></td><td class="small"><strong>All-in monthly cost</strong> at each dose</td><td class="small"><strong>All-in cost + how to cancel</strong></td><td class="small"><strong>Refill reliability</strong></td><td class="small"><strong>Prepay terms and refund policy</strong></td><td class="small"><strong>Billing cycle + how to cancel</strong></td></tr>
+        <tr><td><strong>Ro</strong></td><td class="num">138</td><td class="num">3.87</td><td class="num">–</td><td class="small muted">no labels</td><td><span class="pill p-warn">Checkout</span> <span class="small">membership on top of the medication · 66%</span></td><td class="small">Quick sign-up (81%)</td><td class="small"><strong>All-in cost</strong></td></tr>
+        <tr><td><strong>Mochi</strong></td><td class="num">84</td><td class="num">–</td><td class="num">95%</td><td class="small muted">stars not in paste</td><td><span class="pill p-warn">Checkout–M1</span> <span class="small">appointments + two subscriptions</span></td><td class="small">The consult (76%)</td><td class="small"><strong>How to cancel</strong></td></tr>
+        <tr><td><strong>WellMedr</strong></td><td class="num">80</td><td class="num">3.80</td><td class="num">–</td><td class="small muted">no labels</td><td><span class="pill p-bad">First order</span> <span class="small">promo surge · 73%; billed every 21 days</span></td><td class="small">A rep who fixed a problem (42%)</td><td class="small"><strong>Billing cycle</strong></td></tr>
+        <tr><td><strong>Embody</strong></td><td class="num">200</td><td class="num">3.73</td><td class="num">48%</td><td class="mono">4.93 vs <strong>2.66</strong></td><td><span class="pill p-bad">Month 2</span> <span class="small">refill not shipped · 72%</span></td><td class="small">Felt heard (45%), named rep (32%)</td><td class="small"><strong>Refill reliability</strong></td></tr>
+        <tr><td><strong>TrimRx</strong></td><td class="num">119</td><td class="num">4.47</td><td class="num">87%</td><td class="mono">4.83 vs <strong>2.12</strong></td><td><span class="pill p-bad">Months 3–7</span> <span class="small">prepaid second half not shipped</span></td><td class="small">Quick sign-up, support</td><td class="small"><strong>Prepay terms + refunds</strong></td></tr>
+        <tr><td><strong>SkinnyRx</strong></td><td class="num">80</td><td class="num">4.59</td><td class="num">50%</td><td class="mono">4.97 vs 4.20</td><td><span class="pill p-bad">Over months</span> <span class="small">"no effect" (oral compounded) · prepaid bundles, no refund</span></td><td class="small">A named phone rep (97%)</td><td class="small"><strong>Compounded-oral label</strong></td></tr>
       </tbody>
     </table>
   </div>
-  <p class="small muted">* Share of unprompted 1–2★ reviews (5 of 12).</p>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Seven findings across 701 reviews</h3>
+      <ol class="ticks small">
+        <li><strong>The star rating depends on when it's collected.</strong> Each provider asks at its best moment, and none ask at month 3. Invited reviews score 2–2.7★ higher than the rest.</li>
+        <li><strong>Reps ask for reviews that name them.</strong> One SkinnyRx review is the rep's own script: "Please be sure to mention my name."</li>
+        <li><strong>Each provider breaks at a different stage</strong>, and each stage maps to one field in the table.</li>
+        <li><strong>Prepaid bundles are the biggest money risk.</strong> 4 of 6 providers advertise their lowest price on 3–12-month prepay, and refunds are refused when they fail.</li>
+        <li><strong>The membership surprise comes from the business model</strong>: both Ro and Mochi get it.</li>
+        <li><strong>"Doesn't work" complaints cluster around compounded products</strong>, especially oral tablets.</li>
+        <li><strong>Switching is constant</strong>: membership fees push buyers to flat-price providers, failures push them back, and transferred doses are often not honoured.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>What it changes in the comparison table</h3>
+      <div class="tscroll" style="border:0">
+        <table>
+          <thead><tr><th>New field</th><th>Shows buyers</th></tr></thead>
+          <tbody>
+            <tr><td><strong>All-in monthly, pay-monthly</strong></td><td class="small">Membership + medication at the dose people stay on; prepay shown as an option, not the headline</td></tr>
+            <tr><td><strong>Billing cycle</strong></td><td class="small">Monthly vs every 21 days</td></tr>
+            <tr><td><strong>How to cancel</strong></td><td class="small">Online · phone only · two subscriptions</td></tr>
+            <tr><td><strong>Prepay + refund terms</strong></td><td class="small">What happens to prepaid money if the provider fails</td></tr>
+            <tr><td><strong>Refill reliability</strong></td><td class="small">Share of recent reviews describing late refills</td></tr>
+            <tr><td><strong>Medication type</strong></td><td class="small">FDA-approved · compounded injectable · compounded oral</td></tr>
+            <tr><td><strong>Real customer score</strong></td><td class="small">Unprompted and 30+ day reviews weighted up; rep shout-outs ignored</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 
   <h3 style="margin-top:8px">Ro · 138 weight-loss reviews</h3>
   <div class="grid g4">
@@ -527,6 +560,32 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
   <div class="callout">
     <strong>Why this helps partners as well as buyers</strong>
     <p class="small">A buyer who clicks expecting $39 cancels, asks for a refund and writes a 1★ review. A buyer who clicks knowing month one is $188 and after that $298–$448 is already qualified. Showing the full price before the click should raise partner approval and retention, which is a strong point when negotiating payouts.</p>
+  </div>
+
+  <h3 style="margin-top:8px">SkinnyRx · 80 reviews</h3>
+  <div class="grid g4">
+    <div class="card stat"><span class="eyebrow">Positive reviews about a rep</span><span class="num">97%</span><p class="small">Aimee B is named 17 times. Only 1 of 72 positive reviews mentions weight lost.</p></div>
+    <div class="card stat"><span class="eyebrow">Invited reviews</span><span class="num">4.97★</span><p class="small">40 reviews, none 1–2★. Unlabelled: 4.20★.</p></div>
+    <div class="card stat"><span class="eyebrow">Largest prepaid bundle</span><span class="num">$3,588</span><p class="small">12 months upfront; "no refunds on bundles".</p></div>
+    <div class="card stat"><span class="eyebrow">Bad reviews: no effect</span><span class="num">5 of 7</span><p class="small">3 about oral compounded tirzepatide tablets.</p></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>A rep's script, posted as a review</h3>
+      <blockquote><p>"It's my pleasure talking to you today! If you could take a moment to share a brief review about the assistance I provided, I would greatly appreciate it. Please be sure to mention my name, '[Carmy or Carmelyn]', in your feedback."</p><cite>5★ · Invited · the rep's message pasted in as the review</cite></blockquote>
+      <p class="small muted">Asking for reviews is allowed, but it explains the score: it measures the phone call, not the treatment.</p>
+    </div>
+    <div class="card">
+      <h3>SkinnyRx · in their words</h3>
+      <div class="grid" style="gap:10px">
+        <blockquote><p>"I ordered a 1-month supply for 99.00, was charged immediately 1173.90… The system automatically reverts your order to what is recommended."</p><cite>1★ · checkout switched to a bigger bundle</cite></blockquote>
+        <blockquote><p>"I pre-paid $3,588 upfront… zero clinical efficacy… from their oral tirzepatide dissolving tablets… 'no refunds on bundles'."</p><cite>1★ · oral compounded + prepay</cite></blockquote>
+      </div>
+    </div>
+  </div>
+  <div class="callout warn">
+    <strong>Label compounded oral GLP-1s separately</strong>
+    <p class="small">No oral tirzepatide is FDA-approved. The FDA-approved pills (Wegovy pill, Foundayo) are different products. If the page puts "pill" options together, needle-averse first-timers end up on the option with the weakest evidence. Show "Compounded oral, not FDA-approved" as its own label. Confirm the wording with compliance.</p>
   </div>
 
   <h3 style="margin-top:8px">WellMedr · 80 reviews</h3>
@@ -880,6 +939,7 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['LifeMD', T.brand, 'Brand GLP-1s, Wegovy pill', '$149 membership + meds from $149', 'Accepts Medicare and some insurance', '4.0', '4.0', 'BBB B rating'],
     ['TrimRx', T.comp, 'Compounded sema, tirz', 'Flat price, no membership; 6-month prepay ≈$1,519', 'None', '–', '4.5', 'Prepaid second half not shipped; 87% of reviews invited (our coding)'],
     ['WellMedr', T.comp, 'Compounded sema, tirz', 'From $89–$129/mo on long plans; promos; billed every 21 days (reviews)', 'None (90-day guarantee)', '–', '–', '73% of bad reviews: first order not shipped after promo surge (our coding)'],
+    ['SkinnyRx', T.comp, 'Compounded sema, tirz (injectable, sublingual, tablet)', 'From $199 monthly; bundles up to $3,588 / 12 mo', 'None', '–', '4.8', '97% of positive reviews about a phone rep; "no refunds on bundles" (our coding)'],
     ['Remedy Meds', T.comp, 'Compounded sema, tirz, microdose', 'Sema $299, tirz $399 (no membership)', 'None', '3.9', '4.5', 'Charged with nothing shipped (some reviews)'],
     ['Henry Meds', T.comp, 'Compounded sema (incl. oral), tirz', 'Sema $199–$349; tirz $299–$449 by dose', 'Self-pay only', 'Not rated', '4.5', 'BBB F; Trustpilot suspected-fake-reviews notice'],
     ['Ivim Health', T.comp, 'Compounded sema, tirz', '≈$169–$252 on 6-month prepay', 'Unlikely', '4.0', '4.9', 'FDA warning letter Feb 2026; prepay lock-in'],
@@ -1019,6 +1079,8 @@ footer { padding-block: 24px 48px; border-top: 1px solid var(--line); color: var
     ['Persona landing pages', 'Pill, switcher, denied and menopause pages beat the generic list on their traffic.', 'next', 8, 6, 5],
     ['Brand vs compounded explainer', 'A neutral explainer reduces skeptic drop-off.', 'next', 5, 6, 8],
     ['True 12-month cost calculator', 'A signature tool lifts engagement, return visits and ad CTR.', 'later', 8, 6, 3],
+    ['Pay-monthly default + prepay/refund terms', 'Showing pay-monthly all-in prices with prepay as an option, plus refund terms, protects buyers from the most common money loss and cuts chargebacks.', 'now', 8, 8, 7],
+    ['Billing cycle, how-to-cancel and medication-type fields', 'Three small table fields answer the top complaints at Mochi, WellMedr and SkinnyRx before the click.', 'next', 6, 7, 7],
     ['Real customer score + refill reliability', 'Separating invited from unprompted reviews and scoring month-2 refills steers buyers to providers that keep them, cutting refunds and chargebacks.', 'next', 7, 7, 5],
     ['Composite trust score', 'A defensible score protects the brand and lifts trust on review-heavy queries.', 'later', 6, 5, 4],
     ['Manufacturer-direct reference column', 'Showing LillyDirect and NovoCare prices builds trust; revenue impact unclear.', 'later', 5, 5, 7],
