@@ -586,6 +586,21 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .ex-note { background: var(--accent-soft); border-radius: var(--r); padding: 14px; display: grid; gap: 6px; }
 @media (max-width: 900px) { .bc-why { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .bc-branches, .bc-why { grid-template-columns: 1fr; } .bc-split { display: none; } .ex-t td:first-child { white-space: normal; } }
+
+.bc-one { font: 500 1.08rem/1.5 var(--font-body); background: var(--accent-soft); border-radius: var(--r); padding: 12px 14px; max-width: 80ch; }
+.bc-pts { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; font-size: 0.92rem; }
+.qa { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.qa div { display: grid; gap: 4px; align-content: start; border-top: 2px solid var(--line); padding-top: 8px; }
+.qa span { font-size: 0.88rem; color: var(--ink-2); }
+.uc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; }
+.uc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.uc-c { border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 8px; align-content: start; font-size: 0.92rem; }
+.uc-bad { background: var(--bad-soft); border-color: transparent; }
+.uc-tag { justify-self: start; font: 600 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--accent); }
+.uc-bad .uc-tag { color: var(--bad); }
+.uc-who { font: 600 1rem/1.3 var(--font-display); font-style: italic; }
+@media (max-width: 900px) { .qa { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .qa { grid-template-columns: 1fr; } }
 </style>
 
 </head>
@@ -736,6 +751,50 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 
   <div class="blk" id="i-drugs"><div class="blk-head"><span class="eyebrow">The drugs</span><h2>GLP-1 drugs reduce hunger. There are two main medicines and several brand names.</h2>
     <p class="blk-lede">GLP-1 is a hormone the body makes after eating. These drugs copy it, so people feel full sooner and think about food less. Most are a weekly injection; two are daily pills.</p></div>
+    
+    <div class="bc">
+      <div class="bc-head"><span class="eyebrow">Brand-name vs compounded, in simple words</span><h3>The original vs a cheaper copy</h3></div>
+      <p class="bc-one"><b>Brand-name</b> is the original drug, made by the company that invented it. <b>Compounded</b> is a cheaper copy, mixed by a pharmacy from the same main ingredient. The original is checked by the government. The copy is not.</p>
+      <div class="bc-tree" aria-label="Diagram: one ingredient, the original and the copy">
+        <div class="bc-root"><b>Same main ingredient</b><span>semaglutide or tirzepatide</span></div>
+        <div class="bc-split"><i></i></div>
+        <div class="bc-branches">
+          <div class="bc-br bc-brand"><span class="pill p-good">The original (brand-name)</span>
+            <ul class="bc-pts"><li>Made by the inventor: Novo Nordisk or Eli Lilly</li><li>Tested on thousands of people</li><li>Approved by the FDA, the US government's drug checker</li><li>Exactly the same in every box</li><li>Insurance sometimes pays</li></ul>
+            <div class="bc-names"><span>Wegovy</span><span>Wegovy pill</span><span>Zepbound</span><span>Foundayo</span></div>
+            <div class="bc-price"><b>$335</b><span>a month, typical, without insurance</span></div></div>
+          <div class="bc-br bc-comp"><span class="pill p-warn">The copy (compounded)</span>
+            <ul class="bc-pts"><li>Mixed by a pharmacy that makes its own version</li><li>Not tested on people</li><li>Not approved by the FDA</li><li>Can differ from pharmacy to pharmacy</li><li>Insurance never pays</li></ul>
+            <div class="bc-names"><span>"Compounded semaglutide"</span><span>"Compounded tirzepatide"</span><span class="muted">no brand name</span></div>
+            <div class="bc-price"><b>$138</b><span>a month, typical</span></div></div>
+        </div>
+      </div>
+      <div class="qa">
+        <div><b>Is the copy the same as the original?</b><span>Same main ingredient, but nobody official checks each batch. Most people say it works; some say it "does nothing".</span></div>
+        <div><b>Why is it cheaper?</b><span>No research costs and no brand. The pharmacy buys the raw ingredient and mixes it.</span></div>
+        <div><b>Is it legal?</b><span>Partly. Copies were allowed while the originals were in short supply (2022–2024). That shortage ended, so it's now a gray area, and the government is cracking down.</span></div>
+        <div><b>Why do most people still buy it?</b><span>Price. It costs less than half, and most buyers pay everything themselves.</span></div>
+        <div><b>Ozempic vs Wegovy?</b><span>The same drug. Ozempic is the name for diabetes, Wegovy for weight loss. Likewise Mounjaro and Zepbound.</span></div>
+        <div><b>What must a comparison site do?</b><span>Say clearly on every card: "Original (FDA-approved)" or "Copy (compounded)". Never call a copy "generic Wegovy".</span></div>
+      </div>
+    </div>
+
+    <div class="uc">
+      <div class="bc-head"><span class="eyebrow">Five buyers, five situations</span><h3>What each one would buy, and what it costs</h3></div>
+      <div class="uc-grid">
+        <div class="uc-c"><span class="uc-tag">No insurance, tight budget</span><p class="uc-who">"I can spend about $150 a month."</p>
+          <p><b>Buys:</b> the copy. Compounded tirzepatide from an online clinic like Embody.</p><p><b>Pays:</b> about <b>$129 a month</b>, everything included.</p><p class="small muted"><b>Trade-off:</b> cheapest legal option, but not FDA-approved, and refills can arrive late.</p></div>
+        <div class="uc-c"><span class="uc-tag">Has work insurance</span><p class="uc-who">"Will my insurance pay for Zepbound?"</p>
+          <p><b>Buys:</b> the original, Zepbound, through a clinic that handles insurance, like Ro.</p><p><b>Pays:</b> if approved, about <b>$25 a month</b> for the drug, plus Ro's $149 membership. If refused, <b>$448–$598 a month</b>.</p><p class="small muted"><b>Trade-off:</b> the approval can take weeks, and many are refused.</p></div>
+        <div class="uc-c"><span class="uc-tag">65 or older, on Medicare</span><p class="uc-who">"I'm on Medicare. Can I get it?"</p>
+          <p><b>Buys:</b> the original: Wegovy, Zepbound or Foundayo.</p><p><b>Pays:</b> <b>$50 a month</b> through Medicare's new programme (Jul 2026 – Dec 2027).</p><p class="small muted"><b>Trade-off:</b> needs a doctor who takes part. Many don't know it exists yet.</p></div>
+        <div class="uc-c"><span class="uc-tag">Hates needles</span><p class="uc-who">"Is there a pill?"</p>
+          <p><b>Buys:</b> an original pill: Wegovy pill or Foundayo.</p><p><b>Pays:</b> from <b>$149 a month</b> at the lowest dose, rising to about $299–$349 at higher doses.</p><p class="small muted"><b>Watch out:</b> some clinics sell "GLP-1 pills" that are copies. These are the ones people most often say "don't work".</p></div>
+        <div class="uc-c uc-bad"><span class="uc-tag">Wants the absolute cheapest</span><p class="uc-who">"I saw it for $15 on Telegram."</p>
+          <p><b>Buys:</b> a "research peptide" from the gray market. No doctor, no prescription.</p><p><b>Pays:</b> <b>$10–$35 a month</b>.</p><p class="small muted"><b>Risk:</b> not legal for human use, unknown contents, scams. The cheapest safe option is a copy at about $99–$129.</p></div>
+      </div>
+    </div>
+    <h3 style="margin-top:4px">All the drugs at a glance</h3>
     <div class="tscroll"><table class="t-mid">
       <thead><tr><th>Medicine</th><th>Brand names</th><th>Form</th><th>Approved for weight loss?</th><th>Price without insurance</th></tr></thead>
       <tbody>
@@ -746,41 +805,19 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
         <tr><td><strong>"Research peptides"</strong> (e.g. retatrutide)</td><td>None. Sold online "not for human use"</td><td>Powder you mix yourself</td><td><span class="pill p-bad">No</span> not legal to sell for use</td><td>$10–$35 a month</td></tr>
       </tbody>
     </table></div>
-    <div class="bc">
-      <div class="bc-head"><span class="eyebrow">Brand-name vs compounded</span><h3>One ingredient, two ways to make it</h3></div>
-      <div class="bc-tree" aria-label="Diagram: one ingredient made two ways">
-        <div class="bc-root"><b>The ingredient</b><span>Semaglutide (invented by Novo Nordisk) or tirzepatide (invented by Eli Lilly)</span></div>
-        <div class="bc-split"><i></i></div>
-        <div class="bc-branches">
-          <div class="bc-br bc-brand"><span class="pill p-good">Brand-name</span><b>Made by the inventor</b>
-            <span>Own factory, large trials, FDA-approved, sold under a brand name. The same every time.</span>
-            <div class="bc-names"><span>Wegovy</span><span>Wegovy pill</span><span>Zepbound</span><span class="muted">Ozempic · Mounjaro = same drugs, for diabetes</span></div>
-            <div class="bc-price"><b>$335</b><span>median paid a month, no insurance</span></div></div>
-          <div class="bc-br bc-comp"><span class="pill p-warn">Compounded</span><b>Made by a compounding pharmacy</b>
-            <span>The pharmacy buys the raw ingredient and mixes its own injection, sometimes with B12 added. Not FDA-approved, not trial-tested. Quality depends on the pharmacy.</span>
-            <div class="bc-names"><span>"Compounded semaglutide"</span><span>"Compounded tirzepatide"</span><span class="muted">no brand name</span></div>
-            <div class="bc-price"><b>$138</b><span>median paid a month, insurance never pays</span></div></div>
-        </div>
-      </div>
-      <div class="bc-why">
-        <div><b>Why compounded exists</b><span>2022–2024: Wegovy and Zepbound ran short, so the FDA let pharmacies make copies. Online clinics built a business on them at $99–$299, when brand cost $1,000+.</span></div>
-        <div><b>Why it's a gray zone now</b><span>The shortages officially ended in late 2024 and early 2025. Many providers kept selling by "personalising" doses, so the FDA sent warning letters in 2026.</span></div>
-        <div><b>What buyers feel</b><span>Compounded: cheaper, but "is it legit?" and "it doesn't work" fears. Brand: trusted, but about 2.5× the price.</span></div>
-        <div><b>What a comparison site must do</b><span>Label every option "FDA-approved" or "Compounded". Never say "generic Wegovy" or "same as Ozempic"; that's a legal risk.</span></div>
-      </div>
-    </div>
+
 
     <div class="ex">
-      <div class="bc-head"><span class="eyebrow">Real example · HealthAccess's #1, Embody</span><h3>A buyer wants tirzepatide. What do they actually get, and where?</h3></div>
+      <div class="bc-head"><span class="eyebrow">Real example · HealthAccess's #1, Embody</span><h3>Someone wants tirzepatide. Here's what they get at three places.</h3></div>
       <div class="tscroll"><table class="t-mid ex-t">
         <thead><tr><th></th><th>Embody <span class="pill p-warn">Compounded</span></th><th>LillyDirect <span class="pill p-good">Brand</span></th><th>Ro <span class="pill p-good">Brand</span></th></tr></thead>
         <tbody>
-          <tr><td>What arrives in the box</td><td>Compounded tirzepatide in a vial, or as an oral "gum"</td><td>Zepbound vial or pen</td><td>Zepbound vial</td></tr>
+          <tr><td>What arrives</td><td>The copy (compounded tirzepatide), as an injection or a "gum"</td><td>The original: Zepbound</td><td>The original: Zepbound</td></tr>
           <tr><td>Who made it</td><td>A compounding pharmacy <span class="vf">which one? ask Embody</span></td><td>Eli Lilly</td><td>Eli Lilly</td></tr>
-          <tr><td>FDA-approved</td><td>No</td><td>Yes</td><td>Yes</td></tr>
-          <tr><td>Price a month, no insurance</td><td><b>$129</b>, same at every dose, everything included</td><td><b>$299–$449</b> by dose, plus a prescriber</td><td><b>$448–$598</b>: $149 membership + $299–$449 drug</td></tr>
-          <tr><td>Insurance can pay?</td><td>No</td><td>No (self-pay programme)</td><td>Yes, if the plan covers it ($25 copay)</td></tr>
-          <tr><td>Where the doctor fits</td><td>Embody's clinician approves your form</td><td>You need a prescription first, from your own doctor or a partner clinic</td><td>Ro's clinician approves your form</td></tr>
+          <tr><td>Checked by the FDA</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Cost a month (no insurance)</td><td><b>$129</b>, same at every dose, everything included</td><td><b>$299–$449</b> by dose, plus a prescriber</td><td><b>$448–$598</b>: $149 membership + $299–$449 drug</td></tr>
+          <tr><td>Can insurance pay?</td><td>No</td><td>No (self-pay programme)</td><td>Yes, if the plan covers it ($25 copay)</td></tr>
+          <tr><td>Who approves it</td><td>Embody's clinician approves your form</td><td>You need a prescription first, from your own doctor or a partner clinic</td><td>Ro's clinician approves your form</td></tr>
           <tr><td>What reviews say</td><td>Easy start; month-2 refills often late (<span data-k="prov.embody.top_neg_share"></span> of complaints)</td><td>Not in our sample</td><td>Membership fee surprise (<span data-k="prov.ro.top_neg_share"></span> of complaints)</td></tr>
         </tbody>
       </table></div>
