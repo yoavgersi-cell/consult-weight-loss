@@ -542,6 +542,15 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 [id^="i-"] { scroll-margin-top: 110px; }
 @media (max-width: 980px) { .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .flow, .pay-row, .ind-pop { grid-template-columns: 1fr; } }
+
+.routes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.route { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 8px; align-content: start; }
+.route .pill { justify-self: start; }
+.r-main { border: 2px solid var(--accent); }
+.r-bad { background: var(--bad-soft); border-color: transparent; }
+.flow6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .routes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .flow6 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .routes, .flow6 { grid-template-columns: 1fr; } }
 </style>
 
 <header class="top wrap">
@@ -668,15 +677,24 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   </div>
   <nav class="subnav" aria-label="Jump to"><button type="button" data-go="i-how">How it works</button><button type="button" data-go="i-drugs">The drugs</button><button type="button" data-go="i-pay">Who pays</button><button type="button" data-go="i-types">Types of providers</button><button type="button" data-go="i-price">How pricing works</button><button type="button" data-go="i-trends">Trends</button><button type="button" data-go="i-words">Glossary</button></nav>
 
-  <div class="blk" id="i-how"><div class="blk-head"><span class="eyebrow">How it works</span><h2>From a Google search to a box at the door, in five steps</h2></div>
-    <ol class="flow">
-      <li><b>Search</b><span>The buyer searches, for example "Wegovy price". A comparison site like HealthAccess shows a list of providers.</span></li>
-      <li><b>Pick a provider</b><span>The buyer clicks to a telehealth company, an online clinic. The comparison site is paid for that sign-up.</span></li>
-      <li><b>Online visit</b><span>The buyer fills in a health form, sometimes with a short video call. A licensed doctor or nurse decides whether to prescribe.</span></li>
-      <li><b>Pharmacy ships it</b><span>A pharmacy fills the prescription and mails it, usually within 2–7 days.</span></li>
-      <li><b>Monthly refills</b><span>The dose goes up step by step over the first months. Each month is a new charge and a new shipment.</span></li>
+  <div class="blk" id="i-how"><div class="blk-head"><span class="eyebrow">How it works</span><h2>Four ways people get GLP-1s. HealthAccess's partners are route 1.</h2>
+    <p class="blk-lede">A prescription is needed for every legal route. But on most online clinics, the buyer never meets the doctor.</p></div>
+    <div class="routes">
+      <div class="route r-main"><span class="pill p-accent">1 · Online clinic</span><b>Form → clinician approves → pharmacy mails it</b><p class="small">Most of this market, and every HealthAccess partner. Usually no call or video: a licensed clinician reviews the form behind the scenes, often the same day. Some states require a video or phone visit first.</p><p class="small muted">Who meets a doctor: usually no one. The clinician works behind the scenes.</p></div>
+      <div class="route"><span class="pill p-neutral">2 · Own doctor</span><b>Doctor's visit → local pharmacy</b><p class="small">The family doctor or a weight clinic prescribes. Usually the insurance route, with a prior-authorization request to the insurer.</p><p class="small muted">Who meets a doctor: yes, in person or by video.</p></div>
+      <div class="route"><span class="pill p-neutral">3 · Straight from the maker</span><b>Prescription → LillyDirect or NovoCare</b><p class="small">The drug company sells brand-name drugs without insurance at a set price. The prescription still comes from route 1 or 2. LillyDirect links to partner online clinics.</p><p class="small muted">Who meets a doctor: depends on where the prescription came from.</p></div>
+      <div class="route r-bad"><span class="pill p-bad">4 · Gray market</span><b>Order online → no doctor at all</b><p class="small">"Research peptides" sold "not for human use", with no prescription. Cheapest ($10–$35 a month) and unsafe. <span id="indGray2"></span> of comments that name a drug are about this.</p><p class="small muted">Who meets a doctor: nobody.</p></div>
+    </div>
+    <h3 style="margin-top:6px">Route 1 step by step: how an online clinic works</h3>
+    <ol class="flow flow6">
+      <li><b>Search</b><span>For example "Wegovy price". A comparison site like HealthAccess shows a list of providers.</span></li>
+      <li><b>Pick a provider</b><span>The buyer clicks through. The comparison site is usually paid per sign-up or per lead.</span></li>
+      <li><b>Pay and fill in a form</b><span>Weight, health history, sometimes a photo or ID. Many providers charge at checkout, before approval.</span></li>
+      <li><b>Clinician approves</b><span>A doctor or nurse reviews the form, usually without a call, and prescribes or declines, often within hours.</span></li>
+      <li><b>Pharmacy ships</b><span>Usually within 2–7 days. Compounded comes from a compounding pharmacy; brand-name from a mail-order or local pharmacy.</span></li>
+      <li><b>Refills</b><span>A short check-in form, then the next shipment. The dose goes up step by step. Prepaid plans may ship several months at once.</span></li>
     </ol>
-    <p class="small muted">Most problems in the reviews happen at steps 4 and 5: refills late, surprise charges, hard to cancel. Most star ratings are collected at step 3.</p>
+    <p class="small muted">Why this matters: since most buyers never meet anyone, "a human who answers" is the top need in the data (<span data-k="all.need.HUMAN"></span>). Most problems happen at steps 5 and 6: late refills, surprise charges, hard to cancel. Most star ratings are collected at steps 3 and 4.</p>
   </div>
 
   <div class="blk" id="i-drugs"><div class="blk-head"><span class="eyebrow">The drugs</span><h2>GLP-1 drugs reduce hunger. There are two main medicines and several brand names.</h2>
@@ -2509,6 +2527,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   set('indComp', pct(sh(known, ['comp-inj', 'comp-oral'])));
   set('indBrand', pct(sh(known, ['brand-inj', 'brand-oral'])));
   set('indGray', pct(sh(known, ['graymarket'])));
+  set('indGray2', pct(sh(known, ['graymarket'])));
   set('indTirz', pct(sh(A.reddit.drug_preference || {}, ['tirzepatide', 'tirzepatide+cagrilintide'])));
   const oop = sh(A.reddit.payment, ['cash']);
   set('indOop', pct(oop)); const b = document.getElementById('indOopBar'); if (b) b.style.width = oop + '%';
