@@ -594,6 +594,26 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .uc-who { font: 600 1rem/1.3 var(--font-display); font-style: italic; }
 @media (max-width: 900px) { .qa { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .qa { grid-template-columns: 1fr; } }
+
+.story { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.story li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 10px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; font-size: 1rem; line-height: 1.45; }
+.st-n { width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 700 0.95rem var(--font-display); }
+.sk-ana { background: var(--warn-soft); border-radius: var(--r); padding: 14px 16px; font-size: 1rem; line-height: 1.5; }
+.chain { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 6px; align-items: stretch; }
+.ch { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 4px; align-content: start; }
+.ch b { font: 700 1.02rem var(--font-display); }
+.ch span { font-size: 0.84rem; color: var(--ink-2); }
+.ch em { font-style: normal; font-size: 0.8rem; color: var(--accent); }
+.ch .ch-k { font: 600 0.68rem var(--font-mono); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.ch-main { border: 2px solid var(--accent); }
+.ch em b { font: inherit; font-weight: 700; }
+.ch-arr { align-self: center; color: var(--ink-3); font-size: 1.2rem; }
+.oc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.oc div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: grid; gap: 4px; }
+.oc span { font-size: 0.88rem; color: var(--ink-2); }
+#i-simple h3 { margin-top: 6px; }
+@media (max-width: 1000px) { .chain { grid-template-columns: 1fr; } .ch-arr { transform: rotate(90deg); justify-self: center; } }
+@media (max-width: 760px) { .story, .oc { grid-template-columns: 1fr; } }
 </style>
 
 <header class="top wrap">
@@ -716,11 +736,58 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 <section id="industry" data-panel="industry" hidden>
   <div class="sec-head">
     <span class="eyebrow">Industry overview · plain words · Oct 2026</span>
-    <h2>How online weight-loss medication works, who sells it, who pays, and what's popular</h2>
+    <h2>How online weight-loss medicine works, in plain words</h2>
   </div>
-  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="i-how">How it works</button><button type="button" data-go="i-drugs">The drugs</button><button type="button" data-go="i-pay">Who pays</button><button type="button" data-go="i-types">Types of providers</button><button type="button" data-go="i-price">How pricing works</button><button type="button" data-go="i-trends">Trends</button><button type="button" data-go="i-words">Glossary</button></nav>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="i-simple">Start here</button><button type="button" data-go="i-how">How it works</button><button type="button" data-go="i-drugs">The drugs</button><button type="button" data-go="i-pay">Who pays</button><button type="button" data-go="i-types">Types of providers</button><button type="button" data-go="i-price">How pricing works</button><button type="button" data-go="i-trends">Trends</button><button type="button" data-go="i-words">Glossary</button></nav>
 
-  <div class="blk" id="i-how"><div class="blk-head"><span class="eyebrow">How it works</span><h2>Four ways people get GLP-1s. HealthAccess's partners are route 1.</h2>
+    <div class="blk" id="i-simple"><div class="blk-head"><span class="eyebrow">Start here · the whole story, simply</span><h2>Weight-loss medicine online, explained simply</h2></div>
+    <ol class="story">
+      <li><span class="st-n">1</span><div><b>There's a medicine that makes you less hungry.</b> People take it to lose weight. Doctors call it a <b>GLP-1</b>. Most people inject it once a week with a small pen. Some new ones are pills.</div></li>
+      <li><span class="st-n">2</span><div><b>Two big companies invented it:</b> <b>Novo Nordisk</b> and <b>Eli Lilly</b>. They make it in their own factories and give it names, like <b>Wegovy</b> and <b>Zepbound</b>. These are the <b>originals</b>.</div></li>
+      <li><span class="st-n">3</span><div><b>The originals cost a lot:</b> about <b>$300–$450 a month</b> if you pay yourself.</div></li>
+      <li><span class="st-n">4</span><div><b>Some pharmacies make their own cheaper copy.</b> This is called <b>compounded</b>. It costs about <b>$100–$200 a month</b>. The government hasn't checked these copies the way it checked the originals.</div></li>
+      <li><span class="st-n">5</span><div><b>You can't just buy it like candy.</b> A doctor has to say "yes" first. That's called a <b>prescription</b>.</div></li>
+      <li><span class="st-n">6</span><div><b>Online clinics make it easy.</b> On websites like Ro or Embody you fill in a form about your health. A doctor you never meet reads it and says yes. Then a pharmacy mails the medicine to your door.</div></li>
+      <li><span class="st-n">7</span><div><b>Most people pay for it themselves.</b> Insurance almost never pays for the copies, and often says no to the originals too.</div></li>
+      <li><span class="st-n">8</span><div><b>HealthAccess is like a shop window.</b> It shows many online clinics side by side, so people can choose. When someone clicks and signs up, the clinic pays HealthAccess.</div></li>
+    </ol>
+
+    <div class="sk-ana"><b>Think of a famous cake.</b> The <b>original</b> comes from the famous bakery that invented the recipe. Health inspectors checked how it's made, and every cake is the same. The <b>copy</b> comes from a smaller bakery using the same main ingredient. It's much cheaper and often tastes fine, but nobody checks each cake.</div>
+
+    <h3>Who does what</h3>
+    <div class="chain" aria-label="Chain from drug maker to buyer">
+      <div class="ch"><span class="ch-k">Makes the medicine</span><b>Drug company</b><span>Novo Nordisk, Eli Lilly</span><em>Makes the originals</em></div>
+      <div class="ch-arr">→</div>
+      <div class="ch"><span class="ch-k">Packs it and mails it</span><b>Pharmacy</b><span>CVS, Amazon Pharmacy, mail-order pharmacies</span><em>A <b>compounding pharmacy</b> also mixes its own copies</em></div>
+      <div class="ch-arr">→</div>
+      <div class="ch ch-main"><span class="ch-k">Doctor says yes, sends the order</span><b>Online clinic</b><span>Ro, Embody, WellMedr, MEDVi, Hers…</span><em>HealthAccess's partners</em></div>
+      <div class="ch-arr">→</div>
+      <div class="ch"><span class="ch-k">Helps people choose</span><b>Comparison site</b><span>HealthAccess</span><em>Gets paid when someone signs up</em></div>
+      <div class="ch-arr">→</div>
+      <div class="ch"><span class="ch-k">Pays every month</span><b>The buyer</b><span>Usually pays everything themselves</span><em>Medicine arrives at the door</em></div>
+    </div>
+    <p class="small muted">Two drug companies also run their own online shops (<b>LillyDirect</b> and <b>NovoCare</b>), where you can buy the original without insurance. You still need a doctor's yes first.</p>
+
+    <h3>What is an "online clinic", really?</h3>
+    <div class="oc">
+      <div><b>A website and app</b><span>The sign-up, the health form, payments and the support chat.</span></div>
+      <div><b>Doctors they hire</b><span>Usually not staff. Often rented from a doctor network. The buyer rarely meets them.</span></div>
+      <div><b>A partner pharmacy</b><span>Fills the order and mails it. A few, like Hims &amp; Hers, have their own.</span></div>
+    </div>
+    <p class="small muted">That's why buyers often say "I never talked to a doctor", and why "a real person who answers" is the thing they want most (<span data-k="all.need.HUMAN"></span> of all reviews and comments).</p>
+
+    <h3>The online clinics on HealthAccess: originals or copies?</h3>
+    <div class="tscroll"><table class="t-mid">
+      <thead><tr><th>Online clinic</th><th>Mainly sells</th><th>In simple words</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ro</strong>, <strong>Hers</strong></td><td><span class="pill p-good">Originals</span></td><td>Wegovy, Zepbound. Costs more. Insurance can sometimes help.</td></tr>
+        <tr><td><strong>Embody</strong>, <strong>WellMedr</strong>, <strong>MEDVi</strong>, <strong>TrimRx</strong>, <strong>Trimi</strong>, <strong>Refills</strong></td><td><span class="pill p-warn">Copies</span></td><td>Compounded. Much cheaper. Not checked by the government.</td></tr>
+        <tr><td><strong>Found</strong>, <strong>Noom</strong></td><td><span class="pill p-accent">Both</span></td><td>Originals with insurance, copies without. Plus coaching.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+<div class="blk" id="i-how"><div class="blk-head"><span class="eyebrow">How it works</span><h2>Four ways people get GLP-1s. HealthAccess's partners are route 1.</h2>
     <p class="blk-lede">A prescription is needed for every legal route. But on most online clinics, the buyer never meets the doctor.</p></div>
     <div class="routes">
       <div class="route r-main"><span class="pill p-accent">1 · Online clinic</span><b>Form → clinician approves → pharmacy mails it</b><p class="small">Most of this market, and every HealthAccess partner. Usually no call or video: a licensed clinician reviews the form behind the scenes, often the same day. Some states require a video or phone visit first.</p><p class="small muted">Who meets a doctor: usually no one. The clinician works behind the scenes.</p></div>
