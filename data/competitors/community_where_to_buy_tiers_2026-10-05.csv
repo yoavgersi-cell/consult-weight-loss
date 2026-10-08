@@ -1,0 +1,10 @@
+provider,tier,threshold
+JoinRift,Top tier,>=10% usage & >=90% recommend
+TryTrillium,Top tier,>=10% usage & >=90% recommend
+JoinBigEasy,Top tier,>=10% usage & >=90% recommend
+PreventiveMD,Tier 2,>=5% usage & >=80% recommend
+JoinOlaHealth,Tier 2,>=5% usage & >=80% recommend
+Collective,Tier 2,>=5% usage & >=80% recommend
+JoinPomegranate,Tier 2,>=5% usage & >=80% recommend
+GoodLifeMeds,Tier 2,>=5% usage & >=80% recommend
+Fifty410,Tier 3,>=5% usage & >=70% recommend

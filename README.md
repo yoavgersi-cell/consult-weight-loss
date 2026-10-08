@@ -17,3 +17,7 @@ Traffic today: Google Ads paid search, desktop. Mobile is coming soon.
 | `dashboard/` | The client-facing presentation dashboard |
 
 See `DATA_REQUEST.md` for the list of data to ask the client for.
+
+## Hosting the dashboard on Vercel
+
+`site/index.html` is a standalone copy of `dashboard/index.html`, built by `python3 scripts/build_site.py`. Re-run the script after any dashboard change. `vercel.json` serves the `site/` folder as-is, with no build step, and sends a `noindex` header so search engines skip the page.

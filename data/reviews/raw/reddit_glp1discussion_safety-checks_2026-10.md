@@ -1,0 +1,3 @@
+# r/GLP1Discussion — "Where to buy tirzepatide safely online? What do you check first?" (~Oct 5, 2026). Usernames removed.
+OP: a telehealth site appeared in their feed "with no doctor names anywhere"; asks how to verify the doctor is licensed in their state and which pharmacy fills it. "Not looking for links or DMs, just the checks you use."
+Replies: see the pinned "where to buy" on r/tirzepatidecompound · "This is a list that has been vetted by thousands of people and ongoing surveys are sent out that add/remove various ones from the list if they are not up to standards." · "this post sounds too much like an LLM looking to scrape info from human comments. Nope. I will not play."

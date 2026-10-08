@@ -1,0 +1,29 @@
+provider,tier,plan,total_3mo,pharmacy,pharmacy_type,compliant_28day,additive,bud_months,ships_all_states,refill
+JoinRift,top,starter,299,Drug Crafters,503A,yes,B12 or glycine,3,no,auto
+TryTrillium,top,starter,299,Drug Crafters,503A,yes,B12 or glycine,3,no,auto
+Fifty410,tier3,starter,399,Hyalo,503B,no,none,9,no,manual
+TryTrillium,top,starter,399,Hallandale,503A,yes,none,3,no,auto
+TryTrillium,top,starter,399,Nova,503B,yes,B6,3,no,auto
+TryTrillium,top,starter,399,Hyalo,503B,yes,none/B12/glycine,9,yes,auto
+JoinRift,top,starter,469,Southend,503A,yes,B6,3,no,auto
+JoinBigEasy,top,starter,469,Hyalo,503B,yes,none,9,yes,manual
+JoinBigEasy,top,starter,499,Hallandale,503A,yes,none,3,no,manual
+JoinBigEasy,top,starter,499,OptioRx,503A,yes,B3,3,yes,manual
+JoinRift,top,starter,499,Hyalo,503B,yes,none,9,yes,auto
+JoinRift,top,starter,499,Hallandale,503A,yes,none,3,no,auto
+JoinRift,top,starter,499,Nova (B6),503B,yes,B6,6,no,auto
+JoinRift,top,starter,499,Nova (B12),503B,yes,B12,6,no,auto
+JoinRift,top,higher,299,Drug Crafters,503A,yes,B12 or glycine,3,no,auto
+TryTrillium,top,higher,349,Drug Crafters,503A,yes,B12 or glycine,3,no,auto
+JoinRift,top,higher,469,Southend,503A,yes,B6,3,no,auto
+JoinBigEasy,top,higher,469,Hyalo,503B,yes,none,9,yes,manual
+JoinRift,top,higher,499,Hyalo,503B,,none,9,yes,auto
+JoinRift,top,higher,499,Hallandale,503A,,none,3,no,auto
+JoinRift,top,higher,499,Nova (B6),503B,,B6,6,no,auto
+JoinRift,top,higher,499,Nova (B12),503B,,B12,6,no,auto
+TryTrillium,top,higher,499,Hyalo,503B,yes,none/B12/glycine,9,no,auto
+TryTrillium,top,higher,499,Nova,503B,,B6,3,no,auto
+TryTrillium,top,higher,499,Hallandale,503A,,none,3,no,auto
+JoinBigEasy,top,higher,529,Hallandale,503A,,none,3,no,manual
+Fifty410,tier3,higher,524,Hyalo,503B,,none,9,no,manual
+JoinBigEasy,top,higher,599,OptioRx,503A,,B3,3,yes,manual

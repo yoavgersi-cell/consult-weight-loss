@@ -1,0 +1,4 @@
+# r/Scam_Finder — "Scam peptide supplier" (~Oct 2, 2026). Usernames removed.
+OP: ordered "research peptides" from a Telegram group ("China peptide factory"), paid $300 by bank transfer to a Cyprus account; then asked for $200 "refundable insurance"; refused, got blocked.
+Comments (~45): one says just pay a bit more for 503A compounded (US). Majority are people asking "DM me your source", "sick of paying top dollar", "scared to death of scammers… searching for months for reliable reputable company that takes PayPal". Others: "GREY IS THE WAY TO GO", "only pay by PayPal", "just use a reseller… 3rd party testing", second victim of a Telegram seller, a COA-verification site plugs itself, a user offering a private "chat group with the vendor".
+Analyst: shows price-driven buyers who have left the legal market; scam risk is high and they know it; trust signals they look for = PayPal buyer protection, third-party testing/COA, "reliable source in USA".

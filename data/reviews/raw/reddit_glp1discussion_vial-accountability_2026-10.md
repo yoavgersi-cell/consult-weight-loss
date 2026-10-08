@@ -1,0 +1,4 @@
+# r/GLP1Discussion — "when a compounded glp1 vial fails, who is actually accountable, the platform or the pharmacy?" (~Oct 5, 2026). Usernames removed.
+OP (one-week-old account): compounded tirzepatide from Rift; vial stopper not seated, cap popped off; doctor chat routed to support, support routed back; ~2 hours no answer; "both sides can point at each other forever and the patient just absorbs the risk".
+Replies: OP accused of being a bot from rival telehealth Gimme, which r/tirzepatidecompound reportedly "exposed… for using AI bots to intentionally trash the reputation of other telehealths" (Rift the main target). [Allegation; not verified by us.]
+Analyst: (1) the platform-vs-pharmacy accountability gap is a real buyer question even if this post is fake; (2) reputation manipulation exists on Reddit as well as Trustpilot — communities police it with account-age checks.

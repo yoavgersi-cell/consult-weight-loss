@@ -1,0 +1,31 @@
+# r/tirzepatidecompound — "Wellmedr pricing and reviews - Tempted to start at $89 per month for 1 year" (~Sep 16, 2026). Usernames removed; demographic flair kept.
+OP (newbie, limited income, California): tempted by WellMedr $89/mo "for life" on a 1-year plan; "They have a good trustpilot score and the pricing is what attracts me most"; Collective doesn't deliver to CA.
+- "If they require a 1 year commitment for $89, then it's simply not a good price. There are many reputable sources now that charge $100/month for a 3 month supply… company disbands and you're… out of money. People are making new telehealths every week, and they're falling apart just as fast."
+- [48M | 285→245→190 | 7mg] price list: Rift/DrugCrafters $299/3 mo; Pom/Hyalo $299/3 mo under 9 mg; Pom/apothecary $199/2 mo over 9 mg (short BUD promo); Collective $69/mo + $199/yr; PreventiveMD $334/3 mo.
+- Reply: "this post… is the single-most important data point I have seen in my weeks of research… Even chatgpt couldn't lay out the best priced safe options clearly"; "the additional ~$15 spent on Rift or Pom working with an identified pharmacy is worth the peace of mind"; "I am basing my decision more on the underlying pharmacy than on the telehealth provider".
+- [62F SW296 CW158] "Hyalo has not been inspected"
+- [43F | 191→175→140 | 5mg] Collective with fee ~ $85/mo; 6 months $102/mo; excited for "longevity meds… one stop shopping".
+- "A year upfront with no track record is a huge gamble"
+- "I find this very very hard. Wish there was a help out there that could stir towards the right places. Google at times are not a help… So many gimmicks out there."
+- WellMedr $129 month-to-month, less for 3/6 mo, $89 for 12 mo; "No membership or fees outside of this."
+- "trustpilot? girl, c'mon… prices keep coming down… go to r/tirzdeals for actually vetted deals"
+- "Trust pilot is FOS! … went through GetThinMD because of the great reviews and was charged $747 for 3 mo supply"
+- [46F 5'7 sw:312 cw:150 gw:140-150 | 17mg] "bombarded with spam emails and text messages… I don't like when a company pushes that hard."
+- PreventiveMD / Pom recommended for California.
+- "I would never personally pay upfront for a year and hope I get the meds each month."
+- Mom on a 1-year plan since April, fine, ships every 3 months; "prices have been coming down so much, I would just go with a 3 month plan from somewhere reputable."
+- Ordered, nothing delivered after a week, can't reach them; later: received one dose, charged $129 for a month; disputed with credit card; "Avoid this company."
+- "I love Wellmedr… Amazing results, paying $129 month to month… since April"; pharmacy = Logos (503A, Florida).
+- "DON'T… 1 million marketing text messages… Go with Pomegranate."
+- CA user took the year plan: "a company I can track if there is an issue" vs the other "color" (gray market).
+- Tried "Preventivemd, refills, RemedyWell, Gimme, Hers (first timer mistake!!!)".
+- No response in days via portal, email, voicemail.
+- Approved in an hour, no tracking after a week; company message: pharmacy delays, no shipping Fri–Sun; "They are now offering $49 a month any dose if I agree to a year!"
+- Tirz with glycine $129; asked them to lower the price as market prices fell, and they did.
+- [39F 5'3" HW:290 SW:260 CW:176.9 GW:120 | 12.5MG] asks which pharmacy.
+- [62F] Logos to West Coast arrived frozen, overnight; can't choose pharmacy; third vial from TAM pharmacy, 28-day BUD.
+- "Try one month first."
+- [Affiliated competitor owner] "their trustpilot scores are completely fake, fyi."
+- "a little wonky at the beginning (about two weeks to get your first dose)"
+- 3rd injection at 2.5 mg, arrived cold, lost 8.6 lbs (4.3%) in 15 days; heartburn, constipation.
+- Collective $199/yr + $69/mo = $85.58/mo; "you can always switch elsewhere".
