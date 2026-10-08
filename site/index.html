@@ -518,6 +518,37 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .go-sm { font-size: 0.85rem; padding: 6px 12px; }
 @media (max-width: 980px) { .mb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .mb-grid, .mb-head { grid-template-columns: 1fr; } }
+
+.flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; counter-reset: f; }
+.flow li { counter-increment: f; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 6px; align-content: start; position: relative; }
+.flow li b::before { content: counter(f) ". "; color: var(--accent); font-family: var(--font-mono); }
+.flow li span { font-size: 0.88rem; color: var(--ink-2); }
+.ind-pop { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ind-pop div, .pay-big { display: grid; gap: 2px; }
+.ind-pop b { font: 700 1.6rem/1 var(--font-display); color: var(--accent); }
+.ind-pop span { font-size: 0.86rem; color: var(--ink-2); }
+.pay-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 16px; align-items: start; }
+.pay-big { background: var(--hero-bg); color: var(--hero-fg); border-radius: var(--r); padding: 20px; gap: 8px; }
+.pay-big b { font: 700 3rem/1 var(--font-display); color: var(--hl); }
+.pay-big span { color: var(--on-ink-2); }
+.meter-l { display: block; height: 8px; border-radius: 4px; background: var(--on-ink-track); overflow: hidden; }
+.meter-l i { display: block; height: 100%; background: var(--hl); }
+.pay-why { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: grid; gap: 8px; }
+.cov td .pill { margin-right: 6px; }
+.ptypes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.pt { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 8px; align-content: start; }
+.pt .pill { justify-self: start; }
+.trends { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.trends div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: grid; gap: 4px; align-content: start; }
+.trends span { font-size: 0.88rem; color: var(--ink-2); }
+.gloss { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.gloss div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; }
+.gloss dt { font-weight: 700; }
+.gloss dd { margin: 2px 0 0; font-size: 0.88rem; color: var(--ink-2); }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--accent); font: inherit; text-decoration: underline; cursor: pointer; }
+[id^="i-"] { scroll-margin-top: 110px; }
+@media (max-width: 980px) { .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .flow, .pay-row, .ind-pop { grid-template-columns: 1fr; } }
 </style>
 
 </head>
@@ -536,6 +567,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
     <button class="tab" role="tab" data-tab="brief">Meeting brief</button>
+    <button class="tab" role="tab" data-tab="industry">Industry overview</button>
     <button class="tab" role="tab" data-tab="home">Bottom line</button>
     <button class="tab" role="tab" data-tab="buyer">The buyer</button>
     <button class="tab" role="tab" data-tab="money">What they pay</button>
@@ -561,7 +593,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   <div class="mb-grid">
     <div class="mb-box mb-buyer">
       <span class="mb-k">1 · The buyer, in one line</span>
-      <p class="mb-line">Most often a woman around 48, paying cash, on compounded tirzepatide at about <span data-k="price.comp.median"></span> a month. Wants one honest price and a human who answers.</p>
+      <p class="mb-line">Most often a woman around 48, paying out of pocket, on compounded tirzepatide at about <span data-k="price.comp.median"></span> a month. Wants one honest price and a human who answers.</p>
       <div class="mb-nums">
         <div><b data-k="stage.all.new"></b><span>are first-timers · <span data-k="stage.all.switch"></span> are switching</span></div>
         <div><b data-k="all.need.PRICE_CLARITY"></b><span>of all reviews and comments ask for a price they understand</span></div>
@@ -630,10 +662,137 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   <div class="mb-foot">
     <span class="small muted">Details behind every point are in the other tabs.</span>
     <div class="pills" style="gap:8px">
-      <button type="button" class="go go-sm" data-tab-go="home">Bottom line</button>
+      <button type="button" class="go go-sm" data-tab-go="industry">Industry overview</button><button type="button" class="go go-sm" data-tab-go="home">Bottom line</button>
       <button type="button" class="go go-sm" data-tab-go="ha">Card rewrites and audit</button>
       <button type="button" class="go go-sm" data-tab-go="articles">Article ideas</button>
     </div>
+  </div>
+</section>
+
+<!-- INDUSTRY OVERVIEW -->
+<section id="industry" data-panel="industry" hidden>
+  <div class="sec-head">
+    <span class="eyebrow">Industry overview · plain words · Oct 2026</span>
+    <h2>How online weight-loss medication works, who sells it, who pays, and what's popular</h2>
+  </div>
+  <nav class="subnav" aria-label="Jump to"><button type="button" data-go="i-how">How it works</button><button type="button" data-go="i-drugs">The drugs</button><button type="button" data-go="i-pay">Who pays</button><button type="button" data-go="i-types">Types of providers</button><button type="button" data-go="i-price">How pricing works</button><button type="button" data-go="i-trends">Trends</button><button type="button" data-go="i-words">Glossary</button></nav>
+
+  <div class="blk" id="i-how"><div class="blk-head"><span class="eyebrow">How it works</span><h2>From a Google search to a box at the door, in five steps</h2></div>
+    <ol class="flow">
+      <li><b>Search</b><span>The buyer searches, for example "Wegovy price". A comparison site like HealthAccess shows a list of providers.</span></li>
+      <li><b>Pick a provider</b><span>The buyer clicks to a telehealth company, an online clinic. The comparison site is paid for that sign-up.</span></li>
+      <li><b>Online visit</b><span>The buyer fills in a health form, sometimes with a short video call. A licensed doctor or nurse decides whether to prescribe.</span></li>
+      <li><b>Pharmacy ships it</b><span>A pharmacy fills the prescription and mails it, usually within 2–7 days.</span></li>
+      <li><b>Monthly refills</b><span>The dose goes up step by step over the first months. Each month is a new charge and a new shipment.</span></li>
+    </ol>
+    <p class="small muted">Most problems in the reviews happen at steps 4 and 5: refills late, surprise charges, hard to cancel. Most star ratings are collected at step 3.</p>
+  </div>
+
+  <div class="blk" id="i-drugs"><div class="blk-head"><span class="eyebrow">The drugs</span><h2>GLP-1 drugs reduce hunger. There are two main medicines and several brand names.</h2>
+    <p class="blk-lede">GLP-1 is a hormone the body makes after eating. These drugs copy it, so people feel full sooner and think about food less. Most are a weekly injection; two are daily pills.</p></div>
+    <div class="tscroll"><table class="t-mid">
+      <thead><tr><th>Medicine</th><th>Brand names</th><th>Form</th><th>Approved for weight loss?</th><th>Price without insurance</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Semaglutide</strong> <span class="small muted">(Novo Nordisk)</span></td><td>Wegovy · Wegovy pill · <span class="muted">Ozempic (diabetes)</span></td><td>Weekly injection or daily pill</td><td><span class="pill p-good">Yes</span> Wegovy</td><td>$149–$399 a month</td></tr>
+        <tr><td><strong>Tirzepatide</strong> <span class="small muted">(Eli Lilly)</span></td><td>Zepbound · <span class="muted">Mounjaro (diabetes)</span></td><td>Weekly injection (pen or vial)</td><td><span class="pill p-good">Yes</span> Zepbound</td><td>$299–$449 a month</td></tr>
+        <tr><td><strong>Orforglipron</strong> <span class="small muted">(Eli Lilly)</span></td><td>Foundayo</td><td>Daily pill, no fasting needed</td><td><span class="pill p-good">Yes</span> since Apr 2026</td><td>$149–$349 a month</td></tr>
+        <tr><td><strong>Compounded</strong> semaglutide or tirzepatide</td><td>No brand; made by a compounding pharmacy</td><td>Injection, sometimes pill or drops</td><td><span class="pill p-warn">No</span> not FDA-approved</td><td>$99–$299 a month</td></tr>
+        <tr><td><strong>"Research peptides"</strong> (e.g. retatrutide)</td><td>None. Sold online "not for human use"</td><td>Powder you mix yourself</td><td><span class="pill p-bad">No</span> not legal to sell for use</td><td>$10–$35 a month</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid g2">
+      <div class="card"><h3>Brand-name vs compounded, simply</h3>
+        <ul class="ticks small">
+          <li><b>Brand-name</b> (Wegovy, Zepbound, Foundayo) is made by the drug company, tested in trials and approved by the FDA.</li>
+          <li><b>Compounded</b> is the same active ingredient mixed by a specialist pharmacy. It isn't FDA-approved or trial-tested. It became popular during the 2022–2025 shortages because it's cheaper.</li>
+          <li>In 2026 the FDA cracked down on compounded versions, and brand prices fell. So "cheapest" no longer always means compounded.</li>
+        </ul></div>
+      <div class="card"><h3>What's popular in our data</h3>
+        <div class="ind-pop">
+          <div><b id="indComp"></b><span>of buyers who name a drug are on <strong>compounded</strong> medication</span></div>
+          <div><b id="indBrand"></b><span>are on <strong>brand-name</strong> (Wegovy, Zepbound, pills)</span></div>
+          <div><b id="indTirz"></b><span>pick <strong>tirzepatide</strong> when asked to choose one</span></div>
+          <div><b id="indGray"></b><span>talk about <strong>gray-market</strong> research peptides</span></div>
+        </div></div>
+    </div>
+  </div>
+
+  <div class="blk" id="i-pay"><div class="blk-head"><span class="eyebrow">Who pays</span><h2>Almost everyone pays out of pocket. Insurance is the exception.</h2>
+    <p class="blk-lede"><b>Out of pocket</b> means the buyer pays the full price themselves, by card, without insurance. In the industry this is often called "cash pay".</p></div>
+    <div class="pay-row">
+      <div class="pay-big"><b id="indOop"></b><span>of buyers who say how they pay are paying out of pocket</span><span class="meter-l"><i id="indOopBar"></i></span></div>
+      <div class="pay-why"><h3>Why so many?</h3><ul class="ticks small">
+        <li><b>Insurance never covers compounded drugs</b>, and most buyers in the data are on compounded.</li>
+        <li><b>Insurance often refuses brand-name drugs for weight loss.</b> About 62% of claims were rejected (2021–24), and some employers dropped coverage in 2026.</li>
+        <li><b>Even with insurance it's hard to afford:</b> 56% of GLP-1 users say so, including 55% of those with insurance (KFF, Nov 2025).</li>
+      </ul></div>
+    </div>
+    <div class="tscroll"><table class="t-mid cov">
+      <thead><tr><th>What</th><th>Covered by insurance?</th><th>What the buyer pays</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Compounded</strong> semaglutide or tirzepatide</td><td><span class="pill p-bad">Never</span></td><td>Full price, $99–$299 a month</td></tr>
+        <tr><td><strong>Wegovy, Zepbound, Foundayo</strong> with work insurance</td><td><span class="pill p-warn">Sometimes</span> Depends on the employer's plan. The doctor usually has to ask the insurer first ("prior authorization"), and many requests are denied.</td><td>About $25–$50 a month if approved, with the maker's savings card</td></tr>
+        <tr><td><strong>Ozempic, Mounjaro</strong> for type 2 diabetes</td><td><span class="pill p-good">Usually</span> for diabetes, not for weight loss alone</td><td>A normal copay</td></tr>
+        <tr><td><strong>Medicare</strong> (65+), Wegovy, Zepbound, Foundayo</td><td><span class="pill p-good">Yes, new</span> The "GLP-1 Bridge" runs Jul 2026 – Dec 2027</td><td>$50 a month</td></tr>
+        <tr><td><strong>Research peptides</strong></td><td><span class="pill p-bad">Never</span></td><td>$10–$35, with unknown risk</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small muted">For a comparison site, this means the price people see is the price they pay. The out-of-pocket monthly price has to be the main number on every card, with a separate route for the insured and Medicare minority.</p>
+  </div>
+
+  <div class="blk" id="i-types"><div class="blk-head"><span class="eyebrow">Types of providers</span><h2>Five kinds of sellers, and where each HealthAccess partner fits</h2></div>
+    <div class="ptypes">
+      <div class="pt"><span class="pill p-good">Brand-name telehealth</span><p>Online clinic for FDA-approved drugs only. Monthly membership plus the drug. Often helps with insurance.</p><p class="small"><b>Examples:</b> Ro, Hims &amp; Hers, WeightWatchers Med+, Amazon One Medical</p><p class="small muted"><b>On HealthAccess:</b> Ro, Hers</p></div>
+      <div class="pt"><span class="pill p-warn">Compounded telehealth</span><p>Online clinic selling compounded versions. One monthly price that includes the drug. The cheapest legal option.</p><p class="small"><b>Examples:</b> Embody, TrimRx, WellMedr, MEDVi, SkinnyRx, Trimi</p><p class="small muted"><b>On HealthAccess:</b> Embody, WellMedr, MEDVi, TrimRx, Trimi, Refills</p></div>
+      <div class="pt"><span class="pill p-accent">Mixed programs</span><p>Both brand and compounded, plus coaching or a medical team. Often work with insurance.</p><p class="small"><b>Examples:</b> Found, Noom, Mochi</p><p class="small muted"><b>On HealthAccess:</b> Found, Noom</p></div>
+      <div class="pt"><span class="pill p-neutral">Straight from the maker</span><p>The drug company sells its brand at a set price without insurance. You still need a prescription from somewhere.</p><p class="small"><b>Examples:</b> LillyDirect (Zepbound, Foundayo), NovoCare (Wegovy), TrumpRx</p><p class="small muted"><b>On HealthAccess:</b> none</p></div>
+      <div class="pt"><span class="pill p-bad">Gray market</span><p>"Research peptides" sold online without a prescription. Not legal for human use and unsafe. Not something to list.</p><p class="small"><b>Examples:</b> overseas peptide sellers, Telegram and Discord groups</p><p class="small muted"><b>On HealthAccess:</b> none</p></div>
+    </div>
+    <p class="small muted">HealthAccess's list today is mostly compounded telehealth. That matches what most buyers use, but the page doesn't say which is which.</p>
+  </div>
+
+  <div class="blk" id="i-price"><div class="blk-head"><span class="eyebrow">How pricing works</span><h2>Four ways providers charge, and what buyers trip over</h2></div>
+    <div class="tscroll"><table class="t-mid">
+      <thead><tr><th>Model</th><th>How it works</th><th>Example</th><th>What trips buyers up</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Membership + drug</strong></td><td>A monthly fee for the clinic, and the drug billed on top</td><td>Ro: $149 a month + $149–$449 for the drug</td><td>People read the first-month price ($39) as the total</td></tr>
+        <tr><td><strong>All-in flat price</strong></td><td>One monthly price including the drug, sometimes the same at every dose</td><td>Embody: $129 tirzepatide, any dose</td><td>Refills arriving late</td></tr>
+        <tr><td><strong>Intro price, then higher</strong></td><td>A low first month, then the regular price</td><td>MEDVi: $179, then $299</td><td>The jump in month 2</td></tr>
+        <tr><td><strong>Prepaid bundle</strong></td><td>Pay 3, 6 or 12 months upfront for a lower monthly price</td><td>TrimRx: $1,519 for 6 months</td><td>No refund if the provider fails mid-plan</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small muted">The dose usually goes up over the first months. With brand-name drugs the price often rises with the dose. Many compounded providers keep the same price at every dose.</p>
+  </div>
+
+  <div class="blk" id="i-trends"><div class="blk-head"><span class="eyebrow">Trends · 2025–2026</span><h2>What changed this year, and what buyers talk about now</h2></div>
+    <div class="trends">
+      <div><b>Brand drugs got cheaper</b><span>Zepbound and Wegovy now sell without insurance for $299–$449, and pills start at $149. The gap with compounded has narrowed.</span></div>
+      <div><b>Pills arrived</b><span>Wegovy pill (Jan 2026) and Foundayo (Apr 2026). A new reason for needle-shy first-timers to start.</span></div>
+      <div><b>Crackdown on compounded</b><span>FDA warning letters to 55+ telehealth firms in 2026. Hims stopped compounded for new patients.</span></div>
+      <div><b>Medicare joined</b><span>$50 a month for 65+ since Jul 2026. One in four people in our data who state their age is 65 or older.</span></div>
+      <div><b>Tirzepatide is the favourite</b><span>Buyers see it as stronger, and it's the drug most people on compounded choose.</span></div>
+      <div><b>Microdosing and maintenance</b><span>Lower doses to keep weight off cheaply. A growing topic, and a niche of its own.</span></div>
+      <div><b>Shopping with AI and Reddit</b><span>Buyers ask ChatGPT and trust community lists more than star ratings.</span></div>
+      <div><b>Gray-market temptation</b><span>Research peptides at $10–$35 a month pull price-desperate buyers away from safe options.</span></div>
+    </div>
+    <p class="small muted">Dated timeline of the 2026 changes: <button type="button" class="linkbtn" data-tab-go="market">Market &amp; search tab</button>.</p>
+  </div>
+
+  <div class="blk" id="i-words"><div class="blk-head"><span class="eyebrow">Glossary</span><h2>The words you'll hear in the meeting</h2></div>
+    <dl class="gloss">
+      <div><dt>Out of pocket / cash pay</dt><dd>Paying the full price yourself, without insurance.</dd></div>
+      <div><dt>GLP-1</dt><dd>The family of weight-loss drugs that reduce hunger.</dd></div>
+      <div><dt>Brand-name</dt><dd>The original, FDA-approved drug: Wegovy, Zepbound, Foundayo.</dd></div>
+      <div><dt>Compounded</dt><dd>The same ingredient mixed by a specialist pharmacy. Cheaper, not FDA-approved.</dd></div>
+      <div><dt>Telehealth</dt><dd>An online clinic: health form or video visit, prescription, home delivery.</dd></div>
+      <div><dt>Prior authorization</dt><dd>When the doctor must ask the insurer for approval before it pays. Often denied for weight loss.</dd></div>
+      <div><dt>Membership</dt><dd>A monthly fee to the clinic, separate from the drug.</dd></div>
+      <div><dt>Dose / titration</dt><dd>Starting low and raising the dose every few weeks to limit side effects.</dd></div>
+      <div><dt>Maintenance dose</dt><dd>The dose people stay on long-term. The fair price to compare.</dd></div>
+      <div><dt>503A / 503B</dt><dd>Two types of compounding pharmacy. 503B makes larger batches under stricter rules.</dd></div>
+      <div><dt>Prepay / bundle</dt><dd>Paying several months upfront for a discount.</dd></div>
+      <div><dt>Research peptides</dt><dd>Unapproved drugs sold "not for human use". The gray market.</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -683,7 +842,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     <h2 id="avgLine"></h2>
   </div>
   <nav class="subnav" aria-label="Jump to"><button type="button" data-go="b-who">Who they are</button><button type="button" data-go="b-journey">Where they are</button><button type="button" data-go="b-wants">What they want and fear</button><button type="button" data-go="b-voice">In their words</button><button type="button" data-go="b-personas">Personas</button><button type="button" data-go="b-data">The data</button></nav>
-<div class="blk" id="b-who"><div class="blk-head"><span class="eyebrow">Who they are</span><h2>Mostly women in their 40s to 60s, paying cash</h2><p class="blk-lede">Only what people stated outright. Nothing is inferred from names or photos.</p></div><div class="avg-grid" id="avgFacts"></div><div class="card">
+<div class="blk" id="b-who"><div class="blk-head"><span class="eyebrow">Who they are</span><h2>Mostly women in their 40s to 60s, paying out of pocket</h2><p class="blk-lede">Only what people stated outright. Nothing is inferred from names or photos.</p></div><div class="avg-grid" id="avgFacts"></div><div class="card">
     <div class="di-head"><h3>Who they are (stated outright only)</h3><span class="small muted" id="diDemoN"></span></div>
     <div class="grid g3">
       <div><p class="small muted" style="margin-bottom:6px">Age band</p><div id="diAge" class="hbars"></div></div>
@@ -777,7 +936,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     <div class="di-head"><h3>What people pay each month</h3><span class="small muted" id="diPriceN"></span></div>
     <div class="strip" id="diPrice"></div>
   </div></div>
-<div class="blk" id="m-what"><div class="blk-head"><span class="eyebrow">What they buy</span><h2>Compounded tirzepatide, paid in cash</h2></div><div class="grid g3">
+<div class="blk" id="m-what"><div class="blk-head"><span class="eyebrow">What they buy</span><h2>Compounded tirzepatide, paid out of pocket</h2></div><div class="grid g3">
     <div class="card"><h3>Medication they discuss</h3><div id="diMed" class="hbars"></div></div>
     <div class="card"><h3>Why they switch</h3><div id="diSwitch" class="hbars"></div></div>
     <div class="card"><h3>How they pay (Reddit)</h3><div id="diPay" class="hbars"></div></div>
@@ -1298,7 +1457,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     <h3>Gaps nobody fills well</h3>
     <div class="grid g3">
       <div><strong>12-month cost with dose increases</strong><p class="small muted">Everyone quotes "from $X". The biggest gap, and the top complaint.</p></div>
-      <div><strong>Insurance-first routing</strong><p class="small muted">Commercial, Medicare and cash, with who handles the PA and the realistic copay.</p></div>
+      <div><strong>Insurance-first routing</strong><p class="small muted">Work insurance, Medicare and out of pocket, with who handles the PA and the realistic copay.</p></div>
       <div><strong>Contract, prepay and cancellation terms</strong><p class="small muted">Found's $99 early-cancel fee, WW's 12-month plan, Ivim, TrimRx and Embody prepay bundles. Almost never in the table, and the top reason buyers lose money.</p></div>
       <div><strong>What's available today</strong><p class="small muted">Pill, HD dose, vial vs pen, microdose, compounded status. Changes monthly; most pages are stale.</p></div>
       <div><strong>Time to prescription and delivery</strong><p class="small muted">No major site measures it, although late refills are a top complaint.</p></div>
@@ -1314,7 +1473,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   
 
   <div class="grid g4">
-    <div class="card stat"><span class="eyebrow">Lowest brand cash price</span><span class="num">$149<span class="small muted">/mo</span></span><p class="small">Wegovy pill and Foundayo starting doses. They now compete directly with $99–$199 compounded offers.</p><span class="src">NovoCare, LillyDirect, Apr 2026</span></div>
+    <div class="card stat"><span class="eyebrow">Lowest brand price without insurance</span><span class="num">$149<span class="small muted">/mo</span></span><p class="small">Wegovy pill and Foundayo starting doses. They now compete directly with $99–$199 compounded offers.</p><span class="src">NovoCare, LillyDirect, Apr 2026</span></div>
     <div class="card stat"><span class="eyebrow">Find it hard to afford</span><span class="num">56%</span><p class="small">of GLP-1 users, including 55% of those <em>with</em> insurance. Cost is the main problem.</p><span class="src">KFF poll, Nov 2025</span></div>
     <div class="card stat"><span class="eyebrow">Weight-loss GLP-1 claims rejected</span><span class="num">~62%</span><p class="small">Insured searchers are often denied. That opens a "denied, now what?" segment.</p><span class="src">RX Index, 2021–24 claims</span></div>
     <div class="card stat"><span class="eyebrow">Mobile vs desktop</span><span class="num">7×</span><p class="small">more mobile traffic in health and wellness, but desktop converts about 22% better. Mobile needs its own design.</p><span class="src">Unbounce benchmark, 2024</span></div>
@@ -1324,7 +1483,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     <div class="card">
       <span class="eyebrow">Five shifts that changed search intent</span>
       <div>
-        <div class="shift"><span class="when">Dec 2025 →</span><div><h3>Brand drugs got cheap for cash buyers</h3><p class="small muted">Zepbound vials $299 / $399 / $449, Wegovy pen $349, Wegovy HD $399. "Cheapest" no longer automatically means compounded.</p></div></div>
+        <div class="shift"><span class="when">Dec 2025 →</span><div><h3>Brand drugs got cheaper for people paying out of pocket</h3><p class="small muted">Zepbound vials $299 / $399 / $449, Wegovy pen $349, Wegovy HD $399. "Cheapest" no longer automatically means compounded.</p></div></div>
         <div class="shift"><span class="when">Jan–Apr 2026</span><div><h3>Weight-loss pills launched</h3><p class="small muted">Wegovy pill (Jan 5) and Foundayo (Apr 1), both from $149. New searches like "wegovy pill price" and "foundayo vs wegovy pill".</p></div></div>
         <div class="shift"><span class="when">Feb–Jun 2026</span><div><h3>FDA cracked down on compounded drugs</h3><p class="small muted">Warning letters to 30, then 25 more telehealth firms. A May 2026 proposal would keep sema/tirz off the 503B bulk list. Hims moved to brand drugs.</p></div></div>
         <div class="shift"><span class="when">Jul 2026 →</span><div><h3>Medicare started covering GLP-1s</h3><p class="small muted">The GLP-1 Bridge charges a flat $50 copay through 2027. At the same time some employers are dropping coverage, so insurance searches go both ways.</p></div></div>
@@ -1336,7 +1495,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
         <span class="eyebrow">Where we can win</span>
         <ul class="clean">
           <li><strong>Show the real cost.</strong> <span class="muted">Every page quotes a "from $X" price. Nobody shows the all-in monthly cost at the dose people stay on, which is the top complaint in reviews.</span></li>
-          <li><strong>Route insured and cash buyers separately.</strong> <span class="muted">Insured, Medicare and cash buyers want different providers. Nobody asks which one you are.</span></li>
+          <li><strong>Route insured and out-of-pocket buyers separately.</strong> <span class="muted">Insured, Medicare and out-of-pocket buyers want different providers. Nobody asks which one you are.</span></li>
           <li><strong>Give honest trust signals.</strong> <span class="muted">Label every option FDA-approved or compounded, date-stamp prices, and flag regulatory issues. Raw Trustpilot stars favour the riskiest sellers.</span></li>
           <li><strong>Design for mobile from the start.</strong> <span class="muted">Stacked cards, filter chips and a sticky button, not a shrunken desktop table.</span></li>
         </ul>
@@ -1366,7 +1525,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
           <thead><tr><th></th><th>Desktop (today)</th><th>Mobile (launch)</th></tr></thead>
           <tbody>
             <tr><td><strong>Queries</strong></td><td>Longer, research-y: "ro vs hims cost with insurance"</td><td>Short, brand or price: "wegovy pill price"</td></tr>
-            <tr><td><strong>Who</strong></td><td>Older; Medicare and insurance research</td><td>Younger, cash-pay, curious about pills</td></tr>
+            <tr><td><strong>Who</strong></td><td>Older; Medicare and insurance research</td><td>Younger, out of pocket, curious about pills</td></tr>
             <tr><td><strong>Trust</strong></td><td>Reads methodology and fine print</td><td>Needs compressed trust: badges, FDA label, review count</td></tr>
             <tr><td><strong>Layout</strong></td><td>3–5 column table, sticky header</td><td>Stacked cards, filter chips, sticky CTA, no sideways scroll</td></tr>
             <tr><td><strong>Measure</strong></td><td>Click-out rate is an OK proxy</td><td>Click-out rate overstates; use partner-confirmed conversions</td></tr>
@@ -1571,7 +1730,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
           <tr><td>3</td><td><strong>Partner fact sheet</strong> for every provider HealthAccess lists: all-in monthly price at start and maintenance dose, membership, pharmacy and type, cancel online, refund terms, ships to all states, med type</td><td>The card fields buyers ask for don't exist anywhere in one place. That's the moat.</td><td>Partner list (from the site)</td><td>Partner table in the dashboard. Becomes the data source for the new cards.</td><td>Week 1–2</td></tr>
           <tr><td>4</td><td><strong>Wireframe v1 of the compare page</strong>, desktop and mobile: fear-led hero, filters (FDA / compounded, budget, no membership), stage routes, the new card</td><td>Mobile launch is coming. Design it from the data now, not as a shrunk desktop.</td><td>Steps 1 + 3</td><td>Clickable HTML prototype</td><td>Week 2</td></tr>
           <tr><td>5</td><td><strong>Measurement plan + first test spec</strong>: the stage question, click-out events by position and card field, partner postbacks by device, the hero A/B (drug-led vs fear-led)</td><td>Without this, no test result is readable. The client's dev team can start before the data arrives.</td><td>Nothing</td><td>Tracking spec + test brief, ready to hand to dev</td><td>Week 2</td></tr>
-          <tr><td>6</td><td><strong>Fill the data gaps</strong> with targeted pastes: brand-name and insured buyers, Hims / Ro / LillyDirect users, 65+ and Medicare, people searching on mobile</td><td>Today's sample leans compounded, cash, experienced Reddit users. Google Ads traffic is probably broader.</td><td>Your pastes</td><td>Profile re-weighted. Gaps marked in Data insights.</td><td>Ongoing</td></tr>
+          <tr><td>6</td><td><strong>Fill the data gaps</strong> with targeted pastes: brand-name and insured buyers, Hims / Ro / LillyDirect users, 65+ and Medicare, people searching on mobile</td><td>Today's sample leans compounded, out-of-pocket, experienced Reddit users. Google Ads traffic is probably broader.</td><td>Your pastes</td><td>Profile re-weighted. Gaps marked in Data insights.</td><td>Ongoing</td></tr>
         </tbody>
       </table>
     </div>
@@ -1634,7 +1793,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
       <h3>What people say they pay each month</h3><span class="small muted"><span data-k="n.price"></span> price reports from Reddit · each dot is one person</span>
     </div>
     <div class="strip" id="priceStrip" role="img" aria-label="Monthly prices people report, by channel"></div>
-    <p class="small muted">The going rate: about <strong data-k="price.comp.median"></strong> for compounded (middle half <span data-k="price.comp.iqr"></span>) and about <strong data-k="price.brand.median"></strong> for brand-name cash (middle half <span data-k="price.brand.iqr"></span>). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
+    <p class="small muted">The going rate: about <strong data-k="price.comp.median"></strong> for compounded (middle half <span data-k="price.comp.iqr"></span>) and about <strong data-k="price.brand.median"></strong> for brand-name paid out of pocket (middle half <span data-k="price.brand.iqr"></span>). Gray-market "research peptides" sell for under $30, which pulls price-desperate buyers out of safe channels. Stated budgets cluster at $100–$200.</p>
   </div></div>
 
 
@@ -1693,7 +1852,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     { name: 'Maintenance / microdoser', tag: 'P6', who: 'At or near goal, or wants a low "metabolic" dose. 36% of users report microdosing.', goals: 'Avoid regain cheaply, with flexible dosing.', fears: 'Regain (two-thirds returns after stopping), full price for a low dose, forced to titrate up.', needs: 'Maintenance plans, low-dose pricing, vials or pill, yearly cost.', terms: ['glp-1 maintenance dose', 'microdosing tirzepatide', 'stop glp-1 without regaining'] },
     { name: 'Restarter', tag: 'P7', who: 'Stopped because of cost or side effects and regained. Comes back with guilt and price sensitivity.', goals: 'Restart at a tolerable dose at a price they can keep paying.', fears: 'Judgement, the same side effects again, paying and quitting again.', needs: '"No judgement" tone, restart at a tolerable dose, a price they can sustain.', terms: ['restart semaglutide after stopping', 'cheapest glp-1 to restart'] },
     { name: 'Experienced optimizer', tag: 'P9 · Reddit', who: 'On treatment 6+ months, mostly compounded. Reads the pinned "where to buy" post and community surveys. Knows prices to the dollar.', goals: 'Lowest price per month at max dose, from a pharmacy they trust, with freedom to switch.', fears: 'Year-long prepay with a provider that folds; unknown pharmacy; fake reviews.', needs: 'Named pharmacy (503A/503B), 3-month price, no membership, no long lock-in, how the provider was verified.', terms: ['tirzepatide compound where to buy', 'cheapest compounded tirzepatide', '[provider] pharmacy', '[provider] reddit'] },
-    { name: 'FDA-only loyalist', tag: 'P10 · Reddit', who: 'Pays cash for brand-name ($299–$450) and will not use compounded drugs.', goals: 'Brand-name at the lowest legitimate cash price.', fears: 'Unregulated product; being upsold into compounded.', needs: 'An "FDA-approved only" filter, manufacturer prices (LillyDirect, NovoCare), a cheap prescriber option with no membership.', terms: ['zepbound self pay price', 'wegovy pill cash price', 'cheapest way to get zepbound'] },
+    { name: 'FDA-only loyalist', tag: 'P10 · Reddit', who: 'Pays out of pocket for brand-name ($299–$450) and will not use compounded drugs.', goals: 'Brand-name at the lowest legitimate cash price.', fears: 'Unregulated product; being upsold into compounded.', needs: 'An "FDA-approved only" filter, manufacturer prices (LillyDirect, NovoCare), a cheap prescriber option with no membership.', terms: ['zepbound self pay price', 'wegovy pill cash price', 'cheapest way to get zepbound'] },
     { name: 'Older, side-effect sensitive', tag: 'P11 · Reddit', who: '65+, often on Medicare. Severe nausea at the starter dose; ready to quit.', goals: 'Stay on treatment without losing days of life to side effects.', fears: 'Vomiting, dehydration, a doctor who won\'t help.', needs: 'Low starting dose or microdose, slow titration, anti-nausea support, Medicare Bridge ($50) info.', terms: ['glp-1 side effects too severe', 'lower starting dose zepbound', 'medicare wegovy $50'] },
     { name: 'Gray-market hunter', tag: 'P8 · do not target', who: 'Buys "research peptides" or raw API from overseas. Not a compliant target.', goals: 'Lowest possible price.', fears: 'Price.', needs: 'Do not bid. Add as negatives. On-page, redirect with education: "cheapest legal options start at $149".', terms: ['retatrutide buy', 'research peptide semaglutide'] }
   ];
@@ -1757,7 +1916,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     ['Mochi Health', T.both, 'Brand via insurance; compounded sema and tirz', 'Sema ≈$178, tirz ≈$278, flat at all doses', 'PA help for brand', '4.4', '4.5', '95% of reviews invited after the consult; two subscriptions to cancel'],
     ['Noom Med', T.both, 'Brand GLP-1s, Foundayo, microdose sema', 'Microdose $179/mo; GLP-1Rx $249', 'Brand via insurance', '4.3', '4.5', '$56M auto-renew settlement; quarterly billing'],
     ['WeightWatchers Med+', T.brand, 'Wegovy pen and pill, Zepbound', '$373–$423 (Forbes)', 'Works with insurers', '3.9', '4.0', '12-month plan; clinician response time'],
-    ['Hims & Hers', T.brand, 'Wegovy pen, HD and pill, Zepbound (compounded wound down)', '≈$298–$448 (sources conflict)', 'Mostly cash', 'Not rated', '3.9', 'Offering changed repeatedly in 2026'],
+    ['Hims & Hers', T.brand, 'Wegovy pen, HD and pill, Zepbound (compounded wound down)', '≈$298–$448 (sources conflict)', 'Mostly out of pocket', 'Not rated', '3.9', 'Offering changed repeatedly in 2026'],
     ['LifeMD', T.brand, 'Brand GLP-1s, Wegovy pill', '$149 membership + meds from $149', 'Accepts Medicare and some insurance', '4.0', '4.0', 'BBB B rating'],
     ['TrimRx', T.comp, 'Compounded sema, tirz', 'Flat price, no membership; 6-month prepay ≈$1,519', 'None', '–', '4.5', 'Prepaid second half not shipped; 87% of reviews invited (our coding)'],
     ['WellMedr', T.comp, 'Compounded sema, tirz', 'From $89–$129/mo on long plans; promos; billed every 21 days (reviews)', 'None (90-day guarantee)', '–', '–', '73% of bad reviews: first order not shipped after promo surge (our coding)'],
@@ -1798,12 +1957,12 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     oneBars('diNeeds', A.needs.labels, A.needs.all_share, A.needs.order);
     oneBars('diFears', A.fears.labels, A.fears.all_share, A.fears.order);
     // price strip
-    const chLabel = { compounded: 'Compounded via telehealth', brand: 'Brand-name, cash', graymarket: 'Gray market' };
+    const chLabel = { compounded: 'Compounded via telehealth', brand: 'Brand-name, out of pocket', graymarket: 'Gray market' };
     const P = A.prices, Xp = v => (Math.min(v, 500) / 500 * 100).toFixed(2) + '%';
     document.getElementById('diPriceN').textContent = `${S.price_reports} reports · each dot is one person · shaded = stated $100–$200 budget`;
     document.getElementById('diPrice').innerHTML = ['compounded', 'brand', 'graymarket'].filter(c => P[c]).map(c => `<div class="sr"><span class="sr-l"><b>${chLabel[c]}</b><span class="muted small">median $${P[c].median} · middle half $${P[c].q1}–$${P[c].q3}</span></span><div class="sr-t"><span class="band" style="left:${Xp(100)};width:20%"></span>${P[c].values.map(v => `<span class="dot" style="left:${Xp(v)}" title="$${v}/mo"></span>`).join('')}<span class="med" style="left:${Xp(P[c].median)}"></span><span class="medl" style="left:${Xp(P[c].median)}">$${P[c].median}</span></div></div>`).join('') + `<div class="sr-axis">${[0,100,200,300,400,500].map(v => `<span style="left:${v/5}%">$${v}</span>`).join('')}</div>`;
     // reddit breakdowns
-    const lab = { 'comp-inj': 'Compounded injectable', 'brand-inj': 'Brand injectable', 'brand-oral': 'Brand pill', 'comp-oral': 'Compounded oral', graymarket: 'Gray market', unknown: 'Not stated', cash: 'Cash', insurance: 'Insurance', medicare: 'Medicare', price: 'Price', insurance_r: 'Lost or denied insurance', membership: 'Membership fees', results: 'Results', fulfilment: 'Fulfilment' };
+    const lab = { 'comp-inj': 'Compounded injectable', 'brand-inj': 'Brand injectable', 'brand-oral': 'Brand pill', 'comp-oral': 'Compounded oral', graymarket: 'Gray market', unknown: 'Not stated', cash: 'Out of pocket', insurance: 'Insurance', medicare: 'Medicare', price: 'Price', insurance_r: 'Lost or denied insurance', membership: 'Membership fees', results: 'Results', fulfilment: 'Fulfilment' };
     const bars = (el, obj, map, keep) => { const tot = Object.values(obj).reduce((x, y) => x + y, 0); const rows = keep ? Object.entries(obj) : Object.entries(obj).sort((x, y) => y[1] - x[1]); const mx = Math.max(...rows.map(r => r[1])); document.getElementById(el).innerHTML = rows.map(r => `<div class="hb"><span>${(map && map[r[0]]) || lab[r[0]] || r[0]}</span><span class="track"><span class="fill" style="width:${r[1] / mx * 80}%"></span><span class="v">${Math.round(r[1] / tot * 100)}%</span></span></div>`).join(''); };
     bars('diMed', A.reddit.medication);
     bars('diSwitch', A.reddit.switch_reason, { insurance: 'Lost or denied insurance', dose: 'Dose not honoured' });
@@ -1832,7 +1991,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
       `<strong>Where they are.</strong> ${pct(A.stage.all.new)} are first-timers, ${pct(A.stage.all.switch)} are switching and ${pct(A.stage.all.long)} are 3+ months in.`,
       `<strong>Top need.</strong> "${A.needs.labels[tn[0]]}" comes up in ${pct(tn[1])} of all reviews and comments, then a price they understand (${pct(A.needs.all_share.PRICE_CLARITY)}).`,
       `<strong>Top fear.</strong> "${A.fears.labels[tf[0]]}" is in ${pct(tf[1])} of complaints, then running out (${pct(A.fears.all_share.RUN_OUT)}), feeling trapped (${pct(A.fears.all_share.TRAPPED)}) and being overcharged (${pct(A.fears.all_share.OVERCHARGED)}).`,
-      `<strong>The going rate.</strong> Compounded medication costs a median $${P.compounded.median}/month (middle half $${P.compounded.q1}–$${P.compounded.q3}). Brand-name cash costs $${P.brand.median} ($${P.brand.q1}–$${P.brand.q3}). Brand costs about ${(P.brand.median / P.compounded.median).toFixed(1)}× more.`,
+      `<strong>The going rate.</strong> Compounded medication costs a median $${P.compounded.median}/month (middle half $${P.compounded.q1}–$${P.compounded.q3}). Brand-name, paid out of pocket, costs $${P.brand.median} ($${P.brand.q1}–$${P.brand.q3}). Brand costs about ${(P.brand.median / P.compounded.median).toFixed(1)}× more.`,
       `<strong>Compounded dominates.</strong> ${Math.round((A.reddit.medication['comp-inj'] || 0) / medTot * 100)}% of comments that name a medication are about compounded injectables. ${Math.round((A.reddit.medication.graymarket || 0) / medTot * 100)}% are about the gray market, at a median $${P.graymarket ? P.graymarket.median : '–'}/month.`,
       gaps.length ? `<strong>Invited reviews inflate ratings.</strong> Where Trustpilot labels exist, invited reviews score ${Math.min(...gaps).toFixed(1)}–${Math.max(...gaps).toFixed(1)}★ higher than unprompted ones.` : '',
       A.reddit.drug_preference ? (() => { const d = A.reddit.drug_preference, t = Object.values(d).reduce((x, y) => x + y, 0); return `<strong>Tirzepatide is the favourite.</strong> ${Math.round(((d.tirzepatide || 0) + (d['tirzepatide+cagrilintide'] || 0)) / t * 100)}% of ${t} stated preferences pick tirzepatide (alone or stacked), ${Math.round((d.retatrutide || 0) / t * 100)}% retatrutide and ${Math.round((d.semaglutide || 0) / t * 100)}% semaglutide.`; })() : '',
@@ -1844,8 +2003,8 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   }
 
   // ---------- price strip ----------
-  const census = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.values, 'Brand-name, cash': AGG.prices.brand.values, 'Gray market': AGG.prices.graymarket.values } : {};
-  const meds = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.median, 'Brand-name, cash': AGG.prices.brand.median, 'Gray market': AGG.prices.graymarket.median } : {};
+  const census = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.values, 'Brand-name, out of pocket': AGG.prices.brand.values, 'Gray market': AGG.prices.graymarket.values } : {};
+  const meds = window.AGG ? { 'Compounded via telehealth': AGG.prices.compounded.median, 'Brand-name, out of pocket': AGG.prices.brand.median, 'Gray market': AGG.prices.graymarket.median } : {};
   const X = v => (Math.min(v, 500) / 500 * 100).toFixed(2) + '%';
   const strip = document.getElementById('priceStrip');
   strip.innerHTML = Object.keys(census).map(k => `<div class="sr"><span class="sr-l"><b>${k}</b><span class="muted small">median $${meds[k]}</span></span><div class="sr-t"><span class="band" style="left:${X(100)};width:${(100/500*100).toFixed(2)}%" title="Stated budget $100–$200"></span>${census[k].map(v => `<span class="dot" style="left:${X(v)}" title="$${v}/mo"></span>`).join('')}<span class="med" style="left:${X(meds[k])}"></span><span class="medl" style="left:${X(meds[k])}">$${meds[k]}</span></div></div>`).join('') + `<div class="sr-axis">${[0,100,200,300,400,500].map(v => `<span style="left:${v/5}%">$${v}</span>`).join('')}</div>` + `<p class="small muted" style="margin:0"><span style="display:inline-block;width:12px;height:10px;background:var(--good-soft);vertical-align:-1px;margin-right:6px"></span>Shaded band: the $100–$200 budget people state</p>`;
@@ -1946,7 +2105,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     ['Intent-matched first screen', 'Eight clusters want eight different answers.', 'Dynamic H1, filter preset and list order per ad group: pill, price, insurance, brand, vs.', 'The cheapest lift on paid traffic; also raises Quality Score and lowers CPC.', 'Quick win'],
     ['"Best for…" labels', 'Buyers pick by persona, not by rank #1.', 'Labels like Best for pills, Best with insurance, Best flat price, Best for switching.', 'Faster self-selection; spreads clicks to the partner that fits the buyer.', 'Quick win'],
     ['Trust row on every card', 'Stars are unreliable here; buyers check BBB, pharmacy, LegitScript.', 'FDA-approved / compounded label, LegitScript, pharmacy type, cancel online, "verified [date]".', 'Answers "is this a scam?" without leaving the page.', 'Quick win'],
-    ['Insurance-first router', '56% struggle to afford it; 62% of claims denied; Medicare $50 from Jul 2026.', 'First question: commercial insurance, Medicare or paying cash. Each path reorders providers.', 'Turns a mixed audience into three high-intent lists.', 'Medium'],
+    ['Insurance-first router', '56% struggle to afford it; 62% of claims denied; Medicare $50 from Jul 2026.', 'First question: work insurance, Medicare, or paying out of pocket. Each path reorders providers.', 'Turns a mixed audience into three high-intent lists.', 'Medium'],
     ['3-question matcher (no email gate)', 'Uncertain first-timers need guidance; competitors\' quizzes skip the email gate.', 'Insurance, pill or shot, budget. Instant result with the top 2 matches.', 'The main mobile conversion path, paired with a sticky CTA.', 'Medium'],
     ['"Keep your dose" switching lane', 'Switchers fear restarting at 2.5 mg after the compounded crackdown.', 'Filter and landing page for providers that accept a transfer of the current dose.', 'Captures the post-crackdown switcher wave, an under-served high-intent segment.', 'Medium'],
     ['Brand vs compounded explainer', 'Editorial sites hide compounded; affiliates hide the risks.', 'A neutral, sourced drawer: what\'s legal in 2026, safety, price trade-off.', 'Removes the last objection for skeptics; builds compliance credibility.', 'Medium'],
@@ -1977,7 +2136,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     ['"Best for…" labels on top 3', 'Persona labels speed up choice and lift click-outs below #1.', 'now', 6, 7, 9],
     ['Filter chips above the fold', 'Pill, injection, insurance, budget chips cut time to a relevant option.', 'now', 7, 6, 6],
     ['Mobile cards + sticky CTA', 'A mobile-native layout beats a shrunken table on mobile conversion.', 'next', 9, 7, 5],
-    ['Insurance-first router', 'Splitting insured, Medicare and cash buyers lifts conversion for both.', 'next', 8, 6, 5],
+    ['Insurance-first router', 'Splitting insured, Medicare and out-of-pocket buyers lifts conversion for both.', 'next', 8, 6, 5],
     ['3-question matcher', 'A short no-gate quiz lifts conversion for uncertain first-timers.', 'next', 7, 6, 5],
     ['Persona landing pages', 'Pill, switcher, denied and menopause pages beat the generic list on their traffic.', 'next', 8, 6, 5],
     ['Brand vs compounded explainer', 'A neutral explainer reduces skeptic drop-off.', 'next', 5, 6, 8],
@@ -2053,12 +2212,12 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   const SWL = { price: 'price', membership: 'membership fees', fulfilment: 'late shipments', support: 'no support', results: 'poor results', dose: 'dose', insurance: 'losing insurance coverage' };
 
   $('avgEyebrow').textContent = `The average weight-loss user · ${S.all_items} reviews and comments · ${S.price_reports} price reports`;
-  $('avgLine').textContent = `Most often a woman around ${Math.round(D.median_age || 0)}, paying cash, on compounded tirzepatide at about $${P.compounded.median} a month. Wants one honest price and a human who answers. Afraid of being overcharged, trapped or scammed.`;
+  $('avgLine').textContent = `Most often a woman around ${Math.round(D.median_age || 0)}, paying out of pocket, on compounded tirzepatide at about $${P.compounded.median} a month. Wants one honest price and a human who answers. Afraid of being overcharged, trapped or scammed.`;
 
   const facts = [
     ['Age', `${Math.round(D.median_age || 0)}`, `median · biggest band ${bandTop ? bandTop[0] : '—'} · 1 in 4 is 65+`],
     ['Women', pct(fem), 'of those who said'],
-    ['Pays cash', pct(cash), 'of those who mention how they pay. Insurance is the hope, rarely the reality.'],
+    ['Pay out of pocket', pct(cash), 'no insurance: they pay the full price themselves'],
     ['Compounded', pct(comp), `of comments naming a medication · brand-name ${pct(brand)}`],
     ['Prefers tirzepatide', pct(tirz), 'when asked to pick one GLP-1'],
     ['Pays per month', `$${P.compounded.median}`, `compounded median (middle half $${P.compounded.q1}–$${P.compounded.q3}) · brand $${P.brand.median}`],
@@ -2147,10 +2306,10 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   const fem = D.sex ? 100 * D.sex.F / (D.sex.F + D.sex.M) : 0;
 
   // ---- who ----
-  $('blLine').innerHTML = `Most often a <b>woman around ${Math.round(D.median_age)}</b>, paying <b>cash</b>, on <b>compounded tirzepatide</b> at about <b>$${P.compounded.median} a month</b>. Wants one honest price and a human who answers.`;
+  $('blLine').innerHTML = `Most often a <b>woman around ${Math.round(D.median_age)}</b>, paying <b>out of pocket</b>, on <b>compounded tirzepatide</b> at about <b>$${P.compounded.median} a month</b>. Wants one honest price and a human who answers.`;
   const stats = [
     ['Women', fem, 'of those who said'],
-    ['Pay cash', share(A.reddit.payment, ['cash']), 'insurance is rare'],
+    ['Pay out of pocket', share(A.reddit.payment, ['cash']), 'no insurance, full price'],
     ['On compounded', share(known, ['comp-inj']), `brand-name ${pct(share(known, ['brand-inj', 'brand-oral']))}`],
     ['Prefer tirzepatide', share(dp, ['tirzepatide', 'tirzepatide+cagrilintide']), 'when asked to pick one']
   ];
@@ -2182,7 +2341,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
   $('blPriceN').textContent = '';
   const row = (lab, c, col) => `<div class="ps-r"><span class="ps-l"><b>${lab}</b><span class="small muted">median $${c.median}</span></span><div class="ps-t"><span class="ps-iqr" style="left:${X(c.q1)}%;width:${X(c.q3) - X(c.q1)}%;background:${col}"></span><span class="ps-med" style="left:${X(c.median)}%"><em>$${c.median}</em></span></div></div>`;
   $('blPrice').innerHTML = `<div class="ps-budget" style="left:calc(var(--psl) + (100% - var(--psl)) * ${X(100) / 100});width:calc((100% - var(--psl)) * ${(X(200) - X(100)) / 100})"><span>Stated budget $100–$200</span></div>` +
-    row('Compounded', P.compounded, 'var(--s1)') + row('Brand-name, cash', P.brand, 'var(--s2)') + row('Gray market', P.graymarket, 'var(--ink-3)') +
+    row('Compounded', P.compounded, 'var(--s1)') + row('Brand-name, out of pocket', P.brand, 'var(--s2)') + row('Gray market', P.graymarket, 'var(--ink-3)') +
     `<div class="ps-r ps-axis"><span></span><div class="ps-t">${[0, 100, 200, 300, 400, 500].map(v => `<span style="left:${X(v)}%${v === 500 ? ';transform:translateX(-100%)' : ''}">$${v}${v === 500 ? '+' : ''}</span>`).join('')}</div></div><p class="small muted">Bars show the middle half of what people pay. The tick is the median.</p>`;
 
   // ---- five musts ----
@@ -2286,7 +2445,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     { n: 'Found', rank: 3, score: '9.5',
       today: { h: 'Top-Rated for clinical support. GLP-1 plans starting at $99/mo', b: ['(bullets not visible in screenshots; table says $39/mo)'] },
       h: `Best for insurance: membership from $99/mo + medication ${V('verify')}`,
-      b: ['Wegovy®, Wegovy® pill & Zepbound®. Prior authorization handled for you', `Copays from $25–$50 when covered ${V('verify')}. Compounded plan for cash pay`, 'Obesity-medicine doctors and a 1:1 coach', `6-month plan. $99 fee to cancel early ${V('verify')}`],
+      b: ['Wegovy®, Wegovy® pill & Zepbound®. Prior authorization handled for you', `Copays from $25–$50 when covered ${V('verify')}. Compounded plan if you pay out of pocket`, 'Obesity-medicine doctors and a 1:1 coach', `6-month plan. $99 fee to cancel early ${V('verify')}`],
       hl: 'U.S. News 2026 "Best Clinical Support"',
       why: ['Fixes the price mismatch: $99 on the card vs $39 in the table.', 'Its top complaint across sources is the 6-month lock-in and $99 cancel fee. Feeling trapped is in 48% of all complaints in our data.', 'Insurance help is its real edge, and insured buyers are under-served.'] },
     { n: 'Ro', rank: 4, score: '9.3',
@@ -2347,6 +2506,21 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     </div>
     <details class="cw-why"><summary>Why these changes</summary><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></details>
   </article>`).join('');
+})();
+</script>
+<script>
+(function () {
+  const A = window.AGG; if (!A) return;
+  const pct = v => Math.round(v) + '%';
+  const sh = (o, ks) => { const t = Object.values(o).reduce((a, b) => a + b, 0); return t ? 100 * ks.reduce((a, k) => a + (o[k] || 0), 0) / t : 0; };
+  const known = Object.fromEntries(Object.entries(A.reddit.medication).filter(([k]) => k !== 'unknown'));
+  const set = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  set('indComp', pct(sh(known, ['comp-inj', 'comp-oral'])));
+  set('indBrand', pct(sh(known, ['brand-inj', 'brand-oral'])));
+  set('indGray', pct(sh(known, ['graymarket'])));
+  set('indTirz', pct(sh(A.reddit.drug_preference || {}, ['tirzepatide', 'tirzepatide+cagrilintide'])));
+  const oop = sh(A.reddit.payment, ['cash']);
+  set('indOop', pct(oop)); const b = document.getElementById('indOopBar'); if (b) b.style.width = oop + '%';
 })();
 </script>
 
