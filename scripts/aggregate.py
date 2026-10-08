@@ -201,6 +201,16 @@ def main():
         'trustpilot_share_of_negative': share(tp_fear, n_tp_neg, FEARS),
         'reddit_share': share(rd_fear, n_rd, FEARS),
     }
+    # ---------- pooled: one database, no source split ----------
+    all_stage = tp_stage + rd_stage
+    n_rd_worry = sum(1 for r in rd if r['fears'].strip())
+    out['stage']['all'] = share(all_stage, sum(all_stage[k] for k in stage_keys), stage_keys)
+    out['needs']['all_share'] = share(tp_need_any + rd_need, n_tp + n_rd, NEEDS)
+    # complaints/worries pool = Trustpilot 1-2 star reviews + Reddit comments that voice a fear
+    out['fears']['all_share'] = share(tp_fear + rd_fear, n_tp_neg + n_rd_worry, FEARS)
+    out['sources']['all_items'] = n_tp + n_rd
+    out['sources']['stage_revealing_all'] = sum(all_stage[k] for k in stage_keys)
+    out['sources']['complaint_pool'] = n_tp_neg + n_rd_worry
     out['reddit'] = {
         'medication': dict(rd_med), 'payment': dict(rd_pay), 'switch_reason': dict(rd_switch),
         'threads': dict(rd_threads),
@@ -219,7 +229,7 @@ def main():
     open(DASH, 'w').write(html)
     print(json.dumps(out['sources']), '\nstage', out['stage'], '\nneeds tp', out['needs']['trustpilot_share'],
           '\nneeds rd', out['needs']['reddit_share'], '\nfears tp', out['fears']['trustpilot_share_of_negative'],
-          '\nfears rd', out['fears']['reddit_share'])
+          '\nfears rd', out['fears']['reddit_share'], '\nPOOLED stage', out['stage']['all'], '\nneeds', out['needs']['all_share'], '\nfears', out['fears']['all_share'], out['sources'])
 
 
 if __name__ == '__main__':

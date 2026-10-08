@@ -7,7 +7,10 @@
   "reddit_threads": 19,
   "price_reports": 88,
   "stage_revealing_tp": 81,
-  "stage_revealing_rd": 137
+  "stage_revealing_rd": 137,
+  "all_items": 864,
+  "stage_revealing_all": 218,
+  "complaint_pool": 254
  },
  "providers": [
   {
@@ -107,6 +110,12 @@
    "switch": 14.6,
    "long": 59.1,
    "restart": 2.2
+  },
+  "all": {
+   "new": 31.2,
+   "switch": 21.1,
+   "long": 46.3,
+   "restart": 1.4
   }
  },
  "needs": {
@@ -162,12 +171,22 @@
   },
   "trustpilot_neg": {
    "MONEY_CONTROL": 65,
+   "HUMAN": 70,
    "HEARD": 16,
    "ON_TIME": 81,
-   "HUMAN": 70,
    "WORKS": 31,
    "DOSE": 20,
    "PRICE_CLARITY": 30
+  },
+  "all_share": {
+   "HUMAN": 35.2,
+   "EASY_START": 19.4,
+   "HEARD": 16.3,
+   "ON_TIME": 17.6,
+   "MONEY_CONTROL": 10.6,
+   "PRICE_CLARITY": 20.3,
+   "WORKS": 15.0,
+   "DOSE": 6.0
   }
  },
  "fears": {
@@ -210,6 +229,16 @@
    "SIDE_EFFECTS": 7.4,
    "JUDGED": 3.1,
    "REGAIN": 3.7
+  },
+  "all_share": {
+   "OVERCHARGED": 27.6,
+   "TRAPPED": 30.3,
+   "RUN_OUT": 30.7,
+   "NO_HUMAN": 34.6,
+   "SCAM": 24.0,
+   "SIDE_EFFECTS": 8.7,
+   "JUDGED": 2.4,
+   "REGAIN": 2.4
   }
  },
  "reddit": {
