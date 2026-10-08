@@ -551,6 +551,34 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
 .flow6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .routes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .flow6 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .routes, .flow6 { grid-template-columns: 1fr; } }
+
+.bc, .ex { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: grid; gap: 14px; }
+.bc-head { display: grid; gap: 4px; }
+.bc-tree { display: grid; gap: 0; justify-items: center; }
+.bc-root { background: var(--hero-bg); color: var(--hero-fg); border-radius: var(--r); padding: 12px 18px; display: grid; gap: 2px; text-align: center; max-width: 520px; }
+.bc-root span { color: var(--on-ink-2); font-size: 0.88rem; }
+.bc-split { width: 50%; height: 26px; border: 2px solid var(--line); border-bottom: 0; border-radius: 10px 10px 0 0; margin-top: 12px; position: relative; }
+.bc-split i { position: absolute; left: 50%; top: -14px; width: 2px; height: 12px; background: var(--line); }
+.bc-branches { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+.bc-br { border-radius: var(--r); padding: 14px; display: grid; gap: 8px; align-content: start; }
+.bc-br .pill { justify-self: start; }
+.bc-br > span:not(.pill) { font-size: 0.9rem; color: var(--ink-2); }
+.bc-brand { background: var(--good-soft); }
+.bc-comp { background: var(--warn-soft); }
+.bc-names { display: flex; flex-wrap: wrap; gap: 6px; }
+.bc-names span { background: var(--surface); border-radius: 4px; padding: 2px 8px; font-size: 0.82rem; }
+.bc-names span.muted { background: none; padding: 2px 0; }
+.bc-price { display: flex; align-items: baseline; gap: 8px; }
+.bc-price b { font: 700 1.6rem/1 var(--font-display); }
+.bc-price span { font-size: 0.82rem; color: var(--ink-2); }
+.bc-why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.bc-why div { display: grid; gap: 4px; align-content: start; border-top: 2px solid var(--line); padding-top: 8px; }
+.bc-why span { font-size: 0.86rem; color: var(--ink-2); }
+.ex-t td:first-child { font-weight: 600; white-space: nowrap; }
+.ex-t th .pill { margin-left: 4px; }
+.ex-note { background: var(--accent-soft); border-radius: var(--r); padding: 14px; display: grid; gap: 6px; }
+@media (max-width: 900px) { .bc-why { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .bc-branches, .bc-why { grid-template-columns: 1fr; } .bc-split { display: none; } .ex-t td:first-child { white-space: normal; } }
 </style>
 
 <header class="top wrap">
@@ -709,13 +737,51 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
         <tr><td><strong>"Research peptides"</strong> (e.g. retatrutide)</td><td>None. Sold online "not for human use"</td><td>Powder you mix yourself</td><td><span class="pill p-bad">No</span> not legal to sell for use</td><td>$10–$35 a month</td></tr>
       </tbody>
     </table></div>
+    <div class="bc">
+      <div class="bc-head"><span class="eyebrow">Brand-name vs compounded</span><h3>One ingredient, two ways to make it</h3></div>
+      <div class="bc-tree" aria-label="Diagram: one ingredient made two ways">
+        <div class="bc-root"><b>The ingredient</b><span>Semaglutide (invented by Novo Nordisk) or tirzepatide (invented by Eli Lilly)</span></div>
+        <div class="bc-split"><i></i></div>
+        <div class="bc-branches">
+          <div class="bc-br bc-brand"><span class="pill p-good">Brand-name</span><b>Made by the inventor</b>
+            <span>Own factory, large trials, FDA-approved, sold under a brand name. The same every time.</span>
+            <div class="bc-names"><span>Wegovy</span><span>Wegovy pill</span><span>Zepbound</span><span class="muted">Ozempic · Mounjaro = same drugs, for diabetes</span></div>
+            <div class="bc-price"><b>$335</b><span>median paid a month, no insurance</span></div></div>
+          <div class="bc-br bc-comp"><span class="pill p-warn">Compounded</span><b>Made by a compounding pharmacy</b>
+            <span>The pharmacy buys the raw ingredient and mixes its own injection, sometimes with B12 added. Not FDA-approved, not trial-tested. Quality depends on the pharmacy.</span>
+            <div class="bc-names"><span>"Compounded semaglutide"</span><span>"Compounded tirzepatide"</span><span class="muted">no brand name</span></div>
+            <div class="bc-price"><b>$138</b><span>median paid a month, insurance never pays</span></div></div>
+        </div>
+      </div>
+      <div class="bc-why">
+        <div><b>Why compounded exists</b><span>2022–2024: Wegovy and Zepbound ran short, so the FDA let pharmacies make copies. Online clinics built a business on them at $99–$299, when brand cost $1,000+.</span></div>
+        <div><b>Why it's a gray zone now</b><span>The shortages officially ended in late 2024 and early 2025. Many providers kept selling by "personalising" doses, so the FDA sent warning letters in 2026.</span></div>
+        <div><b>What buyers feel</b><span>Compounded: cheaper, but "is it legit?" and "it doesn't work" fears. Brand: trusted, but about 2.5× the price.</span></div>
+        <div><b>What a comparison site must do</b><span>Label every option "FDA-approved" or "Compounded". Never say "generic Wegovy" or "same as Ozempic"; that's a legal risk.</span></div>
+      </div>
+    </div>
+
+    <div class="ex">
+      <div class="bc-head"><span class="eyebrow">Real example · HealthAccess's #1, Embody</span><h3>A buyer wants tirzepatide. What do they actually get, and where?</h3></div>
+      <div class="tscroll"><table class="t-mid ex-t">
+        <thead><tr><th></th><th>Embody <span class="pill p-warn">Compounded</span></th><th>LillyDirect <span class="pill p-good">Brand</span></th><th>Ro <span class="pill p-good">Brand</span></th></tr></thead>
+        <tbody>
+          <tr><td>What arrives in the box</td><td>Compounded tirzepatide in a vial, or as an oral "gum"</td><td>Zepbound vial or pen</td><td>Zepbound vial</td></tr>
+          <tr><td>Who made it</td><td>A compounding pharmacy <span class="vf">which one? ask Embody</span></td><td>Eli Lilly</td><td>Eli Lilly</td></tr>
+          <tr><td>FDA-approved</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Price a month, no insurance</td><td><b>$129</b>, same at every dose, everything included</td><td><b>$299–$449</b> by dose, plus a prescriber</td><td><b>$448–$598</b>: $149 membership + $299–$449 drug</td></tr>
+          <tr><td>Insurance can pay?</td><td>No</td><td>No (self-pay programme)</td><td>Yes, if the plan covers it ($25 copay)</td></tr>
+          <tr><td>Where the doctor fits</td><td>Embody's clinician approves your form</td><td>You need a prescription first, from your own doctor or a partner clinic</td><td>Ro's clinician approves your form</td></tr>
+          <tr><td>What reviews say</td><td>Easy start; month-2 refills often late (<span data-k="prov.embody.top_neg_share"></span> of complaints)</td><td>Not in our sample</td><td>Membership fee surprise (<span data-k="prov.ro.top_neg_share"></span> of complaints)</td></tr>
+        </tbody>
+      </table></div>
+      <div class="ex-note">
+        <p><b>The catch on today's HealthAccess card:</b> Embody's card says "GLP-1 pills, Zepbound®, Wegovy®, and semaglutide options". A buyer reads that as brand-name drugs for $69–$119. In fact the $69 / $119 prices are for <b>compounded</b> semaglutide and tirzepatide, and "GLP-1 pills" means Embody's compounded oral form, not the FDA-approved Wegovy pill. If Embody does offer real Zepbound or Wegovy, it will cost brand prices <span class="vf">confirm with Embody</span>.</p>
+        <p class="small muted">The fix is one word on the card: "Compounded tirzepatide $129/mo". Buyers who want brand-name then pick Ro or LillyDirect, and nobody feels misled after the click.</p>
+      </div>
+    </div>
+
     <div class="grid g2">
-      <div class="card"><h3>Brand-name vs compounded, simply</h3>
-        <ul class="ticks small">
-          <li><b>Brand-name</b> (Wegovy, Zepbound, Foundayo) is made by the drug company, tested in trials and approved by the FDA.</li>
-          <li><b>Compounded</b> is the same active ingredient mixed by a specialist pharmacy. It isn't FDA-approved or trial-tested. It became popular during the 2022–2025 shortages because it's cheaper.</li>
-          <li>In 2026 the FDA cracked down on compounded versions, and brand prices fell. So "cheapest" no longer always means compounded.</li>
-        </ul></div>
       <div class="card"><h3>What's popular in our data</h3>
         <div class="ind-pop">
           <div><b id="indComp"></b><span>of buyers who name a drug are on <strong>compounded</strong> medication</span></div>
@@ -723,6 +789,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
           <div><b id="indTirz"></b><span>pick <strong>tirzepatide</strong> when asked to choose one</span></div>
           <div><b id="indGray"></b><span>talk about <strong>gray-market</strong> research peptides</span></div>
         </div></div>
+    </div>
     </div>
   </div>
 
