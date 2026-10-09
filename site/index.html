@@ -794,7 +794,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
         <tr><td><strong>Embody</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>$79–$129</b>, everything included</td><td>Same price at every dose</td></tr>
         <tr><td><strong>WellMedr</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>$89–$129</b> on longer plans</td><td>$49 first-month promo</td></tr>
         <tr><td><strong>MEDVi</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>$299</b> after a $179 first month</td><td>FDA warning letter, Feb 2026</td></tr>
-        <tr><td><strong>TrimRx</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>~$253</b> on a 6-month prepay ($1,519)</td><td>Monthly price not public</td></tr>
+        <tr><td><strong>TrimRx</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>~$253</b> on a 6-month prepay ($1,519)</td><td>Monthly price not public; can split the prepay with Klarna or Affirm</td></tr>
         <tr><td><strong>Trimi</strong></td><td><span class="pill p-warn">Copies</span></td><td><b>from $99</b> <span class="vf">dose?</span></td><td>Pay over time with Klarna or Afterpay</td></tr>
         <tr><td><strong>Refills</strong></td><td><span class="pill p-warn">Copies</span> <span class="vf">verify</span></td><td><b>$99</b> on sale (≈$165 regular)</td><td>Same price at every dose</td></tr>
       </tbody>
@@ -948,7 +948,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     <p class="small muted">HealthAccess's list today is mostly compounded telehealth. That matches what most buyers use, but the page doesn't say which is which.</p>
   </div>
 
-  <div class="blk" id="i-price"><div class="blk-head"><span class="eyebrow">How pricing works</span><h2>Four ways providers charge, and what buyers trip over</h2></div>
+  <div class="blk" id="i-price"><div class="blk-head"><span class="eyebrow">How pricing works</span><h2>Five ways providers charge, and what buyers trip over</h2></div>
     <div class="tscroll"><table class="t-mid">
       <thead><tr><th>Model</th><th>How it works</th><th>Example</th><th>What trips buyers up</th></tr></thead>
       <tbody>
@@ -956,6 +956,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
         <tr><td><strong>All-in flat price</strong></td><td>One monthly price including the drug, sometimes the same at every dose</td><td>Embody: $129 tirzepatide, any dose</td><td>Refills arriving late</td></tr>
         <tr><td><strong>Intro price, then higher</strong></td><td>A low first month, then the regular price</td><td>MEDVi: $179, then $299</td><td>The jump in month 2</td></tr>
         <tr><td><strong>Prepaid bundle</strong></td><td>Pay 3, 6 or 12 months upfront for a lower monthly price</td><td>TrimRx: $1,519 for 6 months</td><td>No refund if the provider fails mid-plan</td></tr>
+        <tr><td><strong>Pay later (Klarna, Affirm, Afterpay)</strong></td><td>A lender pays the provider upfront; the buyer pays the lender in instalments (Klarna: usually 4 payments; Affirm: monthly, sometimes with interest)</td><td>TrimRx: Klarna or Affirm on the 6-month plan · Trimi: Klarna or Afterpay</td><td>The buyer still owes the lender if the provider stops shipping; getting money back means a dispute, not a refund</td></tr>
       </tbody>
     </table></div>
     <p class="small muted">The dose usually goes up over the first months. With brand-name drugs the price often rises with the dose. Many compounded providers keep the same price at every dose.</p>
@@ -997,6 +998,7 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
       <div><dt>Maintenance dose</dt><dd>The dose people stay on long-term. The fair price to compare.</dd></div>
       <div><dt>503A / 503B</dt><dd>Two types of compounding pharmacy. 503B makes larger batches under stricter rules.</dd></div>
       <div><dt>Prepay / bundle</dt><dd>Paying several months upfront for a discount.</dd></div>
+      <div><dt>Buy now, pay later (BNPL)</dt><dd>Klarna, Affirm, Afterpay: split a big payment, like a 6-month plan, into instalments. You owe the lender even if the provider fails.</dd></div>
       <div><dt>Research peptides</dt><dd>Unapproved drugs sold "not for human use". The gray market.</dd></div>
     </dl>
   </div>
@@ -2675,9 +2677,9 @@ details.more > summary:focus-visible { outline: 2px solid var(--accent); outline
     { n: 'TrimRx', rank: 7, score: '8.8',
       today: { h: 'Exclusive offer: $140 off on all weight loss plans', b: ['GLP-1 options, Zepbound®, Wegovy® & Ozempic® available', 'Injections and oral options are available', '100% online process with 48-hour delivery to your home'] },
       h: `Compounded GLP-1 ${V('$X/mo paying monthly')} · Exclusive offer: $140 off`,
-      b: ['Compounded semaglutide & tirzepatide, injection or oral', 'No membership. Pay monthly, or $1,519 upfront for 6 months', 'Delivered to your door in about 48 hours'],
+      b: ['Compounded semaglutide & tirzepatide, injection or oral', 'No membership. Pay monthly, or $1,519 for 6 months (split it with Klarna or Affirm)', 'Delivered to your door in about 48 hours'],
       hl: `Money-back guarantee: ${V('what it covers, for how long')}`,
-      why: [`Unprompted reviews average ${tr.organic_avg}★ vs ${tr.invited_avg}★ invited.`, 'Its complaints centre on prepaid plans not delivered and refunds not paid. If the page sells a guarantee, the card must say what it covers.', '"$140 off" off what? The monthly price comes first.'] },
+      why: [`Unprompted reviews average ${tr.organic_avg}★ vs ${tr.invited_avg}★ invited.`, 'Its complaints centre on prepaid plans not delivered and refunds not paid. If the page sells a guarantee, the card must say what it covers.', '"$140 off" off what? The monthly price comes first.', 'Klarna and Affirm make the $1,519 prepay feel monthly, but the buyer still owes the lender if shipments stop. That is the exact risk in TrimRx reviews, so the guarantee terms matter even more.'] },
     { n: 'Refills', rank: 8, score: '8.4',
       today: { h: 'Weight loss plans starting at $99/month - Fall Sale, 40% off', b: ['Same price regardless of dosage changes', 'Get pre-approved online in 3 steps', 'Zero monthly membership cost'] },
       h: `Weight loss plans $99/month on Fall Sale (regular ${V('≈$165/mo')})`,

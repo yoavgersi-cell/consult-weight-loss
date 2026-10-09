@@ -65,7 +65,7 @@ Rationale for every change: dashboard → HealthAccess audit & plan → Card rew
 **Compounded GLP-1 $X/mo paying monthly · Exclusive offer: $140 off**
 
 - ✓ Compounded semaglutide & tirzepatide, injection or oral
-- ✓ No membership. Pay monthly, or $1,519 upfront for 6 months
+- ✓ No membership. Pay monthly, or $1,519 for 6 months (split it with Klarna or Affirm)
 - ✓ Delivered to your door in about 48 hours
 - ★ **Money-back guarantee: what it covers, for how long**
 

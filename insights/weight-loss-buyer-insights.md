@@ -148,6 +148,7 @@ Stated budgets cluster at $100–$200 a month.
   | All-in flat price | Embody: $129 at any dose | Late refills |
   | Intro price, then higher | MEDVi: $179, then $299 | The month-2 jump |
   | Prepaid bundle | TrimRx: $1,519 for 6 months | No refund if the provider fails |
+  | Pay later (Klarna, Affirm, Afterpay) | TrimRx (Klarna/Affirm), Trimi (Klarna/Afterpay) | Still owing the lender if shipments stop |
 
 - **Trends 2025–26:**
   - brand prices fell;
