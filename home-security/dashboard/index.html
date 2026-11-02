@@ -1,0 +1,553 @@
+<title>Home Security CRO Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky tab bar over one reading column; each tab is a short brief. Alarm-panel cues: status LEDs, keypad-style chips. */
+:root{
+  --bg:#F5F7F8; --panel:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
+  --accent:#0F6E8C; --accent-soft:#E2F1F6; --led-red:#C8382B; --led-amber:#B7791F; --led-green:#1F8A4C;
+  --red-soft:#FBEAE8; --amber-soft:#FBF2E0; --green-soft:#E5F4EB;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E161D; --panel:#16212A; --ink:#E6EDF2; --muted:#9AAAB6; --line:#26343F;
+  --accent:#5BB8D6; --accent-soft:#16323D; --led-red:#F0776B; --led-amber:#E3AE55; --led-green:#5CC98A;
+  --red-soft:#3A1F1C; --amber-soft:#382C17; --green-soft:#183326; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E161D; --panel:#16212A; --ink:#E6EDF2; --muted:#9AAAB6; --line:#26343F;
+  --accent:#5BB8D6; --accent-soft:#16323D; --led-red:#F0776B; --led-amber:#E3AE55; --led-green:#5CC98A;
+  --red-soft:#3A1F1C; --amber-soft:#382C17; --green-soft:#183326; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-block:28px 18px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;line-height:1.1;margin-top:6px}
+h2{font-size:clamp(22px,3.4vw,28px);font-weight:800;line-height:1.2}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+.lede{color:var(--muted);max-width:68ch;margin-top:10px}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-block:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{flex:0 0 auto;padding:12px 12px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+main{padding-block:24px 64px}
+section.panel{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+ul.ticks,ol.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+ul.ticks li::marker{color:var(--accent)}
+.led{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.led.r{background:var(--led-red)} .led.a{background:var(--led-amber)} .led.g{background:var(--led-green)}
+.pill{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.pill.r{background:var(--red-soft);color:var(--led-red)} .pill.a{background:var(--amber-soft);color:var(--led-amber)} .pill.g{background:var(--green-soft);color:var(--led-green)} .pill.b{background:var(--accent-soft);color:var(--accent)}
+/* bottom line */
+.verdict{background:var(--ink);color:var(--bg);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.verdict h2{color:var(--bg)}
+.verdict p{opacity:.85;max-width:70ch}
+ol.must{counter-reset:m;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ol.must li{counter-increment:m;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+ol.must li::before{content:counter(m);font-family:var(--mono);font-size:14px;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-family:var(--display);font-size:30px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:10px;align-items:center}
+.bar .lbl{font-size:14px}
+.bar .track{grid-column:1/2;height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:4px}
+.bar .fill{height:100%;background:var(--accent);border-radius:5px}
+.bar.neg .fill{background:var(--led-red)}
+.bar .val{font-family:var(--mono);font-size:14px;text-align:right;font-variant-numeric:tabular-nums;grid-row:1/3;grid-column:2}
+blockquote{margin:0;padding:10px 14px;border-left:3px solid var(--line);color:var(--muted);font-size:14px;font-style:italic}
+/* tables */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+/* phone mocks */
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:start}
+.phone{border:1px solid var(--line);border-radius:22px;padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:10px;max-width:380px;width:100%}
+.phone .cap{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.m-hero{background:var(--panel);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line)}
+.m-hero h4{font-family:var(--display);font-size:20px;line-height:1.15;margin:0}
+.m-chips{display:flex;flex-wrap:wrap;gap:6px}
+.m-chips span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--bg)}
+.m-chips span.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.m-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.m-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.m-logo{font-family:var(--display);font-weight:800;font-size:20px}
+.m-score{font-family:var(--display);font-weight:800;font-size:24px;font-variant-numeric:tabular-nums}
+.m-score small{font-family:var(--body);font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
+.m-offer{font-weight:600;font-size:14px}
+.m-offer em{font-style:normal;font-weight:400;color:var(--muted)}
+.m-facts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.m-facts div{background:var(--bg);border-radius:8px;padding:6px 8px;font-size:12px;color:var(--muted)}
+.m-facts b{display:block;color:var(--ink);font-size:14px}
+.m-card ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px}
+.m-cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.m-cta span{text-align:center;padding:10px 6px;border-radius:8px;font-weight:600;font-size:14px}
+.m-cta .pri{background:var(--accent);color:var(--panel)}
+.m-cta .sec{border:1.5px solid var(--accent);color:var(--accent)}
+.m-cta.one{grid-template-columns:1fr}
+.m-open{font-size:12px;color:var(--muted)}
+.m-link{font-size:13px;color:var(--accent);text-decoration:underline}
+.m-sticky{background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+.m-sticky span.b{background:var(--accent);color:var(--panel);padding:7px 10px;border-radius:7px;font-weight:600;white-space:nowrap}
+/* before/after */
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.ba > div{border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.ba .before{background:var(--red-soft)} .ba .after{background:var(--green-soft)}
+.ba .tag{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.ba .before .tag{color:var(--led-red)} .ba .after .tag{color:var(--led-green)}
+.note{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .6s ease}}
+</style>
+
+<header class="top wrap">
+  <span class="eyebrow">Topten Ratings · Home security · CRO plan · Nov 2026</span>
+  <h1>Home Security CRO Plan</h1>
+  <p class="lede">What buyers want, where the page loses them, and what to change first. Traffic: Google and Bing paid search, mobile only (desktop later).</p>
+</header>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap" id="tabs">
+  <a href="#bottom-line">Bottom line</a>
+  <a href="#buyer">The buyer</a>
+  <a href="#prices">Prices &amp; contracts</a>
+  <a href="#competitors">Competitors</a>
+  <a href="#our-page">Our page today</a>
+  <a href="#phone-local">Phone &amp; location</a>
+  <a href="#plan">CRO plan</a>
+  <a href="#tests">Tests &amp; next steps</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- BOTTOM LINE -->
+<section class="panel" id="p-bottom-line">
+  <div class="verdict">
+    <span class="eyebrow" style="color:inherit;opacity:.7">The bottom line</span>
+    <h2>Buyers are afraid of getting stuck. Our page leads with gift cards and hides the contract.</h2>
+    <p>47% of complaints are about cancelling, hidden fees, contracts or price hikes. Our top 3 cards (ADT, Vivint, Brinks) are the contract brands, and the contract, minimum spend and cancel fees sit in fine print. Competitors do the same, so the first page to show the real deal clearly has an edge. On mobile, the phone call is the money path for the pro brands, and we don't show a number yet.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>47%</b><span>of complaints are about getting out: cancel, fees, contract, price hikes</span></div>
+    <div class="stat"><b>21%</b><span>of all reviews ask for a real person to talk to (38% of happy ones)</span></div>
+    <div class="stat"><b>1 in 3</b><span>recent buyers moved that year. Moving is the #1 trigger</span></div>
+    <div class="stat"><b>37%</b><span>of recent buyers rent</span></div>
+  </div>
+
+  <div class="card">
+    <h3>So the page has to do six things</h3>
+    <ol class="must">
+      <li><div><b>Put the deal in plain sight.</b> Monthly price, contract length and cancel fee on the card, next to the offer. Not in fine print.</div></li>
+      <li><div><b>Let people talk to a human.</b> Tap-to-call on ADT, Vivint and Brinks, shown only when the line is open.</div></li>
+      <li><div><b>Split pro install from DIY up front.</b> One tap: "Pro install" or "Do it myself / no contract". Renters go to DIY.</div></li>
+      <li><div><b>Match the page to the ad.</b> Location in the headline, and the #1 card matched to the keyword (no-contract search → no-contract brand first).</div></li>
+      <li><div><b>Prove it works.</b> Response time, warranty and return window per brand. These answer the "equipment fails" and "nobody called" fears.</div></li>
+      <li><div><b>Keep every claim honest.</b> "Free" with its catch on the same line, real visitor counts, scores labelled as ours.</div></li>
+    </ol>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Is location important?</h3>
+      <p><span class="pill a">Medium</span></p>
+      <p class="small">The product is national: same brands, same prices in every state. But people search like it's local ("home security near me", city names), and installers, false-alarm fines and cancel laws are local. <b>Use location to match the ad</b> (headline from the campaign's location), then add one real local line. No need for different lists per state.</p>
+    </div>
+    <div class="card">
+      <h3>Is the phone important?</h3>
+      <p><span class="pill r">High</span></p>
+      <p class="small">Pro brands sell on the phone and pay per qualified call or per install. Traffic is 100% mobile, where calling is one tap. Top10.com makes the phone the main button on ADT. We already have numbers for the top 3, so this is the fastest win.</p>
+    </div>
+  </div>
+  <p class="note">Data: 165 review quotes from Trustpilot, BBB, ConsumerAffairs and others (via search snippets; skews negative), market and paid-search desk research, our page and 2 competitor pages (screenshots). Reddit was blocked, so no Reddit data yet.</p>
+</section>
+
+<!-- BUYER -->
+<section class="panel" id="p-buyer" hidden>
+  <div><span class="eyebrow">The buyer</span><h2>Who buys and why</h2></div>
+  <div class="stats">
+    <div class="stat"><b>37%</b><span>of US homes have a full system</span></div>
+    <div class="stat"><b>19%</b><span>pay for professional monitoring</span></div>
+    <div class="stat"><b>9-yr low</b><span>new pro-installed sign-ups (2024). DIY is growing</span></div>
+    <div class="stat"><b>$54/mo</b><span>average monthly security fee</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What triggers the purchase</h3>
+      <ul class="ticks small">
+        <li><b>Moving:</b> nearly 1 in 3 recent buyers moved that year</li>
+        <li><b>Renting:</b> 37% of recent buyers rent (8% six years ago)</li>
+        <li><b>A break-in or scare:</b> the biggest stated reason in reviews</li>
+        <li><b>Smart home:</b> 31% name it as the main reason (19% in 2021)</li>
+        <li><b>Insurance discount:</b> 56% of millennial and Gen Z homeowners</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Two kinds of buyer</h3>
+      <p class="small"><span class="pill b">Pro install</span> Wants someone to come and set it up, likes to talk first, owns the home. Fits ADT, Vivint, Brinks. Converts by phone.</p>
+      <p class="small"><span class="pill g">DIY / no contract</span> Renter or price-sensitive, hates contracts, buys online. Fits SimpliSafe, Cove, ADT Blu, Frontpoint, Ring. Converts by click.</p>
+      <p class="small muted">Our page treats everyone like the first kind.</p>
+    </div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What they want</h3><p class="small muted">Share of all reviews that mention it</p>
+      <div class="bars" id="needs"></div>
+    </div>
+    <div class="card">
+      <h3>What they fear</h3><p class="small muted">Share of complaints that mention it</p>
+      <div class="bars" id="fears"></div>
+    </div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="pill r">Getting out · 47%</span><blockquote>"No one mentioned a 5-year contract or an early termination fee — not once during the sales process." (Vivint)</blockquote><blockquote>"$788.74 to cancel my service" (Frontpoint)</blockquote></div>
+    <div class="card"><span class="pill a">It breaks · 34%</span><blockquote>"cameras go offline constantly and have to be reset in person" (Abode)</blockquote><blockquote>"disabled without monthly subscription" (Ring)</blockquote></div>
+    <div class="card"><span class="pill a">Nobody called · 18%</span><blockquote>"A month later I received a $316 false alarm fine from the LAPD." (SimpliSafe)</blockquote><blockquote>"called my cell within 30 seconds" (SimpliSafe, a happy one)</blockquote></div>
+  </div>
+  <div class="card">
+    <h3>The words buyers use (use them in ads and cards)</h3>
+    <p class="small">"no contract" · "cancel anytime" · "early termination fee" · "price went up" · "called within 30 seconds" · "the technician explained everything" · "easy to set up" · "no monthly fee" · "peace of mind" · "just moved"</p>
+  </div>
+  <p class="note">Ratings disagree across sites (Cove 4.5 on Trustpilot, 1.7 on ConsumerAffairs). One star badge can mislead buyers who check a second site.</p>
+</section>
+
+<!-- PRICES -->
+<section class="panel" id="p-prices" hidden>
+  <div><span class="eyebrow">Prices &amp; contracts</span><h2>Three ways to pay, very different costs to leave</h2></div>
+  <div class="grid g3">
+    <div class="card"><span class="pill r">Contract + pro install</span><p class="small">ADT, Vivint, Brinks, Xfinity. Low or "free" equipment, but 36–60 months of monitoring or an equipment loan. Leaving early is expensive.</p></div>
+    <div class="card"><span class="pill g">DIY + month-to-month</span><p class="small">SimpliSafe, Cove, Ring, Abode, Frontpoint. Buy the kit, install it yourself, cancel anytime. 30–60 day returns.</p></div>
+    <div class="card"><span class="pill b">Cameras + optional plan</span><p class="small">Arlo, Wyze, Ring cameras. The plan is mostly video storage. Buyers get annoyed when features need a plan.</p></div>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Provider</th><th>Monthly</th><th>Equipment</th><th>Contract</th><th>Cost to leave early</th><th>Return window</th></tr></thead>
+      <tbody>
+        <tr><td><b>ADT</b> (pro)</td><td class="num">$34.99–49.99</td><td>$599 min with pro install</td><td>36 mo (24 in CA)</td><td><span class="led r"></span>75% of months left</td><td>6-mo money-back, conditions</td></tr>
+        <tr><td><b>ADT Blu</b> (DIY)</td><td class="num">from $24.99</td><td>$349 min</td><td>1 month min</td><td><span class="led g"></span>none after 1 month</td><td>—</td></tr>
+        <tr><td><b>Vivint</b></td><td class="num">$24.99–44.99</td><td>$199–999, financed up to 60 mo</td><td>36–60 mo (loan)</td><td><span class="led r"></span>pay off the loan</td><td>3 days</td></tr>
+        <tr><td><b>Brinks Home</b></td><td class="num">$39.99–54.99</td><td>about $399+</td><td>usually 36 mo</td><td><span class="led r"></span>about 75% of remaining</td><td>30 days</td></tr>
+        <tr><td><b>SimpliSafe</b></td><td class="num">$22.99–79.99</td><td>DIY kit, often 40–65% off</td><td>none</td><td><span class="led g"></span>$0</td><td>60 days</td></tr>
+        <tr><td><b>Cove</b></td><td class="num">$22.99–42.99</td><td>DIY kit</td><td>none</td><td><span class="led g"></span>$0</td><td>60 days · price lock on Plus</td></tr>
+        <tr><td><b>Frontpoint</b></td><td class="num">about $49.99</td><td>DIY kit</td><td>month-to-month (sources conflict)</td><td><span class="led a"></span>reviews report cancel fees</td><td>30 days</td></tr>
+        <tr><td><b>Ring Alarm</b></td><td class="num">$19.99 (Pro)</td><td>$199–379 kits</td><td>none</td><td><span class="led g"></span>$0</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>What this means for the cards</h3>
+    <ul class="ticks small">
+      <li>"$19.99/mo" next to "$49.99/mo" compares very different services. Show <b>monthly + equipment + contract</b> together, or a 3-year total.</li>
+      <li><b>Cost to leave</b> is the number buyers fear most and nobody shows. A "Contract: none / 36 mo" chip answers it in one glance.</li>
+      <li>"Free equipment" usually means it's folded into a contract. The FTC says the catch must sit next to the word "free", not in a footnote.</li>
+    </ul>
+  </div>
+  <p class="note">Prices as reported in 2026 by provider and review sites, which often disagree. Confirm each with the partner before it goes on a card.</p>
+</section>
+
+<!-- COMPETITORS -->
+<section class="panel" id="p-competitors" hidden>
+  <div><span class="eyebrow">Competitors</span><h2>Everyone ranks the same way. Nobody shows the real deal.</h2></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th></th><th>Our page</th><th>Top10.com</th><th>Top Home Security Services</th></tr></thead>
+      <tbody>
+        <tr><td>#1 / #2 / #3</td><td>ADT 9.9 · Vivint 9.4 · Brinks 9.2</td><td>ADT 9.9 · Vivint 9.4 · Brinks 8.9</td><td>ADT 9.9 · Vivint 9.3 · Brinks 8.6</td></tr>
+        <tr><td>Location in headline</td><td><span class="led r"></span>No</td><td><span class="led g"></span>Yes, from visitor IP (showed "Tel Aviv")</td><td><span class="led g"></span>Yes ("California")</td></tr>
+        <tr><td>Phone button</td><td><span class="led r"></span>None</td><td><span class="led g"></span>ADT; main button on mobile</td><td><span class="led g"></span>ADT, Vivint, Brinks, with green "live" dot</td></tr>
+        <tr><td>SimpliSafe listed</td><td><span class="led r"></span>No</td><td><span class="led g"></span>Yes (#4 mobile)</td><td><span class="led g"></span>Yes (#4)</td></tr>
+        <tr><td>Install-type labels</td><td><span class="led a"></span>#1 only</td><td><span class="led g"></span>Pro install / Top DIY pick</td><td><span class="led g"></span>DIY Installation badge</td></tr>
+        <tr><td>Third-party proof</td><td><span class="led r"></span>Own score only</td><td><span class="led g"></span>Trustpilot review count per card (desktop)</td><td><span class="led a"></span>"A+ BBB", customer counts</td></tr>
+        <tr><td>Price on a card</td><td><span class="led a"></span>Cove "&lt;$1/day"</td><td><span class="led r"></span>Fine print only</td><td><span class="led g"></span>ADT Blu "from $29.99/mo"</td></tr>
+        <tr><td>Quote / lead option</td><td><span class="led r"></span>No</td><td><span class="led g"></span>SecurityPricer, "Get Free Quote"</td><td><span class="led r"></span>No</td></tr>
+        <tr><td>Contract &amp; cancel on card</td><td><span class="led r"></span>Fine print</td><td><span class="led r"></span>Fine print</td><td><span class="led r"></span>Fine print</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Top10.com on mobile</h3>
+      <ul class="ticks small">
+        <li>Hero is only the headline over a photo. Card #1 starts on the first screen.</li>
+        <li>ADT card: phone number is the filled main button, "Visit Site" is the outline one.</li>
+        <li>Other cards: one full-width "Visit Site". No product photo, no Trustpilot count.</li>
+        <li>After the list, ADT again in an "Our Most Popular" box with the phone.</li>
+        <li>Different order on mobile than desktop (ADT Blu dropped, SimpliSafe #4).</li>
+      </ul></div>
+    <div class="card"><h3>What the big affiliates do in paid search</h3>
+      <ul class="ticks small">
+        <li>SafeWise runs separate paid landing pages per keyword theme, and the #1 pick changes: SimpliSafe on DIY pages, ADT or Vivint on pro-install pages.</li>
+        <li>"Best for…" badge on every card (Security.org).</li>
+        <li>Phone numbers next to pro brands are standard.</li>
+      </ul></div>
+  </div>
+  <div class="card">
+    <h3>Our opening</h3>
+    <p class="small">No one puts monthly price, contract length and cost to leave on the card. Buyers' #1 fear is exactly that. Being the clear page is the advantage, as long as partners accept it (test it, measure partner revenue).</p>
+  </div>
+</section>
+
+<!-- OUR PAGE -->
+<section class="panel" id="p-our-page" hidden>
+  <div><span class="eyebrow">Our page today</span><h2>Where the page loses buyers</h2><p class="lede">From mobile and desktop screenshots, Nov 2 2026. Mobile is what paid traffic sees.</p></div>
+  <div class="card">
+    <h3>On mobile right now</h3>
+    <ul class="ticks small">
+      <li><span class="led g"></span>Lean header: commission line, date, headline, one subline. No photo, no top-3 strip. Card #1 starts on the first screen. Good.</li>
+      <li><span class="led r"></span>Sticky bottom bar shows ADT's logo and offer text, cut off mid-sentence, with <b>no button and no phone</b>. It also covers the card text behind it.</li>
+      <li><span class="led r"></span>Every card: "Visit Site" + "Get Protected". No phone anywhere, no price, no contract.</li>
+      <li><span class="led a"></span>"Professional install" badge on ADT only. Cove, Frontpoint and ADT Blu don't say DIY.</li>
+      <li><span class="led g"></span>Cove, Frontpoint and ADT Blu bullets are strong: no contract, 60-day / 30-day trial, warranty, cancel anytime.</li>
+    </ul>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Area</th><th>Today</th><th>Problem</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Header</td><td>"Best Home Security Systems of 2026 · Your family's safety, watched over 24/7" (photo and paragraph on desktop only)</td><td>Short on mobile, which is good. But generic: no location, no help choosing pro vs DIY.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Top 3 strip</td><td>Desktop only: Vivint / ADT / Brinks with offers</td><td>Not on mobile. Fine for now.</td><td><span class="pill g">Later</span></td></tr>
+        <tr><td>Card offer line</td><td>"$100 Visa reward card", "Free install + $50 gift card"</td><td>The $599 minimum, 36-month contract and cancel fees are in fine print. FTC: catch must be next to "free".</td><td><span class="pill r">Risk</span></td></tr>
+        <tr><td>Card facts</td><td>3–4 ✓ bullets (24/7 monitoring, app, Google Nest)</td><td>No monthly price, contract, install type or cancel terms on any card.</td><td><span class="pill r">Missing</span></td></tr>
+        <tr><td>Install type</td><td>"Professional install" on #1 only</td><td>DIY and renters can't spot their options.</td><td><span class="pill a">Partly</span></td></tr>
+        <tr><td>Ranking</td><td>ADT, Vivint, Brinks, Cove, Frontpoint, ADT Blu</td><td>No-contract options sit at #4 and #6 for every keyword. SimpliSafe missing.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Buttons</td><td>"Visit Site" + "Get Protected" on each card</td><td>Two links out per card, no phone.</td><td><span class="pill r">Missing</span></td></tr>
+        <tr><td>Social proof</td><td>"526 people visited this site today", "2,864 homeowners this month"</td><td>Fine if real and live. If static, it's an FTC risk.</td><td><span class="pill a">Check</span></td></tr>
+        <tr><td>Sticky bar</td><td>Mobile: ADT logo + cut-off offer text, no button. Desktop: has Visit Site</td><td>On mobile it has no clear action and covers the cards. Add a Call button (when open) or Visit Site, shorten the text.</td><td><span class="pill r">Fix now</span></td></tr>
+        <tr><td>Scores</td><td>9.9 "Exceptional" ADT</td><td>ADT has 10,742 BBB complaints in 3 years. A 9.9 invites distrust from buyers who check.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>FAQ</td><td>6 questions (pick provider, monitoring worth it, equipment, DIY, insurance, wireless)</td><td>Misses the top fears: contracts, cancelling, what "free" means, renting, moving.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Sidebar</td><td>Homeowners counter, Editor's picks, ADT banner, How we rate</td><td>Desktop only. On mobile, keep "How we rate" as a link under the list.</td><td><span class="pill g">Later</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card"><h3>What already works</h3>
+    <ul class="ticks small">
+      <li>"Last updated November 2026" freshness line.</li>
+      <li>Cove's bullets ("Zero contracts, zero commitment", "60-day risk-free trial") are exactly what buyers ask for.</li>
+      <li>ADT Blu "No long-term contract. Cancel anytime" and "Self-monitor or get 24/7 pro monitoring".</li>
+      <li>Sticky bottom bar with the #1 pick.</li>
+      <li>"How we rate" explains the scores.</li>
+    </ul></div>
+</section>
+
+<!-- PHONE & LOCATION -->
+<section class="panel" id="p-phone-local" hidden>
+  <div><span class="eyebrow">Phone &amp; location</span><h2>Two quick wins for paid mobile traffic</h2></div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Phone (ADT, Vivint, Brinks)</h3>
+      <ul class="ticks small">
+        <li>Phone = filled main button, "Visit Site" = outline, side by side.</li>
+        <li>Line above: "Talk to an ADT expert · free quote" with a green dot "Open now".</li>
+        <li>Show it only when the call center is open. After hours, Visit Site goes back to main.</li>
+        <li>Add the phone to the sticky bar and to a repeat of #1 after the list.</li>
+        <li>DIY brands keep one "See deal" button.</li>
+      </ul>
+      <p class="small"><b>Track:</b> tap event on each number. Import qualified calls (partner's minimum length, often 90–120s) into Google Ads and Bing as conversions.</p>
+      <p class="small"><b>Ask partners:</b> call center hours and time zone, qualified-call rule, pay per call vs per click.</p>
+    </div>
+    <div class="card">
+      <h3>Location</h3>
+      <ul class="ticks small">
+        <li>Headline: "Best Home Security Systems in {State} 2026". One template, location filled in.</li>
+        <li>Take the location from the campaign (Google ValueTrack location, Bing location ID, or ?state= per geo ad group). Visitor IP only as fallback.</li>
+        <li>US only. Otherwise fall back to "Best Home Security Systems of 2026" (Top10 showed "Tel Aviv").</li>
+        <li>Ad copy says the same: "Best Home Security in {State}".</li>
+        <li>Then add one real local line: "Pro install available in {City} · often next day".</li>
+        <li>Later: per-state phone numbers, order or offers where payouts differ, state cancel rules (California's is strict).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CRO PLAN -->
+<section class="panel" id="p-plan" hidden>
+  <div><span class="eyebrow">CRO plan</span><h2>What to change, top of the page down</h2></div>
+
+  <div class="card">
+    <h3>1 · Header</h3>
+    <div class="ba">
+      <div class="before"><span class="tag">Today</span><p class="small"><b>Best Home Security Systems of 2026</b><br>Your family's safety, watched over 24/7<br>Generic paragraph + family photo</p></div>
+      <div class="after"><span class="tag">Change to</span><p class="small"><b>Best Home Security Systems in California 2026</b><br>Compare monthly price, contract and cancel terms before you call.<br>Two taps: <b>Pro install</b> · <b>DIY / no contract</b>. Small or no photo on mobile.</p></div>
+    </div>
+    <ul class="ticks small">
+      <li>Mobile is already short and card #1 is on the first screen. Keep it that way: add the location and one line, not a photo.</li>
+      <li>Keep "Last updated November 2026" and the commission line at the top.</li>
+      <li>Replace "Your family's safety, watched over 24/7" with a line that answers the fear: "Compare monthly price, contract and cancel terms before you call."</li>
+      <li>Pro / DIY chips are a later test (they need the list to reorder).</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>2 · Cards: the formula</h3>
+    <ol class="steps small">
+      <li><b>Badge:</b> install type + contract. "Pro install · 36-mo contract" or "DIY · No contract".</li>
+      <li><b>Offer line with its catch:</b> "$100 Visa card with pro install ($599 min + monitoring)".</li>
+      <li><b>Two fact boxes:</b> monthly price and cost to leave.</li>
+      <li><b>3 bullets:</b> one about the human (install, response time), one about reliability (warranty, backup), one real differentiator.</li>
+      <li><b>Buttons:</b> Call + Visit Site for pro brands when the line is open, one button for DIY.</li>
+    </ol>
+  </div>
+
+  <div class="phones">
+    <div class="phone">
+      <span class="cap">Mobile · header + pro card</span>
+      <div class="m-hero">
+        <span class="eyebrow">Updated Nov 2026 · Ad disclosure</span>
+        <h4>Best Home Security Systems in California 2026</h4>
+        <p class="small muted">Compare monthly price, contract and cancel terms before you call.</p>
+        <div class="m-chips"><span class="on">Pro install</span><span>DIY / no contract</span><span>I rent</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-row"><span class="pill b">1 · Pro install · 36-mo contract</span></div>
+        <div class="m-row"><span class="m-logo">ADT</span><span class="m-score">9.6<small>our score</small></span></div>
+        <p class="m-offer">$100 Visa reward card with pro install <em>($599 min + monitoring)</em></p>
+        <div class="m-facts"><div>Monthly<b>from $34.99</b></div><div>Leave early<b>75% of months left</b></div></div>
+        <ul><li>Same or next-day install by an ADT pro</li><li>24/7 monitoring, rapid response</li><li>6-month money-back if they can't fix an issue</li></ul>
+        <span class="m-open"><span class="led g"></span>Experts available now · free quote</span>
+        <div class="m-cta"><span class="pri">Call 855-xxx-xxxx</span><span class="sec">Visit site</span></div>
+        <span class="m-link">Read ADT review</span>
+      </div>
+    </div>
+    <div class="phone">
+      <span class="cap">Mobile · DIY card + sticky bar</span>
+      <div class="m-card">
+        <div class="m-row"><span class="pill g">DIY · No contract</span></div>
+        <div class="m-row"><span class="m-logo">cove</span><span class="m-score">9.0<small>our score</small></span></div>
+        <p class="m-offer">Save 70% on equipment + free HD camera</p>
+        <div class="m-facts"><div>Monthly<b>from $22.99</b></div><div>Leave early<b>$0, cancel anytime</b></div></div>
+        <ul><li>60-day risk-free trial</li><li>Lifetime equipment warranty</li><li>Price locked for life on the Plus plan</li></ul>
+        <div class="m-cta one"><span class="pri">See Cove deal</span></div>
+        <span class="m-link">Read Cove review</span>
+      </div>
+      <div class="m-sticky"><span>ADT · $100 Visa card with pro install</span><span class="b">Call now</span></div>
+    </div>
+  </div>
+  <p class="note">Example copy. Prices and terms come from the partners' own fine print and 2026 research. Confirm each one, and agree the "leave early" line with partners before testing.</p>
+
+  <div class="card">
+    <h3>3 · Card bullets, rewritten</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Brand</th><th>Today</th><th>Suggested</th></tr></thead>
+        <tbody>
+          <tr><td><b>ADT</b></td><td>$100 ADT Visa Reward Card · 24/7 rapid-response monitoring · 6-month money-back guarantee** · Google Nest integration</td><td>Badge: Pro install · 36-mo contract<br>Offer: $100 Visa card with pro install ($599 min + monitoring)<br>✓ From $34.99/mo · ✓ Same or next-day install · ✓ 6-month money-back if they can't fix an issue</td></tr>
+          <tr><td><b>Vivint</b></td><td>Free install + $50 Visa gift card (code) · 24/7 video recording · Works with Google, Hue, Echo, Nest · Flexible financing</td><td>Badge: Pro install · equipment financed<br>Offer: Free install + $50 Visa card, code FREEINSTALL50<br>✓ From $24.99/mo (check) · ✓ Top-rated smart home app · ✓ Equipment can be financed up to 60 months</td></tr>
+          <tr><td><b>Brinks</b></td><td>Free video doorbell + free install · Customizable plans · 30-second response</td><td>Badge: Pro install · contract<br>Offer: Free video doorbell + install with monitoring<br>✓ From $39.99/mo (check) · ✓ 30-second alarm response · ✓ 30-day return window</td></tr>
+          <tr><td><b>Cove</b></td><td>Save 70% + free HD camera · Monitoring &lt;$1/day · 60-day trial, lifetime warranty · Zero contracts</td><td>Keep. Add the "DIY · No contract" badge, "from $22.99/mo" and "price lock on Plus".</td></tr>
+          <tr><td><b>Frontpoint</b></td><td>(not visible)</td><td>Badge: DIY · check contract terms (sources conflict, reviews report cancel fees)</td></tr>
+          <tr><td><b>ADT Blu</b></td><td>60% off kits** · Easy DIY · No contract · Self-monitor or 24/7 pro</td><td>Badge: DIY · No contract<br>Offer: 60% off select kits (with pro monitoring plan)<br>✓ From $24.99/mo · ✓ Cancel anytime after month 1 · ✓ Backed by ADT monitoring</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>4 · Ranking matched to the keyword</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Keyword theme</th><th>#1 card</th><th>Header angle</th></tr></thead>
+        <tbody>
+          <tr><td>best home security, installation, near me, ADT deals</td><td>ADT (call)</td><td>Pro install, talk to an expert</td></tr>
+          <tr><td>no contract, wireless, DIY, cheap</td><td>Cove or ADT Blu (add SimpliSafe if possible)</td><td>No contract, cancel anytime</td></tr>
+          <tr><td>for renters, apartment</td><td>DIY brand</td><td>No drilling, take it when you move</td></tr>
+          <tr><td>with cameras</td><td>Vivint or camera-first DIY</td><td>Monthly cost with cameras</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">SafeWise already does this. One template, a few orders, chosen by ad group.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><h3>5 · Below the list</h3>
+      <ul class="ticks small">
+        <li>Repeat #1 with the phone ("Still deciding? Talk to ADT").</li>
+        <li>Short comparison: monthly · equipment · contract · cost to leave · return window.</li>
+        <li>FAQ, new first: How do I cancel? What does "free equipment" really mean? Can I take it when I move? Best option for renters? Will my price go up?</li>
+        <li>Cut "What is home security?" on mobile.</li>
+      </ul></div>
+    <div class="card"><h3>6 · Trust and compliance</h3>
+      <ul class="ticks small">
+        <li>"Free" offers carry their catch on the same line.</li>
+        <li>Visitor counters must be real and live, or removed.</li>
+        <li>Scores labelled "our score", with "How we rate" one tap away.</li>
+        <li>Never look like ADT (no blue octagon lookalikes), and use the brand name only on review pages for brand-term ads.</li>
+        <li>Monthly plans: say they renew and how to cancel (California law).</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- TESTS -->
+<section class="panel" id="p-tests" hidden>
+  <div><span class="eyebrow">Tests &amp; next steps</span><h2>What to test first</h2><p class="lede">We'll check which are worth testing before each one starts. Judge every test by partner-paid revenue per visitor (paid calls + sales), not clicks.</p></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>#</th><th>Test</th><th>Why</th><th>Effort</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Phone as main button on ADT, Vivint, Brinks (open hours only) vs Visit Site only</td><td>Pro brands sell and pay on calls; 100% mobile traffic; numbers ready</td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>2</td><td>Location in headline (from campaign) vs generic</td><td>Ad-to-page match; competitors do it</td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>3</td><td>Cards with install-type badge + monthly price vs today</td><td>Price clarity, DIY vs pro is the first choice</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>4</td><td>"Contract / cost to leave" fact on cards vs fine print</td><td>47% of complaints are about getting out. Partner-sensitive</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>5</td><td>Separate no-contract / DIY page for those keywords (DIY #1) vs current list</td><td>SafeWise matches #1 to intent; renters 37%</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>6</td><td>Sticky bar with a real button (Call when open, else Visit Site) vs today's text-only bar</td><td>Today's mobile bar has no action and covers cards</td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>7</td><td>Pro / DIY / I rent chips that reorder the list</td><td>Two buyer types; first real split of our traffic</td><td><span class="pill r">High</span></td><td><span class="pill b">Later</span></td></tr>
+        <tr><td>8</td><td>Add SimpliSafe (if a deal is possible)</td><td>Biggest DIY brand, on both competitor pages</td><td><span class="pill a">Partner</span></td><td><span class="pill b">Later</span></td></tr>
+        <tr><td>9</td><td>"Just moved?" header for moving keywords</td><td>Moving is the #1 trigger</td><td><span class="pill g">Low</span></td><td><span class="pill b">Later</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Need from the team</h3>
+      <ul class="ticks small">
+        <li>Mobile click data: sticky bar taps, "Visit Site" vs "Get Protected" taps, scroll depth.</li>
+        <li>Call center hours, qualified-call rule and pay per call for ADT, Vivint, Brinks.</li>
+        <li>Payouts per partner (click vs call vs install).</li>
+        <li>Search terms report, campaigns by location, Auction Insights.</li>
+        <li>Whether the visitor counters are live data.</li>
+        <li>Can we add SimpliSafe?</li>
+      </ul></div>
+    <div class="card"><h3>Need for better research</h3>
+      <ul class="ticks small">
+        <li>Reddit threads pasted in (Reddit is blocked here), like we did for weight loss.</li>
+        <li>Or allow trustpilot.com and reddit.com in the session network settings for full reviews.</li>
+        <li>Current numbers: 165 review quotes from search snippets, skewed negative. Good for direction, not exact shares.</li>
+      </ul></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var needs=[["A real person to talk to",21],["It works, every time",19],["Cameras",13],["Clear pricing",12],["Fast alarm response",10],["Good app",10],["No contract",7],["No monthly fee",7],["Easy setup",5]];
+  var fears=[["Equipment or app fails",34],["Hard to cancel",23],["Hidden fees",21],["Stuck in a contract",12],["Nobody responded to the alarm",12],["False alarms and fines",7],["Price went up",4]];
+  function draw(id,rows,neg){
+    var el=document.getElementById(id),max=rows[0][1];
+    el.innerHTML=rows.map(function(r){return '<div class="bar'+(neg?' neg':'')+'"><span class="lbl">'+r[0]+'</span><span class="val">'+r[1]+'%</span><div class="track"><div class="fill" style="width:'+(r[1]/max*100)+'%"></div></div></div>';}).join('');
+  }
+  draw('needs',needs,false); draw('fears',fears,true);
+  var ids=['bottom-line','buyer','prices','competitors','our-page','phone-local','plan','tests'];
+  function show(){
+    var h=(location.hash||'').slice(1); if(ids.indexOf(h)<0) h='bottom-line';
+    ids.forEach(function(i){document.getElementById('p-'+i).hidden=(i!==h);});
+    document.querySelectorAll('#tabs a').forEach(function(a){ if(a.getAttribute('href')==='#'+h){a.setAttribute('aria-current','page');a.scrollIntoView({block:'nearest',inline:'nearest'});} else a.removeAttribute('aria-current');});
+  }
+  window.addEventListener('hashchange',function(){show();window.scrollTo(0,0);}); show();
+})();
+</script>
