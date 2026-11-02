@@ -1,0 +1,166 @@
+source,provider,stars,sentiment,date,stage,home,install,needs,fears,switch_reason,quote,url
+trustpilot,ADT,,neg,,unknown,unknown,unknown,,TRAPPED_CONTRACT,,you can never get out of it,https://www.trustpilot.com/review/adt.com
+bbb,ADT,,neg,,unknown,unknown,unknown,,TRAPPED_CONTRACT;CANCEL_HARD,,"charged $6,662.38 for early termination fees and a balance for a five year contract",https://www.bbb.org/us/fl/boca-raton/profile/burglar-alarm-systems/adt-security-services-0633-30001337/complaints
+bbb,ADT,,neg,,unknown,unknown,unknown,,CANCEL_HARD;PUSHY_SALES,,contacted the sales representative the day after the sale and clearly requested cancellation,https://www.bbb.org/us/fl/boca-raton/profile/burglar-alarm-systems/adt-security-services-0633-30001337/complaints
+bbb,ADT,,neg,2026,unknown,unknown,unknown,HUMAN,CANCEL_HARD,,just submit a ticket,https://www.bbb.org/us/fl/boca-raton/profile/burglar-alarm-systems/adt-security-services-0633-30001337/customer-reviews
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,,FALSE_ALARM;HIDDEN_FEES,,A month later I received a $316 false alarm fine from the LAPD.,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=4
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,,FALSE_ALARM,,They were still dispatched resulting in us getting a false alarm charge.,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=4
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,HUMAN,,,their customer service is the worst,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=5
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS;NO_RESPONSE,,the system has not been connecting to the Simplisafe dispatch center,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=5
+trustpilot,SimpliSafe,,neg,,unknown,unknown,unknown,,FALSE_ALARM;EQUIPMENT_FAILS,,give false alarms often causing me to remove it from my system,https://www.trustpilot.com/review/simplisafe.com
+consumeraffairs,SimpliSafe,,pos,,unknown,unknown,unknown,FAST_RESPONSE;PEACE_OF_MIND,,,amazes me at how fast they respond (seconds),https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+consumeraffairs,SimpliSafe,,pos,,unknown,unknown,unknown,FAST_RESPONSE,,,I have had them call immediately when the alarm is triggered,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+bestcompany,Vivint,,mixed,,switch,unknown,unknown,,PUSHY_SALES,contract,the sales representative offer to pay our current contract with Brinks if we switched to Vivint,https://bestcompany.com/home-security/vivint/reviews?page=94
+bestcompany,Vivint,,neg,,moving,owner,unknown,,TRAPPED_CONTRACT,,Vivint did not let me out of my old contract so I payed for a home I no longer owned.,https://bestcompany.com/home-security/vivint/reviews?page=94
+trustpilot,Vivint,,neg,,unknown,unknown,unknown,PRICE_CLARITY,TRAPPED_CONTRACT;PUSHY_SALES;HIDDEN_FEES,,No one mentioned a 5-year contract or an early termination fee — not once during the sales process.,https://www.trustpilot.com/review/vivint.security
+bestcompany,Vivint,,pos,,unknown,unknown,unknown,HUMAN,,,very polite and honest,https://bestcompany.com/home-security/vivint/reviews?page=94
+trustpilot,Ring,,neg,,unknown,unknown,unknown,,PRICE_HIKE,,rate still more than doubled at year 1 and is now at $29.99 per month,https://www.trustpilot.com/review/ring.com
+trustpilot,Ring,,neg,,unknown,unknown,unknown,,PRICE_HIKE,,a doubling of cost for the same service,https://www.trustpilot.com/review/ring.com
+trustpilot,Ring,,neg,,unknown,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,a surprise 213.25 subscription for the past two months after calling to cancel,https://www.trustpilot.com/review/ring.com
+consumeraffairs,Brinks,,neg,,unknown,unknown,unknown,,CANCEL_HARD,,keep getting the runaround and new offer after offer for cheaper service,https://www.consumeraffairs.com/homeowners/monitronics.html?page=7
+consumeraffairs,Brinks,,neg,,unknown,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,an additional month of service that I never wanted,https://www.consumeraffairs.com/homeowners/monitronics.html?page=7
+consumeraffairs,Brinks,,pos,,unknown,unknown,unknown,HUMAN,,,very polite and helped me with canceling my contract,https://www.consumeraffairs.com/homeowners/monitronics.html?page=7
+consumeraffairs,Cove,,pos,,switch,unknown,unknown,PRICE_CLARITY,,,the price is much less than ADT and Vivint.,https://www.consumeraffairs.com/homeowners/cove.html
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS;FALSE_ALARM,,the control panel doesn't operate as intended... There are no options to update so it continues to malfunction.,https://www.consumeraffairs.com/homeowners/cove.html
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,APP,,,does not work with Google Home and Alexa,https://www.consumeraffairs.com/homeowners/cove.html?page=2
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,PRICE_CLARITY,HIDDEN_FEES,,didn't notice that we were getting billed twice until it was too late,https://www.consumeraffairs.com/homeowners/cove.html?page=2
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,HUMAN,EQUIPMENT_FAILS,,I've reached out to the company on several instances and no solutions or help.,https://www.consumeraffairs.com/homeowners/cove.html?page=2
+trustpilot,Abode,,neg,,unknown,unknown,unknown,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,cameras go offline constantly and have to be reset in person,https://www.trustpilot.com/review/goabode.com
+trustpilot,Abode,,neg,,unknown,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,cannot delete payment method,https://www.trustpilot.com/review/goabode.com
+other,Deep Sentinel,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,a man riding us while guards watching and done nothing,https://www.yelp.com/biz/deep-sentinel-pleasanton
+other,Deep Sentinel,,neg,,unknown,unknown,unknown,CAMERAS;APP,EQUIPMENT_FAILS,,video recorded over 45 minutes ago,https://www.yelp.com/biz/deep-sentinel-pleasanton
+consumeraffairs,Xfinity,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT,,every little change you make to your account your home security contract starts over,https://www.consumeraffairs.com/homeowners/xfinity-home.html
+consumeraffairs,Xfinity,,neg,,unknown,unknown,unknown,HUMAN;FAST_RESPONSE,NO_RESPONSE;FALSE_ALARM,,no one from Xfinity calls to see if everything's ok,https://www.consumeraffairs.com/homeowners/xfinity-home.html
+consumeraffairs,ADT,,neg,,unknown,unknown,unknown,PRICE_CLARITY,PRICE_HIKE,,"When I started, the service cost me about $40 a month, but now, two years later, it's jumped to over $70.",https://www.consumeraffairs.com/homeowners/adt.htm?page=7
+consumeraffairs,ADT,,neg,,unknown,unknown,unknown,PRICE_CLARITY,PRICE_HIKE,,"the price went up and we didn't receive any notice that it did, unless we missed it",https://www.consumeraffairs.com/homeowners/adt.htm?page=3
+consumeraffairs,ADT,,neg,,unknown,unknown,unknown,PRICE_CLARITY,HIDDEN_FEES,,"an additional monthly equipment fee, which was not initially clear",https://www.consumeraffairs.com/homeowners/adt.htm?page=5
+consumeraffairs,ADT,,pos,,unknown,unknown,pro,EASY_SETUP;HUMAN,,,"explained every step, ensuring I understood how to operate the system",https://www.consumeraffairs.com/homeowners/adt.htm?page=10
+consumeraffairs,ADT,,pos,,unknown,unknown,unknown,PEACE_OF_MIND,,,ADT has given me peace of mind when I am home alone,https://www.consumeraffairs.com/homeowners/adt.htm?page=16
+consumeraffairs,Vivint,,pos,,unknown,unknown,pro,HUMAN;APP,,,the tech took time to walk us through the app and equipment,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=3
+consumeraffairs,Vivint,,pos,,unknown,unknown,pro,HUMAN,,,showed up right on time for the appointment,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=5
+consumeraffairs,Vivint,,pos,,unknown,unknown,unknown,APP,,,"the app is very, very easy to use",https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=7
+consumeraffairs,Vivint,,pos,,unknown,unknown,unknown,APP,,,all the home devices that can be controlled on one Vivint App,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=9
+consumeraffairs,Vivint,,neg,,unknown,unknown,pro,,BAD_INSTALL,,messages us and says he on his way and 2 hours later he's still not here,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=153
+consumeraffairs,Vivint,,neg,,unknown,unknown,pro,,BAD_INSTALL,,installation for system took three visits from the tech,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=33
+consumeraffairs,Vivint,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS,,the connectivity problems are so poor that a technician was required,https://www.consumeraffairs.com/homeowners/apx_alarm.html?page=151
+bbb,SimpliSafe,,neg,,unknown,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,the subscription was not cancelled and I was continued to be charged,https://www.bbb.org/us/ma/boston/profile/burglar-alarm-systems/simplisafe-inc-0021-129235/complaints
+bbb,SimpliSafe,,neg,,unknown,unknown,unknown,,CANCEL_HARD,,filed a complaint with Better Business Bureau and a dispute with my credit card,https://www.bbb.org/us/ma/boston/profile/burglar-alarm-systems/simplisafe-inc-0021-129235/complaints
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION;CAMERAS,CANCEL_HARD,,completely locked out of managing or adjusting,https://www.consumeraffairs.com/homeowners/simplisafe.html
+consumeraffairs,Wyze,,neg,2026,unknown,unknown,unknown,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,"Seems after Wyze updates, 5 of them stopped working one after the other this year",https://www.consumeraffairs.com/homeowners/wyze.html
+other,Wyze,,neg,,unknown,unknown,unknown,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,going offline on a daily basis,https://slickdeals.net/f/16909501-wyze-cam-plus-unlimited-cameras-annual-plan-89-after-coupon
+other,Wyze,,pos,,unknown,unknown,unknown,HUMAN,,,wyze shipped a new one next day,https://slickdeals.net/f/16909501-wyze-cam-plus-unlimited-cameras-annual-plan-89-after-coupon
+other,Wyze,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION,PRICE_HIKE,,made everything sub based,https://slickdeals.net/f/16909501-wyze-cam-plus-unlimited-cameras-annual-plan-89-after-coupon
+other,Wyze,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION,HIDDEN_FEES,,do nothing without monthly fees,https://slickdeals.net/f/18868996
+other,Ring,,pos,,switch,unknown,diy,RELIABLE,,reliability,just works,https://terrywhite.com/ring-alarm-vs-simplisafe/
+trustpilot,SimpliSafe,1,neg,,unknown,unknown,unknown,NO_CONTRACT,CANCEL_HARD,,if you subscribe to their monitoring subscription they make it as hard as possible to leave it,https://www.trustpilot.com/review/simplisafe.com?page=2
+trustpilot,SimpliSafe,,pos,,unknown,unknown,unknown,HUMAN,,,"the few times I have interacted with the monitoring people, they have been fine",https://www.trustpilot.com/review/simplisafe.com?page=2
+trustpilot,SimpliSafe,,mixed,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS,,SimpliSafe is unique with monitoring but I want great hardware too!,https://uk.trustpilot.com/review/simplisafe.com?page=5
+trustpilot,SimpliSafe,,neg,,unknown,unknown,unknown,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,worked again for a few months then stopped,https://uk.trustpilot.com/review/simplisafe.com?page=7
+trustpilot,SimpliSafe,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION,HIDDEN_FEES,,"many of the features you would expect for ""self-monitoring"" require paying for their service plan",https://ca.trustpilot.com/review/simplisafe.com?page=6
+bestcompany,SimpliSafe,,pos,,unknown,unknown,unknown,HUMAN,,,the staff is professional and respectful,https://bestcompany.com/home-security/simplisafe/reviews
+bestcompany,ADT,,neg,,unknown,unknown,unknown,HUMAN,CANCEL_HARD,,absolutely impossible to cancel one's service,https://bestcompany.com/smart-home/company/adt-pulse
+other,Frontpoint,,neg,,unknown,unknown,unknown,PRICE_CLARITY,CANCEL_HARD;HIDDEN_FEES,,"an extra month is charged after signing terms, and they offer half price to stay",https://frontpoint-security.pissedconsumer.com/review.html
+trustpilot,Frontpoint,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;CANCEL_HARD,,$788.74 to cancel my service,https://www.trustpilot.com/review/www.frontpointsecurity.com
+trustpilot,Frontpoint,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;CANCEL_HARD,,almost $800 cancellation charge,https://au.trustpilot.com/review/www.frontpointsecurity.com
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,I didn't get any such call.,https://www.consumeraffairs.com/homeowners/cove.html?page=3
+consumeraffairs,Cove,,neg,,unknown,unknown,unknown,RELIABLE,FALSE_ALARM;EQUIPMENT_FAILS,,sent the cops to our home,https://www.consumeraffairs.com/homeowners/cove.html?page=2
+other,Ring,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,I found in the app settings- monitoring- confirmation call it was disabled. It must have been an update or something they added when ring outsourced their call center and didnt tell anyone.,https://community.ring.com/t/ring-alarm-triggered-but-no-check-up-call-from-the-monitoring-center/10091
+other,Ring,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,Ring will call *any time* the alarm is triggered -- there is no caveat that the alarm must sound for over 1 minute.,https://community.ring.com/t/no-call-from-monitoring-when-alarm-tripped/66565
+other,Ring,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS;NO_RESPONSE,,It was her code used on the front door lock which disarmed the alarm locally but for some reason didn't update the state at the Monitoring center to mark it disarmed.,https://community.ring.com/t/professional-monitoring-calling-with-every-disarm/190575
+other,Kangaroo,,neg,,unknown,unknown,diy,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,Doorbell cameras themselves never once survived an entire year,https://play.google.com/store/apps/details?id=com.kangaroo.security&hl=en_US
+other,Kangaroo,,neg,,unknown,unknown,unknown,HUMAN,,,does not employ a human that one can interact with,https://www.bestbuy.com/site/reviews/kangaroo-indoor-outdoor-wired-1080p-security-camera-white/6506997
+trustpilot,Brinks,,pos,,unknown,unknown,pro,HUMAN,,,solved my problem so quickly and efficiently,https://www.trustpilot.com/review/brinkshome.com
+trustpilot,Brinks,,pos,,unknown,unknown,pro,HUMAN,,,did an outstanding job resolving my panel issues,https://www.trustpilot.com/review/brinkshome.com
+trustpilot,Brinks,,neg,,unknown,unknown,pro,HUMAN,BAD_INSTALL,,had not shown up for any of the 2 appointments that were made,https://www.trustpilot.com/review/brinkshome.com
+consumeraffairs,Abode,,pos,,unknown,unknown,diy,APP,,,"integration with Alexa, the Apple, and the iPhone",https://www.consumeraffairs.com/homeowners/abode.html
+consumeraffairs,Abode,,mixed,,unknown,unknown,unknown,CAMERAS,,,the camera system is lacking compared to a lot of the other systems,https://www.consumeraffairs.com/homeowners/abode.html
+trustpilot,Arlo,,neg,,unknown,unknown,unknown,HUMAN,,,Arlo has eliminated all human support channels,https://www.trustpilot.com/review/my.arlo.com
+bbb,Arlo,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION;CAMERAS,HIDDEN_FEES,,bait (buy new cameras) and switch (not usable without subscription package),https://bbb.org/us/fl/orlando/profile/tech-support/arlo-support-0733-90641619/customer-reviews
+other,Deep Sentinel,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,guards ignore trespassers frequently,https://apps.apple.com/us/app/1143390768?l=ar&see-all=reviews&platform=iphone
+trustpilot,ADT,,neg,,unknown,unknown,pro,,PUSHY_SALES;BAD_INSTALL,,"told us our home's existing hardwired alarm system ... ""could not be activated anymore.""",https://www.trustpilot.com/review/adt.com?page=4
+trustpilot,ADT,,pos,,unknown,unknown,unknown,HUMAN,,,the AI agent was able to take care of my request quickly and promptly,https://ie.trustpilot.com/review/adt.com?page=4
+consumeraffairs,SimpliSafe,,pos,,after_incident,unknown,unknown,FAST_RESPONSE;PEACE_OF_MIND,,,the police caught them because of the quick response on their monitoring,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+consumeraffairs,SimpliSafe,,pos,,after_incident,unknown,unknown,RELIABLE;FAST_RESPONSE,,,the second home was burglarized and SimpliSafe worked as it should and the police arrived shortly after the alarm activated,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+trustpilot,SimpliSafe,,neg,,after_incident,unknown,unknown,RELIABLE,EQUIPMENT_FAILS;NO_RESPONSE,,the alarm NEVER went off,https://www.trustpilot.com/review/simplisafe.com?page=122
+consumeraffairs,SimpliSafe,,neg,,after_incident,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,Simplisafe never called the police,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=5
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,unknown,,FALSE_ALARM,,SimpliSafe called the police without my authorization after I triggered my own alarm by mistake,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=5
+consumeraffairs,SimpliSafe,,mixed,,after_incident,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,contacted us fast but took the police an hour to show up,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=5
+trustpilot,Vivint,,neg,,moving,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,attempted to cancel service due to a relocation (equipment fully paid for) and received confirmation during that call that service had been cancelled,https://www.trustpilot.com/review/vivint.security
+trustpilot,Vivint,,neg,,moving,unknown,unknown,HUMAN,CANCEL_HARD,,5 different people just to cancel,https://www.trustpilot.com/review/vivint.security
+trustpilot,Vivint,,neg,,moving,owner,unknown,NO_CONTRACT,TRAPPED_CONTRACT,,had to pay another $2000 to get out of the contract,https://www.trustpilot.com/review/vivint.security
+other,Ring,,pos,,unknown,unknown,diy,EASY_SETUP;APP,,,"incredibly easy to set up. You just take it out of the box, install the app, and follow directions.",https://www.homedepot.com/p/reviews/Ring-Alarm-Wireless-Security-System-8-Piece-Kit-2nd-Gen-4K18SZ-0EN0/312689497/1
+other,Ring,,pos,,unknown,unknown,diy,EASY_SETUP,,,monitoring my home within 30 minutes,https://homedepot.com/p/reviews/Ring-Alarm-Pro-14-Piece-Alarm-Kit-B08HSVCB5M/318616639/3
+other,Ring,,pos,,unknown,unknown,diy,NO_SUBSCRIPTION,,,there is no monthly fee unless you want professional monitoring,https://www.homedepot.com/p/reviews/Ring-Alarm-Wireless-Security-System-5-Piece-Kit-2nd-Gen-4K11SZ-0EN0/312689496/1
+other,Ring,,pos,,unknown,unknown,diy,NO_SUBSCRIPTION;PRICE_CLARITY,,,without having a company charge high fees monthly,https://www.homedepot.com/p/reviews/Ring-Alarm-Wireless-Security-System-5-Piece-Kit-2nd-Gen-4K11SZ-0EN0/312689496/1
+other,Ring,,neg,,unknown,unknown,diy,NO_SUBSCRIPTION;PRICE_CLARITY,HIDDEN_FEES,,disabled without monthly subscription,https://www.homedepot.com/p/reviews/Ring-Alarm-Wireless-Security-System-8-Piece-Kit-2nd-Gen-4K18SZ-0EN0/312689497/1
+other,Ring,,neg,,unknown,unknown,diy,NO_SUBSCRIPTION,HIDDEN_FEES,,very egregious on Ring's part,https://www.homedepot.com/p/reviews/Ring-Alarm-Wireless-Security-System-8-Piece-Kit-2nd-Gen-4K18SZ-0EN0/312689497/1
+trustpilot,Xfinity,,neg,,unknown,unknown,unknown,PRICE_CLARITY,CANCEL_HARD;HIDDEN_FEES;PRIVACY,,"Two months in, I've dealt with security concerns, incorrect billing, late fees, broken promises, and terrible customer service. I canceled that day and returned equipment and I was still charged for service.",https://www.trustpilot.com/review/xfinity.com
+consumeraffairs,Xfinity,,neg,,unknown,unknown,unknown,,CANCEL_HARD;HIDDEN_FEES,,"I was charged the balance for the equipment, even though it was returned at the local xfinity store, and I have the receipt to prove it.",https://www.consumeraffairs.com/homeowners/xfinity-home.html
+other,Xfinity,,neg,,unknown,unknown,unknown,PRICE_CLARITY,CANCEL_HARD;HIDDEN_FEES,,"After I called multiple times to cancel my Home Security (and physically returned all the equipment to the Xfinity store), my next month's bill is $710 more than it should be.",https://forums.xfinity.com/conversations/devices-and-equipment/home-security-bait-and-switch/66e9cc91de8d1e3b5f415ff3
+trustpilot,Cove,,pos,,switch,unknown,diy,PRICE_CLARITY,,moving,"We were using ADT for a decade before moving to CA. Since Cove offers sensors at good inexpensive prices, I purchased and in...",https://www.trustpilot.com/review/covesmart.com
+consumeraffairs,Frontpoint,,pos,,unknown,unknown,diy,EASY_SETUP;APP,,,the app walked me through the whole thing,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=14
+consumeraffairs,Frontpoint,,pos,,unknown,unknown,diy,EASY_SETUP,,,the installation took 30 minutes total,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=12
+consumeraffairs,Frontpoint,,pos,,unknown,unknown,diy,EASY_SETUP,,,under an hour to set up several sensors in and around the house,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=9
+consumeraffairs,Frontpoint,,neg,,unknown,unknown,diy,APP,EQUIPMENT_FAILS,,"the app wasn't corresponding with my sensors, so I had to call and get it fixed",https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=5
+consumeraffairs,Frontpoint,,neg,,unknown,unknown,diy,RELIABLE,EQUIPMENT_FAILS,,the adhesive on the little door sensors didn't work well,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=4
+consumeraffairs,Frontpoint,,neg,,unknown,unknown,diy,,BAD_INSTALL,,had misnumbered them during setup,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=8
+consumeraffairs,Frontpoint,,neg,,unknown,unknown,diy,RELIABLE,EQUIPMENT_FAILS,,two of them did not work,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=3
+consumeraffairs,Frontpoint,,pos,,unknown,unknown,unknown,HUMAN,,,contacted right away by the technical people,https://www.consumeraffairs.com/homeowners/frontpoint-security.html?page=10
+bbb,Brinks,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS,,inoperative since August 24 with the exception of one day,https://www.bbb.org/us/tx/dallas/profile/burglar-alarm-systems/brinks-home-0875-90346299/customer-reviews
+consumeraffairs,Brinks,,neg,,unknown,unknown,unknown,PRICE_CLARITY,HIDDEN_FEES;EQUIPMENT_FAILS,,charged you to come out if something isn't working,https://www.consumeraffairs.com/homeowners/monitronics.html?page=2
+consumeraffairs,Brinks,,pos,,unknown,unknown,unknown,HUMAN,,,in a matter of minutes everything was back working,https://www.consumeraffairs.com/homeowners/monitronics.html?page=14
+consumeraffairs,Brinks,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;EQUIPMENT_FAILS,,locks you into a contract for equipment that never works,https://www.consumeraffairs.com/homeowners/monitronics.html?page=19
+trustpilot,Abode,,neg,2026,unknown,unknown,unknown,CAMERAS;RELIABLE,EQUIPMENT_FAILS,,The Abode Cam 2 cameras were just as bad—constantly dropping offline or failing to load a live feed,https://www.trustpilot.com/review/goabode.com
+trustpilot,ADT,,neg,,unknown,unknown,unknown,HUMAN,CANCEL_HARD,,always kept on hold for more than 50 minutes,https://www.trustpilot.com/review/adt.com?page=10
+trustpilot,ADT,,neg,,renew,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;CANCEL_HARD,,renews automatically every 30 days once the contract has expired,https://www.trustpilot.com/review/adt.com?page=143
+bestcompany,Vivint,,pos,,unknown,unknown,unknown,APP,,,the app is easy to use and very user friendly,https://bestcompany.com/home-security/company/vivint?page=106
+bestcompany,Vivint,,pos,,unknown,unknown,unknown,CAMERAS;APP,,,the cameras are very clear and easy to see through the app,https://bestcompany.com/home-security/company/vivint?page=55
+bestcompany,Vivint,,pos,,unknown,unknown,unknown,CAMERAS;APP;PEACE_OF_MIND,,,"view the cameras any time of the day, anywhere",https://bestcompany.com/home-security/company/vivint?page=24
+bestcompany,Vivint,,pos,,unknown,unknown,pro,HUMAN,,,the technician was fast and knowledgeable,https://bestcompany.com/home-security/company/vivint?page=10
+bestcompany,Vivint,,pos,,unknown,unknown,pro,HUMAN;PRICE_CLARITY,,,sent a technician to fix it at no additional cost to us,https://bestcompany.com/home-security/company/vivint?page=4
+bestcompany,Vivint,,neg,,unknown,unknown,pro,PRICE_CLARITY,HIDDEN_FEES;EQUIPMENT_FAILS,,even charge you for having a technician come out to repair their faulty equipment,https://bestcompany.com/home-security/vivint/reviews?page=59
+bestcompany,Vivint,,neg,,unknown,unknown,pro,PRICE_CLARITY,HIDDEN_FEES,,would cost $54.99 to come out for installation,https://bestcompany.com/home-security/vivint/reviews?page=93
+bestcompany,Vivint,,neg,,unknown,unknown,unknown,APP,EQUIPMENT_FAILS,,the app is terrible and takes forever to load regardless of wifi,https://bestcompany.com/smart-home/vivint-smart-home?page=2
+bestcompany,Vivint,,neg,,unknown,unknown,unknown,CAMERAS;APP,EQUIPMENT_FAILS,,the delay is too long from the cameras to the cell phone app,https://bestcompany.com/smart-home/company/vivint-smart-home
+bestcompany,Vivint,,neg,,unknown,unknown,unknown,CAMERAS;RELIABLE,EQUIPMENT_FAILS,,no backup battery option for cameras if power fails,https://bestcompany.com/home-security/vivint/reviews
+consumeraffairs,Ring,,neg,,unknown,unknown,unknown,HUMAN,,,phone bank with live bodies would be better,https://www.consumeraffairs.com/homeowners/ring.html?page=2
+consumeraffairs,Ring,,neg,,unknown,unknown,unknown,PRICE_CLARITY,HIDDEN_FEES,,We never agreed to any subscription plan.,https://www.consumeraffairs.com/homeowners/ring.html?page=3
+consumeraffairs,Ring,,pos,,unknown,unknown,unknown,HUMAN,,,They had great customer service.,https://www.consumeraffairs.com/homeowners/ring.html
+bestcompany,Cove,,pos,,unknown,unknown,unknown,HUMAN,,,the Cove Customer Service reps are outstanding,https://bestcompany.com/home-security/cove/reviews
+bestcompany,Cove,,neg,,unknown,unknown,unknown,RELIABLE;HUMAN,EQUIPMENT_FAILS,,It is terrible equipment and their tech support is awful,https://bestcompany.com/home-security/cove/reviews?page=2
+bestcompany,Cove,,neg,,unknown,unknown,unknown,,,,DO NOT BUY COVE..,https://bestcompany.com/home-security/cove/reviews?page=5
+bestcompany,Frontpoint,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;CANCEL_HARD,,a $773 early termination fee,https://bestcompany.com/home-security/frontpoint/reviews?page=44
+bestcompany,SimpliSafe,,pos,,unknown,unknown,unknown,RELIABLE,,,no false alarms and pets moving around the home don't trigger it,https://bestcompany.com/home-security/company/simplisafe?page=2
+bestcompany,SimpliSafe,,neg,,unknown,unknown,unknown,RELIABLE,FALSE_ALARM;EQUIPMENT_FAILS,,police threatened to start charging for responding to false alarms,https://bestcompany.com/home-security/company/simplisafe?page=4
+bestcompany,SimpliSafe,,neg,,unknown,unknown,unknown,CAMERAS;HUMAN,EQUIPMENT_FAILS,,the camera does not record despite several support calls,https://bestcompany.com/home-security/simplisafe/reviews?page=5
+bestcompany,SimpliSafe,,neg,,unknown,unknown,unknown,CAMERAS,EQUIPMENT_FAILS,,the camera does NOT work with 5G network. Had to return camera.,https://bestcompany.com/home-security/company/simplisafe?page=5
+bestcompany,SimpliSafe,,pos,,unknown,unknown,unknown,CAMERAS,,,camera works as advertised,https://bestcompany.com/home-security/company/simplisafe?page=5
+bestcompany,SimpliSafe,,pos,,unknown,unknown,unknown,FAST_RESPONSE,,,called my cell within 30 seconds,https://bestcompany.com/home-security/simplisafe/reviews
+trustpilot,Arlo,,neg,2026-05,unknown,unknown,unknown,CAMERAS;RELIABLE,EQUIPMENT_FAILS,,"After a mandatory update in May 2026, one of my Arlo Go cameras stopped recording motion events entirely.",https://www.trustpilot.com/review/my.arlo.com
+trustpilot,Arlo,,neg,,unknown,unknown,unknown,PRICE_CLARITY,HIDDEN_FEES,,However I forgot that the free trial automatically became a paying subscription.,https://www.trustpilot.com/review/my.arlo.com
+trustpilot,Arlo,,neg,,unknown,unknown,unknown,HUMAN;NO_SUBSCRIPTION,HIDDEN_FEES,,you have to pay for a subscription before Arlo will even consider providing you with basic support,https://uk.trustpilot.com/review/arlo.com/en_gb
+trustpilot,Arlo,,pos,,unknown,unknown,diy,EASY_SETUP;CAMERAS,,,"Decent cameras and door bell, easy to mount and charge.",https://uk.trustpilot.com/review/arlo.com/en_gb
+trustpilot,Wyze,,pos,,unknown,unknown,unknown,HUMAN,,,Wyze support assisted me and sent me a brand new replacement camera free of charge. I received the replacement within 2 days of the support ticket.,https://www.trustpilot.com/review/www.wyze.com
+trustpilot,Wyze,,neg,,unknown,unknown,unknown,HUMAN,,,can pretty much only copy and paste pre-written messages,https://uk.trustpilot.com/review/www.wyze.com?page=6
+trustpilot,Wyze,,neg,,unknown,unknown,unknown,HUMAN,EQUIPMENT_FAILS,,Wyze is holding a large quantity of recalled product that I returned at their direction,https://ca.trustpilot.com/review/www.wyze.com?page=3
+trustpilot,Wyze,,neg,,after_incident,unknown,unknown,RELIABLE;CAMERAS,EQUIPMENT_FAILS,,failed to notify me of who was in my house because they constantly go offline,https://uk.trustpilot.com/review/www.wyze.com?page=7
+trustpilot,Wyze,,neg,,unknown,unknown,unknown,NO_SUBSCRIPTION,CANCEL_HARD,,trying to cancel my AUTO-RENEWAL,https://ca.trustpilot.com/review/www.wyze.com?page=10
+trustpilot,Ring,,neg,,after_incident,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,"delayed, confusing, and unacceptable",https://www.trustpilot.com/review/ring.com?page=4
+trustpilot,Abode,,pos,,unknown,unknown,diy,EASY_SETUP,,,very easy to install and very easy to maintain,https://www.trustpilot.com/review/goabode.com
+trustpilot,Abode,,pos,,unknown,unknown,diy,NO_CONTRACT;PRICE_CLARITY,,,the ability to change my service level as I need to,https://ca.trustpilot.com/review/goabode.com?page=3
+trustpilot,Abode,,pos,,unknown,unknown,diy,APP,,,integrates nicely into Apple HomeKit,https://ie.trustpilot.com/review/goabode.com?page=3
+trustpilot,Abode,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS,,avoid Abode if you want a reliable security system,https://au.trustpilot.com/review/goabode.com
+trustpilot,Abode,,neg,,unknown,unknown,unknown,FAST_RESPONSE,NO_RESPONSE,,"blared for 5 minutes straight, no call from Abode monitoring",https://nz.trustpilot.com/review/goabode.com?page=94
+consumeraffairs,Xfinity,,neg,,unknown,unknown,unknown,APP;CAMERAS,EQUIPMENT_FAILS,,7 second delay in viewing cameras,https://www.consumeraffairs.com/homeowners/xfinity-home.html
+consumeraffairs,Xfinity,,neg,,unknown,unknown,unknown,RELIABLE,EQUIPMENT_FAILS,,"problems with my ENTIRE ""X1"" system",https://www.consumeraffairs.com/homeowners/xfinity-home.html
+trustpilot,Brinks,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT;CANCEL_HARD,,could not cancel without a 1400 dollar buyout,https://www.trustpilot.com/review/brinkshome.com
+trustpilot,Brinks,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT,,have never been under contract or consented to anything,https://uk.trustpilot.com/review/brinkshome.com?page=78
+trustpilot,Brinks,,neg,,unknown,unknown,unknown,NO_CONTRACT,TRAPPED_CONTRACT,,every time you call for something they add another 2/3 years to the contract,https://ca.trustpilot.com/review/brinkshome.com?page=6
+trustpilot,Brinks,,neg,,unknown,unknown,unknown,,CANCEL_HARD,,the contract is still open for another 30 days until the paperwork is filed,https://www.trustpilot.com/review/brinkshome.com?page=151
+consumeraffairs,ADT,,mixed,,after_incident,unknown,pro,PEACE_OF_MIND,,,"got broken into back in 2010, and got ADT coverage after that",https://www.consumeraffairs.com/homeowners/adt.htm?page=80
+consumeraffairs,ADT,,neg,,after_incident,unknown,pro,RELIABLE,EQUIPMENT_FAILS,,needed a security system after a recent rash of break-ins and a shooting,https://www.consumeraffairs.com/homeowners/adt.htm?page=97
+consumeraffairs,ADT,,neg,,after_incident,unknown,pro,RELIABLE;FAST_RESPONSE,EQUIPMENT_FAILS;NO_RESPONSE,,the alarm didn't go off,https://www.consumeraffairs.com/homeowners/adt.htm?page=73
+consumeraffairs,ADT,,neg,,after_incident,unknown,pro,RELIABLE,EQUIPMENT_FAILS,,did not detect glass break-in activity,https://www.consumeraffairs.com/homeowners/adt.htm?page=102
+consumeraffairs,SimpliSafe,,neg,,unknown,unknown,diy,HUMAN;RELIABLE,,,should have gone with a company like ADT,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+consumeraffairs,SimpliSafe,,pos,,switch,unknown,diy,,,unknown,the new champion,https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3
+consumeraffairs,Vivint,,pos,,unknown,unknown,pro,RELIABLE,,,"everything has been 5-star, but it's definitely pricier",https://www.consumeraffairs.com/homeowners/simplisafe.html?page=3

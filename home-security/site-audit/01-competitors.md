@@ -29,3 +29,18 @@
 - ADT #1 at 9.9, Vivint #2, Brinks #3 — the whole category ranks the same way (payout-driven).
 - Offers lead (gift cards, free months, % off); the real cost and contract sit in fine print.
 - Nobody shows monthly price + contract length + cancel terms side by side. That's the gap to own.
+
+## Top10.com — mobile (m.top10.com, Nov 2 2026)
+- H1 inserts the visitor's city from IP: viewed from Israel it read "Best Tel Aviv Home Security Systems of 2026". Geo-insertion is automatic (and shows non-US cities if not guarded).
+- Hero is just H1 over a photo + "Advertising Disclosure" link; no subtitle, no paragraph. Card #1 starts within the first screen.
+- ADT #1 card: two buttons side by side — "Visit Site" (outline, secondary) and the phone number (filled, primary). On mobile the CALL is the main CTA for ADT.
+- Cards 2–6: one full-width Visit Site button. No phone, no "Get Protected" link, no product image, no Trustpilot count (all dropped on mobile). "Read Review" link sits under the logo.
+- Mobile order differs from desktop: ADT 9.9 · Vivint 9.4 · Brinks 8.9 · SimpliSafe 8.7 · SecurityPricer 9.1 · Frontpoint 8.7 (ADT Blu not shown).
+- After the list: "Our Most Popular" ADT repeat box with phone CTA + "216 people visited this site today", then ADT fine print, Must Reads (3 articles), Our Reviews (links), FAQs.
+- Vivint bullet "0% APR financing available" (equipment financed).
+
+### Takeaways for our mobile page
+1. Phone as the primary button on pro-install cards (at least #1).
+2. Strip the mobile card down: logo, score, one-line tagline, 3–4 bullets, one CTA. Get card #1 into the first screen.
+3. Repeat the #1 pick (with call) after the list for people who scrolled everything.
+4. Geo H1 works but needs a US-only guard and a fallback.
