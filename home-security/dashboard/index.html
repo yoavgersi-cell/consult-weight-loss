@@ -1,0 +1,1007 @@
+<title>Home Security Research</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky tab bar over one reading column; each tab is a short brief. Alarm-panel cues: status LEDs, keypad-style chips. */
+:root{
+  --bg:#F5F7F8; --panel:#FFFFFF; --ink:#13202B; --muted:#5B6B78; --line:#DCE3E8;
+  --accent:#0F6E8C; --accent-soft:#E2F1F6; --led-red:#C8382B; --led-amber:#B7791F; --led-green:#1F8A4C;
+  --red-soft:#FBEAE8; --amber-soft:#FBF2E0; --green-soft:#E5F4EB;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E161D; --panel:#16212A; --ink:#E6EDF2; --muted:#9AAAB6; --line:#26343F;
+  --accent:#5BB8D6; --accent-soft:#16323D; --led-red:#F0776B; --led-amber:#E3AE55; --led-green:#5CC98A;
+  --red-soft:#3A1F1C; --amber-soft:#382C17; --green-soft:#183326; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E161D; --panel:#16212A; --ink:#E6EDF2; --muted:#9AAAB6; --line:#26343F;
+  --accent:#5BB8D6; --accent-soft:#16323D; --led-red:#F0776B; --led-amber:#E3AE55; --led-green:#5CC98A;
+  --red-soft:#3A1F1C; --amber-soft:#382C17; --green-soft:#183326; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--panel)}
+.wrap{max-width:960px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{padding-block:28px 18px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,5vw,42px);font-weight:800;line-height:1.1;margin-top:6px}
+h2{font-size:clamp(22px,3.4vw,28px);font-weight:800;line-height:1.2}
+h3{font-size:18px;font-weight:600}
+p{margin:0}
+.lede{color:var(--muted);max-width:68ch;margin-top:10px}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--panel);border-block:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{flex:0 0 auto;padding:12px 12px;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs a:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+main{padding-block:24px 64px}
+section.panel{display:flex;flex-direction:column;gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+ul.ticks,ol.steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+ul.ticks li::marker{color:var(--accent)}
+.led{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.led.r{background:var(--led-red)} .led.a{background:var(--led-amber)} .led.g{background:var(--led-green)}
+.pill{display:inline-block;font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.pill.r{background:var(--red-soft);color:var(--led-red)} .pill.a{background:var(--amber-soft);color:var(--led-amber)} .pill.g{background:var(--green-soft);color:var(--led-green)} .pill.b{background:var(--accent-soft);color:var(--accent)}
+/* bottom line */
+.verdict{background:var(--ink);color:var(--bg);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.verdict h2{color:var(--bg)}
+.verdict p{opacity:.85;max-width:70ch}
+ol.must{counter-reset:m;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ol.must li{counter-increment:m;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+ol.must li::before{content:counter(m);font-family:var(--mono);font-size:14px;width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-family:var(--display);font-size:30px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 44px;gap:10px;align-items:center}
+.bar .lbl{font-size:14px}
+.bar .track{grid-column:1/2;height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin-top:4px}
+.bar .fill{height:100%;background:var(--accent);border-radius:5px}
+.bar.neg .fill{background:var(--led-red)}
+.bar .val{font-family:var(--mono);font-size:14px;text-align:right;font-variant-numeric:tabular-nums;grid-row:1/3;grid-column:2}
+blockquote{margin:0;padding:10px 14px;border-left:3px solid var(--line);color:var(--muted);font-size:14px;font-style:italic}
+/* tables */
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+/* phone mocks */
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px;align-items:start}
+.phone{border:1px solid var(--line);border-radius:22px;padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:10px;max-width:380px;width:100%}
+.phone .cap{font-family:var(--mono);font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.m-hero{background:var(--panel);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line)}
+.m-hero h4{font-family:var(--display);font-size:20px;line-height:1.15;margin:0}
+.m-chips{display:flex;flex-wrap:wrap;gap:6px}
+.m-chips span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:var(--bg)}
+.m-chips span.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.m-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.m-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.m-logo{font-family:var(--display);font-weight:800;font-size:20px}
+.m-score{font-family:var(--display);font-weight:800;font-size:24px;font-variant-numeric:tabular-nums}
+.m-score small{font-family:var(--body);font-size:12px;font-weight:500;color:var(--muted);margin-left:4px}
+.m-offer{font-weight:600;font-size:14px}
+.m-offer em{font-style:normal;font-weight:400;color:var(--muted)}
+.m-facts{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.m-facts div{background:var(--bg);border-radius:8px;padding:6px 8px;font-size:12px;color:var(--muted)}
+.m-facts b{display:block;color:var(--ink);font-size:14px}
+.m-card ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:3px}
+.m-cta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.m-cta span{text-align:center;padding:10px 6px;border-radius:8px;font-weight:600;font-size:14px}
+.m-cta .pri{background:var(--accent);color:var(--panel)}
+.m-cta .sec{border:1.5px solid var(--accent);color:var(--accent)}
+.m-cta.one{grid-template-columns:1fr}
+.m-open{font-size:12px;color:var(--muted)}
+.m-link{font-size:13px;color:var(--accent);text-decoration:underline}
+.m-sticky{background:var(--ink);color:var(--bg);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+.m-sticky span.b{background:var(--accent);color:var(--panel);padding:7px 10px;border-radius:7px;font-weight:600;white-space:nowrap}
+/* before/after */
+.ba{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.ba > div{border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.ba .before{background:var(--red-soft)} .ba .after{background:var(--green-soft)}
+.ba .tag{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.ba .before .tag{color:var(--led-red)} .ba .after .tag{color:var(--led-green)}
+.note{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .6s ease}}
+</style>
+
+<header class="top wrap">
+  <span class="eyebrow">Topten Ratings · Home security · Research · Nov 2026</span>
+  <h1>Home Security Research</h1>
+  <p class="lede">How the industry works, who buys and what they fear, how competitors sell, and what that means for our page. The CRO plan has its own tab. Traffic: Google and Bing paid search, mobile only (desktop later).</p>
+</header>
+
+<nav class="tabs" aria-label="Sections"><div class="wrap" id="tabs">
+  <a href="#bottom-line">Bottom line</a>
+  <a href="#industry">How the industry works</a>
+  <a href="#products">What people buy</a>
+  <a href="#buyers">Typical buyers</a>
+  <a href="#buyer">Needs &amp; fears</a>
+  <a href="#prices">Prices &amp; contracts</a>
+  <a href="#competitors">Competitors</a>
+  <a href="#our-page">Our page today</a>
+  <a href="#phone-local">Phone &amp; location</a>
+  <a href="#plan">CRO plan &amp; tests</a>
+  <a href="#articles">Article ideas</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- BOTTOM LINE -->
+<section class="panel" id="p-bottom-line">
+  <div class="verdict">
+    <span class="eyebrow" style="color:inherit;opacity:.7">The bottom line</span>
+    <h2>To get more clicks, be the page buyers trust: show the real deal and offer a real person.</h2>
+    <p>Buyers arrive from a paid ad ready to compare, but afraid of getting stuck: 61% of complaints are about contracts, cancelling and hidden fees. What they want most is a real person (37% of reviews, 64% of happy ones). Today our cards lead with gift cards and hide the contract and monthly price in fine print, like every competitor. The page that is transparent and puts a person one tap away earns the click. On mobile, a tap to call is also the fastest path to a sale for the pro brands.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>61%</b><span>of complaints are about getting out: cancel, fees, contract, price hikes</span></div>
+    <div class="stat"><b>37%</b><span>of all reviews are about a real person to talk to (64% of happy ones)</span></div>
+    <div class="stat"><b>1 in 3</b><span>recent buyers moved that year. Moving is the #1 trigger</span></div>
+    <div class="stat"><b>37%</b><span>of recent buyers rent</span></div>
+  </div>
+
+  <div class="card">
+    <h3>How we get more clicks</h3>
+    <ol class="must">
+      <li><div><b>Lead with what buyers check first.</b> On every card: how it's installed, contract or no contract, equipment + monthly price, who it's best for.</div></li>
+      <li><div><b>Offer a real person.</b> "Talk to an expert · no obligation" with the phone on the pro cards, and Visit Site right next to it.</div></li>
+      <li><div><b>Match the page to the ad.</b> Location in the headline, and the #1 card matched to the keyword (no-contract search → no-contract brand first).</div></li>
+      <li><div><b>Be transparent.</b> The catch next to every "free", real visitor counters, our scores explained in one tap.</div></li>
+      <li><div><b>Answer the fears before they ask.</b> Moving, repairs, cancelling and response time, in the FAQ and in short articles that lead back to the list.</div></li>
+      <li><div><b>Measure clicks and calls together.</b> Site CTR (click-outs + calls per visitor), checked against partner-paid revenue so we don't win clicks that don't pay.</div></li>
+    </ol>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Is location important?</h3>
+      <p><span class="pill a">Medium</span></p>
+      <p class="small">The product is national: same brands, same prices in every state. But people search like it's local ("home security near me", city names), and installers, false-alarm fines and cancel laws are local. <b>Use location to match the ad</b> (headline from the campaign's location), then add one real local line. No need for different lists per state.</p>
+    </div>
+    <div class="card">
+      <h3>Is the phone important?</h3>
+      <p><span class="pill r">High</span></p>
+      <p class="small">Pro brands sell on the phone and pay per qualified call or per install. Traffic is 100% mobile, where calling is one tap. Top10.com makes the phone the main button on ADT. We already have numbers for the top 3, so this is the fastest win.</p>
+    </div>
+  </div>
+  <p class="note">Data: 423 reviews: 258 real Trustpilot reviews (ADT, Vivint, Brinks, SimpliSafe, Cove, mostly Oct–Nov 2026) plus 165 quotes from search snippets (BBB, ConsumerAffairs and others). Complaint-heavy, so shares show where things break, not how often, market and paid-search desk research, our page and 2 competitor pages (screenshots). Reddit was blocked, so no Reddit data yet.</p>
+</section>
+
+<!-- INDUSTRY -->
+<section class="panel" id="p-industry" hidden>
+  <div><span class="eyebrow">How the industry works</span><h2>The money is in the monthly fee, not the equipment</h2><p class="lede">Understand this and most of the buyer's pain points make sense. Each block ends with what it means for our page.</p></div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>1 · How security companies make money, and what the buyer pays</h3>
+      <ul class="ticks small">
+        <li><b>The buyer pays two things:</b> the <b>equipment</b> (once, or spread over monthly payments) and the <b>monthly monitoring fee</b> (for as long as they stay). Some brands add an install or activation fee.</li>
+        <li><b>How equipment is paid differs by route:</b>
+          DIY brands charge it upfront (a starter kit is about $200–350, often on sale).
+          Pro brands either charge it upfront (ADT: $599 minimum with pro install) or finance it over 3–5 years on the monthly bill (Vivint up to 60 months).
+          "Free equipment" means it's folded into a long contract.</li>
+        <li><b>The company's profit is in the monthly fee</b> (about $54/month on average), paid for years. That's why they discount equipment and lock buyers in: the contract and the cancel fee pay back the discount.</li>
+        <li>Keeping customers is their biggest battle: ADT loses about 13% of customers a year.</li>
+      </ul>
+      <p class="small"><b>For us:</b> buyers need both numbers, equipment and monthly, to know the real cost. Most cards (ours and competitors') show neither, only a gift card or "% off". Showing "equipment + monthly" on every card is a simple way to stand out. And because "free" usually means a contract, buyers who find the contract late feel tricked: 47% of complaints are about getting out.</p>
+    </div>
+    <div class="card">
+      <h3>2 · Two different worlds</h3>
+      <ul class="ticks small">
+        <li><b>Pro install</b> (ADT, Vivint, Brinks): a salesperson, a technician visit, often a credit check and a contract. Sold by phone or in the home.</li>
+        <li><b>DIY</b> (SimpliSafe, Cove, Ring, ADT Blu, Frontpoint): a box in the mail, set up in 30 minutes, cancel anytime. Bought online.</li>
+        <li>The market is moving to DIY: new pro-installed sign-ups hit a 9-year low in 2024, and DIY now outsells pro about 2 to 1.</li>
+      </ul>
+      <p class="small"><b>For us:</b> two buyers need two paths. Pro brands convert by phone, DIY brands by click.</p>
+    </div>
+    <div class="card">
+      <h3>3 · Who actually sells and installs</h3>
+      <ul class="ticks small">
+        <li>ADT sells directly and through a network of <b>local authorized dealers</b> who sell and install under ADT's name. Many "ADT" ads and phone lines are dealers.</li>
+        <li>Alarm installers must be <b>licensed by the state</b> (for example California's BSIS, Texas DPS). Coverage and install dates differ by area.</li>
+      </ul>
+      <p class="small"><b>For us:</b> this is where the industry is truly local. "Can someone install this near me, and when?" is a real question.</p>
+    </div>
+    <div class="card">
+      <h3>4 · How monitoring works</h3>
+      <ul class="ticks small">
+        <li>A sensor trips → the monitoring center sees it → they call you → if you don't answer or confirm, they call the police.</li>
+        <li>Many cities require an <b>alarm permit</b> and <b>fine false alarms</b> (a reviewer got a $316 fine from the LAPD). Some cities only send police after the alarm is verified by video, a guard or a second sensor.</li>
+      </ul>
+      <p class="small"><b>For us:</b> buyers judge monitoring in seconds ("called me in 30 seconds"). Response time is a fact worth showing.</p>
+    </div>
+    <div class="card">
+      <h3>5 · How comparison sites make money</h3>
+      <ul class="ticks small">
+        <li>Per qualified phone call: about $15–40.</li>
+        <li>Per installed system: ADT dealers pay up to about $288.</li>
+        <li>DIY sales: much less, from about $8 to 5–10% of the sale.</li>
+        <li>In home services, about 45% of answered sales calls convert on the call.</li>
+      </ul>
+      <p class="small"><b>For us:</b> this is why every site ranks ADT #1 and pushes the phone. It also means a page that only gets clicks leaves the biggest payouts on the table.</p>
+    </div>
+    <div class="card">
+      <h3>6 · Who buys, and when</h3>
+      <ul class="ticks small">
+        <li><b>Moving:</b> nearly 1 in 3 recent buyers moved that year. The #1 trigger.</li>
+        <li><b>Renters:</b> 37% of recent buyers (8% six years ago).</li>
+        <li><b>After a break-in or scare</b>, for <b>smart home</b> features (31%), or for an <b>insurance discount</b>.</li>
+      </ul>
+      <p class="small"><b>For us:</b> renters can't sign long contracts or drill walls, so DIY must be easy to find.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Two buying routes, step by step</h3>
+    <div class="grid g2">
+      <div>
+        <p><span class="pill b">Pro install</span> <span class="small muted">ADT, Vivint, Brinks · owners, families, "don't want to deal with it"</span></p>
+        <ol class="steps small">
+          <li><b>Lead:</b> sees the ranking on a comparison site, calls the number or leaves a phone number.</li>
+          <li><b>Sales call:</b> a rep calls back within minutes and builds a plan for the home: how many doors and windows, a yard, pets.</li>
+          <li><b>Booking:</b> a technician window, e.g. "Tuesday 8am–12pm".</li>
+          <li><b>Install day:</b> the technician walks the home and offers add-ons (extra camera, smoke detector), mounts the panel, sensors and cameras.</li>
+          <li><b>Handover:</b> sets up the app, shows how to arm and disarm, and the customer signs a 24–36 month monitoring contract.</li>
+        </ol>
+        <p class="small"><b>For our page:</b> the sale happens on the phone and at home, after our click. Our job is a confident, informed caller, so the call and a "get a quote" option matter more than a click.</p>
+      </div>
+      <div>
+        <p><span class="pill g">DIY</span> <span class="small muted">SimpliSafe, Ring, Cove, Abode · renters, younger buyers, no-contract fans</span></p>
+        <ol class="steps small">
+          <li><b>Build a kit online:</b> base station, keypad, a couple of door sensors, then add a doorbell or motion sensor.</li>
+          <li><b>Pay:</b> hardware upfront, then choose free or cheap self-monitoring, or 24/7 pro monitoring at about $20–30/month, no contract.</li>
+          <li><b>Delivery:</b> 2–3 business days.</li>
+          <li><b>Setup:</b> the app walks them through it. Sensors stick on with adhesive, no drilling.</li>
+          <li><b>Done</b> in about 20–45 minutes for a whole home.</li>
+        </ol>
+        <p class="small"><b>For our page:</b> the sale happens on the brand's site in one visit. Our job is to send them in sure of the brand: price, no contract, what's in the kit.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>What "a security system" means in the home</h3>
+      <ul class="ticks small">
+        <li><b>Hub or control panel:</b> the brain. A wall touchscreen or a box on a shelf, with a siren, backup battery and cellular backup when Wi-Fi or power goes down.</li>
+        <li><b>Door and window sensors:</b> two small pieces; when they separate, the system knows it opened.</li>
+        <li><b>Motion and glass-break sensors:</b> in room corners.</li>
+        <li><b>Video doorbell:</b> see and talk to whoever is at the door; package alerts.</li>
+        <li><b>Indoor and outdoor cameras:</b> over the garage, the yard, the living room (some indoor ones have a privacy shutter).</li>
+        <li><b>Smart extras:</b> smart lock, smoke/CO and water sensors, lights.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What happens when the alarm goes off</h3>
+      <ol class="steps small">
+        <li>A sensor trips while the system is armed.</li>
+        <li>The siren sounds and the app sends an alert.</li>
+        <li>With pro monitoring, a person at the monitoring center calls the owner in about 15–30 seconds and asks for a safe word.</li>
+        <li>No answer, or a real break-in: they call local police. False alarm: the owner cancels with the code.</li>
+      </ol>
+      <p class="small"><b>For our page:</b> step 3 is what buyers judge ("called me in 30 seconds" vs "no one called"). Response time is worth showing per brand.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>State differences worth knowing</h3>
+    <ul class="ticks small">
+      <li><b>Size and crime:</b> Texas, California, Florida and Georgia have the most people and high property-crime suburbs, so the most searches. <span class="pill a">Logical, not measured by us</span></li>
+      <li><b>Police rules:</b> some cities fine false alarms or want a verified alarm (video, guard) before police come. That favours pro monitoring with video check. <span class="pill g">Confirmed</span></li>
+      <li><b>Contracts:</b> ADT is 24 months in California, 36 elsewhere; California's cancel law is strict. <span class="pill g">Confirmed</span></li>
+      <li><b>Climate:</b> battery and solar cameras do worse in freezing northern winters (more wired setups); hot, storm-prone southern states need heat-proof cameras and water sensors. <span class="pill a">Plausible, no data found</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Numbers to use with care</h3>
+    <p class="small muted">Figures that circulate widely but conflict with neutral data or have no clear source.</p>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Claim</th><th>What we found</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>75% of homes own at least one security product</td><td>Parks: 47% of internet households</td><td>Use 47%</td></tr>
+          <tr><td>61% own cameras, 48% own a video doorbell</td><td>Vendor survey of adults (SafeHome). Parks: 33% and 20–27%</td><td>Use Parks; mention vendor range</td></tr>
+          <tr><td>Ring 43% share, ADT 10%, Nest 7%</td><td>No source found. One survey has Ring and ADT at about 28–29% each of home alarms</td><td>Don't use</td></tr>
+          <tr><td>80%+ of families with kids have security</td><td>No source found. 63% of homes with kids own a smart home product</td><td>Use 63%</td></tr>
+          <tr><td>49% prefer DIY, 42% pro</td><td>Security.org 2026: 51% prefer DIY</td><td>OK, roughly half and half</td></tr>
+          <tr><td>Only 15–20% of purchases follow a break-in</td><td>No source found. A vendor survey says 78% of burglary victims then bought a system (different question)</td><td>Don't use either as fact</td></tr>
+          <tr><td>83% of burglars check for an alarm; 60% would go elsewhere</td><td>UNC Charlotte burglar study (2012). Real but old</td><td>OK, with the year</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Pain points, from shopping to leaving</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Stage</th><th>Pain point</th><th>Evidence</th><th>What our page can do</th></tr></thead>
+        <tbody>
+          <tr><td>Shopping</td><td>Can't compare prices; "free" hides a contract; pushy sales</td><td>Clear pricing asked in 12% of reviews; "No one mentioned a 5-year contract"</td><td>Monthly price, contract and the catch on every card</td></tr>
+          <tr><td>Install</td><td>Waiting for a technician, bad installs</td><td>Happy reviews praise the technician who explained everything</td><td>Show install type and speed ("same or next day")</td></tr>
+          <tr><td>Living with it</td><td>Equipment or app fails; false alarms and fines; nobody called</td><td>34% and 18% of complaints</td><td>Warranty, return window, response time per brand</td></tr>
+          <tr><td>Price over time</td><td>Price goes up after year 1</td><td>"$40 a month… now over $70" (ADT); Ring "doubled"</td><td>Show price lock where it exists (Cove Plus)</td></tr>
+          <tr><td>Leaving or moving</td><td>Cancel fees; the contract follows you to the new home</td><td>23% "hard to cancel"; all moving quotes are negative</td><td>Cost to leave on the card; FAQ "Can I take it when I move?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Rules that shape what we can say</h3>
+    <ul class="ticks small">
+      <li><b>"Free" claims:</b> the FTC says the catch must sit next to the word "free". A footnote doesn't count.</li>
+      <li><b>Reviews and counters:</b> the FTC fake-review rule (since Oct 2024) covers made-up reviews and misleading social proof.</li>
+      <li><b>Auto-renewal:</b> about 30 states have laws; California's is strict (online cancel, clear renewal terms).</li>
+      <li><b>Door-to-door:</b> 3-day cooling-off right. Vivint paid $20M to the FTC in 2021 over sales practices.</li>
+      <li><b>ADT trademark:</b> ADT defends its brand hard. Never look like ADT; use the name in ads only for review pages.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="panel" id="p-products" hidden>
+  <div><span class="eyebrow">What people buy</span><h2>Cameras and doorbells are the door in. Full systems are growing too.</h2><p class="lede">Ownership among US internet households (Parks Associates, 2025–2026) unless noted.</p></div>
+
+  <div class="card">
+    <h3>What US homes own</h3>
+    <div class="bars" id="own"></div>
+    <p class="small muted">Vendor surveys report higher numbers (cameras 61%, doorbells 48% of adults). Parks is the conservative source.</p>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Product</th><th>What it is</th><th>Typical price</th><th>Trend</th></tr></thead>
+      <tbody>
+        <tr><td><b>Full alarm system</b></td><td>Hub, keypad, door/window sensors, motion sensor, siren. Usually sold as a kit</td><td>DIY kit $200–350; whole home DIY $435–675; pro install up to ~$750 or financed</td><td><span class="pill g">Growing</span> 31% → 37% since 2022</td></tr>
+        <tr><td><b>Security cameras</b></td><td>Indoor and outdoor, app alerts, cloud video</td><td>From ~$36 (budget indoor)</td><td><span class="pill g">Growing</span> most-owned device (33%)</td></tr>
+        <tr><td><b>Video doorbell</b></td><td>Camera + doorbell, package and visitor alerts</td><td>~$66 budget to ~$250 Ring</td><td><span class="pill g">Growing</span> 20–27%</td></tr>
+        <tr><td><b>Smart lock</b></td><td>Keyless entry, codes for guests</td><td>~$70–200</td><td><span class="pill a">Slow</span> ~11%</td></tr>
+        <tr><td><b>Smoke/CO, water sensors</b></td><td>Add-ons to a system</td><td>From ~$15 per sensor</td><td><span class="pill a">Small</span> 3–10% (old data)</td></tr>
+        <tr><td><b>Camera or doorbell only</b> (no system)</td><td>The "starter" setup</td><td>Under $100–250</td><td><span class="pill g">Growing fast</span> 7% → 12% of homes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>What's in a starter kit</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Brand</th><th>Starter kit</th><th>Inside</th><th>Monitoring / mo</th></tr></thead>
+        <tbody>
+          <tr><td><b>SimpliSafe</b></td><td>Core $249 (often on sale)</td><td>Hub, keypad, 3 door sensors, 1 motion, key fob, indoor camera</td><td class="num">$22.99–79.99, no contract</td></tr>
+          <tr><td><b>Ring Alarm</b></td><td>5-piece $199.99</td><td>Hub, keypad, 1 door sensor, 1 motion, range extender</td><td class="num">~$19.99 pro, no contract</td></tr>
+          <tr><td><b>ADT</b></td><td>Security Starter $349</td><td>Hub, 3 door sensors, 1 motion</td><td class="num">$28.99–59.99, 36 mo (24 in CA)</td></tr>
+          <tr><td><b>Vivint</b></td><td>$749.99 or $16.67/mo financed</td><td>Pro-installed, varies by home</td><td class="num">~$47 (HomeProtect $24.99, 36 mo)</td></tr>
+          <tr><td><b>Cove</b></td><td>~$200</td><td>Touch panel, door sensors, motion</td><td class="num">$19.99–29.99, no contract</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small"><b>For us:</b> kits aren't equal (Ring's has 1 door sensor, SimpliSafe's has 3 plus a camera). A "what's included" line on each card makes the comparison fair.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Monitoring: who pays for what</h3>
+      <ul class="ticks small">
+        <li><b>19%</b> of homes pay for professional monitoring.</li>
+        <li><b>7%</b> pay only for app alerts or video storage.</li>
+        <li><b>53%</b> of smart-device owners pay no subscription at all.</li>
+        <li><b>60%+</b> of self-monitoring homes feel just as safe as pro-monitored ones.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>How people buy</h3>
+      <ul class="ticks small">
+        <li><b>Online is #1:</b> 39% of system owners got theirs online (35% in 2023). Amazon leads for DIY.</li>
+        <li><b>51%</b> of shoppers prefer to install it themselves.</li>
+        <li><b>Only 7%</b> of recent purchases came from local security companies. 74% of dealers lost sales to DIY.</li>
+        <li><b>Insurance:</b> monitored systems usually earn 5–15% off home insurance.</li>
+        <li><b>Peaks:</b> Black Friday and Prime Day discounts. Summer burglaries are only ~5–11% above other months.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>What this means for us</h3>
+    <ul class="ticks small">
+      <li>Our page is "systems only". Many visitors want <b>just a camera or doorbell</b> first (the fastest-growing group). A "Cameras &amp; doorbells" version for camera keywords is worth testing.</li>
+      <li>83% of shoppers want outdoor cameras and 81% a video doorbell in their system. Say on each card if cameras are included.</li>
+      <li>People cross-check on Amazon. Show the real sale price so it matches what they find.</li>
+    </ul>
+  </div>
+  <p class="note">Gaps: no open data on which device people buy first, how long they research, or store-by-store shares. Kit prices change weekly with promotions.</p>
+</section>
+
+<!-- TYPICAL BUYERS -->
+<section class="panel" id="p-buyers" hidden>
+  <div><span class="eyebrow">Typical buyers</span><h2>Five buyers, five different first questions</h2><p class="lede">Built from market surveys. Evidence strength is marked on each.</p></div>
+  <div class="stats">
+    <div class="stat"><b>45% vs 12%</b><span>Millennials vs Boomers with a system</span></div>
+    <div class="stat"><b>63%</b><span>of homes with kids own a smart home product (37% without)</span></div>
+    <div class="stat"><b>37%</b><span>of recent system buyers rent</span></div>
+    <div class="stat"><b>1 in 3</b><span>recent buyers moved that year</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>1 · Homeowner family</h3><p><span class="pill g">Strong evidence</span> <span class="pill b">Core buyer</span></p>
+      <p class="small"><b>Who:</b> 30–49, owns a house, kids. <b>Why:</b> protect kids, packages, home; insurance discount.</p>
+      <p class="small"><b>Buys:</b> full system + outdoor cameras + doorbell, often pro-monitored. <b>Worries:</b> monthly cost, contracts, false alarms.</p>
+      <p class="small"><b>Fits:</b> ADT, Vivint, SimpliSafe. <b>First question:</b> "What will I pay each month, and am I locked in?"</p>
+    </div>
+    <div class="card">
+      <h3>2 · Renter / new mover</h3><p><span class="pill g">Strong evidence</span></p>
+      <p class="small"><b>Who:</b> younger, apartments. 37% of recent buyers; renter camera use 42% → 54% in a year. <b>Why:</b> package theft, feeling safe in a new place.</p>
+      <p class="small"><b>Buys:</b> indoor cameras, battery doorbell, small no-drill kit. <b>Worries:</b> landlord rules, contracts, taking it when they move.</p>
+      <p class="small"><b>Fits:</b> SimpliSafe, Ring, Cove, Wyze. <b>First question:</b> "No contract? Can I take it with me?"</p>
+    </div>
+    <div class="card">
+      <h3>3 · After a break-in</h3><p><span class="pill a">Medium evidence</span> <span class="pill r">Urgent</span></p>
+      <p class="small"><b>Who:</b> any age, searching right now. Half of homeowners with a security issue then bought a system. <b>Why:</b> fear, fast help.</p>
+      <p class="small"><b>Buys:</b> full system + pro monitoring + outdoor cameras. <b>Worries:</b> how fast it's installed, will someone respond.</p>
+      <p class="small"><b>Fits:</b> ADT, Vivint (fast pro install), SimpliSafe (ships fast). <b>First question:</b> "How fast can you install, and who answers when it goes off?"</p>
+    </div>
+    <div class="card">
+      <h3>4 · Older adult, aging in place</h3><p><span class="pill a">Medium evidence</span></p>
+      <p class="small"><b>Who:</b> 50+, homeowner. 30% of 50+ use home safety tech; 64% open to medical alert. <b>Why:</b> falls, fire, door scams; adult children want to check in.</p>
+      <p class="small"><b>Buys:</b> monitored system, smoke/CO, doorbell camera, medical alert. <b>Worries:</b> setup difficulty, fixed income.</p>
+      <p class="small"><b>Fits:</b> ADT (pro install, medical add-ons), SimpliSafe, Cove. <b>First question:</b> "Can someone set it up for me?" Likely to call.</p>
+    </div>
+    <div class="card">
+      <h3>5 · Smart-home fan</h3><p><span class="pill a">Medium evidence</span></p>
+      <p class="small"><b>Who:</b> younger, tech-comfortable. 18% of homes have 6+ smart devices; 31% of buyers say smart home is the main reason. </p>
+      <p class="small"><b>Buys:</b> piece by piece: cameras, locks, sensors, often self-monitored. <b>Worries:</b> subscription creep, privacy, ecosystem lock-in.</p>
+      <p class="small"><b>Fits:</b> Vivint, Ring, Wyze, Abode, SimpliSafe. <b>First question:</b> "Does it work with Alexa / Google / Apple, and what needs a plan?"</p>
+    </div>
+    <div class="card">
+      <h3>Small landlord</h3><p><span class="pill r">Weak evidence</span></p>
+      <p class="small">No reliable data. 54% of renters say they'd pay more rent for a connected doorbell or security device. Likely buys doorbells and smart locks. Treat as a guess.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Why people don't buy</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Barrier</th><th>Evidence</th><th>What our page can answer</th></tr></thead>
+        <tbody>
+          <tr><td>"I don't need it"</td><td>35%, the top reason</td><td>Not much for paid search: these people rarely click our ads</td></tr>
+          <tr><td>Cost</td><td>33–36%; cost is also the #1 reason people cancel</td><td>Real monthly price, cheaper DIY options, insurance discount</td></tr>
+          <tr><td>Contracts</td><td>ADT and Brinks 36–60 months; 61% of complaints are about getting out</td><td>Contract and cost to leave on every card</td></tr>
+          <tr><td>Privacy</td><td>62% worry a company could watch through their cameras (vendor survey)</td><td>Later: one line per brand on video storage and who can see it</td></tr>
+          <tr><td>Renting</td><td>Landlord rules and moving (survey source unconfirmed)</td><td>"I rent" path: no drilling, no contract, portable</td></tr>
+          <tr><td>Setup</td><td>34% of smart-home owners had tech problems last year</td><td>"Installs in 30 minutes" or "pro install included"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="note">Gaps: no national split by income or city vs suburb, and no real data on small landlords. Many numbers come from vendor or affiliate surveys, which are useful but not neutral.</p>
+</section>
+
+<!-- BUYER -->
+<section class="panel" id="p-buyer" hidden>
+  <div><span class="eyebrow">Needs &amp; fears</span><h2>What buyers want, and what they're afraid of</h2></div>
+  <div class="card">
+    <h3>What 423 reviews tell us about the buyer</h3>
+    <p class="small muted">All sources pooled: 258 real Trustpilot reviews pasted by the team plus 165 search quotes. The bars below show the shares; this box turns them into what the buyer needs to see.</p>
+
+    <h3 style="margin-top:6px">What they're looking for</h3>
+    <ul class="ticks small">
+      <li><b>A real person (37% of reviews, 64% of happy ones).</b> A technician who explains the system, an agent who fixes it on the first call. Bots, long holds and transfers are what make people angry.</li>
+      <li><b>It just works (16%).</b> Sensors that stay on the wall, cameras that record, an alarm that calls when it goes off.</li>
+      <li><b>A price they can trust (12%).</b> The number they were told is the number they pay, with nothing added later.</li>
+      <li><b>Someone responds, fast (7%).</b> Happy reviews quote the time: "within seconds", "called me in 30 seconds".</li>
+      <li><b>Easy to set up (6%)</b> and <b>cameras</b> that work (9%).</li>
+    </ul>
+
+    <h3 style="margin-top:6px">Their pain points, from shopping to leaving</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Moment</th><th>What goes wrong</th><th>In their words</th></tr></thead>
+        <tbody>
+          <tr><td>Shopping</td><td>Sales pressure (11% of complaints): door-to-door reps, repeated calls after a quote, no written price before signing, "no contract" that turns out to be 5 years</td><td>"He told me he could not send me that information unless I signed up."</td></tr>
+          <tr><td>Install</td><td>No-shows, wrong or missing equipment, being billed for cameras never installed (9%)</td><td>"More than six months later, not a single camera or video doorbell has been installed!"</td></tr>
+          <tr><td>Living with it</td><td>Equipment fails (34%); every repair visit costs $59–$300; alarms with no call (8%); false alarms and police fines (6%)</td><td>"I'm 68 years old. I'm not climbing a ladder to change a battery... it would cost $125."</td></tr>
+          <tr><td>Price over time</td><td>Fees nobody mentioned (34%), the bill creeping up (4%)</td><td>"The contract I had was for... 28 dollars monthly but they charged me 38 every month."</td></tr>
+          <tr><td>Moving</td><td>18 of 19 movers are unhappy: relocation fees, two bills at once, a new contract</td><td>"All of these fees we were not told about added up to over $1000."</td></tr>
+          <tr><td>Leaving</td><td>Hard to cancel (35%), stuck in a contract (23%): phone-only cancelling, retention pitches, 30 extra days billed, $700–$4,300 to leave</td><td>"You can sign up in minutes, but leaving requires a phone call."</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:6px">So what the buyer needs to see on our page</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Insight</th><th>Show the buyer</th><th>Where</th></tr></thead>
+        <tbody>
+          <tr><td>Getting out is the #1 fear (61% of complaints)</td><td>Contract length or "no contract", and the cost to leave</td><td>Every card</td></tr>
+          <tr><td>Hidden costs (34%)</td><td>Equipment + monthly price together; what "free" requires</td><td>Every card</td></tr>
+          <tr><td>They want a person (37%)</td><td>"Talk to an expert" with the phone, "no obligation"; install type (pro or DIY)</td><td>Pro cards, header test B</td></tr>
+          <tr><td>Sales pressure before buying</td><td>Prices on our page, so they don't need a sales call to find them; Visit Site always next to the phone</td><td>Cards</td></tr>
+          <tr><td>Fast response matters</td><td>Alarm response time where the brand states it (e.g. 30 seconds)</td><td>Card bullet</td></tr>
+          <tr><td>It has to work</td><td>Warranty, money-back guarantee, trial or return window</td><td>Card bullet</td></tr>
+          <tr><td>Moving is a trap</td><td>"Can I take it when I move?"</td><td>FAQ #1, DIY cards</td></tr>
+          <tr><td>Repairs cost extra</td><td>"What does it cost if something breaks?"</td><td>FAQ #2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Reviews skew to complaints, so these shares show where things break and what to answer, not how often it happens to a typical buyer.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b>37%</b><span>of US homes have a full system</span></div>
+    <div class="stat"><b>19%</b><span>pay for professional monitoring</span></div>
+    <div class="stat"><b>9-yr low</b><span>new pro-installed sign-ups (2024). DIY is growing</span></div>
+    <div class="stat"><b>$54/mo</b><span>average monthly security fee</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What triggers the purchase</h3>
+      <ul class="ticks small">
+        <li><b>Moving:</b> nearly 1 in 3 recent buyers moved that year</li>
+        <li><b>Renting:</b> 37% of recent buyers rent (8% six years ago)</li>
+        <li><b>A break-in or scare:</b> the biggest stated reason in reviews</li>
+        <li><b>Smart home:</b> 31% name it as the main reason (19% in 2021)</li>
+        <li><b>Insurance discount:</b> 56% of millennial and Gen Z homeowners</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Two kinds of buyer</h3>
+      <p class="small"><span class="pill b">Pro install</span> Wants someone to come and set it up, likes to talk first, owns the home. Fits ADT, Vivint, Brinks. Converts by phone.</p>
+      <p class="small"><span class="pill g">DIY / no contract</span> Renter or price-sensitive, hates contracts, buys online. Fits SimpliSafe, Cove, ADT Blu, Frontpoint, Ring. Converts by click.</p>
+      <p class="small muted">Our page treats everyone like the first kind.</p>
+    </div>
+  </div>
+  <div class="grid g2">
+    <div class="card">
+      <h3>What they want</h3><p class="small muted">Share of all reviews that mention it</p>
+      <div class="bars" id="needs"></div>
+    </div>
+    <div class="card">
+      <h3>What they fear</h3><p class="small muted">Share of complaints that mention it</p>
+      <div class="bars" id="fears"></div>
+    </div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><span class="pill r">Getting out · 61%</span><blockquote>"No one mentioned a 5-year contract or an early termination fee — not once during the sales process." (Vivint)</blockquote><blockquote>"$788.74 to cancel my service" (Frontpoint)</blockquote></div>
+    <div class="card"><span class="pill a">It breaks · 40%</span><blockquote>"cameras go offline constantly and have to be reset in person" (Abode)</blockquote><blockquote>"disabled without monthly subscription" (Ring)</blockquote></div>
+    <div class="card"><span class="pill a">Nobody called · 14%</span><blockquote>"A month later I received a $316 false alarm fine from the LAPD." (SimpliSafe)</blockquote><blockquote>"called my cell within 30 seconds" (SimpliSafe, a happy one)</blockquote></div>
+  </div>
+  <div class="card">
+    <h3>The words buyers use (use them in ads and cards)</h3>
+    <p class="small">"no contract" · "cancel anytime" · "early termination fee" · "price went up" · "called within 30 seconds" · "the technician explained everything" · "easy to set up" · "no monthly fee" · "peace of mind" · "just moved"</p>
+  </div>
+  <p class="note">Ratings disagree across sites (Cove 4.5 on Trustpilot, 1.7 on ConsumerAffairs). One star badge can mislead buyers who check a second site.</p>
+</section>
+
+<!-- PRICES -->
+<section class="panel" id="p-prices" hidden>
+  <div><span class="eyebrow">Prices &amp; contracts</span><h2>Three ways to pay, very different costs to leave</h2></div>
+  <div class="grid g3">
+    <div class="card"><span class="pill r">Contract + pro install</span><p class="small">ADT, Vivint, Brinks, Xfinity. Low or "free" equipment, but 36–60 months of monitoring or an equipment loan. Leaving early is expensive.</p></div>
+    <div class="card"><span class="pill g">DIY + month-to-month</span><p class="small">SimpliSafe, Cove, Ring, Abode, Frontpoint. Buy the kit, install it yourself, cancel anytime. 30–60 day returns.</p></div>
+    <div class="card"><span class="pill b">Cameras + optional plan</span><p class="small">Arlo, Wyze, Ring cameras. The plan is mostly video storage. Buyers get annoyed when features need a plan.</p></div>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Provider</th><th>Monthly</th><th>Equipment</th><th>Contract</th><th>Cost to leave early</th><th>Return window</th></tr></thead>
+      <tbody>
+        <tr><td><b>ADT</b> (pro)</td><td class="num">$34.99–49.99</td><td>$599 min with pro install</td><td>36 mo (24 in CA)</td><td><span class="led r"></span>75% of months left</td><td>6-mo money-back, conditions</td></tr>
+        <tr><td><b>ADT Blu</b> (DIY)</td><td class="num">from $24.99</td><td>$349 min</td><td>1 month min</td><td><span class="led g"></span>none after 1 month</td><td>—</td></tr>
+        <tr><td><b>Vivint</b></td><td class="num">$24.99–44.99</td><td>$199–999, financed up to 60 mo</td><td>36–60 mo (loan)</td><td><span class="led r"></span>pay off the loan</td><td>3 days</td></tr>
+        <tr><td><b>Brinks Home</b></td><td class="num">$39.99–54.99</td><td>about $399+</td><td>usually 36 mo</td><td><span class="led r"></span>about 75% of remaining</td><td>30 days</td></tr>
+        <tr><td><b>SimpliSafe</b></td><td class="num">$22.99–79.99</td><td>DIY kit, often 40–65% off</td><td>none</td><td><span class="led g"></span>$0</td><td>60 days</td></tr>
+        <tr><td><b>Cove</b></td><td class="num">$22.99–42.99</td><td>DIY kit</td><td>none</td><td><span class="led g"></span>$0</td><td>60 days · price lock on Plus</td></tr>
+        <tr><td><b>Frontpoint</b></td><td class="num">about $49.99</td><td>DIY kit</td><td>month-to-month (sources conflict)</td><td><span class="led a"></span>reviews report cancel fees</td><td>30 days</td></tr>
+        <tr><td><b>Ring Alarm</b></td><td class="num">$19.99 (Pro)</td><td>$199–379 kits</td><td>none</td><td><span class="led g"></span>$0</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>What this means for the cards</h3>
+    <ul class="ticks small">
+      <li>"$19.99/mo" next to "$49.99/mo" compares very different services. Show <b>monthly + equipment + contract</b> together, or a 3-year total.</li>
+      <li><b>Cost to leave</b> is the number buyers fear most and nobody shows. A "Contract: none / 36 mo" chip answers it in one glance.</li>
+      <li>"Free equipment" usually means it's folded into a contract. The FTC says the catch must sit next to the word "free", not in a footnote.</li>
+    </ul>
+  </div>
+  <p class="note">Prices as reported in 2026 by provider and review sites, which often disagree. Confirm each with the partner before it goes on a card.</p>
+</section>
+
+<!-- COMPETITORS -->
+<section class="panel" id="p-competitors" hidden>
+  <div><span class="eyebrow">Competitors</span><h2>Everyone ranks the same way. Nobody shows the real deal.</h2></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th></th><th>Our page</th><th>Top10.com</th><th>Top Home Security Services</th></tr></thead>
+      <tbody>
+        <tr><td>#1 / #2 / #3</td><td>ADT 9.9 · Vivint 9.4 · Brinks 9.2</td><td>ADT 9.9 · Vivint 9.4 · Brinks 8.9</td><td>ADT 9.9 · Vivint 9.3 · Brinks 8.6</td></tr>
+        <tr><td>Location in headline</td><td><span class="led r"></span>No</td><td><span class="led g"></span>Yes, from visitor IP (showed "Tel Aviv")</td><td><span class="led g"></span>Yes ("California")</td></tr>
+        <tr><td>Phone button</td><td><span class="led r"></span>None</td><td><span class="led g"></span>ADT; main button on mobile</td><td><span class="led g"></span>ADT, Vivint, Brinks, with green "live" dot</td></tr>
+        <tr><td>SimpliSafe listed</td><td><span class="led r"></span>No</td><td><span class="led g"></span>Yes (#4 mobile)</td><td><span class="led g"></span>Yes (#4)</td></tr>
+        <tr><td>Install-type labels</td><td><span class="led a"></span>#1 only</td><td><span class="led g"></span>Pro install / Top DIY pick</td><td><span class="led g"></span>DIY Installation badge</td></tr>
+        <tr><td>Third-party proof</td><td><span class="led r"></span>Own score only</td><td><span class="led g"></span>Trustpilot review count per card (desktop)</td><td><span class="led a"></span>"A+ BBB", customer counts</td></tr>
+        <tr><td>Price on a card</td><td><span class="led a"></span>Cove "&lt;$1/day"</td><td><span class="led r"></span>Fine print only</td><td><span class="led g"></span>ADT Blu "from $29.99/mo"</td></tr>
+        <tr><td>Quote / lead option</td><td><span class="led r"></span>No</td><td><span class="led g"></span>SecurityPricer, "Get Free Quote"</td><td><span class="led r"></span>No</td></tr>
+        <tr><td>Contract &amp; cancel on card</td><td><span class="led r"></span>Fine print</td><td><span class="led r"></span>Fine print</td><td><span class="led r"></span>Fine print</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Top10.com on mobile</h3>
+      <ul class="ticks small">
+        <li>Hero is only the headline over a photo. Card #1 starts on the first screen.</li>
+        <li>ADT card: phone number is the filled main button, "Visit Site" is the outline one.</li>
+        <li>Other cards: one full-width "Visit Site". No product photo, no Trustpilot count.</li>
+        <li>After the list, ADT again in an "Our Most Popular" box with the phone.</li>
+        <li>Different order on mobile than desktop (ADT Blu dropped, SimpliSafe #4).</li>
+      </ul></div>
+    <div class="card"><h3>What the big affiliates do in paid search</h3>
+      <ul class="ticks small">
+        <li>SafeWise runs separate paid landing pages per keyword theme, and the #1 pick changes: SimpliSafe on DIY pages, ADT or Vivint on pro-install pages.</li>
+        <li>"Best for…" badge on every card (Security.org).</li>
+        <li>Phone numbers next to pro brands are standard.</li>
+      </ul></div>
+  </div>
+  <div class="card">
+    <h3>Our opening</h3>
+    <p class="small">No one puts monthly price, contract length and cost to leave on the card. Buyers' #1 fear is exactly that. Being the clear page is the advantage, as long as partners accept it (test it, measure partner revenue).</p>
+  </div>
+</section>
+
+<!-- OUR PAGE -->
+<section class="panel" id="p-our-page" hidden>
+  <div><span class="eyebrow">Our page today</span><h2>Where the page loses buyers</h2><p class="lede">From mobile and desktop screenshots, Nov 2 2026. Mobile is what paid traffic sees.</p></div>
+  <div class="card">
+    <h3>On mobile right now</h3>
+    <ul class="ticks small">
+      <li><span class="led g"></span>Lean header: commission line, date, headline, one subline. No photo, no top-3 strip. Card #1 starts on the first screen. Good.</li>
+      <li><span class="led r"></span>Sticky bottom bar shows ADT's logo and offer text, cut off mid-sentence, with <b>no button and no phone</b>. It also covers the card text behind it.</li>
+      <li><span class="led r"></span>Every card: "Visit Site" + "Get Protected". No phone anywhere, no price, no contract.</li>
+      <li><span class="led a"></span>"Professional install" badge on ADT only. Cove, Frontpoint and ADT Blu don't say DIY.</li>
+      <li><span class="led g"></span>Cove, Frontpoint and ADT Blu bullets are strong: no contract, 60-day / 30-day trial, warranty, cancel anytime.</li>
+    </ul>
+  </div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Area</th><th>Today</th><th>Problem</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Header</td><td>"Best Home Security Systems of 2026 · Your family's safety, watched over 24/7" (photo and paragraph on desktop only)</td><td>Short on mobile, which is good. But generic: no location, no help choosing pro vs DIY.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Top 3 strip</td><td>Desktop only: Vivint / ADT / Brinks with offers</td><td>Not on mobile. Fine for now.</td><td><span class="pill g">Later</span></td></tr>
+        <tr><td>Card offer line</td><td>"$100 Visa reward card", "Free install + $50 gift card"</td><td>The $599 minimum, 36-month contract and cancel fees are in fine print. FTC: catch must be next to "free".</td><td><span class="pill r">Risk</span></td></tr>
+        <tr><td>Card facts</td><td>3–4 ✓ bullets (24/7 monitoring, app, Google Nest)</td><td>No monthly price, contract, install type or cancel terms on any card.</td><td><span class="pill r">Missing</span></td></tr>
+        <tr><td>Install type</td><td>"Professional install" on #1 only</td><td>DIY and renters can't spot their options.</td><td><span class="pill a">Partly</span></td></tr>
+        <tr><td>Ranking</td><td>ADT, Vivint, Brinks, Cove, Frontpoint, ADT Blu</td><td>No-contract options sit at #4 and #6 for every keyword. SimpliSafe missing.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Buttons</td><td>"Visit Site" + "Get Protected" on each card</td><td>Two links out per card, no phone.</td><td><span class="pill r">Missing</span></td></tr>
+        <tr><td>Social proof</td><td>"526 people visited this site today", "2,864 homeowners this month"</td><td>Fine if real and live. If static, it's an FTC risk.</td><td><span class="pill a">Check</span></td></tr>
+        <tr><td>Sticky bar</td><td>Mobile: ADT logo + cut-off offer text, no button. Desktop: has Visit Site</td><td>On mobile it has no clear action and covers the cards. Add a Call button (when open) or Visit Site, shorten the text.</td><td><span class="pill r">Fix now</span></td></tr>
+        <tr><td>Scores</td><td>9.9 "Exceptional" ADT</td><td>ADT has 10,742 BBB complaints in 3 years. A 9.9 invites distrust from buyers who check.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>FAQ</td><td>6 questions (pick provider, monitoring worth it, equipment, DIY, insurance, wireless)</td><td>Misses the top fears: contracts, cancelling, what "free" means, renting, moving.</td><td><span class="pill a">Fix</span></td></tr>
+        <tr><td>Sidebar</td><td>Homeowners counter, Editor's picks, ADT banner, How we rate</td><td>Desktop only. On mobile, keep "How we rate" as a link under the list.</td><td><span class="pill g">Later</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card"><h3>What already works</h3>
+    <ul class="ticks small">
+      <li>"Last updated November 2026" freshness line.</li>
+      <li>Cove's bullets ("Zero contracts, zero commitment", "60-day risk-free trial") are exactly what buyers ask for.</li>
+      <li>ADT Blu "No long-term contract. Cancel anytime" and "Self-monitor or get 24/7 pro monitoring".</li>
+      <li>Sticky bottom bar with the #1 pick.</li>
+      <li>"How we rate" explains the scores.</li>
+    </ul></div>
+</section>
+
+<!-- PHONE & LOCATION -->
+<section class="panel" id="p-phone-local" hidden>
+  <div><span class="eyebrow">Phone &amp; location</span><h2>Two quick wins for paid mobile traffic, and why</h2></div>
+
+  <div class="card">
+    <h3>Why the phone matters</h3>
+    <ol class="steps small">
+      <li><b>Pro install is a big decision.</b> A 3-year contract, a technician in your home, a credit check. People want to ask questions first. In reviews, a real person is the #1 need (37% of all reviews, and 64% of happy ones).</li>
+      <li><b>That's how pro brands sell.</b> ADT, Vivint and Brinks run call centers and dealer networks built for phone sales.</li>
+      <li><b>That's how they pay.</b> About $15–40 per qualified call, up to about $288 per installed system, compared with much less for a click.</li>
+      <li><b>Calls convert.</b> In home services, about 45% of answered sales calls convert on the call.</li>
+      <li><b>Our traffic is 100% mobile,</b> where a call is one tap. Top10.com makes the phone the main button on ADT on mobile.</li>
+    </ol>
+    <p class="small"><b>How sure:</b> <span class="pill g">High</span> on the reasons. The open question is how much it adds versus taking sales from clicks, which is what the test answers.</p>
+  </div>
+
+  <div class="card">
+    <h3>Why location matters (and where it doesn't)</h3>
+    <p class="small">Home security is a <b>national product sold through local service</b>. The brands and prices are the same everywhere, but installing, police response, contract rules and how people search are local.</p>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>What</th><th>Local?</th><th>Evidence</th><th>What we do</th></tr></thead>
+        <tbody>
+          <tr><td>Brands and monthly prices</td><td><span class="pill b">No</span></td><td>National price lists. ADT, SimpliSafe, Cove charge the same in every state</td><td>Same list everywhere. No separate lists per state</td></tr>
+          <tr><td>How people search</td><td><span class="pill g">Yes</span></td><td>"home security near me", "alarm company [city]" are a real keyword group. People think of it as a local service because someone comes to the house</td><td>Location in the headline so the page matches the ad</td></tr>
+          <tr><td>Installation</td><td><span class="pill g">Yes</span></td><td>ADT sells through local dealers; installers are licensed by state; coverage and install dates vary by area</td><td>"Pro install available in {City}" only where partners confirm</td></tr>
+          <tr><td>Contract terms</td><td><span class="pill a">By state</span></td><td>ADT's contract is 24 months in California, 36 elsewhere. About 30 states have auto-renewal laws; California's is strict</td><td>State-correct contract line on the card</td></tr>
+          <tr><td>Police response and fines</td><td><span class="pill g">By city</span></td><td>Alarm permits and false-alarm fines are set by the city (a reviewer's $316 LAPD fine). Some cities need a verified alarm before police come</td><td>Later: one line or FAQ for big cities</td></tr>
+          <tr><td>Who's buying</td><td><span class="pill a">Partly</span></td><td>Renters are 37% of recent buyers and far more common in big cities. Safety is a moving reason for 18% of home hunters</td><td>Test DIY first in renter-heavy cities</td></tr>
+          <tr><td>Partner deals</td><td><span class="pill a">Maybe</span></td><td>Unknown. Ask if payouts, call centers or offers differ by state</td><td>Order or offers per state only if they do</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small"><b>Why it can lift conversion:</b> the visitor searched "home security California" and clicked an ad about California. A page that says California confirms they're in the right place. Both competitors already do it, which is a signal, not proof.</p>
+    <p class="small"><b>How sure:</b> <span class="pill a">Medium</span>. I found no public numbers on how much a location headline lifts sales in this category. That's why it's a cheap test first, and real local facts (install, contract) come after it wins.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <h3>Phone (ADT, Vivint, Brinks)</h3>
+      <ul class="ticks small">
+        <li>Phone = filled main button, "Visit Site" = outline, side by side.</li>
+        <li>Show the number itself on the button ("☎ 855-368-0877"), not "Call now". A real number looks like a real person.</li>
+        <li>Small line under the button with a green dot: "Open now · experts available". It tells the buyer someone will answer right now.</li>
+        <li>Show it only when the call center is open. After hours, Visit Site goes back to main.</li>
+        <li>Add the phone to the sticky bar and to a repeat of #1 after the list.</li>
+        <li>DIY brands keep one "See deal" button.</li>
+      </ul>
+      <p class="small"><b>Track:</b> tap event on each number. Import qualified calls (partner's minimum length, often 90–120s) into Google Ads and Bing as conversions.</p>
+      <p class="small"><b>Ask partners:</b> call center hours and time zone, qualified-call rule, pay per call vs per click.</p>
+    </div>
+    <div class="card">
+      <h3>Location: how to build it</h3>
+      <ul class="ticks small">
+        <li>Headline: "Best Home Security Systems in {State} 2026". One template, location filled in.</li>
+        <li>Take the location from the campaign (Google ValueTrack location, Bing location ID, or ?state= per geo ad group). Visitor IP only as fallback.</li>
+        <li>US only. Otherwise fall back to "Best Home Security Systems of 2026" (Top10 showed "Tel Aviv").</li>
+        <li>Ad copy says the same: "Best Home Security in {State}".</li>
+        <li>Then add one real local line: "Pro install available in {City} · often next day".</li>
+        <li>Later: per-state phone numbers, order or offers where payouts differ, state cancel rules (California's is strict).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CRO PLAN -->
+<section class="panel" id="p-plan" hidden>
+  <div><span class="eyebrow">CRO plan</span><h2>What to change, top of the page down</h2></div>
+  <div class="card">
+    <h3>What the real reviews change in this plan</h3>
+    <ul class="ticks small">
+      <li><b>Show contract and cost on the card (tests 4–5) is now the strongest idea.</b> About 4 in 5 ADT and Brinks complaints are about getting out.</li>
+      <li><b>Phone button: keep it, and make it feel safe.</b> Label it "Talk to an expert · no obligation" and keep "Visit Site" next to it. Buyers resent sales pressure (25 calls after one quote; "can't get pricing unless you sign"), and some want to buy without calling.</li>
+      <li><b>Brinks bullet:</b> keep "30-second alarm response". Fast response is what buyers want from monitoring, and it's Brinks' strongest point. Also ask Brinks about technician coverage, since four reviewers say there are none in their area.</li>
+      <li><b>ADT bullet:</b> keep the 6-month money-back guarantee, with its ** footnote. It answers the fear of being stuck with a system that doesn't work.</li>
+      <li><b>FAQ, first two questions:</b> "Can I take it when I move?" and "What does it cost if something breaks?"</li>
+      <li><b>Don't put Trustpilot ratings on ADT or Brinks cards.</b> Their recent average is 1.1 stars; our page says 9.9 and 9.2. Buyers who check will see the gap.</li>
+    </ul>
+  </div>
+
+
+  <div class="card">
+    <h3>1 · Header test</h3>
+    <p class="small muted">Talk to the buyer's pain points: what it really costs, being locked in, and someone watching 24/7. "24/7" alone is what every brand says, so we pair it with cost and contract.</p>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Version</th><th>Headline</th><th>Subline + check row</th><th>Pain point it answers</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill b">Today</span></td><td>Best Home Security Systems of 2026</td><td>Your family's safety, watched over 24/7</td><td>General safety</td></tr>
+          <tr><td><span class="pill g">Test A</span><br><span class="small muted">cost &amp; contract</span></td><td>Best Home Security Systems in {State} 2026</td><td>Compare 24/7 monitoring by real monthly cost and contract, before you sign.<br>✓ Equipment + monthly cost ✓ Contract or no contract ✓ 24/7 monitoring</td><td>Hidden fees (21% of complaints), stuck in a contract, hard to cancel</td></tr>
+          <tr><td><span class="pill g">Test B</span><br><span class="small muted">24/7 &amp; a real person</span></td><td>Best Home Security Systems in {State} 2026</td><td>24/7 monitoring with real people on the line. See prices and contracts side by side.<br>✓ 24/7 pro monitoring ✓ Talk to an expert ✓ No-contract options</td><td>Nobody responded (18% of complaints), want a real person (#1 need)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small"><b>My pick to start:</b> Test A. Cost and contract are the biggest fears, and it still says 24/7. Test B next if A wins.</p>
+    <p class="small muted">Keep: "Last updated November 2026", the commission line, and no photo on mobile so card #1 stays on the first screen.</p>
+  </div>
+
+  <div class="card">
+    <h3>2 · Cards: the formula</h3>
+    <ol class="steps small">
+      <li><b>Offer line with its catch:</b> "$100 Visa card with pro install ($599 min + monitoring)".</li>
+      <li><b>4 bullets, one per topic, same order on every card:</b> ✓ how it's installed · ✓ contract or no contract · ✓ cost: equipment + monthly · ✓ who it's best for.</li>
+      <li><b>Buttons:</b> the phone number itself + Visit Site for pro brands when the line is open, with "Open now · experts available" in small text under the number. One button for DIY.</li>
+    </ol>
+    <p class="small"><b>Why these 4:</b> install type and contract are the first fork (pro vs DIY), clear pricing is a top need and needs <b>both</b> numbers (equipment and monthly), contract is the #1 fear, and "best for" tells each typical buyer which card is theirs.</p>
+  </div>
+
+  <div class="phones">
+    <div class="phone">
+      <span class="cap">Mobile · header + pro card</span>
+      <div class="m-hero">
+        <span class="eyebrow">Updated Nov 2026 · Ad disclosure</span>
+        <h4>Best Home Security Systems in California 2026</h4>
+        <p class="small muted">Compare monthly price, contract and cancel terms before you call.</p>
+        <div class="m-chips"><span class="on">Pro install</span><span>DIY / no contract</span><span>I rent</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-row"><span class="pill b">1 · Pro install · 36-mo contract</span></div>
+        <div class="m-row"><span class="m-logo">ADT</span><span class="m-score">9.6<small>our score</small></span></div>
+        <p class="m-offer">$100 Visa reward card with pro install <em>($599 min + monitoring)</em></p>
+        <ul><li>Professional install, same or next day</li><li>36-month monitoring plan (24 in CA)</li><li>Equipment from $599 + monitoring from $34.99/mo</li><li>Best for homeowners who want it done for them</li><li>6-month money-back guarantee**</li></ul>
+        <div class="m-cta"><span class="pri">☎ 855-xxx-xxxx</span><span class="sec">Visit site</span></div>
+        <span class="m-open"><span class="led g"></span>Open now · experts available · no obligation</span>
+        <span class="m-link">Read ADT review</span>
+      </div>
+    </div>
+    <div class="phone">
+      <span class="cap">Mobile · DIY card + sticky bar</span>
+      <div class="m-card">
+        <div class="m-row"><span class="pill g">DIY · No contract</span></div>
+        <div class="m-row"><span class="m-logo">cove</span><span class="m-score">9.0<small>our score</small></span></div>
+        <p class="m-offer">Save 70% on equipment + free HD camera</p>
+        <ul><li>Easy DIY install in about 30 minutes</li><li>No contract, 60-day risk-free trial</li><li>Equipment 70% off + pro monitoring under $1/day</li><li>Best for renters and budget buyers</li></ul>
+        <div class="m-cta one"><span class="pri">See Cove deal</span></div>
+        <span class="m-link">Read Cove review</span>
+      </div>
+      <div class="m-sticky"><span>ADT · $100 Visa card with pro install</span><span class="b">☎ 855-xxx-xxxx</span></div>
+    </div>
+  </div>
+  <p class="note">Example copy. Prices and terms come from the partners' own fine print and 2026 research. Confirm each one, and agree the "leave early" line with partners before testing.</p>
+
+  <div class="card">
+    <h3>3 · Bullets: today vs test</h3>
+    <p class="small muted">Left: what the mobile page shows now. Right: what we test. Same 4 topics on every test card: install · contract · equipment + monthly (with 24/7) · best for.</p>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Brand</th><th>Bullets today</th><th>Bullets to test</th></tr></thead>
+        <tbody>
+          <tr><td><b>ADT</b></td><td>150+ years of trusted protection, with same or next-day installation<br><b>Get a $100 ADT Visa® Reward Card* with a newly installed system</b><br>✓ 24/7 rapid-response monitoring team<br>✓ 6-month money-back guarantee**<br>✓ Exclusive Google Nest camera &amp; device integration</td><td><b>Get a $100 ADT Visa® Reward Card with pro install*</b><br>✓ Professional install, same or next day<br>✓ 36-month monitoring plan (24 in CA)<br>✓ Equipment from $599 + 24/7 monitoring from $34.99/mo<br>✓ Best for homeowners who want it done for them<br>✓ 6-month money-back guarantee**</td></tr>
+          <tr><td><b>Vivint</b></td><td>Professional installation with smart home app control<br><b>Get Free Installation + $50 Visa Gift Card*. Use code FREEINSTALL50</b><br>✓ 24/7 uninterrupted video recording<br>✓ Works seamlessly with Google Home, Philips Hue, Amazon Echo &amp; Nest<br>✓ Flexible financing options available</td><td><b>Free installation + $50 Visa gift card. Code FREEINSTALL50</b><br>✓ Professional install with full smart home setup<br>✓ Equipment financing up to 60 months<br>✓ Equipment from about $200 + 24/7 monitoring from about $25/mo (check)<br>✓ Best for a full smart home: app, cameras, Alexa &amp; Google</td></tr>
+          <tr><td><b>Brinks</b></td><td>Advanced security with 24/7 protection and on-the-go control<br><b>Get free video doorbell + free installation</b><br>✓ Customizable plans with flexible equipment compatibility<br>✓ 30-second emergency response time</td><td><b>Free video doorbell + free installation</b><br>✓ Professional install, 30-second alarm response<br>✓ 36-month monitoring plan (check)<br>✓ Equipment about $400 + 24/7 monitoring from about $40/mo (check)<br>✓ Best for homeowners who want pro install and a free doorbell</td></tr>
+          <tr><td><b>Cove</b></td><td><b>Save 70% on equipment + free HD camera</b><br>✓ 24/7 professional monitoring for less than $1/day<br>✓ 60-day risk-free trial with a lifetime equipment warranty<br>✓ Zero contracts, zero commitment</td><td><b>Save 70% on equipment + free HD camera</b><br>✓ Easy DIY install in about 30 minutes<br>✓ No contract, 60-day risk-free trial<br>✓ Kit about $200 + 24/7 pro monitoring under $1/day<br>✓ Best for renters and budget buyers</td></tr>
+          <tr><td><b>Frontpoint</b></td><td><b>Save up to 82% on your system today</b><br>✓ Reliable, cellular-only connectivity<br>✓ Up and running in under 30 minutes<br>✓ 30-day risk-free trial + 3-year equipment warranty</td><td><b>Save up to 82% on your system today</b><br>✓ DIY install in under 30 minutes, cellular-only<br>✓ 30-day risk-free trial + 3-year warranty (contract: check)<br>✓ Equipment up to 82% off + 24/7 monitoring about $50/mo (check)<br>✓ Best for DIYers who want a reliable cellular connection</td></tr>
+          <tr><td><b>ADT Blu</b></td><td><b>60% off select ADT Blu kits and cameras**</b><br>✓ ADT-backed protection with easy DIY install<br>✓ No long-term contract. Cancel anytime<br>✓ Self-monitor or get 24/7 pro monitoring</td><td><b>60% off select ADT Blu kits and cameras**</b><br>✓ Easy DIY install, backed by ADT<br>✓ No long-term contract. Cancel anytime<br>✓ Equipment from $349 + 24/7 monitoring from $24.99/mo, or self-monitor<br>✓ Best for renters who want the ADT name</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">ADT and ADT Blu prices come from their own fine print. "Check" items need the partner's confirmation before the test goes live.</p>
+  </div>
+
+  <div class="card">
+    <h3>4 · Ranking matched to the keyword</h3>
+    <div class="tscroll" style="border:0">
+      <table>
+        <thead><tr><th>Keyword theme</th><th>#1 card</th><th>Header angle</th></tr></thead>
+        <tbody>
+          <tr><td>best home security, installation, near me, ADT deals</td><td>ADT (call)</td><td>Pro install, talk to an expert</td></tr>
+          <tr><td>no contract, wireless, DIY, cheap</td><td>Cove or ADT Blu (add SimpliSafe if possible)</td><td>No contract, cancel anytime</td></tr>
+          <tr><td>for renters, apartment</td><td>DIY brand</td><td>No drilling, take it when you move</td></tr>
+          <tr><td>with cameras</td><td>Vivint or camera-first DIY</td><td>Monthly cost with cameras</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small muted">SafeWise already does this. One template, a few orders, chosen by ad group.</p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><h3>5 · Below the list</h3>
+      <ul class="ticks small">
+        <li>Repeat #1 with the phone ("Still deciding? Talk to ADT").</li>
+        <li>Short comparison: monthly · equipment · contract · cost to leave · return window.</li>
+        <li>FAQ, new first: How do I cancel? What does "free equipment" really mean? Can I take it when I move? Best option for renters? Will my price go up? Later in the list: Will I get fined for false alarms? (Short answer: many cities fine after 1–2 false alarms, LA from the first; monitoring that calls you first helps avoid it.)</li>
+        <li>Cut "What is home security?" on mobile.</li>
+      </ul></div>
+    <div class="card"><h3>6 · Trust and compliance</h3>
+      <ul class="ticks small">
+        <li>"Free" offers carry their catch on the same line.</li>
+        <li>Visitor counters must be real and live, or removed.</li>
+        <li>Scores labelled "our score", with "How we rate" one tap away.</li>
+        <li>Never look like ADT (no blue octagon lookalikes), and use the brand name only on review pages for brand-term ads.</li>
+        <li>Monthly plans: say they renew and how to cancel (California law).</li>
+      </ul></div>
+  </div>
+
+  <hr style="border:0;border-top:1px solid var(--line);margin:8px 0">
+
+  <div><span class="eyebrow">Tests &amp; next steps</span><h2>What to test, in order</h2><p class="lede">We'll check which are worth testing before each one starts. Main metric: site CTR (click-outs + calls per visitor). Check it against partner-paid revenue, so a test doesn't win clicks that don't pay.</p></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>#</th><th>Test</th><th>Why (evidence)</th><th>How sure</th><th>Effort</th><th>Priority</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Phone as main button on ADT, Vivint, Brinks (open hours only) vs Visit Site only</td><td>A real person is the #1 need (21%). Pro brands sell and pay by call ($15–40 per call, up to ~$288 per install). 100% mobile. Numbers ready. Top10 does it</td><td><span class="pill g">High</span></td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>2</td><td>Sticky bar with a real button (Call when open, else Visit Site) vs today's text-only bar</td><td>Today's mobile bar has no button, cuts off its text and covers the cards</td><td><span class="pill g">High</span></td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>3</td><td>Location in headline (from campaign) vs generic</td><td>People search by place ("near me", city names); install, contract rules and fines are local; both competitors do it. No public lift numbers</td><td><span class="pill a">Medium</span></td><td><span class="pill g">Low</span></td><td><span class="pill r">Now</span></td></tr>
+        <tr><td>4</td><td>Cards with install-type badge + monthly price vs today</td><td>Clear pricing asked in 12% of reviews; pro vs DIY is the first choice and only ADT is labelled</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>5</td><td>"Contract / cost to leave" fact on cards vs fine print</td><td>61% of complaints are about getting out; nobody in the market shows it. Could lower clicks on contract brands, so partner-sensitive</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>6</td><td>No-contract / DIY version for those keywords (DIY #1) vs current list</td><td>SafeWise changes #1 by keyword; 37% of recent buyers rent; DIY outsells pro 2 to 1</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Medium</span></td><td><span class="pill a">Next</span></td></tr>
+        <tr><td>7</td><td>Pro / DIY / I rent chips that reorder the list</td><td>Two buyer types with different needs; gives us the first real split of our traffic</td><td><span class="pill a">Medium</span></td><td><span class="pill r">High</span></td><td><span class="pill b">Later</span></td></tr>
+        <tr><td>8</td><td>Add SimpliSafe (if a deal is possible)</td><td>Biggest DIY brand; on both competitor pages; Security.org and Reviews.org rank it top</td><td><span class="pill a">Medium</span></td><td><span class="pill a">Partner</span></td><td><span class="pill b">Later</span></td></tr>
+        <tr><td>9</td><td>"Just moved?" header for moving keywords</td><td>Moving is the #1 trigger (1 in 3 recent buyers)</td><td><span class="pill a">Medium</span></td><td><span class="pill g">Low</span></td><td><span class="pill b">Later</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Need from the team</h3>
+      <ul class="ticks small">
+        <li>Mobile click data: sticky bar taps, "Visit Site" vs "Get Protected" taps, scroll depth.</li>
+        <li>Call center hours, qualified-call rule and pay per call for ADT, Vivint, Brinks.</li>
+        <li>Payouts per partner (click vs call vs install).</li>
+        <li>Search terms report, campaigns by location, Auction Insights.</li>
+        <li>Whether the visitor counters are live data.</li>
+        <li>Can we add SimpliSafe?</li>
+      </ul></div>
+    <div class="card"><h3>Need for better research</h3>
+      <ul class="ticks small">
+        <li>Reddit threads pasted in (Reddit is blocked here), like we did for weight loss.</li>
+        <li>Or allow trustpilot.com and reddit.com in the session network settings for full reviews.</li>
+        <li>Current numbers: 165 review quotes from search snippets, skewed negative. Good for direction, not exact shares.</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="panel" id="p-articles" hidden>
+  <div><span class="eyebrow">Article ideas</span><h2>Articles that answer the fears, then send people to the list</h2><p class="lede">Each one answers a real pain point from the reviews and ends with a button to the comparison page, filtered to fit (e.g. no-contract brands first). They work as paid landing pages for matching keywords, as "Must reads" under the list, and later for SEO.</p></div>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Article</th><th>What it covers</th><th>Why (data)</th><th>Keywords it fits</th></tr></thead>
+      <tbody>
+          <tr><td><b>How much does home security really cost?</b></td><td>Equipment + monthly + install + repair visits, with a 3-year total for pro and DIY</td><td>Hidden fees in 34% of complaints; clear pricing 12% of needs</td><td class="small">home security cost, monitoring cost, ADT price</td></tr>
+          <tr><td><b>Home security contracts explained</b></td><td>How long contracts run (2–10 years), what leaving costs ($700–$4,300), the 30-day notice, how to avoid getting stuck</td><td>Getting out is 61% of complaints</td><td class="small">home security contract, cancel ADT, early termination fee</td></tr>
+          <tr><td><b>Best no-contract home security</b></td><td>Month-to-month options, what you give up, monthly cost, return windows</td><td>No-contract and DIY searchers; renters are 37% of recent buyers</td><td class="small">no contract home security, month to month alarm</td></tr>
+          <tr><td><b>Moving? What happens to your security system</b></td><td>Take it with you vs transfer vs cancel; relocation fees; which brands let you move free</td><td>18 of 19 movers are unhappy; moving is the #1 trigger</td><td class="small">moving home security, transfer ADT, new home security</td></tr>
+          <tr><td><b>Talk to a real person: questions to ask before you sign</b></td><td>A checklist for the sales call or door visit: contract length, total cost, what's installed, cancel terms, get it in writing</td><td>Sales pressure (11%); “no contract” that turned out to be 5 years</td><td class="small">home security quote, ADT sales call</td></tr>
+          <tr><td><b>Pro install vs DIY: which is right for you?</b></td><td>Who each fits, install time, cost, what happens when something breaks</td><td>The first fork for every buyer; 51% prefer DIY</td><td class="small">DIY vs professional home security</td></tr>
+          <tr><td><b>Best home security for renters</b></td><td>No drilling, no contract, take it with you, landlord rules</td><td>37% of recent buyers rent</td><td class="small">home security for renters, apartment alarm</td></tr>
+          <tr><td><b>Is professional monitoring worth it?</b></td><td>What happens when the alarm goes off, response times, self vs pro monitoring, insurance discounts</td><td>Fast response is what happy buyers quote; “nobody called” in 8% of complaints</td><td class="small">is monitoring worth it, self monitoring</td></tr>
+          <tr><td><b>What it costs when something breaks</b></td><td>Warranties, repair visits ($59–$300), replacement parts, who pays</td><td>Equipment fails in 34% of complaints; repair fees anger seniors most</td><td class="small">home security repair cost, warranty</td></tr>
+          <tr><td><b>Just had a break-in? Your first 48 hours</b></td><td>What to do, how fast you can get protected (same-day pro install, fast-shipping DIY)</td><td>Urgent buyers; a break-in is a top reason to buy</td><td class="small">after a break in, home security fast install</td></tr>
+          <tr><td><b>Cameras and video doorbells: what works without a subscription</b></td><td>What each camera does free vs with a plan, cloud storage costs</td><td>Camera-only homes are the fastest-growing group (7% → 12%)</td><td class="small">security camera no subscription, video doorbell</td></tr>
+          <tr><td><b>False alarms: fines, permits and how to avoid them</b></td><td>City permits and fines, how monitoring checks before calling police</td><td>Small but real (6%), and a local hook for geo pages</td><td class="small">false alarm fine, alarm permit</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Start with these four</h3>
+      <ol class="steps small">
+        <li>Home security contracts explained</li>
+        <li>How much does home security really cost?</li>
+        <li>Moving? What happens to your security system</li>
+        <li>Best no-contract home security</li>
+      </ol>
+      <p class="small muted">They cover the biggest fears (getting out, hidden costs, moving) and match keyword groups we already buy.</p></div>
+    <div class="card"><h3>Every article follows the same rules</h3>
+      <ul class="ticks small">
+        <li>Plain English, short sections, a quick answer at the top.</li>
+        <li>Real numbers from our research, with dates.</li>
+        <li>One clear button to the list, plus the phone for pro brands.</li>
+        <li>Calm and factual, no scare tactics. That builds the trust that earns the click.</li>
+      </ul></div>
+  </div>
+</section>
+
+
+
+</main>
+
+<script>
+(function(){
+  var needs=[["A real person to talk to",37],["It works, every time",16],["Clear pricing",12],["Cameras",9],["Fast alarm response",7],["Easy setup",6],["Good app",5],["No contract",3],["No monthly fee",3]];
+  var fears=[["Hard to cancel",35],["Equipment or app fails",34],["Hidden fees",34],["Stuck in a contract",23],["Pushy sales",11],["Bad install or no-show",9],["Nobody responded to the alarm",8],["False alarms and fines",6],["Price went up",4]];
+  function draw(id,rows,neg){
+    var el=document.getElementById(id),max=rows[0][1];
+    el.innerHTML=rows.map(function(r){return '<div class="bar'+(neg?' neg':'')+'"><span class="lbl">'+r[0]+'</span><span class="val">'+r[1]+'%</span><div class="track"><div class="fill" style="width:'+(r[1]/max*100)+'%"></div></div></div>';}).join('');
+  }
+  var own=[["Any security product",47],["Full alarm system",37],["Smart camera",33],["Video doorbell",24],["Pay for pro monitoring",19],["Camera or doorbell only",12],["Smart lock",11]];
+  draw('needs',needs,false); draw('fears',fears,true); draw('own',own,false);
+  var ids=['bottom-line','industry','products','buyers','buyer','prices','competitors','our-page','phone-local','plan','articles'];
+  function show(){
+    var h=(location.hash||'').slice(1); if(ids.indexOf(h)<0) h='bottom-line';
+    ids.forEach(function(i){document.getElementById('p-'+i).hidden=(i!==h);});
+    document.querySelectorAll('#tabs a').forEach(function(a){ if(a.getAttribute('href')==='#'+h){a.setAttribute('aria-current','page');a.scrollIntoView({block:'nearest',inline:'nearest'});} else a.removeAttribute('aria-current');});
+  }
+  window.addEventListener('hashchange',function(){show();window.scrollTo(0,0);}); show();
+})();
+</script>
