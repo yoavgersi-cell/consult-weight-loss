@@ -244,3 +244,31 @@ Each row's `url` column holds the page for that quote. The CSV contains 116 uniq
 
 ### Not reachable from this network
 trustpilot.com, reddit.com, consumeraffairs.com and bbb.org were blocked for direct fetch. sitejabber.com and pissedconsumer.com did not resolve. To read full reviews (with stars, dates and owner/renter details) and reduce the snippet bias, those hosts need to be allowed in the session's network settings.
+
+---
+
+## Update, Nov 4 2026: 258 real Trustpilot reviews pasted by the team
+
+Coded into `data/reviews/reviews_coded.csv` (now 423 rows). ADT 60, Vivint 60, SimpliSafe 40, Cove 40 (mostly Oct–Nov 2026), Brinks 58 (Jan–Oct 2026). Two off-topic Brinks reviews skipped (Brink's Inc., Canada).
+
+| Brand | n | Avg ★ | Negative | Exit complaints (share of negatives) | Top problems |
+|---|---|---|---|---|---|
+| ADT | 60 | 1.1 | 97% | 79% | Cancel 52%, hidden fees 48%, contract 36%, equipment 36% |
+| Brinks | 58 | 1.1 | 100% | 78% | Cancel 50%, hidden fees 47%, contract 40%, equipment 28% |
+| Vivint | 60 | 3.8 | 28% | 24% | Equipment 29%, pushy sales 24%, bad install 24% |
+| SimpliSafe | 40 | 4.2 | 18% | 43% | Equipment/cameras 57%, paid tech visits |
+| Cove | 40 | 4.4 | 12% | (5 negatives) | Cameras 4 of 5 |
+
+Collection bias: Vivint "Verified" (invited) reviews average 4.24★ (n=50) vs 1.5★ for the rest (n=10). SimpliSafe 4.78 vs 3.0. Cove 4.93 vs 4.12.
+
+Pooled (all 423): needs: a real person 37% (64% of positives), it works 16%, clear pricing 12%, cameras 9%. Fears (share of 257 negatives): hard to cancel 35%, equipment fails 34%, hidden fees 34%, contract 23%, pushy sales 11%, bad install/no-show 9%, nobody responded 8%, false alarms 6%. Exit cluster 61%, hardware 40%, monitoring 14%.
+
+Findings:
+1. Contract brands trap buyers: 2–10 year terms, $700–$4,300 to cancel, extra 30 days billed, billing after cancel.
+2. Moving: 18 of 19 moving reviews are negative (ADT, Vivint, Brinks). SimpliSafe's single moving review is positive (90 days free).
+3. Pre-purchase pressure: ADT refused to send pricing before signing; Vivint 25 calls in 2 days after an online quote; door-to-door reps; "no contract" promises that turned out to be 5 years.
+4. Positive reviews name the technician or support agent; bots and transfers drive the negatives.
+5. Paid repairs: $59 trip charge, $99–$125 visits, $225–$300 Wi-Fi resets (ADT, Brinks), $160 first hour (SimpliSafe).
+6. No call on alarm at Brinks (5 reviews) and ADT; Brinks' "30-second response" claim conflicts.
+7. Four Brinks reviewers say there are no technicians in their area (WV, Reno, others): local coverage is real.
+8. Retention offers show prices are negotiable: ADT $96→$29.99, $50→$10; Brinks $80→$20.
